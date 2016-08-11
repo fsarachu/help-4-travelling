@@ -6,17 +6,6 @@ package uy.edu.cure.servidor.web;
  */
 public class App {
 	
-<<<<<<< HEAD
-=======
-	public App() {
-		// TODO Auto-generated constructor stub
-	}
-	
-	public void algo() {
-		System.out.println("asdffafds");
-	}
-	
->>>>>>> origin/master
 	public static void main(String[] args) {
 		System.out.println("Hello World!");
 	}
