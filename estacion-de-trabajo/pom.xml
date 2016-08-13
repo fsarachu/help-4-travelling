@@ -10,7 +10,6 @@
 	</parent>
 	<groupId>uy.edu.cure.maldonado</groupId>
 	<artifactId>estacion-de-trabajo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
 	<name>estacion-de-trabajo</name>
 	<url>http://maven.apache.org</url>
 	<properties>
