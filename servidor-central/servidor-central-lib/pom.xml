@@ -5,12 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>uy.edu.cure</groupId>
-		<artifactId>programacion-applicaciones</artifactId>
+		<artifactId>servidor-central</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>servidor-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>servidor-web</name>
+	<artifactId>servidor-central-lib</artifactId>
+	<name>servidor-central-lib</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

@@ -5,17 +5,26 @@
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
 		<groupId>uy.edu.cure</groupId>
-		<artifactId>programacion-applicaciones</artifactId>
+		<artifactId>servidor-central</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>servidor-web</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>servidor-web</name>
+	<artifactId>servidor-central-webapp</artifactId>
+	<name>servidor-central-webapp</name>
 	<url>http://maven.apache.org</url>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>org.glassfish.jersey.core</groupId>
+			<artifactId>jersey-server</artifactId>
+			<version>2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet-core</artifactId>
+			<version>2.17</version>
+		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
@@ -23,4 +32,5 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<packaging>war</packaging>
 </project>
