@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.SpringLayout;
-
+//ssdgsgss
 public class Main {
 
 	private JFrame frame;
