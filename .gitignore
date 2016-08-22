@@ -84,4 +84,6 @@ local.properties
 # Code Recommenders
 .recommenders/
 
-
+# JetBrains files
+.idea/
+**/*.iml
