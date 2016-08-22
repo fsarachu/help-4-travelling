@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 public class Ciudad {
     private String nombre;
+    private Pais pais;
 
     public String getNombre() {
         return nombre;
@@ -13,5 +14,5 @@ public class Ciudad {
         this.nombre = nombre;
     }
 
-    private Pais new pais;
+
 }

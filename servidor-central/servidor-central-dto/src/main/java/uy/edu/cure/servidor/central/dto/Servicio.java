@@ -7,7 +7,7 @@ public class Servicio {
     private String nombre;
     private String descripcion;
     private double precio;
-    private BufferedImage imagenes[3];
+    private ArrayList<BufferedImage> imagenes;
     private ArrayList<Categoria> categorias;
     private ArrayList<Ciudad> ciudades;
 
@@ -35,11 +35,11 @@ public class Servicio {
         this.precio = precio;
     }
 
-    public BufferedImage[] getImagenes() {
+    public ArrayList<BufferedImage> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(BufferedImage[] imagenes) {
+    public void setImagenes(ArrayList<BufferedImage> imagenes) {
         this.imagenes = imagenes;
     }
 
