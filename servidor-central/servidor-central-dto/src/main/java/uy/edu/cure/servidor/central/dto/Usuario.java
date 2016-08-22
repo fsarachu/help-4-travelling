@@ -5,7 +5,7 @@ import java.util.Date;
 /**
  * Created by victor on 22/08/16.
  */
-public class usuario {
+public class Usuario {
     private String nickname;
     private String nombre;
     private String apellido;

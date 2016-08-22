@@ -3,7 +3,7 @@ package uy.edu.cure.servidor.central.dto;
 /**
  * Created by victor on 22/08/16.
  */
-public class proveedor {
+public class Proveedor {
     private String nombreEmpresa;
     private String linkEmpresa;
 }
