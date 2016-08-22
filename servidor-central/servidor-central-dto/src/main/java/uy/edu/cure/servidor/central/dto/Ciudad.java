@@ -1,8 +1,17 @@
 package uy.edu.cure.servidor.central.dto;
 
-/**
- * Created by victor on 22/08/16.
- */
+import java.util.ArrayList;
+
 public class Ciudad {
     private String nombre;
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    private Pais new pais;
 }
