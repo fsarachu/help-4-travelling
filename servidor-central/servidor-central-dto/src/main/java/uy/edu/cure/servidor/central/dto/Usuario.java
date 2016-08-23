@@ -3,7 +3,7 @@ package uy.edu.cure.servidor.central.dto;
 import java.awt.image.BufferedImage;
 import java.util.Date;
 
-public class Usuario {
+public abstract class Usuario {
     private String nickname;
     private String nombre;
     private String apellido;
