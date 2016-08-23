@@ -1,7 +1,13 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
-/**
- * Created by victor on 22/08/16.
- */
+import uy.edu.cure.servidor.central.dto.Servicio;
+
 public interface ServicioService {
+    void agregar(Servicio servicio);
+
+    void eliminar(Servicio servicio);
+
+    void modificar(Servicio anterior, Servicio nuevo);
+
+    Servicio buscar(Servicio servicio);
 }
