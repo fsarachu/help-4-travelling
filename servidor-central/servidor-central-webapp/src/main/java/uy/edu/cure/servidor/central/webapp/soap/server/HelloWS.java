@@ -6,6 +6,7 @@ import javax.jws.WebService;
 @WebService
 public interface HelloWS {
 
-    @WebMethod public String sayHello(String name);
-    
+    @WebMethod
+    public String sayHello(String name);
+
 }

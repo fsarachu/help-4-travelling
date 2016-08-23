@@ -4,6 +4,15 @@ import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 
 public class CategoriaServiceImpl implements CategoriaService {
+    private static CategoriaServiceImpl ourInstance = new CategoriaServiceImpl();
+
+    public static CategoriaServiceImpl getInstance() {
+        return ourInstance;
+    }
+
+    private CategoriaServiceImpl() {
+    }
+
     @Override
     public void agregar(Categoria categoria) {
 
