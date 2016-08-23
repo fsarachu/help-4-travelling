@@ -7,8 +7,11 @@ import uy.edu.cure.servidor.central.dto.Usuario;
  */
 public interface ClienteService {
     public void agregar(Usuario usuario);
+
     public void eliminar(Usuario usuario);
+
     public void modificar(Usuario anterior, Usuario nuevo);
+
     public Usuario buscar(Usuario usuario);
 
 }

@@ -7,7 +7,10 @@ import uy.edu.cure.servidor.central.dto.Proveedor;
  */
 public interface ProveedorService {
     public void agregar(Proveedor proveedor);
+
     public void eliminar(Proveedor proveedor);
+
     public void modificar(Proveedor anterior, Proveedor nuevo);
+
     public Proveedor buscar(Proveedor proveedor);
 }

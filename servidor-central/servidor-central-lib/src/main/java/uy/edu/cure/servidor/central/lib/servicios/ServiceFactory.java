@@ -1,29 +1,29 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
-import uy.edu.cure.servidor.central.lib.servicios.memoria.CategoriaServiceImpl;
+import uy.edu.cure.servidor.central.lib.servicios.memoria.*;
 
 public class ServiceFactory {
-//    public static CategoriaService getCategoriaService() {
-//
-//    }
-//
-//    public static CiudadService getCiudadService() {
-//
-//    }
-//
-//    public static ClienteService getClienteService() {
-//
-//    }
-//
-//    public static PaisService getPaisService() {
-//
-//    }
-//
-//    public static ProveedorService getProveedorService() {
-//
-//    }
-//
-//    public static ServicioService getServicioService() {
-//
-//    }
+    public static CategoriaService getCategoriaService() {
+        return CategoriaServiceImpl.getInstance();
+    }
+
+    public static CiudadService getCiudadService() {
+        return CiudadServiceImpl.getInstance();
+    }
+
+    public static ClienteService getClienteService() {
+        return ClienteServiceImpl.getInstance();
+    }
+
+    public static PaisService getPaisService() {
+        return PaisServiceImpl.getInstance();
+    }
+
+    public static ProveedorService getProveedorService() {
+        return ProveedorServiceImpl.getInstance();
+    }
+
+    public static ServicioService getServicioService() {
+        return ServicioServiceImpl.getInstance();
+    }
 }

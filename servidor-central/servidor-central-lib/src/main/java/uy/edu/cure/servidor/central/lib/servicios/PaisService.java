@@ -7,7 +7,10 @@ import uy.edu.cure.servidor.central.dto.Pais;
  */
 public interface PaisService {
     public void agregar(Pais pais);
+
     public void eliminar(Pais pais);
+
     public void modificar(Pais anterior, Pais nuevo);
+
     public Pais buscar(Pais pais);
 }

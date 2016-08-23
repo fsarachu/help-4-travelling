@@ -7,8 +7,11 @@ import uy.edu.cure.servidor.central.dto.Ciudad;
  */
 public interface CiudadService {
     public void agregar(Ciudad ciudad);
+
     public void eliminar(Ciudad ciudad);
+
     public void modificar(Ciudad anterior, Ciudad nuevo);
+
     public Ciudad buscar(Ciudad ciudad);
 
 }
