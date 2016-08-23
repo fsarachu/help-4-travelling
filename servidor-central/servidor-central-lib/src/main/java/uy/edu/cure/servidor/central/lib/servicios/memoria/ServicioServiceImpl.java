@@ -6,7 +6,7 @@ import uy.edu.cure.servidor.central.lib.servicios.ServicioService;
 public class ServicioServiceImpl implements ServicioService {
     @Override
     public void agregar(Servicio servicio) {
-        
+
     }
 
     @Override
