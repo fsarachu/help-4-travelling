@@ -9,6 +9,6 @@ public interface CiudadService {
 
     void modificar(Ciudad anterior, Ciudad nuevo);
 
-    Ciudad buscar(Ciudad ciudad);
+    Ciudad obtener(String nombre);
 
 }
