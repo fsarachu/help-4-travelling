@@ -10,6 +10,7 @@ public class Categoria {
     private Categoria padre;
     private ArrayList<Categoria> hijos;
 
+
     public String getNombre() {
         return nombre;
     }
