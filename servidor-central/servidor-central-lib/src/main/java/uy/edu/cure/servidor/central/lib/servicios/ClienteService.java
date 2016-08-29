@@ -9,6 +9,6 @@ public interface ClienteService {
 
     void modificar(Usuario anterior, Usuario nuevo);
 
-    Usuario buscar(Usuario usuario);
+    Usuario obtener(String nickname);
 
 }
