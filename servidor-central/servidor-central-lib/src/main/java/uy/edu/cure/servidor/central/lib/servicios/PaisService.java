@@ -9,5 +9,5 @@ public interface PaisService {
 
     void modificar(Pais anterior, Pais nuevo);
 
-    Pais buscar(Pais pais);
+    Pais obtener(String nombre);
 }
