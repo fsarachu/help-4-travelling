@@ -9,5 +9,5 @@ public interface CategoriaService {
 
     void modificar(Categoria anterior, Categoria nuevo);
 
-    Categoria buscar(Categoria categoria);
+    Categoria obtener(String nombre);
 }
