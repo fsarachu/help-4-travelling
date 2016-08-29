@@ -40,7 +40,6 @@ public class CiudadServiceImpl implements CiudadService {
             this.ciudades.remove(index);
             this.ciudades.add(nuevo);
         }
-
     }
 
     @Override
