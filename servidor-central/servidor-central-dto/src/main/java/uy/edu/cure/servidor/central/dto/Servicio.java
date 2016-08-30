@@ -9,7 +9,9 @@ public class Servicio {
     private double precio;
     private ArrayList<BufferedImage> imagenes;
     private ArrayList<Categoria> categorias;
-    private ArrayList<Ciudad> ciudades;
+    private Ciudad origen;
+    private Ciudad destino;
+    private Proveedor proveedor;
 
     public String getNombre() {
         return nombre;
@@ -51,11 +53,19 @@ public class Servicio {
         this.categorias = categorias;
     }
 
-    public ArrayList<Ciudad> getCiudades() {
-        return ciudades;
+    public Ciudad getOrigen() {
+        return origen;
     }
 
-    public void setCiudades(ArrayList<Ciudad> ciudades) {
-        this.ciudades = ciudades;
+    public void setOrigen(Ciudad origen) {
+        this.origen = origen;
+    }
+
+    public Ciudad getDestino() {
+        return destino;
+    }
+
+    public void setDestino(Ciudad destino) {
+        this.destino = destino;
     }
 }
