@@ -1,6 +1,6 @@
 package uy.edu.cure.servidor.central.dto;
 
-public class Producto {
+public abstract class Producto {
     private String nombre;
     private String descripcion;
     private int precio;
