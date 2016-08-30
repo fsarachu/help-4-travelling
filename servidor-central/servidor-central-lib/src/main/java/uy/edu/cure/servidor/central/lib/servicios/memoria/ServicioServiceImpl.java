@@ -20,10 +20,8 @@ public class ServicioServiceImpl implements ServicioService {
 
     @Override
     public void agregar(Servicio servicio) {
-        this.servicios.add(servicio)
+        this.servicios.add(servicio);
     }
-
-    ;
 
 
     @Override
