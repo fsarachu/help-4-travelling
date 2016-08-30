@@ -9,5 +9,5 @@ public interface ServicioService {
 
     void modificar(Servicio anterior, Servicio nuevo);
 
-    Servicio buscar(Servicio servicio);
+    Servicio obtener(String nombre);
 }
