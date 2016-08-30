@@ -3,7 +3,7 @@ package uy.edu.cure.servidor.central.dto;
 public abstract class Producto {
     private String nombre;
     private String descripcion;
-    private int precio;
+    private double precio;
     private Proveedor proveedor;
 
     public String getNombre() {
@@ -22,11 +22,11 @@ public abstract class Producto {
         this.descripcion = descripcion;
     }
 
-    public int getPrecio() {
+    public double getPrecio() {
         return precio;
     }
 
-    public void setPrecio(int precio) {
+    public void setPrecio(double precio) {
         this.precio = precio;
     }
 
