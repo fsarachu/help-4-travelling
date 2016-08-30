@@ -1,16 +1,13 @@
 package uy.edu.cure.servidor.central.dto;
 
-/**
- * Created by victor on 22/08/16.
- */
 public class Pais {
-    private String pais;
+    private String nombre;
 
-    public String getPais() {
-        return pais;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setPais(String pais) {
-        this.pais = pais;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }
