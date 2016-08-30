@@ -9,5 +9,5 @@ public interface ProveedorService {
 
     void modificar(Proveedor anterior, Proveedor nuevo);
 
-    Proveedor buscar(Proveedor proveedor);
+    Proveedor obtener(String nombreEmpresa);
 }
