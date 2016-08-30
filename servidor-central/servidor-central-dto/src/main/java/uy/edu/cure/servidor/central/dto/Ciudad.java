@@ -1,7 +1,5 @@
 package uy.edu.cure.servidor.central.dto;
 
-import java.util.ArrayList;
-
 public class Ciudad {
     private String nombre;
     private Pais pais;
@@ -14,5 +12,11 @@ public class Ciudad {
         this.nombre = nombre;
     }
 
+    public Pais getPais() {
+        return pais;
+    }
 
+    public void setPais(Pais pais) {
+        this.pais = pais;
+    }
 }
