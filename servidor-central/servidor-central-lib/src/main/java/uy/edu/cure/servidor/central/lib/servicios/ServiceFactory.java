@@ -1,6 +1,5 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
-//francou
 import uy.edu.cure.servidor.central.lib.servicios.memoria.*;
 
 public class ServiceFactory {
@@ -26,5 +25,9 @@ public class ServiceFactory {
 
     public static ServicioService getServicioService() {
         return ServicioServiceImpl.getInstance();
+    }
+
+    public static PromocionService getPromocionService() {
+        return PromocionServiceImpl.getInstance();
     }
 }
