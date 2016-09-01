@@ -1,14 +1,14 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
-import uy.edu.cure.servidor.central.dto.Usuario;
+import uy.edu.cure.servidor.central.dto.Cliente;
 
 public interface ClienteService {
-    void agregar(Usuario usuario);
+    void agregar(Cliente cliente);
 
-    void eliminar(Usuario usuario);
+    void eliminar(Cliente cliente);
 
-    void modificar(Usuario anterior, Usuario nuevo);
+    void modificar(Cliente anterior, Cliente nuevo);
 
-    Usuario obtener(String nickname);
+    Cliente obtener(String nickname);
 
 }

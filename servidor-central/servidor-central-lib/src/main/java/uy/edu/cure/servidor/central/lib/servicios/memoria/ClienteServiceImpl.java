@@ -1,14 +1,13 @@
 package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.dto.Usuario;
 import uy.edu.cure.servidor.central.lib.servicios.ClienteService;
 
 import java.util.ArrayList;
 
 public class ClienteServiceImpl implements ClienteService {
 
-    private ArrayList<Usuario> usuarios;
+    private ArrayList<Cliente> clientes;
 
     private static ClienteServiceImpl ourInstance = new ClienteServiceImpl();
 
@@ -20,34 +19,34 @@ public class ClienteServiceImpl implements ClienteService {
     }
 
     @Override
-    public void agregar(Usuario usuario) {
-        this.usuarios.add(usuario);
+    public void agregar(Cliente cliente) {
+        this.clientes.add(cliente);
     }
 
     @Override
-    public void eliminar(Usuario usuario) {
-        int index = this.usuarios.indexOf(usuario);
+    public void eliminar(Cliente cliente) {
+        int index = this.clientes.indexOf(cliente);
         if ( index != -1){
-            this.usuarios.remove(index);
+            this.clientes.remove(index);
         }
     }
 
     @Override
-    public void modificar(Usuario anterior, Usuario nuevo) {
-        int index = this.usuarios.indexOf(anterior);
+    public void modificar(Cliente anterior, Cliente nuevo) {
+        int index = this.clientes.indexOf(anterior);
 
         if ( index != -1){
-            this.usuarios.remove(index);
-            this.usuarios.add(nuevo);
+            this.clientes.remove(index);
+            this.clientes.add(nuevo);
         }
 
     }
 
     @Override
-    public Usuario obtener(String nickname) {
-        for (Usuario usuario : this.usuarios) {
-            if (usuario.getNickname().equals(nickname)) {
-                return usuario;
+    public Cliente obtener(String nickname) {
+        for (Cliente cliente : this.clientes) {
+            if (cliente.getNickname().equals(nickname)) {
+                return cliente;
             }
         }
         return null;
