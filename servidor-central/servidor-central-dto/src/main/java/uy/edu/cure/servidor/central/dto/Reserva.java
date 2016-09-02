@@ -3,18 +3,18 @@ package uy.edu.cure.servidor.central.dto;
 import java.util.Date;
 
 public class Reserva {
-    private int id;
+    private Integer id;
     private EstadoReserva estado;
     private Date fechaInicio;
     private Date fechaFin;
     private int cantidad;
     private double precio;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

@@ -8,6 +8,6 @@ public class ClienteController {
     public void alta(Cliente cliente) {
         ClienteService clienteService = ServiceFactory.getClienteService();
 
-        clienteService.agregar(cliente);
+        clienteService.agregar(cliente.getId(), cliente);
     }
 }

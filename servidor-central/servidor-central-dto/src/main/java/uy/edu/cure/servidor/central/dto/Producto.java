@@ -1,17 +1,17 @@
 package uy.edu.cure.servidor.central.dto;
 
 public abstract class Producto {
-    private int id;
+    private Integer id;
     private String nombre;
     private String descripcion;
     private double precio;
     private Proveedor proveedor;
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

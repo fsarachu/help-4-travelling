@@ -8,12 +8,12 @@ public class CategoriaController {
     public void alta(Categoria categoria) {
         CategoriaService categoriaService = ServiceFactory.getCategoriaService();
 
-        if(categoria.getPadre() != null) {
-            Categoria padre = categoriaService.obtener(categoria.getPadre().getNombre());
+        if (categoria.getPadre() != null) {
+            Categoria padre = categoriaService.obtener(categoria.getPadre().getId());
 
             padre.getHijos().add(categoria); // Si padre null?
         }
 
-        categoriaService.agregar(categoria);
+        categoriaService.agregar(categoria.getId(), categoria);
     }
 }

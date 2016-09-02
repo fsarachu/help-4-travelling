@@ -3,12 +3,12 @@ package uy.edu.cure.servidor.central.lib.servicios;
 import uy.edu.cure.servidor.central.dto.Servicio;
 
 public interface ServicioService {
-    void agregar(Servicio servicio);
+    void agregar(Integer id, Servicio servicio);
 
-    void eliminar(Servicio servicio);
+    void eliminar(Integer id);
 
-    void modificar(Servicio anterior, Servicio nuevo);
+    void modificar(Integer id, Servicio servicio);
 
-    Servicio obtener(String nombre);
+    Servicio obtener(Integer id);
 
 }

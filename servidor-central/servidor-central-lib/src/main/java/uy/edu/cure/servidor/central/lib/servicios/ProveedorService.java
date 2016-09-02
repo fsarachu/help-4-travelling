@@ -3,11 +3,11 @@ package uy.edu.cure.servidor.central.lib.servicios;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 
 public interface ProveedorService {
-    void agregar(Proveedor proveedor);
+    void agregar(Integer id, Proveedor proveedor);
 
-    void eliminar(Proveedor proveedor);
+    void eliminar(Integer id);
 
-    void modificar(Proveedor anterior, Proveedor nuevo);
+    void modificar(Integer id, Proveedor proveedor);
 
-    Proveedor obtener(String nombreEmpresa);
+    Proveedor obtener(Integer id);
 }

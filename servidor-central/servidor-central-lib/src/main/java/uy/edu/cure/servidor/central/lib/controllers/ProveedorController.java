@@ -8,6 +8,6 @@ public class ProveedorController {
     public void alta(Proveedor proveedor) {
         ProveedorService proveedorService = ServiceFactory.getProveedorService();
 
-        proveedorService.agregar(proveedor);
+        proveedorService.agregar(proveedor.getId(), proveedor);
     }
 }
