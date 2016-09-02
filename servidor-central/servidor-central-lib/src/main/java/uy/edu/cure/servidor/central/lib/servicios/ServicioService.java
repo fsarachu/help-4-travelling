@@ -7,8 +7,8 @@ public interface ServicioService {
 
     void eliminar(Servicio servicio);
 
-    void modificar(Servicio anterior, Servicio nuevo);
+    void modificar(Servicio servicio);
 
-    Servicio obtener(String nombre);
+    Servicio obtener(int id);
 
 }
