@@ -9,7 +9,7 @@ public class PromocionController {
     public void alta(Promocion promocion) {
         PromocionService promocionService = ServiceFactory.getPromocionService();
 
-        promocionService.agregar(promocion);
+        promocionService.agregar(promocion.getId(), promocion);
 
         Proveedor proveedor = promocion.getProveedor();
 

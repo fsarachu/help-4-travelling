@@ -9,7 +9,7 @@ public class ServicioController {
     public void alta(Servicio servicio) {
         ServicioService servicioService = ServiceFactory.getServicioService();
 
-        servicioService.agregar(servicio);
+        servicioService.agregar(servicio.getId(), servicio);
 
         Proveedor proveedor = servicio.getProveedor();
 
