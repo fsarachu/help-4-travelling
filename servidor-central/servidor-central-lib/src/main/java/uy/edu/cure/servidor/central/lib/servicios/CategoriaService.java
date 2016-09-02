@@ -7,7 +7,7 @@ public interface CategoriaService {
 
     void eliminar(Integer id);
 
-    void modificar(Integer id, Categoria nuevo);
+    void modificar(Integer id, Categoria categoria);
 
-    Categoria obtener(int id);
+    Categoria obtener(Integer id);
 }

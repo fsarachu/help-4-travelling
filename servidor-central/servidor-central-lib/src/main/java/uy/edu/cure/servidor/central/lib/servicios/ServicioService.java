@@ -9,6 +9,6 @@ public interface ServicioService {
 
     void modificar(Integer id, Servicio servicio);
 
-    Servicio obtener(int id);
+    Servicio obtener(Integer id);
 
 }

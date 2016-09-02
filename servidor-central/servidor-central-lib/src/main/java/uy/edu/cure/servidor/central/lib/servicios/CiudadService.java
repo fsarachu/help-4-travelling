@@ -3,12 +3,12 @@ package uy.edu.cure.servidor.central.lib.servicios;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 
 public interface CiudadService {
-    void agregar(Ciudad ciudad);
+    void agregar(Integer id, Ciudad ciudad);
 
-    void eliminar(Ciudad ciudad);
+    void eliminar(Integer id);
 
-    void modificar(Ciudad anterior, Ciudad nuevo);
+    void modificar(Integer id, Ciudad ciudad);
 
-    Ciudad obtener(String nombre);
+    Ciudad obtener(Integer id);
 
 }

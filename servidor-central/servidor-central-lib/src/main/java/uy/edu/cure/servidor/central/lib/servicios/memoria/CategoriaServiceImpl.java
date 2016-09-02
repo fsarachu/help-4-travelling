@@ -15,5 +15,4 @@ public class CategoriaServiceImpl extends GenericService<Categoria> implements C
         super();
     }
 
-
 }

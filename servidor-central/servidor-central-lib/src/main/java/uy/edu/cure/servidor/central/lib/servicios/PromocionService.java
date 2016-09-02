@@ -3,11 +3,11 @@ package uy.edu.cure.servidor.central.lib.servicios;
 import uy.edu.cure.servidor.central.dto.Promocion;
 
 public interface PromocionService {
-    void agregar(Promocion promocion);
+    void agregar(Integer id, Promocion promocion);
 
-    void eliminar(Promocion promocion);
+    void eliminar(Integer id);
 
-    void modificar(Promocion anterior, Promocion nueva);
+    void modificar(Integer id, Promocion promocion);
 
-    Promocion obtener(String nombre);
+    Promocion obtener(Integer id);
 }
