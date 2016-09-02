@@ -4,12 +4,21 @@ import java.awt.image.BufferedImage;
 import java.util.Date;
 
 public abstract class Usuario {
+    private Integer id;
     private String nickname;
     private String nombre;
     private String apellido;
     private String correo;
     private Date fechaNacimiento;
     private BufferedImage imagen;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNickname() {
         return nickname;

@@ -6,18 +6,18 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Orden {
-    private int id;
+    private Integer id;
     private Date fechaCreacion;
     private double total;
     private ArrayList<Reserva> reservas;
     private Cliente cliente;
 
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

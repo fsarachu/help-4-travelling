@@ -1,8 +1,17 @@
 package uy.edu.cure.servidor.central.dto;
 
 public class Ciudad {
+    private Integer id;
     private String nombre;
     private Pais pais;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
