@@ -3,11 +3,7 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import uy.edu.cure.servidor.central.lib.servicios.ServicioService;
 import uy.edu.cure.servidor.central.dto.Servicio;
 
-import java.util.HashMap;
-
-public class ServicioServiceImpl implements ServicioService {
-
-    private HashMap<Integer, Servicio> servicios;
+public class ServicioServiceImpl extends GenericService<Servicio> implements ServicioService {
 
     private static ServicioServiceImpl ourInstance = new ServicioServiceImpl();
 
@@ -16,27 +12,7 @@ public class ServicioServiceImpl implements ServicioService {
     }
 
     private ServicioServiceImpl() {
-        servicios = new HashMap<>();
+        super();
     }
 
-    @Override
-    public void agregar(Servicio servicio) {
-        this.servicios.put(servicio.getId(), servicio);
-    }
-
-
-    @Override
-    public void eliminar(Servicio servicio) {
-        this.servicios.remove(servicio.getId());
-    }
-
-    @Override
-    public void modificar(Servicio servicio) {
-        this.servicios.put(servicio.getId(), servicio);
-    }
-
-    @Override
-    public Servicio obtener(int id) {
-        return servicios.get(id);
-    }
 }
