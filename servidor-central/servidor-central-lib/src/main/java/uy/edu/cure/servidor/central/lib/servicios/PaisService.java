@@ -3,11 +3,11 @@ package uy.edu.cure.servidor.central.lib.servicios;
 import uy.edu.cure.servidor.central.dto.Pais;
 
 public interface PaisService {
-    void agregar(Pais pais);
+    void agregar(Integer id, Pais pais);
 
-    void eliminar(Pais pais);
+    void eliminar(Integer id);
 
-    void modificar(Pais anterior, Pais nuevo);
+    void modificar(Integer id, Pais pais);
 
-    Pais obtener(String nombre);
+    Pais obtener(Integer id);
 }

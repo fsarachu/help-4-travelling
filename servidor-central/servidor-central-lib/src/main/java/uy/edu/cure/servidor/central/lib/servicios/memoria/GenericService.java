@@ -21,7 +21,7 @@ public class GenericService<T> {
         this.coleccion.put(id, value);
     }
 
-    public T obtener(int id) {
+    public T obtener(Integer id) {
         return coleccion.get(id);
     }
 }
