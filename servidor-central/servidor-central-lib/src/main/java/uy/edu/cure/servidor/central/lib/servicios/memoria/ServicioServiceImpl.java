@@ -34,7 +34,7 @@ public class ServicioServiceImpl implements ServicioService {
 
     @Override
     public void modificar(Servicio servicio) {
-        this.servicios.replace(servicio.getId(), servicio);
+        this.servicios.put(servicio.getId(), servicio);
     }
 
     @Override
