@@ -3,9 +3,18 @@ package uy.edu.cure.servidor.central.dto;
 import java.util.ArrayList;
 
 public class Categoria {
+    private int id;
     private String nombre;
     private Categoria padre;
     private ArrayList<Categoria> hijos;
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public String getNombre() {
         return nombre;
