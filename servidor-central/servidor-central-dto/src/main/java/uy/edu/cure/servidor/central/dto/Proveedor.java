@@ -2,7 +2,7 @@ package uy.edu.cure.servidor.central.dto;
 
 import java.util.ArrayList;
 
-public class Proveedor {
+public class Proveedor extends Usuario {
     private String nombreEmpresa;
     private String linkEmpresa;
     private ArrayList<Servicio> servicios;
