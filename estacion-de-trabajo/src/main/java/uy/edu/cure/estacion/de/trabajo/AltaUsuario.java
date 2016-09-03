@@ -1,14 +1,17 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class AltaUsuario extends JFrame{
+public class AltaUsuario extends JFrame {
     private JLabel lblNickname;
     private JRadioButton rbtnCliente;
     private JRadioButton rbtnProveedor;
@@ -55,9 +58,9 @@ public class AltaUsuario extends JFrame{
         txtLink.setVisible(false);
         lblEmpresa.setVisible(false);
         lblLink.setVisible(false);
-        Date hoy= new Date();
-        final SimpleDateFormat sdf= new SimpleDateFormat("dd/MM/yyyy");
-        txtFechaNacimiento.setText(sdf.format(hoy));
+        Date hoy = new Date();
+        final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        txtFechaNacimiento.setText(formatter.format(hoy));
 
         btnAceptar.addActionListener(new ActionListener() {
             @Override
@@ -84,7 +87,8 @@ public class AltaUsuario extends JFrame{
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null,null,"HOLA",JOptionPane.INFORMATION_MESSAGE);
+                //JOptionPane.showMessageDialog(null, null, "HOLA", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, txtFechaNacimiento.getText(), "HOLA", JOptionPane.INFORMATION_MESSAGE);
 
             }
         });
@@ -92,13 +96,17 @@ public class AltaUsuario extends JFrame{
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Cliente cliente = new Cliente();
-                cliente.setApellido(txtApellido.toString());
-                cliente.setCorreo(txtCorreo.toString());
-                //cliente.setFechaNacimiento(sdf);
+                cliente.setApellido(txtApellido.getText());
+                cliente.setCorreo(txtCorreo.getText());
+                try {
+                    cliente.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
                 cliente.setId(1);
-                cliente.setNombre(txtNombre.toString());
-                cliente.setNickname(txtNickName.toString());
-                //ClienteServiceImpl clienteServiceImpl = new ClienteServiceImpl().agregar(1,cliente);
+                cliente.setNombre(txtNombre.getText());
+                cliente.setNickname(txtNickName.getText());
+                // Aca se llama al controller Usuario
             }
         });
     }
