@@ -87,9 +87,7 @@ public class AltaUsuario extends JFrame {
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //JOptionPane.showMessageDialog(null, null, "HOLA", JOptionPane.INFORMATION_MESSAGE);
-                JOptionPane.showMessageDialog(null, txtFechaNacimiento.getText(), "HOLA", JOptionPane.INFORMATION_MESSAGE);
-
+                JOptionPane.showMessageDialog(null, null, "HOLA", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         btnAceptar.addActionListener(new ActionListener() {
@@ -101,7 +99,7 @@ public class AltaUsuario extends JFrame {
                 try {
                     cliente.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
                 } catch (ParseException e) {
-                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Verifique la información ingresada", "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
                 cliente.setId(1);
                 cliente.setNombre(txtNombre.getText());
