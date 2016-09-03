@@ -5,6 +5,12 @@ public class Ciudad {
     private String nombre;
     private Pais pais;
 
+    public Ciudad(Integer id, String nombre, Pais pais) {
+        this.id = id;
+        this.nombre = nombre;
+        this.pais = pais;
+    }
+
     public Integer getId() {
         return id;
     }

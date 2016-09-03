@@ -12,6 +12,19 @@ public abstract class Usuario {
     private Date fechaNacimiento;
     private BufferedImage imagen;
 
+    public Usuario() {
+    }
+
+    public Usuario(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen) {
+        this.id = id;
+        this.nickname = nickname;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.imagen = imagen;
+    }
+
     public Integer getId() {
         return id;
     }
