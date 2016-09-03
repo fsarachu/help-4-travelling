@@ -131,15 +131,6 @@
         </constraints>
         <properties/>
       </component>
-      <component id="1b9f3" class="javax.swing.JTextField" binding="txtFechaNacimiento">
-        <constraints>
-          <grid row="7" column="3" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="-1"/>
-            <maximum-size width="80" height="-1"/>
-          </grid>
-        </constraints>
-        <properties/>
-      </component>
       <component id="b152c" class="javax.swing.JTextField" binding="txtEmpresa">
         <constraints>
           <grid row="9" column="4" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
@@ -216,6 +207,15 @@
         <border type="none"/>
         <children/>
       </grid>
+      <component id="79bff" class="javax.swing.JFormattedTextField" binding="txtFechaNacimiento">
+        <constraints>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="-1"/>
+            <maximum-size width="80" height="-1"/>
+          </grid>
+        </constraints>
+        <properties/>
+      </component>
     </children>
   </grid>
   <buttonGroups>
