@@ -10,8 +10,9 @@ public class Reserva {
     private Producto producto;
     private int cantidad;
     private double precio;
+    private Orden orden;
 
-    public Reserva(Integer id, EstadoReserva estado, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio) {
+    public Reserva(Integer id, EstadoReserva estado, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio, Orden orden) {
         this.id = id;
         this.estado = estado;
         this.fechaInicio = fechaInicio;
@@ -19,6 +20,7 @@ public class Reserva {
         this.producto = producto;
         this.cantidad = cantidad;
         this.precio = precio;
+        this.orden = orden;
     }
 
     public Integer getId() {
@@ -75,5 +77,13 @@ public class Reserva {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public Orden getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Orden orden) {
+        this.orden = orden;
     }
 }

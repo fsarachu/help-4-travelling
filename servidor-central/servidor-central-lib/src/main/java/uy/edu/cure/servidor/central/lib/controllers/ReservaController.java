@@ -6,9 +6,11 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 public class ReservaController {
 
-    public void alta(Reserva reserva){
+    public void alta(Reserva reserva) {
 
         ReservaService reservaService = ServiceFactory.getReservaService();
+
+        reserva.getOrden().getIdReservas().add(reserva.getId());
 
         reservaService.agregar(reserva.getId(), reserva);
 
