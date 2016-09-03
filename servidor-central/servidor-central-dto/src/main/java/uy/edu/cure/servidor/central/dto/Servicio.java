@@ -23,24 +23,12 @@ public class Servicio extends Producto {
         return imagenes;
     }
 
-    public void setImagenes(ArrayList<BufferedImage> imagenes) {
-        this.imagenes = imagenes;
-    }
-
     public ArrayList<Integer> getIdCategorias() {
         return idCategorias;
     }
 
-    public void setIdCategorias(ArrayList<Integer> idCategorias) {
-        this.idCategorias = idCategorias;
-    }
-
     public ArrayList<Categoria> getCategorias() {
         return categorias;
-    }
-
-    public void setCategorias(ArrayList<Categoria> categorias) {
-        this.categorias = categorias;
     }
 
     public Ciudad getOrigen() {

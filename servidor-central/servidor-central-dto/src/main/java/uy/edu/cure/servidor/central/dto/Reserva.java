@@ -7,14 +7,16 @@ public class Reserva {
     private EstadoReserva estado;
     private Date fechaInicio;
     private Date fechaFin;
+    private Producto producto;
     private int cantidad;
     private double precio;
 
-    public Reserva(Integer id, EstadoReserva estado, Date fechaInicio, Date fechaFin, int cantidad, double precio) {
+    public Reserva(Integer id, EstadoReserva estado, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio) {
         this.id = id;
         this.estado = estado;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
+        this.producto = producto;
         this.cantidad = cantidad;
         this.precio = precio;
     }
@@ -49,6 +51,14 @@ public class Reserva {
 
     public void setFechaFin(Date fechaFin) {
         this.fechaFin = fechaFin;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     public int getCantidad() {

@@ -6,12 +6,14 @@ public class Categoria {
     private Integer id;
     private String nombre;
     private Categoria padre;
+    private ArrayList<Integer> idHijos;
     private ArrayList<Categoria> hijos;
 
-    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Categoria> hijos) {
+    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Integer> idHijos, ArrayList<Categoria> hijos) {
         this.id = id;
         this.nombre = nombre;
         this.padre = padre;
+        this.idHijos = idHijos;
         this.hijos = hijos;
     }
 
@@ -39,11 +41,12 @@ public class Categoria {
         this.padre = padre;
     }
 
+    public ArrayList<Integer> getIdHijos() {
+        return idHijos;
+    }
+
     public ArrayList<Categoria> getHijos() {
         return hijos;
     }
 
-    public void setHijos(ArrayList<Categoria> hijos) {
-        this.hijos = hijos;
-    }
 }

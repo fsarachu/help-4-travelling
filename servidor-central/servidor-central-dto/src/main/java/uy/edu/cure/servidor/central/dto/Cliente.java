@@ -1,6 +1,5 @@
 package uy.edu.cure.servidor.central.dto;
 
-
 import java.awt.image.BufferedImage;
 import java.util.Date;
 
