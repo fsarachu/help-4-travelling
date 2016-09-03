@@ -1,6 +1,9 @@
 package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
-public class ReservaServiceImpl {
+import uy.edu.cure.servidor.central.dto.Reserva;
+import uy.edu.cure.servidor.central.lib.servicios.ReservaService;
+
+public class ReservaServiceImpl extends GenericService<Reserva> implements ReservaService{
 
     private static ReservaServiceImpl ourInstance = new ReservaServiceImpl();
 
