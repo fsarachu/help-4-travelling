@@ -1,7 +1,5 @@
 package uy.edu.cure.servidor.central.dto;
 
-import com.sun.security.ntlm.Client;
-
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -12,6 +10,13 @@ public class Orden {
     private ArrayList<Reserva> reservas;
     private Cliente cliente;
 
+    public Orden(Integer id, Date fechaCreacion, double total, ArrayList<Reserva> reservas, Cliente cliente) {
+        this.id = id;
+        this.fechaCreacion = fechaCreacion;
+        this.total = total;
+        this.reservas = reservas;
+        this.cliente = cliente;
+    }
 
     public Integer getId() {
         return id;

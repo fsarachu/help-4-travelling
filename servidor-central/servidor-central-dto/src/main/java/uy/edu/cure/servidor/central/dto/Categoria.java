@@ -8,6 +8,13 @@ public class Categoria {
     private Categoria padre;
     private ArrayList<Categoria> hijos;
 
+    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Categoria> hijos) {
+        this.id = id;
+        this.nombre = nombre;
+        this.padre = padre;
+        this.hijos = hijos;
+    }
+
     public Integer getId() {
         return id;
     }

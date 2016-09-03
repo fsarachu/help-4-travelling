@@ -10,6 +10,15 @@ public class Reserva {
     private int cantidad;
     private double precio;
 
+    public Reserva(Integer id, EstadoReserva estado, Date fechaInicio, Date fechaFin, int cantidad, double precio) {
+        this.id = id;
+        this.estado = estado;
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+        this.cantidad = cantidad;
+        this.precio = precio;
+    }
+
     public Integer getId() {
         return id;
     }

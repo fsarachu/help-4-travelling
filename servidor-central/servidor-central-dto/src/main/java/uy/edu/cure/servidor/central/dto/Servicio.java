@@ -10,13 +10,8 @@ public class Servicio extends Producto {
     private Ciudad origen;
     private Ciudad destino;
 
-    public Servicio() {
-        this.imagenes = new ArrayList<>();
-        this.idCategorias = new ArrayList<>();
-        this.categorias = new ArrayList<>();
-    }
-
-    public Servicio(ArrayList<BufferedImage> imagenes, ArrayList<Integer> idCategorias, ArrayList<Categoria> categorias, Ciudad origen, Ciudad destino) {
+    public Servicio(Integer id, String nombre, String descripcion, double precio, Proveedor proveedor, ArrayList<BufferedImage> imagenes, ArrayList<Integer> idCategorias, ArrayList<Categoria> categorias, Ciudad origen, Ciudad destino) {
+        super(id, nombre, descripcion, precio, proveedor);
         this.imagenes = imagenes;
         this.idCategorias = idCategorias;
         this.categorias = categorias;

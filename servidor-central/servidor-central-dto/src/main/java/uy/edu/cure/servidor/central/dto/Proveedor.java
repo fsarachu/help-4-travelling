@@ -8,6 +8,13 @@ public class Proveedor extends Usuario {
     private ArrayList<Servicio> servicios;
     private ArrayList<Promocion> promociones;
 
+    public Proveedor(String nombreEmpresa, String linkEmpresa, ArrayList<Servicio> servicios, ArrayList<Promocion> promociones) {
+        this.nombreEmpresa = nombreEmpresa;
+        this.linkEmpresa = linkEmpresa;
+        this.servicios = servicios;
+        this.promociones = promociones;
+    }
+
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }
