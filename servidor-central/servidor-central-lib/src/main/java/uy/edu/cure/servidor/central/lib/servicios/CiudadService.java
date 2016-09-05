@@ -2,6 +2,8 @@ package uy.edu.cure.servidor.central.lib.servicios;
 
 import uy.edu.cure.servidor.central.dto.Ciudad;
 
+import java.util.ArrayList;
+
 public interface CiudadService {
     void agregar(Integer id, Ciudad ciudad);
 
@@ -10,5 +12,7 @@ public interface CiudadService {
     void modificar(Integer id, Ciudad ciudad);
 
     Ciudad obtener(Integer id);
+
+    ArrayList<Ciudad> listar();
 
 }
