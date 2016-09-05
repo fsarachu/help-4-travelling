@@ -11,7 +11,5 @@ public class CiudadServiceImpl extends GenericService<Ciudad> implements CiudadS
         return ourInstance;
     }
 
-    private CiudadServiceImpl() {
-        super();
-    }
+    private CiudadServiceImpl() { super();  }
 }
