@@ -1,6 +1,8 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
+import uy.edu.cure.servidor.central.lib.servicios.memoria.ClienteServiceImpl;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -10,6 +12,7 @@ import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.EmptyStackException;
 
 public class AltaUsuario extends JFrame {
     private JLabel lblNickname;
@@ -62,12 +65,6 @@ public class AltaUsuario extends JFrame {
         final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         txtFechaNacimiento.setText(formatter.format(hoy));
 
-        btnAceptar.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, null, "Aceptar", JOptionPane.ERROR_MESSAGE);
-            }
-        });
         rbtnProveedor.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
@@ -93,18 +90,52 @@ public class AltaUsuario extends JFrame {
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                String mensaje = "";
                 Cliente cliente = new Cliente();
-                cliente.setApellido(txtApellido.getText());
-                cliente.setCorreo(txtCorreo.getText());
                 try {
+                    if (txtNickName.getText().equals("")) {
+                        txtNickName.requestFocus();
+                        mensaje = "Nickname";
+                        throw new EmptyStackException();
+                    }
+                    if (txtNombre.getText().equals("")) {
+                        txtNombre.requestFocus();
+                        mensaje = "Nombre";
+                        throw new EmptyStackException();
+                    }
+                    if (txtApellido.getText().equals("")) {
+                        txtApellido.requestFocus();
+                        mensaje = "Apellido";
+                        throw new EmptyStackException();
+                    }
+                    if (txtCorreo.getText().equals("")) {
+                        txtCorreo.requestFocus();
+                        mensaje = "Correo";
+                        throw new EmptyStackException();
+                    }
+                    if (txtEmpresa.getText().equals("")) {
+                        txtEmpresa.requestFocus();
+                        mensaje = "Empresa";
+                        throw new EmptyStackException();
+                    }
+                    if (txtLink.getText().equals("")) {
+                        txtLink.requestFocus();
+                        mensaje = "Link del proveedor";
+                        throw new EmptyStackException();
+                    }
+                    cliente.setId(1);
+                    cliente.setNickname(txtNickName.getText());
+                    cliente.setNombre(txtNombre.getText());
+                    cliente.setApellido(txtApellido.getText());
+                    cliente.setCorreo(txtCorreo.getText());
                     cliente.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
+                } catch (EmptyStackException e) {
+                    JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
                     JOptionPane.showMessageDialog(null, "Verifique la información ingresada", "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
-                cliente.setId(1);
-                cliente.setNombre(txtNombre.getText());
-                cliente.setNickname(txtNickName.getText());
-                // Aca se llama al controller Usuario
+                ClienteController clienteController = new ClienteController();
+                clienteController.alta(cliente);
             }
         });
     }
