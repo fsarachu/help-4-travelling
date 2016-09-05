@@ -11,7 +11,9 @@ public class Cliente extends Usuario {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen) {
+    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, ArrayList<Integer> idOrdenes, ArrayList<Orden> ordenes) {
         super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
+        this.idOrdenes = idOrdenes;
+        this.ordenes = ordenes;
     }
 }
