@@ -123,7 +123,12 @@ public class Principal extends JFrame {
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Categoria Seleccionada", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JFrame frame = new JFrame("AltaCategoria");
+                frame.setContentPane(new AltaCategoria().getPanelCategoria());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setResizable(false);
+                frame.setBounds(20,30,300,150);
+                frame.setVisible(true);
             }
         });
         item3.addActionListener(new ActionListener() {
