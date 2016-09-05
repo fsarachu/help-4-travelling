@@ -2,6 +2,8 @@ package uy.edu.cure.servidor.central.lib.servicios;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 
+import java.util.ArrayList;
+
 public interface ClienteService {
     void agregar(Integer id, Cliente cliente);
 
@@ -10,5 +12,7 @@ public interface ClienteService {
     void modificar(Integer id, Cliente cliente);
 
     Cliente obtener(Integer id);
+
+    ArrayList<Cliente> listar();
 
 }
