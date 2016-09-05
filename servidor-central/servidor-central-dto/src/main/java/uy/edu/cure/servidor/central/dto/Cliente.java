@@ -1,9 +1,13 @@
 package uy.edu.cure.servidor.central.dto;
 
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Cliente extends Usuario {
+    private ArrayList<Integer> idOrdenes;
+    private ArrayList<Orden> ordenes;
+
     public Cliente() {
     }
 
