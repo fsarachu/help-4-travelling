@@ -1,6 +1,6 @@
 package uy.edu.cure.servidor.central.dto;
 
-public enum EstadoReserva {
+public enum EstadoOrden {
     registrada,
     cancelada,
     pagada,

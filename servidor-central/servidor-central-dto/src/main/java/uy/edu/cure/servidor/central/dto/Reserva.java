@@ -4,7 +4,6 @@ import java.util.Date;
 
 public class Reserva {
     private Integer id;
-    private EstadoReserva estado;
     private Date fechaInicio;
     private Date fechaFin;
     private Producto producto;
@@ -12,9 +11,8 @@ public class Reserva {
     private double precio;
     private Orden orden;
 
-    public Reserva(Integer id, EstadoReserva estado, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio, Orden orden) {
+    public Reserva(Integer id, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio, Orden orden) {
         this.id = id;
-        this.estado = estado;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.producto = producto;
@@ -29,14 +27,6 @@ public class Reserva {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public EstadoReserva getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoReserva estado) {
-        this.estado = estado;
     }
 
     public Date getFechaInicio() {
