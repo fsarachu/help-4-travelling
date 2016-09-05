@@ -7,7 +7,8 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.ArrayList;
 
 public class CategoriaController {
-    public void alta(Categoria categoria) {
+
+    public void nueva(Categoria categoria) {
         CategoriaService categoriaService = ServiceFactory.getCategoriaService();
 
         if (categoria.getPadre() != null) {

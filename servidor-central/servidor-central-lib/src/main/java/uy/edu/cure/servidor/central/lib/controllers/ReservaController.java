@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ReservaController {
 
-    public void alta(Reserva reserva) {
+    public void nueva(Reserva reserva) {
 
         ReservaService reservaService = ServiceFactory.getReservaService();
 

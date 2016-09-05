@@ -8,7 +8,8 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.ArrayList;
 
 public class PromocionController {
-    public void alta(Promocion promocion) {
+
+    public void nueva(Promocion promocion) {
         PromocionService promocionService = ServiceFactory.getPromocionService();
 
         promocionService.agregar(promocion.getId(), promocion);

@@ -7,7 +7,8 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.ArrayList;
 
 public class ClienteController {
-    public void alta(Cliente cliente) {
+
+    public void nuevo(Cliente cliente) {
         ClienteService clienteService = ServiceFactory.getClienteService();
 
         clienteService.agregar(cliente.getId(), cliente);

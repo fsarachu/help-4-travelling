@@ -7,7 +7,8 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.ArrayList;
 
 public class ProveedorController {
-    public void alta(Proveedor proveedor) {
+
+    public void nuevo(Proveedor proveedor) {
         ProveedorService proveedorService = ServiceFactory.getProveedorService();
 
         proveedorService.agregar(proveedor.getId(), proveedor);

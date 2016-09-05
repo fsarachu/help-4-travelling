@@ -2,7 +2,6 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.servicios.memoria.ClienteServiceImpl;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -135,7 +134,7 @@ public class AltaUsuario extends JFrame {
                     JOptionPane.showMessageDialog(null, "Verifique la información ingresada", "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
                 ClienteController clienteController = new ClienteController();
-                clienteController.alta(cliente);
+                clienteController.nuevo(cliente);
             }
         });
     }

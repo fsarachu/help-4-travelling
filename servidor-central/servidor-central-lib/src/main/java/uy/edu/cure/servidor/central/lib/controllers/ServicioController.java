@@ -8,7 +8,8 @@ import uy.edu.cure.servidor.central.lib.servicios.ServicioService;
 import java.util.ArrayList;
 
 public class ServicioController {
-    public void alta(Servicio servicio) {
+
+    public void nuevo(Servicio servicio) {
         ServicioService servicioService = ServiceFactory.getServicioService();
 
         servicioService.agregar(servicio.getId(), servicio);
