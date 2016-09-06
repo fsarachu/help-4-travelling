@@ -134,7 +134,12 @@ public class Principal extends JFrame {
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Servicio Seleccionada", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JFrame frame = new JFrame("AltaServicio");
+                frame.setContentPane(new AltaServicio().getPanelServicio());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setResizable(false);
+                frame.setBounds(20,30,300,250);
+                frame.setVisible(true);
             }
         });
         item4.addActionListener(new ActionListener() {
