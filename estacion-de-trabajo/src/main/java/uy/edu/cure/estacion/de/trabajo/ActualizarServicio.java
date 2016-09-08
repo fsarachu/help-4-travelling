@@ -20,6 +20,7 @@ public class ActualizarServicio extends JFrame{
     private JLabel txtDescripcion;
     private JTextField inCategoria;
     private JPanel panelActServicio;
+    private JComboBox jcbInCategoria;
 
     public JComboBox getJcbServicio() {
         return jcbServicio;
