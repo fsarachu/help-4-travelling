@@ -145,14 +145,24 @@ public class Principal extends JFrame {
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Promocion", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JFrame frame = new JFrame("AltaPromocion");
+                frame.setContentPane(new AltaPromocion().getPanelPromocion());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setResizable(false);
+                frame.setBounds(20, 30, 400, 400);
+                frame.setVisible(true);
             }
         });
         item5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Actualizar Servicio", "Atencion", JOptionPane.INFORMATION_MESSAGE);
-            }
+                JFrame frame = new JFrame("ActualizarServicio");
+                frame.setContentPane(new ActualizarServicio().getPanelActServicio());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setResizable(false);
+                frame.setBounds(20, 30, 500, 500);
+                frame.setVisible(true);
+        }
         });
         item6.addActionListener(new ActionListener() {
             @Override
@@ -175,7 +185,12 @@ public class Principal extends JFrame {
         item9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ver Cliente", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JFrame frame = new JFrame("VerInfoCliente");
+                frame.setContentPane(new VerInfoCliente().getPanelnfoCliente());
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setResizable(false);
+                frame.setBounds(20, 30, 400, 400);
+                frame.setVisible(true);
             }
         });
         item10.addActionListener(new ActionListener() {
