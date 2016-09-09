@@ -30,30 +30,6 @@ public class AltaUsuario extends JFrame {
     private JLabel lblEmpresa;
     private JLabel lblLink;
 
-    public JButton getBtnAceptar() {
-        return btnAceptar;
-    }
-
-    public void setBtnAceptar(JButton btnAceptar) {
-        this.btnAceptar = btnAceptar;
-    }
-
-    public JButton getCancelarButton() {
-        return cancelarButton;
-    }
-
-    public void setCancelarButton(JButton cancelarButton) {
-        this.cancelarButton = cancelarButton;
-    }
-
-    public JPanel getPanelMain() {
-        return panelMain;
-    }
-
-    public void setPanelMain(JPanel panelMain) {
-        this.panelMain = panelMain;
-    }
-
     public AltaUsuario() {
         rbtnCliente.setSelected(true);
         txtEmpresa.setVisible(false);
@@ -137,6 +113,30 @@ public class AltaUsuario extends JFrame {
                 clienteController.nuevo(cliente);
             }
         });
+    }
+
+    public JButton getBtnAceptar() {
+        return btnAceptar;
+    }
+
+    public void setBtnAceptar(JButton btnAceptar) {
+        this.btnAceptar = btnAceptar;
+    }
+
+    public JButton getCancelarButton() {
+        return cancelarButton;
+    }
+
+    public void setCancelarButton(JButton cancelarButton) {
+        this.cancelarButton = cancelarButton;
+    }
+
+    public JPanel getPanelMain() {
+        return panelMain;
+    }
+
+    public void setPanelMain(JPanel panelMain) {
+        this.panelMain = panelMain;
     }
 
 

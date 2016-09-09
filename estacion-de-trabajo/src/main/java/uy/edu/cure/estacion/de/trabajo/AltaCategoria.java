@@ -1,73 +1,135 @@
 package uy.edu.cure.estacion.de.trabajo;
 
+import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+
 import javax.swing.*;
-import java.awt.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
-/**
- * Created by victor on 05/09/16.
- */
-public class AltaCategoria extends JFrame {
+public  class AltaCategoria {
+    private JTree tree1;
+    private JPanel panelMain;
     private JTextField txtCategoria;
-    private JRadioButton rbPadre;
-    private JRadioButton rbHijode;
-    private JComboBox cmbCategorias;
-    private JButton btnAceptar;
-    private JButton btnCancelar;
-    private JPanel panelCategoria;
+    private JButton btnAgregar;
+    private JButton btnEliminar;
 
-    public JTextField getTxtCategoria() {
-        return txtCategoria;
+    public AltaCategoria() {
+
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("raiz");
+        CategoriaController categoriaController = new CategoriaController();
+        ArrayList<Categoria> categorias =  categoriaController.listar();
+        for (Categoria categoria : categorias) {
+            DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
+            cat.setUserObject(categoria);
+            raiz.add(cat);
+        }
+        DefaultTreeModel modelo = new DefaultTreeModel(raiz);
+        this.tree1.setModel(modelo);
+        tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+        tree1.addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
+                TreePath tp = tree1.getSelectionPath();
+                DefaultMutableTreeNode tm = (DefaultMutableTreeNode)tp.getLastPathComponent();
+                JOptionPane.showMessageDialog(null, tm.getUserObject().toString(),"Mensaje",JOptionPane.ERROR_MESSAGE);
+            }
+        });
+
+
+        btnAgregar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)tree1.getLastSelectedPathComponent();
+                if (nodo != null) {
+                    DefaultTreeModel mdl = (DefaultTreeModel)tree1.getModel();
+                    mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()),nodo , mdl.getChildCount(nodo));
+                }
+            }
+        });
+        btnEliminar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)tree1.getLastSelectedPathComponent();
+                if (nodo != null) {
+                    if (nodo.getLevel() != 0) {
+                        DefaultTreeModel mdl = (DefaultTreeModel)tree1.getModel();
+                        mdl.removeNodeFromParent(nodo);
+                    }
+                }
+            }
+        });
     }
 
-    public void setTxtCategoria(JTextField txtCategoria) {
-        this.txtCategoria = txtCategoria;
+    public JTree getTree1() {
+        return tree1;
     }
 
-    public JRadioButton getRbPadre() {
-        return rbPadre;
+    public void setTree1(JTree tree1) {
+        this.tree1 = tree1;
     }
 
-    public void setRbPadre(JRadioButton rbPadre) {
-        this.rbPadre = rbPadre;
+    public JPanel getPanelMain() {
+        return panelMain;
     }
 
-    public JRadioButton getRbHijode() {
-        return rbHijode;
+    public void setPanelMain(JPanel panelMain) {
+        this.panelMain = panelMain;
     }
 
-    public void setRbHijode(JRadioButton rbHijode) {
-        this.rbHijode = rbHijode;
-    }
-
-    public JComboBox getCmbCategorias() {
-        return cmbCategorias;
-    }
-
-    public void setCmbCategorias(JComboBox cmbCategorias) {
-        this.cmbCategorias = cmbCategorias;
-    }
-
-    public JButton getBtnAceptar() {
-        return btnAceptar;
-    }
-
-    public void setBtnAceptar(JButton btnAceptar) {
-        this.btnAceptar = btnAceptar;
-    }
-
-    public JButton getBtnCancelar() {
-        return btnCancelar;
-    }
-
-    public void setBtnCancelar(JButton btnCancelar) {
-        this.btnCancelar = btnCancelar;
-    }
-
-    public JPanel getPanelCategoria() {
-        return panelCategoria;
-    }
-
-    public void setPanelCategoria(JPanel panelCategoria) {
-        this.panelCategoria = panelCategoria;
-    }
 }
+/*public class AltaCategoria {
+    private DefaultMutableTreeNode modelo ;
+    private DefaultMutableTreeNode categorias ;
+    private JTree tree ;
+    private JLabel lblCategoria;
+    private JTextField txtCategoria;
+
+    public AltaCategoria(){
+        DefaultMutableTreeNode categorias = new DefaultMutableTreeNode("categorias");
+        DefaultTreeModel modelo = new DefaultTreeModel(categorias);
+        JTree tree = new JTree(modelo);
+        JLabel lblCategoria = new JLabel();
+        JTextField txtCategoria = new JTextField();
+        lblCategoria.setText("Categoria");
+
+    }
+
+
+    public AltaCategoria(DefaultMutableTreeNode modelo, DefaultMutableTreeNode categorias) {
+        this.modelo = modelo;
+        this.categorias = categorias;
+    }
+
+    public DefaultMutableTreeNode getModelo() {
+        return modelo;
+    }
+
+    public void setModelo(DefaultMutableTreeNode modelo) {
+        this.modelo = modelo;
+    }
+
+    public DefaultMutableTreeNode getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(DefaultMutableTreeNode categorias) {
+        this.categorias = categorias;
+    }
+
+    public JTree getTree() {
+        return tree;
+    }
+
+    public void setTree(JTree tree) {
+        this.tree = tree;
+    }
+}*/

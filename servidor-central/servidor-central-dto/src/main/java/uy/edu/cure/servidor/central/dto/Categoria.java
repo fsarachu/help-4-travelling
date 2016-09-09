@@ -9,6 +9,9 @@ public class Categoria {
     private ArrayList<Integer> idHijos;
     private ArrayList<Categoria> hijos;
 
+    public Categoria() {
+    }
+
     public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Integer> idHijos, ArrayList<Categoria> hijos) {
         this.id = id;
         this.nombre = nombre;
