@@ -16,4 +16,10 @@ public class Cliente extends Usuario {
         this.idOrdenes = idOrdenes;
         this.ordenes = ordenes;
     }
+
+    @Override
+    public String toString() {
+        //return super.toString();
+        return this.getId() + ": "+ this.getNombre() + " " + this.getApellido() + ";";
+    }
 }

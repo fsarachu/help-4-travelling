@@ -27,9 +27,12 @@ public class Principal extends JFrame {
     private JMenuItem item12;
     private JMenuItem item13;
     private JMenuItem item14;
-    private JFrame frame;
+    //private JFrame frame;
+    //private JPanel panelMain;
 
     public Principal() {
+        //frame = new JFrame("Principal");
+
         setLayout(null);
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -39,7 +42,24 @@ public class Principal extends JFrame {
 
         item1 = new JMenuItem("Usuario");
         item1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png")));
+        item1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                //JFrame frame = new JFrame("AltaUsuario");
+                setContentPane(new AltaUsuario().getPanelMain());
+                setVisible(true);
+                //frame.setContentPane(new AltaUsuario().getPanelMain());
+                /*
+                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                frame.setResizable(false);
+                frame.setBounds(20,30,450,300);
+                //frame.pack();
+                frame.setVisible(true);
+                */
+            }
+        });
         menu1.add(item1);
+
 
         item2 = new JMenuItem("Categoria");
         item2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/categoria.png")));
@@ -110,18 +130,7 @@ public class Principal extends JFrame {
             }
         });
 
-        item1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JFrame frame = new JFrame("AltaUsuario");
-                frame.setContentPane(new AltaUsuario().getPanelMain());
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setBounds(20,30,450,300);
-                //frame.pack();
-                frame.setVisible(true);
-            }
-        });
+
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -147,45 +156,62 @@ public class Principal extends JFrame {
                 v.pack();
                 v.setVisible(true);
                 v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);*/
-                JFrame frame = new JFrame("AltaCategoria");
+                /*JFrame frame = new JFrame("AltaCategoria");
                 frame.setContentPane(new AltaCategoria().getPanelMain());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setResizable(false);
                 frame.setBounds(20,30,300,250);
                 frame.setVisible(true);
+                */
+                setContentPane(new AltaCategoria().getPanelMain());
+                setVisible(true);
             }
         });
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                /*
                 JFrame frame = new JFrame("AltaServicio");
                 frame.setContentPane(new AltaServicio().getPanelServicio());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setResizable(false);
                 frame.setBounds(20,30,300,250);
                 frame.setVisible(true);
+                */
+                setContentPane(new AltaServicio().getPanelServicio());
+                setVisible(true);
+
             }
         });
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                /*
                 JFrame frame = new JFrame("AltaPromocion");
                 frame.setContentPane(new AltaPromocion().getPanelPromocion());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setResizable(false);
                 frame.setBounds(20, 30, 400, 400);
                 frame.setVisible(true);
+                */
+                setContentPane(new AltaPromocion().getPanelPromocion());
+                setVisible(true);
+
             }
         });
         item5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                /*
                 JFrame frame = new JFrame("ActualizarServicio");
                 frame.setContentPane(new ActualizarServicio().getPanelActServicio());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setResizable(false);
                 frame.setBounds(20, 30, 500, 500);
                 frame.setVisible(true);
+                */
+                setContentPane(new ActualizarServicio().getPanelActServicio());
+                setVisible(true);
         }
         });
         item6.addActionListener(new ActionListener() {
@@ -209,12 +235,17 @@ public class Principal extends JFrame {
         item9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+                /*
                 JFrame frame = new JFrame("VerInfoCliente");
                 frame.setContentPane(new VerInfoCliente().getPanelnfoCliente());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setResizable(false);
                 frame.setBounds(20, 30, 400, 400);
                 frame.setVisible(true);
+                */
+                setContentPane(new VerInfoCliente().getPanelnfoCliente());
+                setVisible(true);
+
             }
         });
         item10.addActionListener(new ActionListener() {
