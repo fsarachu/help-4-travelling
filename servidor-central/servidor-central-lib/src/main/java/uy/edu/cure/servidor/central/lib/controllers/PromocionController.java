@@ -20,21 +20,21 @@ public class PromocionController {
     }
 
     public void eliminar(int id) {
-        PromocionService ciudadService = ServiceFactory.getPromocionService();
+        PromocionService promocionService = ServiceFactory.getPromocionService();
 
-        ciudadService.eliminar(id);
+        promocionService.eliminar(id);
     }
 
     Promocion obtener(Integer id) {
-        PromocionService ciudadService = ServiceFactory.getPromocionService();
+        PromocionService promocionService = ServiceFactory.getPromocionService();
 
-        return ciudadService.obtener(id);
+        return promocionService.obtener(id);
     }
 
     public void modificar(Integer id, Promocion ciudad1) {
-        PromocionService ciudadService = ServiceFactory.getPromocionService();
+        PromocionService promocionService = ServiceFactory.getPromocionService();
 
-        ciudadService.modificar(id, ciudad1);
+        promocionService.modificar(id, ciudad1);
     }
 
 
