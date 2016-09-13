@@ -67,31 +67,23 @@ public class ClienteServiceTest extends TestCase {
 
     }
 
-    /*public void testListar() throws Exception {
+    public void testListar() throws Exception {
         ArrayList<Cliente> expected = new ArrayList<>();
         Cliente cliente1 = new Cliente();
         cliente1.setId(1);
         cliente1.setNombre("pepe");
-        cliente1.setFechaNacimiento(null);
-        cliente1.setNickname("pepito");
-        cliente1.setApellido(null);
-        cliente1.setCorreo(null);
         Cliente cliente2 = new Cliente();
         cliente2.setId(2);
         cliente2.setNombre("pepito");
-        cliente2.setFechaNacimiento(null);
-        cliente2.setNickname("pepito");
-        cliente2.setApellido(null);
-        cliente2.setCorreo(null);
         expected.add(cliente1);
         expected.add(cliente2);
         for (Cliente cliente : expected){
             this.clienteService.agregar(cliente.getId(),cliente);
         }
         ArrayList<Cliente> actual = clienteService.listar();
-        for (int n=0 ; n<3 ; n++) {
+        for (int n=0 ; n<2 ; n++) {
             assertEquals(expected.get(n), actual.get(n));
         }
 
-    }*/
+    }
 }
