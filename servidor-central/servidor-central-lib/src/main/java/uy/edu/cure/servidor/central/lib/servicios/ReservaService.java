@@ -1,17 +1,17 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
-import uy.edu.cure.servidor.central.dto.Reserva;
+import uy.edu.cure.servidor.central.dto.ItemReserva;
 
 import java.util.ArrayList;
 
 public interface ReservaService {
-    void agregar(Integer id, Reserva reserva);
+    void agregar(Integer id, ItemReserva itemReserva);
 
     void eliminar(Integer id);
 
-    void modificar(Integer id, Reserva reserva);
+    void modificar(Integer id, ItemReserva itemReserva);
 
-    Reserva obtener(Integer id);
+    ItemReserva obtener(Integer id);
 
-    ArrayList<Reserva> listar();
+    ArrayList<ItemReserva> listar();
 }

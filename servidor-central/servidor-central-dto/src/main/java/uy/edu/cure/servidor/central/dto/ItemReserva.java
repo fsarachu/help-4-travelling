@@ -2,7 +2,7 @@ package uy.edu.cure.servidor.central.dto;
 
 import java.util.Date;
 
-public class Reserva {
+public class ItemReserva {
     private Integer id;
     private Date fechaInicio;
     private Date fechaFin;
@@ -11,7 +11,7 @@ public class Reserva {
     private double precio;
     private Orden orden;
 
-    public Reserva(Integer id, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio, Orden orden) {
+    public ItemReserva(Integer id, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio, Orden orden) {
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;

@@ -80,15 +80,15 @@ public class Principal extends JFrame {
         item5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizarServicio.png")));
         menu2.add(item5);
 
-        item6 = new JMenuItem("Realizar Reserva");
+        item6 = new JMenuItem("Realizar ItemReserva");
         item6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva.png")));
         menu2.add(item6);
 
-        item7 = new JMenuItem("Cancelar Reserva");
+        item7 = new JMenuItem("Cancelar ItemReserva");
         item7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarReserva.jpeg")));
         menu2.add(item7);
 
-        item8 = new JMenuItem("Actualizar Estado de Reserva");
+        item8 = new JMenuItem("Actualizar Estado de ItemReserva");
         item8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizarEstado.jpeg")));
         menu2.add(item8);
 
@@ -111,7 +111,7 @@ public class Principal extends JFrame {
         item12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/promo.jpeg")));
         menu3.add(item12);
 
-        item13 = new JMenuItem("Reserva");
+        item13 = new JMenuItem("ItemReserva");
         item13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reservas.jpeg")));
         menu3.add(item13);
 
@@ -217,19 +217,19 @@ public class Principal extends JFrame {
         item6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ingresar Reserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Opcion Ingresar ItemReserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         item7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Cancelar Reserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Opcion Cancelar ItemReserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         item8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Actualizar estado de la Reserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Opcion Actualizar estado de la ItemReserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
             }
         });
         item9.addActionListener(new ActionListener() {
@@ -269,7 +269,7 @@ public class Principal extends JFrame {
         item13.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ver Reserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Opcion Ver ItemReserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
             }
         });
 

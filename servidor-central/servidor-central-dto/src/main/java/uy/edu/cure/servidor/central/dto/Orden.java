@@ -10,7 +10,7 @@ public class Orden {
     private double total;
     private EstadoOrden estado;
     private ArrayList<Integer> idReservas;
-    private ArrayList<Reserva> reservas;
+    private ArrayList<ItemReserva> itemReservas;
     private Cliente cliente;
 
     public Orden(Cliente cliente) {
@@ -21,17 +21,17 @@ public class Orden {
         this.total = 0.0;
         this.estado = EstadoOrden.registrada;
         this.idReservas = new ArrayList<>();
-        this.reservas = new ArrayList<>();
+        this.itemReservas = new ArrayList<>();
         this.cliente = cliente;
     }
 
-    public Orden(Integer id, Date fechaCreacion, double total, EstadoOrden estado, ArrayList<Integer> idReservas, ArrayList<Reserva> reservas, Cliente cliente) {
+    public Orden(Integer id, Date fechaCreacion, double total, EstadoOrden estado, ArrayList<Integer> idReservas, ArrayList<ItemReserva> itemReservas, Cliente cliente) {
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.total = total;
         this.estado = estado;
         this.idReservas = idReservas;
-        this.reservas = reservas;
+        this.itemReservas = itemReservas;
         this.cliente = cliente;
     }
 
@@ -71,8 +71,8 @@ public class Orden {
         return idReservas;
     }
 
-    public ArrayList<Reserva> getReservas() {
-        return reservas;
+    public ArrayList<ItemReserva> getItemReservas() {
+        return itemReservas;
     }
 
     public Cliente getCliente() {
