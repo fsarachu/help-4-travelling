@@ -10,8 +10,8 @@ public class ClienteController {
 
     public void nuevo(Cliente cliente) {
         ClienteService clienteService = ServiceFactory.getClienteService();
-
-        clienteService.agregar(cliente.getId(), cliente);
+        cliente.setId( clienteService.getKey() );
+        clienteService.agregar( cliente.getId(), cliente);
     }
 
     public ArrayList<Cliente> listar() {

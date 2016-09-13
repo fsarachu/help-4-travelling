@@ -15,4 +15,5 @@ public interface ClienteService {
 
     ArrayList<Cliente> listar();
 
+    int getKey();
 }

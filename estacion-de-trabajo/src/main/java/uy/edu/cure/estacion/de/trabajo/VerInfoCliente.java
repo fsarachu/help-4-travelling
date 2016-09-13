@@ -1,6 +1,15 @@
 package uy.edu.cure.estacion.de.trabajo;
 
+import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
+
 import javax.swing.*;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.List;
+
+import static java.lang.System.in;
+import static java.lang.System.mapLibraryName;
 
 public class VerInfoCliente {
     private JComboBox comboBox1;
@@ -13,6 +22,26 @@ public class VerInfoCliente {
     private JButton cancelarButton;
     private JButton aceptarButton;
 
+    public VerInfoCliente(){
+        ClienteController ctrlCliente = new ClienteController();
+        List<Cliente> clientes = ctrlCliente.listar();
+
+        //Dictionary<String, String> test = new Hashtable<String, String>();
+        //long i = 0;
+
+        for(Cliente cli: clientes){
+           // test.put( String.valueOf(i), cli.getNombre() + " " + cli.getApellido() );
+            comboBox1.addItem(cli);
+
+        }
+        //comboBox1. DataSource = new BindingSource(test, null);
+        //comboBox1.DisplayMember = "Value";
+       // comboBox1.ValueMember = "Key";
+
+        //comboBox1
+
+
+    }
     public JComboBox getComboBox1() {
         return comboBox1;
     }
