@@ -5,7 +5,7 @@ import uy.edu.cure.servidor.central.dto.Reserva;
 import java.util.ArrayList;
 
 
-public interface OrdenService {
+public interface ReservaService {
     void agregar(Integer id, Reserva reserva);
 
     void eliminar(Integer id);

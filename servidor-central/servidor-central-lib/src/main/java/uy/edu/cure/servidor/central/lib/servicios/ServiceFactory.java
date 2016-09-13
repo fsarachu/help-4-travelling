@@ -35,7 +35,7 @@ public class ServiceFactory {
         return ItemReservaServiceImpl.getInstance();
     }
 
-    public static OrdenService getOrdenService() {
-        return OrdenServiceImpl.getInstance();
+    public static ReservaService getReservaService() {
+        return ReservaServiceImpl.getInstance();
     }
 }
