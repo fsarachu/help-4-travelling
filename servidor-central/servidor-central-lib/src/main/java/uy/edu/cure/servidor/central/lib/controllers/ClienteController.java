@@ -10,7 +10,7 @@ public class ClienteController {
 
     public void nuevo(Cliente cliente) {
         ClienteService clienteService = ServiceFactory.getClienteService();
-        cliente.setId( clienteService.getKey() );
+        //cliente.setId( clienteService.getKey() );
         clienteService.agregar( cliente.getId(), cliente);
     }
 

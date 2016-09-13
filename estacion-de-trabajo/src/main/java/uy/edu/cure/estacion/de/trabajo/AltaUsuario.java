@@ -1,6 +1,6 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import javafx.stage.WindowEvent;
+//import javafx.stage.WindowEvent;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
