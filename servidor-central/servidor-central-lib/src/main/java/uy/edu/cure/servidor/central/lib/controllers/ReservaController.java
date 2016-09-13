@@ -6,7 +6,7 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.ArrayList;
 
-public class OrdenController {
+public class ReservaController {
 
     public void nueva(Reserva reserva) {
     }
