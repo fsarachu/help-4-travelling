@@ -14,9 +14,9 @@ public class PromocionController {
 
         promocionService.agregar(promocion.getId(), promocion);
 
-        Proveedor proveedor = promocion.getProveedor();
+//        Proveedor proveedor = promocion.getProveedor();
 
-        proveedor.getPromociones().add(promocion);
+//        proveedor.getPromociones().add(promocion);
     }
 
     public void eliminar(int id) {

@@ -19,7 +19,7 @@ public class PromocionControllerTest extends TestCase {
 
 
     @Test
-/*    public void testNuevo() throws Exception {
+    public void testNuevo() throws Exception {
         Promocion promocion = new Promocion();
         promocion.setId(1);
         promocion.setNombre("Autos");
@@ -27,7 +27,7 @@ public class PromocionControllerTest extends TestCase {
         this.promocionController.nueva(promocion);
 
         assertEquals(promocion, this.promocionController.obtener(1));
-    }*/
+    }
 
     public void testEliminar() throws Exception {
         Promocion promocion = new Promocion();
@@ -39,7 +39,7 @@ public class PromocionControllerTest extends TestCase {
         assertNull(this.promocionController.obtener(101));
     }
 
-/*    public void testModificar() throws Exception {
+    public void testModificar() throws Exception {
         Promocion promocion1 = new Promocion();
         Proveedor proveedor1 = new Proveedor();
         proveedor1.setId(1);
@@ -60,7 +60,7 @@ public class PromocionControllerTest extends TestCase {
         assertEquals(promocion2, promocionController.obtener(101));
     }
 
-    /*public void testObtener() throws Exception {
+    public void testObtener() throws Exception {
         Promocion promocion = new Promocion();
         promocion.setId(101);
         promocion.setNombre("autos");
@@ -90,6 +90,6 @@ public class PromocionControllerTest extends TestCase {
             assertEquals(expected.get(n), actual.get(n));
         }
 
-    }*/
+    }
 
 }
