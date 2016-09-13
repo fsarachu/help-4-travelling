@@ -8,7 +8,7 @@ public class Reserva {
     private Integer id;
     private Date fechaCreacion;
     private double total;
-    private EstadoOrden estado;
+    private EstadoReserva estado;
     private ArrayList<Integer> idReservas;
     private ArrayList<ItemReserva> itemReservas;
     private Cliente cliente;
@@ -19,13 +19,13 @@ public class Reserva {
         this.id = Math.abs(rand.nextInt()); //TODO: generar los id bien!
         this.fechaCreacion = new Date();
         this.total = 0.0;
-        this.estado = EstadoOrden.registrada;
+        this.estado = EstadoReserva.registrada;
         this.idReservas = new ArrayList<>();
         this.itemReservas = new ArrayList<>();
         this.cliente = cliente;
     }
 
-    public Reserva(Integer id, Date fechaCreacion, double total, EstadoOrden estado, ArrayList<Integer> idReservas, ArrayList<ItemReserva> itemReservas, Cliente cliente) {
+    public Reserva(Integer id, Date fechaCreacion, double total, EstadoReserva estado, ArrayList<Integer> idReservas, ArrayList<ItemReserva> itemReservas, Cliente cliente) {
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.total = total;
@@ -59,11 +59,11 @@ public class Reserva {
         this.total = total;
     }
 
-    public EstadoOrden getEstado() {
+    public EstadoReserva getEstado() {
         return estado;
     }
 
-    public void setEstado(EstadoOrden estado) {
+    public void setEstado(EstadoReserva estado) {
         this.estado = estado;
     }
 
