@@ -1,18 +1,18 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
-import uy.edu.cure.servidor.central.dto.Orden;
+import uy.edu.cure.servidor.central.dto.Reserva;
 
 import java.util.ArrayList;
 
 
 public interface OrdenService {
-    void agregar(Integer id, Orden orden);
+    void agregar(Integer id, Reserva reserva);
 
     void eliminar(Integer id);
 
-    void modificar(Integer id, Orden orden);
+    void modificar(Integer id, Reserva reserva);
 
-    Orden obtener(Integer id);
+    Reserva obtener(Integer id);
 
-    ArrayList<Orden> listar();
+    ArrayList<Reserva> listar();
 }

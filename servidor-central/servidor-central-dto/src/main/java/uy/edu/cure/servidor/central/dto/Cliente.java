@@ -6,12 +6,12 @@ import java.util.Date;
 
 public class Cliente extends Usuario {
     private ArrayList<Integer> idOrdenes;
-    private ArrayList<Orden> ordenes;
+    private ArrayList<Reserva> ordenes;
 
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, ArrayList<Integer> idOrdenes, ArrayList<Orden> ordenes) {
+    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, ArrayList<Integer> idOrdenes, ArrayList<Reserva> ordenes) {
         super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
         this.idOrdenes = idOrdenes;
         this.ordenes = ordenes;

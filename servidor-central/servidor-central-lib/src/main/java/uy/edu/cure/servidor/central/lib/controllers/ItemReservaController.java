@@ -12,7 +12,7 @@ public class ItemReservaController {
 
         ItemReservaService itemReservaService = ServiceFactory.getItemReservaService();
 
-        itemReserva.getOrden().getIdReservas().add(itemReserva.getId());
+        itemReserva.getReserva().getIdReservas().add(itemReserva.getId());
 
         itemReservaService.agregar(itemReserva.getId(), itemReserva);
 

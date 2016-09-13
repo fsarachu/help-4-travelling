@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 
-public class Orden {
+public class Reserva {
     private Integer id;
     private Date fechaCreacion;
     private double total;
@@ -13,7 +13,7 @@ public class Orden {
     private ArrayList<ItemReserva> itemReservas;
     private Cliente cliente;
 
-    public Orden(Cliente cliente) {
+    public Reserva(Cliente cliente) {
         Random rand = new Random();
 
         this.id = Math.abs(rand.nextInt()); //TODO: generar los id bien!
@@ -25,7 +25,7 @@ public class Orden {
         this.cliente = cliente;
     }
 
-    public Orden(Integer id, Date fechaCreacion, double total, EstadoOrden estado, ArrayList<Integer> idReservas, ArrayList<ItemReserva> itemReservas, Cliente cliente) {
+    public Reserva(Integer id, Date fechaCreacion, double total, EstadoOrden estado, ArrayList<Integer> idReservas, ArrayList<ItemReserva> itemReservas, Cliente cliente) {
         this.id = id;
         this.fechaCreacion = fechaCreacion;
         this.total = total;
