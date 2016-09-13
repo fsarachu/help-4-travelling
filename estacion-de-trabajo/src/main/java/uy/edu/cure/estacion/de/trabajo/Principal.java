@@ -1,9 +1,10 @@
 package uy.edu.cure.estacion.de.trabajo;
 
+import uy.edu.cure.servidor.central.dto.Ciudad;
+import uy.edu.cure.servidor.central.dto.Pais;
+import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
+
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -30,6 +31,7 @@ public class Principal extends JFrame {
     private JFrame frame;
 
     public Principal() {
+        Hardcodeo hardcodeo = new Hardcodeo();
         setLayout(null);
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -125,28 +127,6 @@ public class Principal extends JFrame {
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                /*JFrame v = new JFrame();
-                JLabel lblCategoria = new JLabel("Categoria: ");
-                JTextField txtCategoria = new JTextField(30);
-                DefaultMutableTreeNode categoria = new DefaultMutableTreeNode("categoria");
-                DefaultTreeModel modelo = new DefaultTreeModel(categoria);
-                JTree tree = new JTree(modelo);
-                JScrollPane scroll = new JScrollPane(tree);
-                scroll.setBounds(2,3,50,50);
-                JButton btnAgregar = new JButton("Agregar");
-                JButton btnEliminar = new JButton("Eliminar");
-                JPanel categpanel = new JPanel();
-                categpanel.add(lblCategoria);
-                categpanel.add(txtCategoria);
-                JPanel gpanel = new JPanel();
-                gpanel.add(btnAgregar);
-                gpanel.add(btnEliminar);
-                v.getContentPane().add(scroll,BorderLayout.NORTH);
-                v.getContentPane().add(categpanel,BorderLayout.EAST);
-                v.getContentPane().add(gpanel,BorderLayout.SOUTH);
-                v.pack();
-                v.setVisible(true);
-                v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);*/
                 JFrame frame = new JFrame("AltaCategoria");
                 frame.setContentPane(new AltaCategoria().getPanelMain());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -162,7 +142,7 @@ public class Principal extends JFrame {
                 frame.setContentPane(new AltaServicio().getPanelServicio());
                 frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                 frame.setResizable(false);
-                frame.setBounds(20,30,300,250);
+                frame.pack();
                 frame.setVisible(true);
             }
         });

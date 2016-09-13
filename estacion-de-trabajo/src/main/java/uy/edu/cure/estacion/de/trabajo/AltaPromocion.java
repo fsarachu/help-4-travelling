@@ -1,10 +1,12 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import javax.swing.*;
+import uy.edu.cure.servidor.central.dto.Ciudad;
+import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
+import uy.edu.cure.servidor.central.lib.controllers.PromocionController;
 
-/**
- * Created by Viviana on 8/9/2016.
- */
+import javax.swing.*;
+import java.util.ArrayList;
+
 public class AltaPromocion {
     private JTextField inNombre;
     private JButton agregarServicioButton;
@@ -15,6 +17,10 @@ public class AltaPromocion {
     private JLabel txtPrecio;
     private JTextField inDescuento;
     private JButton calcularPrecioButton;
+
+    public AltaPromocion() {
+
+    }
 
     public JTextField getTextField1() {
         return inNombre;

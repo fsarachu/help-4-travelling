@@ -5,12 +5,16 @@ import java.util.ArrayList;
 
 public class Servicio extends Producto {
     private ArrayList<BufferedImage> imagenes;
-    private ArrayList<Integer> idCategorias;
+    private Integer idCategorias;
     private ArrayList<Categoria> categorias;
     private Ciudad origen;
     private Ciudad destino;
 
-    public Servicio(Integer id, String nombre, String descripcion, double precio, Proveedor proveedor, ArrayList<BufferedImage> imagenes, ArrayList<Integer> idCategorias, ArrayList<Categoria> categorias, Ciudad origen, Ciudad destino) {
+    public Servicio() {
+
+    }
+
+    public Servicio(Integer id, String nombre, String descripcion, double precio, Proveedor proveedor, ArrayList<BufferedImage> imagenes, Integer idCategorias, ArrayList<Categoria> categorias, Ciudad origen, Ciudad destino) {
         super(id, nombre, descripcion, precio, proveedor);
         this.imagenes = imagenes;
         this.idCategorias = idCategorias;
@@ -23,12 +27,24 @@ public class Servicio extends Producto {
         return imagenes;
     }
 
-    public ArrayList<Integer> getIdCategorias() {
+    public void setImagenes(ArrayList<BufferedImage> imagenes) {
+        this.imagenes = imagenes;
+    }
+
+    public Integer getIdCategorias() {
         return idCategorias;
+    }
+
+    public void setIdCategorias(Integer idCategorias) {
+        this.idCategorias = idCategorias;
     }
 
     public ArrayList<Categoria> getCategorias() {
         return categorias;
+    }
+
+    public void setCategorias(ArrayList<Categoria> categorias) {
+        this.categorias = categorias;
     }
 
     public Ciudad getOrigen() {

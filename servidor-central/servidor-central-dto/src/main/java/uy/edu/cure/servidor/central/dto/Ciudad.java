@@ -5,6 +5,9 @@ public class Ciudad {
     private String nombre;
     private Pais pais;
 
+    public Ciudad() {
+
+    }
     public Ciudad(Integer id, String nombre, Pais pais) {
         this.id = id;
         this.nombre = nombre;
@@ -33,5 +36,10 @@ public class Ciudad {
 
     public void setPais(Pais pais) {
         this.pais = pais;
+    }
+
+    @Override
+    public String toString() {
+        return nombre;
     }
 }

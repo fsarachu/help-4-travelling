@@ -14,21 +14,21 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public  class AltaCategoria {
+public class AltaCategoria {
     private JTree tree1;
     private JPanel panelMain;
     private JTextField txtCategoria;
     private JButton btnAgregar;
     private JButton btnEliminar;
+    private DefaultMutableTreeNode tm;
 
     public AltaCategoria() {
-
-        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("raiz");
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorias");
         CategoriaController categoriaController = new CategoriaController();
-        ArrayList<Categoria> categorias =  categoriaController.listar();
+        ArrayList<Categoria> categorias = categoriaController.listar();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
-            cat.setUserObject(categoria);
+            cat.setUserObject(categoria.getNombre());
             raiz.add(cat);
         }
         DefaultTreeModel modelo = new DefaultTreeModel(raiz);
@@ -39,29 +39,27 @@ public  class AltaCategoria {
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
                 TreePath tp = tree1.getSelectionPath();
-                DefaultMutableTreeNode tm = (DefaultMutableTreeNode)tp.getLastPathComponent();
-                JOptionPane.showMessageDialog(null, tm.getUserObject().toString(),"Mensaje",JOptionPane.ERROR_MESSAGE);
+                tm = (DefaultMutableTreeNode) tp.getLastPathComponent();
             }
         });
-
 
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)tree1.getLastSelectedPathComponent();
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
                 if (nodo != null) {
-                    DefaultTreeModel mdl = (DefaultTreeModel)tree1.getModel();
-                    mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()),nodo , mdl.getChildCount(nodo));
+                    DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
+                    mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()), nodo, mdl.getChildCount(nodo));
                 }
             }
         });
         btnEliminar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode)tree1.getLastSelectedPathComponent();
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
                 if (nodo != null) {
                     if (nodo.getLevel() != 0) {
-                        DefaultTreeModel mdl = (DefaultTreeModel)tree1.getModel();
+                        DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
                         mdl.removeNodeFromParent(nodo);
                     }
                 }
@@ -86,50 +84,3 @@ public  class AltaCategoria {
     }
 
 }
-/*public class AltaCategoria {
-    private DefaultMutableTreeNode modelo ;
-    private DefaultMutableTreeNode categorias ;
-    private JTree tree ;
-    private JLabel lblCategoria;
-    private JTextField txtCategoria;
-
-    public AltaCategoria(){
-        DefaultMutableTreeNode categorias = new DefaultMutableTreeNode("categorias");
-        DefaultTreeModel modelo = new DefaultTreeModel(categorias);
-        JTree tree = new JTree(modelo);
-        JLabel lblCategoria = new JLabel();
-        JTextField txtCategoria = new JTextField();
-        lblCategoria.setText("Categoria");
-
-    }
-
-
-    public AltaCategoria(DefaultMutableTreeNode modelo, DefaultMutableTreeNode categorias) {
-        this.modelo = modelo;
-        this.categorias = categorias;
-    }
-
-    public DefaultMutableTreeNode getModelo() {
-        return modelo;
-    }
-
-    public void setModelo(DefaultMutableTreeNode modelo) {
-        this.modelo = modelo;
-    }
-
-    public DefaultMutableTreeNode getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(DefaultMutableTreeNode categorias) {
-        this.categorias = categorias;
-    }
-
-    public JTree getTree() {
-        return tree;
-    }
-
-    public void setTree(JTree tree) {
-        this.tree = tree;
-    }
-}*/

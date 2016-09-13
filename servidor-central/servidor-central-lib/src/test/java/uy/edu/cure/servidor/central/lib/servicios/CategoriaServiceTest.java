@@ -71,9 +71,9 @@ public class CategoriaServiceTest extends TestCase {
 
     public void testListar() throws Exception {
         ArrayList<Categoria> expected = new ArrayList<>();
-        expected.add(new Categoria(1,null,null,new ArrayList<Integer>(),new ArrayList<Categoria>()));
-        expected.add(new Categoria(2,null,null,new ArrayList<Integer>(),new ArrayList<Categoria>()));
-        expected.add(new Categoria(3,null,null,new ArrayList<Integer>(),new ArrayList<Categoria>()));
+        expected.add(new Categoria(1,"uno",1));
+        expected.add(new Categoria(2,"dos",1));
+        expected.add(new Categoria(3,"tre",1));
         for (Categoria categoria : expected){
             this.categoriaService.agregar(categoria.getId(),categoria);
         }

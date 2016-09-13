@@ -115,6 +115,86 @@ public class AltaUsuario extends JFrame {
         });
     }
 
+    public JLabel getLblNickname() {
+        return lblNickname;
+    }
+
+    public void setLblNickname(JLabel lblNickname) {
+        this.lblNickname = lblNickname;
+    }
+
+    public JRadioButton getRbtnCliente() {
+        return rbtnCliente;
+    }
+
+    public void setRbtnCliente(JRadioButton rbtnCliente) {
+        this.rbtnCliente = rbtnCliente;
+    }
+
+    public JRadioButton getRbtnProveedor() {
+        return rbtnProveedor;
+    }
+
+    public void setRbtnProveedor(JRadioButton rbtnProveedor) {
+        this.rbtnProveedor = rbtnProveedor;
+    }
+
+    public JTextField getTxtNickName() {
+        return txtNickName;
+    }
+
+    public void setTxtNickName(JTextField txtNickName) {
+        this.txtNickName = txtNickName;
+    }
+
+    public JTextField getTxtNombre() {
+        return txtNombre;
+    }
+
+    public void setTxtNombre(JTextField txtNombre) {
+        this.txtNombre = txtNombre;
+    }
+
+    public JTextField getTxtApellido() {
+        return txtApellido;
+    }
+
+    public void setTxtApellido(JTextField txtApellido) {
+        this.txtApellido = txtApellido;
+    }
+
+    public JTextField getTxtCorreo() {
+        return txtCorreo;
+    }
+
+    public void setTxtCorreo(JTextField txtCorreo) {
+        this.txtCorreo = txtCorreo;
+    }
+
+    public JTextField getTxtFechaNacimiento() {
+        return txtFechaNacimiento;
+    }
+
+    public void setTxtFechaNacimiento(JTextField txtFechaNacimiento) {
+        this.txtFechaNacimiento = txtFechaNacimiento;
+    }
+
+    public JTextField getTxtEmpresa() {
+        return txtEmpresa;
+    }
+
+    public void setTxtEmpresa(JTextField txtEmpresa) {
+        this.txtEmpresa = txtEmpresa;
+    }
+
+    public JTextField getTxtLink() {
+        return txtLink;
+    }
+
+    public void setTxtLink(JTextField txtLink) {
+        this.txtLink = txtLink;
+    }
+
     public JButton getBtnAceptar() {
         return btnAceptar;
     }
@@ -139,5 +219,19 @@ public class AltaUsuario extends JFrame {
         this.panelMain = panelMain;
     }
 
+    public JLabel getLblEmpresa() {
+        return lblEmpresa;
+    }
 
+    public void setLblEmpresa(JLabel lblEmpresa) {
+        this.lblEmpresa = lblEmpresa;
+    }
+
+    public JLabel getLblLink() {
+        return lblLink;
+    }
+
+    public void setLblLink(JLabel lblLink) {
+        this.lblLink = lblLink;
+    }
 }

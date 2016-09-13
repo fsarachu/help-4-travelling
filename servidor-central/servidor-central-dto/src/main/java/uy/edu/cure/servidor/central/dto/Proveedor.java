@@ -12,6 +12,9 @@ public class Proveedor extends Usuario {
     private ArrayList<Integer> idPromociones;
     private ArrayList<Promocion> promociones;
 
+    public Proveedor() {
+
+    }
     public Proveedor(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, String nombreEmpresa, String linkEmpresa, ArrayList<Integer> idServicios, ArrayList<Servicio> servicios, ArrayList<Integer> idPromociones, ArrayList<Promocion> promociones) {
         super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
         this.nombreEmpresa = nombreEmpresa;
@@ -54,4 +57,8 @@ public class Proveedor extends Usuario {
         return promociones;
     }
 
+    @Override
+    public String toString() {
+        return nombreEmpresa;
+    }
 }

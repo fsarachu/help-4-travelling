@@ -3,6 +3,7 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
+import java.util.Vector;
 
 public class GenericService<T> {
     protected HashMap<Integer, T> coleccion;
@@ -36,4 +37,5 @@ public class GenericService<T> {
 
         return list;
     }
+
 }

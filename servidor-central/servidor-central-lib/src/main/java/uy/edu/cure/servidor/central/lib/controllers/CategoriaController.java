@@ -11,12 +11,6 @@ public class CategoriaController {
     public void nueva(Categoria categoria) {
         CategoriaService categoriaService = ServiceFactory.getCategoriaService();
 
-        if (categoria.getPadre() != null) {
-            Categoria padre = categoriaService.obtener(categoria.getPadre().getId());
-
-            padre.getHijos().add(categoria); // Si padre null?
-        }
-
         categoriaService.agregar(categoria.getId(), categoria);
     }
 

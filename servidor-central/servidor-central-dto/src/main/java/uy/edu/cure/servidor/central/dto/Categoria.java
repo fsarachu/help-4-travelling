@@ -5,19 +5,15 @@ import java.util.ArrayList;
 public class Categoria {
     private Integer id;
     private String nombre;
-    private Categoria padre;
-    private ArrayList<Integer> idHijos;
-    private ArrayList<Categoria> hijos;
+    private Integer padre;
 
     public Categoria() {
     }
 
-    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Integer> idHijos, ArrayList<Categoria> hijos) {
+    public Categoria(Integer id, String nombre, Integer padre) {
         this.id = id;
         this.nombre = nombre;
         this.padre = padre;
-        this.idHijos = idHijos;
-        this.hijos = hijos;
     }
 
     public Integer getId() {
@@ -36,20 +32,11 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    public Categoria getPadre() {
+    public Integer getPadre() {
         return padre;
     }
 
-    public void setPadre(Categoria padre) {
+    public void setPadre(Integer padre) {
         this.padre = padre;
     }
-
-    public ArrayList<Integer> getIdHijos() {
-        return idHijos;
-    }
-
-    public ArrayList<Categoria> getHijos() {
-        return hijos;
-    }
-
 }

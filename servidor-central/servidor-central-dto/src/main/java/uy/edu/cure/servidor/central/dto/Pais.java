@@ -4,6 +4,9 @@ public class Pais {
     private Integer id;
     private String nombre;
 
+    public Pais() {
+
+    }
     public Pais(Integer id, String nombre) {
         this.id = id;
         this.nombre = nombre;
