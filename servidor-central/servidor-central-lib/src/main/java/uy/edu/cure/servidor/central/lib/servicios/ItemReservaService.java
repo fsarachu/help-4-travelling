@@ -4,7 +4,7 @@ import uy.edu.cure.servidor.central.dto.ItemReserva;
 
 import java.util.ArrayList;
 
-public interface ReservaService {
+public interface ItemReservaService {
     void agregar(Integer id, ItemReserva itemReserva);
 
     void eliminar(Integer id);
