@@ -14,28 +14,28 @@ public class ServicioController {
 
         servicioService.agregar(servicio.getId(), servicio);
 
-        Proveedor proveedor = servicio.getProveedor();
+//        Proveedor proveedor = servicio.getProveedor();
 
-        proveedor.getServicios().add(servicio);
+  //      proveedor.getServicios().add(servicio);
 
     }
 
     public void eliminar(int id) {
-        ServicioService ciudadService = ServiceFactory.getServicioService();
+        ServicioService servicioService = ServiceFactory.getServicioService();
 
-        ciudadService.eliminar(id);
+        servicioService.eliminar(id);
     }
 
     Servicio obtener(Integer id) {
-        ServicioService ciudadService = ServiceFactory.getServicioService();
+        ServicioService servicioService = ServiceFactory.getServicioService();
 
-        return ciudadService.obtener(id);
+        return servicioService.obtener(id);
     }
 
     public void modificar(Integer id, Servicio ciudad1) {
-        ServicioService ciudadService = ServiceFactory.getServicioService();
+        ServicioService servicioService = ServiceFactory.getServicioService();
 
-        ciudadService.modificar(id, ciudad1);
+        servicioService.modificar(id, ciudad1);
     }
 
     public ArrayList<Servicio> listar() {

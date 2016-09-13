@@ -12,28 +12,28 @@ public class ReservaController {
 
         ReservaService reservaService = ServiceFactory.getReservaService();
 
-        reserva.getOrden().getIdReservas().add(reserva.getId());
+//        reserva.getOrden().getIdReservas().add(reserva.getId());
 
         reservaService.agregar(reserva.getId(), reserva);
 
     }
 
     public void eliminar(int id) {
-        ReservaService ciudadService = ServiceFactory.getReservaService();
+        ReservaService reservaService = ServiceFactory.getReservaService();
 
-        ciudadService.eliminar(id);
+        reservaService.eliminar(id);
     }
 
     Reserva obtener(Integer id) {
-        ReservaService ciudadService = ServiceFactory.getReservaService();
+        ReservaService reservaService = ServiceFactory.getReservaService();
 
-        return ciudadService.obtener(id);
+        return reservaService.obtener(id);
     }
 
     public void modificar(Integer id, Reserva ciudad1) {
-        ReservaService ciudadService = ServiceFactory.getReservaService();
+        ReservaService reservaService = ServiceFactory.getReservaService();
 
-        ciudadService.modificar(id, ciudad1);
+        reservaService.modificar(id, ciudad1);
     }
 
     public ArrayList<Reserva> listar() {
