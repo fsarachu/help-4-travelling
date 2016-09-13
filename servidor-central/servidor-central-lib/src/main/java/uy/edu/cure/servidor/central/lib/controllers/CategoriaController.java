@@ -14,6 +14,24 @@ public class CategoriaController {
         categoriaService.agregar(categoria.getId(), categoria);
     }
 
+    public void eliminar(int id) {
+        CategoriaService ciudadService = ServiceFactory.getCategoriaService();
+
+        ciudadService.eliminar(id);
+    }
+
+    Categoria obtener(Integer id) {
+        CategoriaService ciudadService = ServiceFactory.getCategoriaService();
+
+        return ciudadService.obtener(id);
+    }
+
+    public void modificar(Integer id, Categoria ciudad1) {
+        CategoriaService ciudadService = ServiceFactory.getCategoriaService();
+
+        ciudadService.modificar(id, ciudad1);
+    }
+
     public ArrayList<Categoria> listar() {
         CategoriaService categoriaService = ServiceFactory.getCategoriaService();
 
