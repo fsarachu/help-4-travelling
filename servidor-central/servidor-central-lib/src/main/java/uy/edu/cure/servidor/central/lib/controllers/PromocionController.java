@@ -19,6 +19,25 @@ public class PromocionController {
         proveedor.getPromociones().add(promocion);
     }
 
+    public void eliminar(int id) {
+        PromocionService ciudadService = ServiceFactory.getPromocionService();
+
+        ciudadService.eliminar(id);
+    }
+
+    Promocion obtener(Integer id) {
+        PromocionService ciudadService = ServiceFactory.getPromocionService();
+
+        return ciudadService.obtener(id);
+    }
+
+    public void modificar(Integer id, Promocion ciudad1) {
+        PromocionService ciudadService = ServiceFactory.getPromocionService();
+
+        ciudadService.modificar(id, ciudad1);
+    }
+
+
     public ArrayList<Promocion> listar() {
         PromocionService promocionService = ServiceFactory.getPromocionService();
 

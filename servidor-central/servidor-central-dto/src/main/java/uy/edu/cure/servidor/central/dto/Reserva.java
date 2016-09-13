@@ -21,6 +21,10 @@ public class Reserva {
         this.orden = orden;
     }
 
+    public Reserva() {
+
+    }
+
     public Integer getId() {
         return id;
     }

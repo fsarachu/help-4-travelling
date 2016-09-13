@@ -7,6 +7,10 @@ public class Promocion extends Producto {
     private ArrayList<Integer> idServicios;
     private ArrayList<Servicio> servicios;
 
+    public Promocion() {
+
+    }
+
     public Promocion(Integer id, String nombre, String descripcion, double precio, Proveedor proveedor, int descuento, ArrayList<Integer> idServicios, ArrayList<Servicio> servicios) {
         super(id, nombre, descripcion, precio, proveedor);
         this.descuento = descuento;

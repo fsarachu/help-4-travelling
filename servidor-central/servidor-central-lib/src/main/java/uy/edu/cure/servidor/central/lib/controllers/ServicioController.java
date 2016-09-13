@@ -20,6 +20,24 @@ public class ServicioController {
 
     }
 
+    public void eliminar(int id) {
+        ServicioService ciudadService = ServiceFactory.getServicioService();
+
+        ciudadService.eliminar(id);
+    }
+
+    Servicio obtener(Integer id) {
+        ServicioService ciudadService = ServiceFactory.getServicioService();
+
+        return ciudadService.obtener(id);
+    }
+
+    public void modificar(Integer id, Servicio ciudad1) {
+        ServicioService ciudadService = ServiceFactory.getServicioService();
+
+        ciudadService.modificar(id, ciudad1);
+    }
+
     public ArrayList<Servicio> listar() {
         ServicioService servicioService = ServiceFactory.getServicioService();
 

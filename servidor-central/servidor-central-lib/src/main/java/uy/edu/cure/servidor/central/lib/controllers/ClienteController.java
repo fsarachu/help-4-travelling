@@ -14,6 +14,25 @@ public class ClienteController {
         clienteService.agregar( cliente.getId(), cliente);
     }
 
+    public void eliminar(int id) {
+        ClienteService ciudadService = ServiceFactory.getClienteService();
+
+        ciudadService.eliminar(id);
+    }
+
+    Cliente obtener(Integer id) {
+        ClienteService ciudadService = ServiceFactory.getClienteService();
+
+        return ciudadService.obtener(id);
+    }
+
+    public void modificar(Integer id, Cliente ciudad1) {
+        ClienteService ciudadService = ServiceFactory.getClienteService();
+
+        ciudadService.modificar(id, ciudad1);
+    }
+
+
     public ArrayList<Cliente> listar() {
         ClienteService clienteService = ServiceFactory.getClienteService();
 

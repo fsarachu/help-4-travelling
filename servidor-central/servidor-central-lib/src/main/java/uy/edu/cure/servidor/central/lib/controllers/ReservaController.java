@@ -18,6 +18,24 @@ public class ReservaController {
 
     }
 
+    public void eliminar(int id) {
+        ReservaService ciudadService = ServiceFactory.getReservaService();
+
+        ciudadService.eliminar(id);
+    }
+
+    Reserva obtener(Integer id) {
+        ReservaService ciudadService = ServiceFactory.getReservaService();
+
+        return ciudadService.obtener(id);
+    }
+
+    public void modificar(Integer id, Reserva ciudad1) {
+        ReservaService ciudadService = ServiceFactory.getReservaService();
+
+        ciudadService.modificar(id, ciudad1);
+    }
+
     public ArrayList<Reserva> listar() {
         ReservaService reservaService = ServiceFactory.getReservaService();
 

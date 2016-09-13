@@ -14,6 +14,24 @@ public class ProveedorController {
         proveedorService.agregar(proveedor.getId(), proveedor);
     }
 
+    public void eliminar(int id) {
+        ProveedorService ciudadService = ServiceFactory.getProveedorService();
+
+        ciudadService.eliminar(id);
+    }
+
+    Proveedor obtener(Integer id) {
+        ProveedorService ciudadService = ServiceFactory.getProveedorService();
+
+        return ciudadService.obtener(id);
+    }
+
+    public void modificar(Integer id, Proveedor ciudad1) {
+        ProveedorService ciudadService = ServiceFactory.getProveedorService();
+
+        ciudadService.modificar(id, ciudad1);
+    }
+
     public ArrayList<Proveedor> listar() {
         ProveedorService proveedorService = ServiceFactory.getProveedorService();
 

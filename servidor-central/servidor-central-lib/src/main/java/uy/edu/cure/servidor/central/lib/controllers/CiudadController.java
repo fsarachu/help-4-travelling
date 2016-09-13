@@ -5,7 +5,6 @@ import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.ArrayList;
-import java.util.Vector;
 
 public class CiudadController {
 
@@ -13,6 +12,24 @@ public class CiudadController {
         CiudadService ciudadService = ServiceFactory.getCiudadService();
 
         ciudadService.agregar(ciudad.getId(), ciudad);
+    }
+
+    public void eliminar(int id) {
+        CiudadService ciudadService = ServiceFactory.getCiudadService();
+
+        ciudadService.eliminar(id);
+    }
+
+    Ciudad obtener(Integer id) {
+        CiudadService ciudadService = ServiceFactory.getCiudadService();
+
+        return ciudadService.obtener(id);
+    }
+
+    public void modificar(Integer id, Ciudad ciudad1) {
+        CiudadService ciudadService = ServiceFactory.getCiudadService();
+
+        ciudadService.modificar(id, ciudad1);
     }
 
     public ArrayList<Ciudad> listar() {
