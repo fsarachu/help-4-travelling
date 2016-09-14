@@ -3,7 +3,7 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.lib.servicios.ClienteService;
 
-public class ClienteServiceImpl extends GenericService<Cliente> implements ClienteService {
+public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements ClienteService {
 
     private static ClienteServiceImpl ourInstance = new ClienteServiceImpl();
 

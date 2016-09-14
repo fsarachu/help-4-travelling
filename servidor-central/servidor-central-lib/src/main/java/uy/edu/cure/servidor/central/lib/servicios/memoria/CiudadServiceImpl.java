@@ -3,7 +3,7 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
 
-public class CiudadServiceImpl extends GenericService<Ciudad> implements CiudadService {
+public class CiudadServiceImpl extends GenericServiceImpl<Ciudad> implements CiudadService {
 
     private static CiudadServiceImpl ourInstance = new CiudadServiceImpl();
 
