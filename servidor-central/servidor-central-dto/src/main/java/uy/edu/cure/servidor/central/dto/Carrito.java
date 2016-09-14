@@ -49,4 +49,14 @@ public class Carrito {
     public void setTotal(double total) {
         this.total = total;
     }
+
+    public void actualizarTotal() {
+        double newTotal = 0.0;
+
+        for (ItemReserva item : this.items) {
+            newTotal += item.getPrecio();
+        }
+
+        this.total = newTotal;
+    }
 }
