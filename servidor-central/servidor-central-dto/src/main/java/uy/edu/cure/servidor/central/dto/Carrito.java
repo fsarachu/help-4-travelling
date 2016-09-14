@@ -54,7 +54,7 @@ public class Carrito {
         double newTotal = 0.0;
 
         for (ItemReserva item : this.items) {
-            newTotal += item.getPrecio();
+            newTotal += item.getSubTotal();
         }
 
         this.total = newTotal;
