@@ -1,11 +1,6 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.dto.Ciudad;
-import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
-import uy.edu.cure.servidor.central.lib.controllers.PromocionController;
-
 import javax.swing.*;
-import java.util.ArrayList;
 
 public class AltaPromocion {
     private JTextField inNombre;
