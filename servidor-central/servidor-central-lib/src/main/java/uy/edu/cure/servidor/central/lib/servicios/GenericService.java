@@ -12,4 +12,6 @@ public interface GenericService<T> {
     T obtener(Integer id);
 
     ArrayList<T> listar();
+
+    Integer nextId();
 }
