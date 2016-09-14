@@ -1,7 +1,6 @@
 package uy.edu.cure.servidor.central.dto;
 
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
 import java.util.Date;
 
 public class Cliente extends Usuario {
@@ -15,9 +14,16 @@ public class Cliente extends Usuario {
         this.carrito = carrito;
     }
 
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
     @Override
     public String toString() {
-        //return super.toString();
-        return this.getId() + ": "+ this.getNombre() + " " + this.getApellido() + ";";
+        return this.getId() + ": " + this.getNombre() + " " + this.getApellido() + ";";
     }
 }
