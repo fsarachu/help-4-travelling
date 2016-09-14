@@ -5,16 +5,14 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Cliente extends Usuario {
-    private ArrayList<Integer> idOrdenes;
-    private ArrayList<Reserva> ordenes;
+    private Carrito carrito;
 
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, ArrayList<Integer> idOrdenes, ArrayList<Reserva> ordenes) {
+    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, Carrito carrito) {
         super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
-        this.idOrdenes = idOrdenes;
-        this.ordenes = ordenes;
+        this.carrito = carrito;
     }
 
     @Override
