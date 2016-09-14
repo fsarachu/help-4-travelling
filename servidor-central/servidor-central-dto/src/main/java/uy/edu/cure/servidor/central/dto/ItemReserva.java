@@ -4,21 +4,24 @@ import java.util.Date;
 
 public class ItemReserva {
     private Integer id;
+    private Carrito carrito;
+    private Producto producto;
+    private double precio;
     private Date fechaInicio;
     private Date fechaFin;
-    private Producto producto;
     private int cantidad;
-    private double precio;
-    private Reserva reserva;
 
-    public ItemReserva(Integer id, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio, Reserva reserva) {
+    public ItemReserva() {
+    }
+
+    public ItemReserva(Integer id, Carrito carrito, Producto producto, double precio, Date fechaInicio, Date fechaFin, int cantidad) {
         this.id = id;
+        this.carrito = carrito;
+        this.producto = producto;
+        this.precio = precio;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
-        this.producto = producto;
         this.cantidad = cantidad;
-        this.precio = precio;
-        this.reserva = reserva;
     }
 
     public Integer getId() {
@@ -27,6 +30,30 @@ public class ItemReserva {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Carrito getCarrito() {
+        return carrito;
+    }
+
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
     }
 
     public Date getFechaInicio() {
@@ -45,35 +72,11 @@ public class ItemReserva {
         this.fechaFin = fechaFin;
     }
 
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
-
     public int getCantidad() {
         return cantidad;
     }
 
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public Reserva getReserva() {
-        return reserva;
-    }
-
-    public void setReserva(Reserva reserva) {
-        this.reserva = reserva;
     }
 }
