@@ -9,12 +9,14 @@ import java.util.ArrayList;
 public class ItemReservaController {
 
     public void nueva(ItemReserva itemReserva) {
+/*
 
         ItemReservaService itemReservaService = ServiceFactory.getItemReservaService();
 
         itemReserva.getReserva().getIdReservas().add(itemReserva.getId());
 
         itemReservaService.agregar(itemReserva.getId(), itemReserva);
+*/
 
     }
 
