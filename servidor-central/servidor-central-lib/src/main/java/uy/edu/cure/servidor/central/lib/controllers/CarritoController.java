@@ -24,6 +24,11 @@ public class CarritoController {
         carrito.actualizarTotal();
     }
 
+    public void actualizarItem(ItemReserva item) {
+        this.itemReservaService.modificar(item.getId(), item);
+        item.getCarrito().actualizarTotal();
+    }
+
     public void eliminarItem(ItemReserva item, Carrito carrito) {
         carrito.getItems().remove(item);
         this.itemReservaService.eliminar(item.getId());
