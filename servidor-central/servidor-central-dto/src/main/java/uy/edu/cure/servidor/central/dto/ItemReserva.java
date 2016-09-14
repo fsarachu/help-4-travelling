@@ -6,7 +6,7 @@ public class ItemReserva {
     private Integer id;
     private Carrito carrito;
     private Producto producto;
-    private double precio;
+    private double subTotal;
     private Date fechaInicio;
     private Date fechaFin;
     private int cantidad;
@@ -14,11 +14,11 @@ public class ItemReserva {
     public ItemReserva() {
     }
 
-    public ItemReserva(Integer id, Carrito carrito, Producto producto, double precio, Date fechaInicio, Date fechaFin, int cantidad) {
+    public ItemReserva(Integer id, Carrito carrito, Producto producto, double subTotal, Date fechaInicio, Date fechaFin, int cantidad) {
         this.id = id;
         this.carrito = carrito;
         this.producto = producto;
-        this.precio = precio;
+        this.subTotal = subTotal;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.cantidad = cantidad;
@@ -48,12 +48,12 @@ public class ItemReserva {
         this.producto = producto;
     }
 
-    public double getPrecio() {
-        return precio;
+    public double getSubTotal() {
+        return subTotal;
     }
 
-    public void setPrecio(double precio) {
-        this.precio = precio;
+    public void setSubTotal(double subTotal) {
+        this.subTotal = subTotal;
     }
 
     public Date getFechaInicio() {
