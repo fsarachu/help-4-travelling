@@ -1,11 +1,20 @@
 package uy.edu.cure.servidor.central.dto;
 
+import java.awt.image.BufferedImage;
+import java.util.Date;
+
 public class Proveedor extends Usuario {
     private String nombreEmpresa;
     private String linkEmpresa;
 
     public Proveedor() {
 
+    }
+
+    public Proveedor(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, String nombreEmpresa, String linkEmpresa) {
+        super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
+        this.nombreEmpresa = nombreEmpresa;
+        this.linkEmpresa = linkEmpresa;
     }
 
     public String getNombreEmpresa() {
