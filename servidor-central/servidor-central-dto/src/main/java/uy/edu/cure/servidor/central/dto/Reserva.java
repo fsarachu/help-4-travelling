@@ -1,38 +1,23 @@
 package uy.edu.cure.servidor.central.dto;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Random;
 
 public class Reserva {
     private Integer id;
-    private Date fechaCreacion;
-    private double total;
-    private EstadoReserva estado;
-    private ArrayList<Integer> idReservas;
-    private ArrayList<ItemReserva> itemReservas;
+    private Carrito carrito;
     private Cliente cliente;
+    private Date fechaCreacion;
+    private EstadoReserva estado;
 
-    public Reserva(Cliente cliente) {
-        Random rand = new Random();
-
-        this.id = Math.abs(rand.nextInt()); //TODO: generar los id bien!
-        this.fechaCreacion = new Date();
-        this.total = 0.0;
-        this.estado = EstadoReserva.registrada;
-        this.idReservas = new ArrayList<>();
-        this.itemReservas = new ArrayList<>();
-        this.cliente = cliente;
+    public Reserva() {
     }
 
-    public Reserva(Integer id, Date fechaCreacion, double total, EstadoReserva estado, ArrayList<Integer> idReservas, ArrayList<ItemReserva> itemReservas, Cliente cliente) {
+    public Reserva(Integer id, Carrito carrito, Cliente cliente, Date fechaCreacion, EstadoReserva estado) {
         this.id = id;
-        this.fechaCreacion = fechaCreacion;
-        this.total = total;
-        this.estado = estado;
-        this.idReservas = idReservas;
-        this.itemReservas = itemReservas;
+        this.carrito = carrito;
         this.cliente = cliente;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -43,36 +28,12 @@ public class Reserva {
         this.id = id;
     }
 
-    public Date getFechaCreacion() {
-        return fechaCreacion;
+    public Carrito getCarrito() {
+        return carrito;
     }
 
-    public void setFechaCreacion(Date fechaCreacion) {
-        this.fechaCreacion = fechaCreacion;
-    }
-
-    public double getTotal() {
-        return total;
-    }
-
-    public void setTotal(double total) {
-        this.total = total;
-    }
-
-    public EstadoReserva getEstado() {
-        return estado;
-    }
-
-    public void setEstado(EstadoReserva estado) {
-        this.estado = estado;
-    }
-
-    public ArrayList<Integer> getIdReservas() {
-        return idReservas;
-    }
-
-    public ArrayList<ItemReserva> getItemReservas() {
-        return itemReservas;
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
 
     public Cliente getCliente() {
@@ -81,5 +42,21 @@ public class Reserva {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Date getFechaCreacion() {
+        return fechaCreacion;
+    }
+
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
+    }
+
+    public EstadoReserva getEstado() {
+        return estado;
+    }
+
+    public void setEstado(EstadoReserva estado) {
+        this.estado = estado;
     }
 }
