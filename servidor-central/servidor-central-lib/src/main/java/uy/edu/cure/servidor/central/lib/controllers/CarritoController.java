@@ -3,19 +3,14 @@ package uy.edu.cure.servidor.central.lib.controllers;
 import uy.edu.cure.servidor.central.dto.Carrito;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
-import uy.edu.cure.servidor.central.lib.servicios.*;
+import uy.edu.cure.servidor.central.lib.servicios.CarritoService;
+import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 public class CarritoController {
     private CarritoService carritoService;
-    private ItemReservaService itemReservaService;
-    private ClienteService clienteService;
-    private ProductoService productoService;
 
     public CarritoController() {
         this.carritoService = ServiceFactory.getCarritoService();
-        this.itemReservaService = ServiceFactory.getItemReservaService();
-        this.clienteService = ServiceFactory.getClienteService();
-        this.productoService = ServiceFactory.getProductoService();
     }
 
     public Carrito obtenerCarrito(Integer idCarrito) {
