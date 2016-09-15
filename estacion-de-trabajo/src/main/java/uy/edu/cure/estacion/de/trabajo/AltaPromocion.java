@@ -1,16 +1,18 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.dto.Ciudad;
-import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
-import uy.edu.cure.servidor.central.lib.controllers.PromocionController;
+import uy.edu.cure.servidor.central.dto.Servicio;
+import uy.edu.cure.servidor.central.lib.controllers.ServicioController;
 
 import javax.swing.*;
-import java.util.ArrayList;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import java.util.Vector;
 
 public class AltaPromocion {
     private JTextField inNombre;
     private JButton agregarServicioButton;
-    private JComboBox comboBox1;
+    private JComboBox cmbServicios;
     private JButton aceptarButton;
     private JButton cancelarButton;
     private JPanel panelPromocion;
@@ -19,15 +21,32 @@ public class AltaPromocion {
     private JButton calcularPrecioButton;
 
     public AltaPromocion() {
-
+        cargarServicios();
+        cancelarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                panelPromocion.setVisible(false);
+            }
+        });
     }
 
-    public JTextField getTextField1() {
+    private void cargarServicios() {
+        ServicioController servicioController = new ServicioController();
+        List<Servicio> servicios = servicioController.listar();
+        ComboBoxModel<Servicio> mdlCombo = new DefaultComboBoxModel<>(new Vector<Servicio>(servicios));
+        cmbServicios.setModel(mdlCombo);
+    }
+
+    public AltaPromocion(JButton calcularPrecioButton) {
+        this.calcularPrecioButton = calcularPrecioButton;
+    }
+
+    public JTextField getInNombre() {
         return inNombre;
     }
 
-    public void setTextField1(JTextField textField1) {
-        this.inNombre = textField1;
+    public void setInNombre(JTextField inNombre) {
+        this.inNombre = inNombre;
     }
 
     public JButton getAgregarServicioButton() {
@@ -38,12 +57,12 @@ public class AltaPromocion {
         this.agregarServicioButton = agregarServicioButton;
     }
 
-    public JComboBox getComboBox1() {
-        return comboBox1;
+    public JComboBox getCmbServicios() {
+        return cmbServicios;
     }
 
-    public void setComboBox1(JComboBox comboBox1) {
-        this.comboBox1 = comboBox1;
+    public void setCmbServicios(JComboBox cmbServicios) {
+        this.cmbServicios = cmbServicios;
     }
 
     public JButton getAceptarButton() {

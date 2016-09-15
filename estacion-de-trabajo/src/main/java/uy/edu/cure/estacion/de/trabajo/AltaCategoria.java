@@ -19,22 +19,14 @@ public class AltaCategoria {
     private JPanel panelMain;
     private JTextField txtCategoria;
     private JButton btnAgregar;
-    private JButton btnEliminar;
+    private JButton btnCancelar;
     private DefaultMutableTreeNode tm;
+    private DefaultMutableTreeNode hijo;
+
+
 
     public AltaCategoria() {
-        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorias");
-        CategoriaController categoriaController = new CategoriaController();
-        ArrayList<Categoria> categorias = categoriaController.listar();
-        for (Categoria categoria : categorias) {
-            DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
-            cat.setUserObject(categoria.getNombre());
-            raiz.add(cat);
-        }
-        DefaultTreeModel modelo = new DefaultTreeModel(raiz);
-        this.tree1.setModel(modelo);
-        tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
+        cargarTree();
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
@@ -53,18 +45,36 @@ public class AltaCategoria {
                 }
             }
         });
-        btnEliminar.addActionListener(new ActionListener() {
+        btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
-                if (nodo != null) {
-                    if (nodo.getLevel() != 0) {
-                        DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
-                        mdl.removeNodeFromParent(nodo);
-                    }
-                }
+           panelMain.setVisible(false);
             }
         });
+    }
+
+    private void cargarTree() {
+        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorias");
+        CategoriaController categoriaController = new CategoriaController();
+        ArrayList<Categoria> categorias = categoriaController.listar();
+        for (Categoria categoria : categorias) {
+            if (categoria.getPadre() == null) {
+                DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
+                cat.setUserObject(categoria.getNombre());
+                raiz.add(cat);
+            } else {
+                while (categoria.getPadre() < categorias.size()) {
+                    hijo = new DefaultMutableTreeNode(categoria.getNombre());
+                    categoriaController.obtener(categoria.getPadre()).getId();
+                }
+            }
+        }
+        DefaultTreeModel modelo = new DefaultTreeModel(raiz);
+        this.tree1.setModel(modelo);
+        tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+
+
+
     }
 
     public JTree getTree1() {

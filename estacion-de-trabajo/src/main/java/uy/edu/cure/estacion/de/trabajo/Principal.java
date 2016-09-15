@@ -1,9 +1,6 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import javax.swing.*;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,16 +20,11 @@ public class Principal extends JFrame {
     private JMenuItem item8;
     private JMenuItem item9;
     private JMenuItem item10;
-    private JMenuItem item11;
-    private JMenuItem item12;
-    private JMenuItem item13;
-    private JMenuItem item14;
     //private JFrame frame;
-    //private JPanel panelMain;
+    private JPanel panelMain;
 
     public Principal() {
-        //frame = new JFrame("Principal");
-
+        Hardcodeo hardcodeo = new Hardcodeo();
         setLayout(null);
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);
@@ -42,22 +34,6 @@ public class Principal extends JFrame {
 
         item1 = new JMenuItem("Usuario");
         item1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/usuario.png")));
-        item1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                //JFrame frame = new JFrame("AltaUsuario");
-                setContentPane(new AltaUsuario().getPanelMain());
-                setVisible(true);
-                //frame.setContentPane(new AltaUsuario().getPanelMain());
-                /*
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setBounds(20,30,450,300);
-                //frame.pack();
-                frame.setVisible(true);
-                */
-            }
-        });
         menu1.add(item1);
 
 
@@ -95,74 +71,29 @@ public class Principal extends JFrame {
         menu3 = new JMenu("Ver Informacion");
         menuBar.add(menu3);
 
-        item9 = new JMenuItem("Cliente");
+        item9 = new JMenuItem("Ver");
         item9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/listadoCliente.jpeg")));
         menu3.add(item9);
-
-        item10 = new JMenuItem("Proveedor");
-        item10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/proveedor.jpeg")));
-        menu3.add(item10);
-
-        item11 = new JMenuItem("Servicio");
-        item11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/verServicios.jpeg")));
-        menu3.add(item11);
-
-        item12 = new JMenuItem("Promocion");
-        item12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/promo.jpeg")));
-        menu3.add(item12);
-
-        item13 = new JMenuItem("Reserva");
-        item13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reservas.jpeg")));
-        menu3.add(item13);
 
         menu4 = new JMenu("Salir");
         menuBar.add(menu4);
 
-        item14 = new JMenuItem("Salir");
-        item14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarReserva.jpeg")));
-        menu4.add(item14);
+        item10 = new JMenuItem("Salir");
+        item10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarReserva.jpeg")));
+        menu4.add(item10);
 
-        item14.addActionListener(new ActionListener() {
+        item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Gracias por utilizar el software", "Chau", JOptionPane.INFORMATION_MESSAGE);
-                System.exit(0);
+                setContentPane(new AltaUsuario().getPanelMain());
+                setVisible(true);
+
             }
         });
-
 
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                /*JFrame v = new JFrame();
-                JLabel lblCategoria = new JLabel("Categoria: ");
-                JTextField txtCategoria = new JTextField(30);
-                DefaultMutableTreeNode categoria = new DefaultMutableTreeNode("categoria");
-                DefaultTreeModel modelo = new DefaultTreeModel(categoria);
-                JTree tree = new JTree(modelo);
-                JScrollPane scroll = new JScrollPane(tree);
-                scroll.setBounds(2,3,50,50);
-                JButton btnAgregar = new JButton("Agregar");
-                JButton btnEliminar = new JButton("Eliminar");
-                JPanel categpanel = new JPanel();
-                categpanel.add(lblCategoria);
-                categpanel.add(txtCategoria);
-                JPanel gpanel = new JPanel();
-                gpanel.add(btnAgregar);
-                gpanel.add(btnEliminar);
-                v.getContentPane().add(scroll,BorderLayout.NORTH);
-                v.getContentPane().add(categpanel,BorderLayout.EAST);
-                v.getContentPane().add(gpanel,BorderLayout.SOUTH);
-                v.pack();
-                v.setVisible(true);
-                v.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);*/
-                /*JFrame frame = new JFrame("AltaCategoria");
-                frame.setContentPane(new AltaCategoria().getPanelMain());
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setBounds(20,30,300,250);
-                frame.setVisible(true);
-                */
                 setContentPane(new AltaCategoria().getPanelMain());
                 setVisible(true);
             }
@@ -170,30 +101,13 @@ public class Principal extends JFrame {
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                /*
-                JFrame frame = new JFrame("AltaServicio");
-                frame.setContentPane(new AltaServicio().getPanelServicio());
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setBounds(20,30,300,250);
-                frame.setVisible(true);
-                */
                 setContentPane(new AltaServicio().getPanelServicio());
                 setVisible(true);
-
             }
         });
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                /*
-                JFrame frame = new JFrame("AltaPromocion");
-                frame.setContentPane(new AltaPromocion().getPanelPromocion());
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setBounds(20, 30, 400, 400);
-                frame.setVisible(true);
-                */
                 setContentPane(new AltaPromocion().getPanelPromocion());
                 setVisible(true);
 
@@ -202,17 +116,9 @@ public class Principal extends JFrame {
         item5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                /*
-                JFrame frame = new JFrame("ActualizarServicio");
-                frame.setContentPane(new ActualizarServicio().getPanelActServicio());
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setBounds(20, 30, 500, 500);
-                frame.setVisible(true);
-                */
                 setContentPane(new ActualizarServicio().getPanelActServicio());
                 setVisible(true);
-        }
+            }
         });
         item6.addActionListener(new ActionListener() {
             @Override
@@ -235,41 +141,15 @@ public class Principal extends JFrame {
         item9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                /*
-                JFrame frame = new JFrame("VerInfoCliente");
-                frame.setContentPane(new VerInfoCliente().getPanelnfoCliente());
-                frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                frame.setResizable(false);
-                frame.setBounds(20, 30, 400, 400);
-                frame.setVisible(true);
-                */
-                setContentPane(new VerInfoCliente().getPanelnfoCliente());
+                setContentPane(new VerInfo().getPanelInfo());
                 setVisible(true);
-
             }
         });
         item10.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ver Proveedor", "Atencion", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-        item11.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ver Servicio", "Atencion", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-        item12.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ver Promocion", "Atencion", JOptionPane.INFORMATION_MESSAGE);
-            }
-        });
-        item13.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ver Reserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Gracias por utilizar el software", "Chau", JOptionPane.INFORMATION_MESSAGE);
+                System.exit(0);
             }
         });
 

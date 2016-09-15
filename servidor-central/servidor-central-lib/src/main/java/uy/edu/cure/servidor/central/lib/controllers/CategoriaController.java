@@ -20,7 +20,7 @@ public class CategoriaController {
         ciudadService.eliminar(id);
     }
 
-    Categoria obtener(Integer id) {
+    public Categoria obtener(Integer id) {
         CategoriaService ciudadService = ServiceFactory.getCategoriaService();
 
         return ciudadService.obtener(id);

@@ -62,4 +62,9 @@ public class Servicio extends Producto {
     public void setDestino(Ciudad destino) {
         this.destino = destino;
     }
+
+    @Override
+    public String toString() {
+        return super.getNombre();
+    }
 }

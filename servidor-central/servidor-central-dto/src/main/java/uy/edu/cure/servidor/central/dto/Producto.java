@@ -57,4 +57,9 @@ public abstract class Producto {
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
+
+    @Override
+    public String toString() {
+        return nombre;
+    }
 }

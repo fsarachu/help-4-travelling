@@ -17,7 +17,7 @@ public class Main {
 			public void run() {
 				try {
 					Principal window = new Principal();
-					window.setBounds(20,20,400,300);
+					window.setBounds(20,20,600,500);
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

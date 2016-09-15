@@ -62,60 +62,32 @@ public class AltaUsuario extends JFrame {
                 }
             }
         });
-        cancelarButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                //cancelarButton.getParent().dispatchEvent(new java.awt.event.WindowEvent( new  ));
-                //JOptionPane.showMessageDialog(null, null, "HOLA", JOptionPane.INFORMATION_MESSAGE);
-                //AltaUsuario.super.dispose();
-                //System.exit(0);
-                //dispose();
-
-                //AltaUsuario.super.dispose();
-                //AltaUsuario.super.getRootPane().setVisible(false);
-
-                Container pan = cancelarButton.getParent();
-                pan.removeAll();
-                pan.repaint();
-                pan.setVisible(false);
-
-            }
-        });
-
-
-
-
 
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                //String mensaje = "";
 
                 try {
                     if (txtNickName.getText().equals("")) {
                         txtNickName.requestFocus();
-                        //mensaje = "Nickname";
                         throw  new IllegalArgumentException("Ingrese Nickname");
                     }
                     if (txtNombre.getText().equals("")) {
                         txtNombre.requestFocus();
-                        //mensaje = "Nombre";
                         throw new IllegalArgumentException("Ingrese Nombre");
                     }
                     if (txtApellido.getText().equals("")) {
                         txtApellido.requestFocus();
-                        //mensaje = "Apellido";
                         throw new IllegalArgumentException("Ingrese Apellido");
                     }
                     if (txtCorreo.getText().equals("")) {
                         txtCorreo.requestFocus();
-                        //mensaje = "Correo";
                         throw new IllegalArgumentException("Ingrese Correo");
                     }
 
 
 
-                    if(rbtnCliente.isSelected()){
+                    if(rbtnCliente.isSelected() == true){
 
                         Cliente cliente = new Cliente();
                         cliente.setId(1);
@@ -124,25 +96,22 @@ public class AltaUsuario extends JFrame {
                         cliente.setApellido(txtApellido.getText());
                         cliente.setCorreo(txtCorreo.getText());
                         cliente.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
-
                         ClienteController clienteController = new ClienteController();
                         clienteController.nuevo(cliente);
+                        panelMain.setVisible(false);
 
-                    }else if (rbtnProveedor.isSelected() ) {
+                    }else if (rbtnProveedor.isSelected() == true ) {
 
                         if (txtEmpresa.getText().equals("")) {
                             txtEmpresa.requestFocus();
-                            //mensaje = "Empresa";
                             throw new IllegalArgumentException("Ingrese Empresa");
                         }
                         if (txtLink.getText().equals("")) {
                             txtLink.requestFocus();
-                            //mensaje = "Link del proveedor";
                             throw new IllegalArgumentException("Ingrese Link del proveedor");
                         }
 
                         Proveedor provedor = new Proveedor();
-
                         provedor.setId(1);
                         provedor.setNickname(txtNickName.getText());
                         provedor.setNombre(txtNombre.getText());
@@ -151,20 +120,22 @@ public class AltaUsuario extends JFrame {
                         provedor.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
                         provedor.setNombreEmpresa(txtEmpresa.getText());
                         provedor.setLinkEmpresa(txtLink.getText());
-
                         ProveedorController proveedorController = new ProveedorController();
                         proveedorController.nuevo(provedor);
-
+                        panelMain.setVisible(false);
                     }
-                    cancelarButton.doClick();
-
-
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
                     JOptionPane.showMessageDialog(null, "Verifique la información ingresada. "+e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+        });
 
+        cancelarButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                panelMain.setVisible(false);
             }
         });
     }
