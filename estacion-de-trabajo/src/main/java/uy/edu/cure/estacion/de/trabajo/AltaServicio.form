@@ -247,7 +247,10 @@
       </grid>
       <component id="78e09" class="javax.swing.JLabel" binding="lblImagen1">
         <constraints>
-          <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="150"/>
+            <maximum-size width="150" height="150"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Imagen"/>
@@ -255,7 +258,10 @@
       </component>
       <component id="c0f94" class="javax.swing.JLabel" binding="lblImagen2">
         <constraints>
-          <grid row="9" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="4" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="150"/>
+            <maximum-size width="150" height="150"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Imagen"/>
@@ -263,7 +269,10 @@
       </component>
       <component id="e0178" class="javax.swing.JLabel" binding="lblImagen3">
         <constraints>
-          <grid row="9" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="9" column="5" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="150" height="150"/>
+            <maximum-size width="150" height="150"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Imagen"/>

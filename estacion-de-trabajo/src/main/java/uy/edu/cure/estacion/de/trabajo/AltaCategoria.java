@@ -60,14 +60,9 @@ public class AltaCategoria {
         for (Categoria categoria : categorias) {
             if (categoria.getPadre() == null) {
                 DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
-                cat.setUserObject(categoria.getNombre());
+                cat.setUserObject(categoria);
                 raiz.add(cat);
-            } else {
-                while (categoria.getPadre() < categorias.size()) {
-                    hijo = new DefaultMutableTreeNode(categoria.getNombre());
-                    categoriaController.obtener(categoria.getPadre()).getId();
-                }
-            }
+            } 
         }
         DefaultTreeModel modelo = new DefaultTreeModel(raiz);
         this.tree1.setModel(modelo);

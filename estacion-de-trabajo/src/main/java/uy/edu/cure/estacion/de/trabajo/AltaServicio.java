@@ -155,12 +155,9 @@ public class AltaServicio {
                     File archivoElegido = fileChooser.getSelectedFile();
                     txtImagen1 = archivoElegido.getAbsolutePath();
                     JOptionPane.showMessageDialog(null, txtImagen1, "Atencion", JOptionPane.ERROR_MESSAGE);
-                    String path = txtImagen1;
-                    URL url = this.getClass().getResource(path);
-                    ImageIcon icon = new ImageIcon(url);
+                    ImageIcon icon = new ImageIcon(txtImagen1);
                     Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblImagen1.getWidth(), lblImagen1.getHeight(), Image.SCALE_DEFAULT));
                     lblImagen1.setIcon(icono);
-
                 }
             }
         });

@@ -21,6 +21,7 @@ public class ProductoController {
     }
 
     public void agregar(Producto producto) {
+        producto.setId(this.productoService.nextId());
         this.productoService.agregar(producto.getId(), producto);
     }
 
@@ -39,6 +40,5 @@ public class ProductoController {
     public ArrayList<Promocion> listarPromociones() {
         return this.productoService.listarPromociones();
     }
-
 
 }
