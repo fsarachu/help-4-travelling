@@ -1,6 +1,8 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
 import uy.edu.cure.servidor.central.dto.Producto;
+import uy.edu.cure.servidor.central.dto.Promocion;
+import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.servicios.ProductoService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
@@ -14,7 +16,7 @@ public class ProductoController {
         this.productoService = ServiceFactory.getProductoService();
     }
 
-    public ArrayList<Producto> listar() {
+    public ArrayList<Producto> listarTodos() {
         return this.productoService.listar();
     }
 
@@ -29,6 +31,14 @@ public class ProductoController {
     public void eliminar(Integer idProducto) {
         this.productoService.eliminar(idProducto);
     }
-    
+
+    public ArrayList<Servicio> listarServicios() {
+        return this.productoService.listarServicios();
+    }
+
+    public ArrayList<Promocion> listarPromociones() {
+        return this.productoService.listarPromociones();
+    }
+
 
 }

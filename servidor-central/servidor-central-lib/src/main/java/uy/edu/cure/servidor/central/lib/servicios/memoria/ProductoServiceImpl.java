@@ -1,8 +1,12 @@
 package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
 import uy.edu.cure.servidor.central.dto.Producto;
+import uy.edu.cure.servidor.central.dto.Promocion;
+import uy.edu.cure.servidor.central.dto.Servicio;
+import uy.edu.cure.servidor.central.dto.TipoProducto;
 import uy.edu.cure.servidor.central.lib.servicios.ProductoService;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements ProductoService {
@@ -25,5 +29,35 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
         }
 
         return maxId + 1;
+    }
+
+    public ArrayList<Servicio> listarServicios() {
+        ArrayList<Servicio> servicios = new ArrayList<>();
+        Producto producto;
+
+        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
+            producto = entry.getValue();
+
+            if (producto.getTipo() == TipoProducto.servicio) {
+                servicios.add((Servicio) producto);
+            }
+        }
+
+        return servicios;
+    }
+
+    public ArrayList<Promocion> listarPromociones() {
+        ArrayList<Promocion> promociones = new ArrayList<>();
+        Producto producto;
+
+        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
+            producto = entry.getValue();
+
+            if (producto.getTipo() == TipoProducto.promocion) {
+                promociones.add((Promocion) producto);
+            }
+        }
+
+        return promociones;
     }
 }
