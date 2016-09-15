@@ -23,40 +23,38 @@ public class VerInfo {
         cmbInfo.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
-                if (cmbInfo.getSelectedItem().equals("Proveedores")) {
-                    ProveedorController proveedorController = new ProveedorController();
-                    ArrayList<Proveedor> proveedores = proveedorController.listar();
-                    for (Object obj : proveedores) {
-                        txtInfo.append(obj.toString() + "\n");
+                if (itemEvent.getStateChange() == 1) {
+                    if (cmbInfo.getSelectedItem().equals("Proveedores")) {
+                        ProveedorController proveedorController = new ProveedorController();
+                        ArrayList<Proveedor> proveedores = proveedorController.listar();
+                        for (Object obj : proveedores) {
+                            txtInfo.append(obj.toString() + "\n");
+                        }
+                    }
+                    if (cmbInfo.getSelectedItem().equals("Servicios")) {
+                        ProductoController productoController = new ProductoController();
+                        ArrayList<Servicio> servicios = productoController.listarServicios();
+                        JOptionPane.showMessageDialog(null, servicios.size(), "Atencion", JOptionPane.ERROR_MESSAGE);
+                        for (Object obj : servicios) {
+                            txtInfo.append(obj.toString() + "\n");
+                        }
+                    }
+                    if (cmbInfo.getSelectedItem().equals("Promociones")) {
+                        ProductoController productoController = new ProductoController();
+                        ArrayList<Promocion> promociones = productoController.listarPromociones();
+                        for (Object obj : promociones) {
+                            txtInfo.append(obj.toString() + "\n");
+                        }
+                    }
+                    if (cmbInfo.getSelectedItem().equals("Reserva")) {
+                        ReservaController reservaController = new ReservaController();
+                        ArrayList<Reserva> reservas = reservaController.listar();
+                        for (Object obj : reservas) {
+                            txtInfo.append(obj.toString() + "\n");
+                        }
                     }
                 }
-                if (cmbInfo.getSelectedItem().equals("Servicios")) {
-                    ProductoController productoController = new ProductoController();
-                    ArrayList<Servicio> servicios = productoController.listarServicios();
-                    for (Object obj : servicios) {
-                        txtInfo.append(obj.toString() + "\n");
-                    }
-                }
-                if (cmbInfo.getSelectedItem().equals("Promociones")) {
-                    ProductoController productoController = new ProductoController();
-                    ArrayList<Promocion> promociones = productoController.listarPromociones();
-                    for (Object obj : promociones) {
-                        txtInfo.append(obj.toString() + "\n");
-                    }
-                }
-                if (cmbInfo.getSelectedItem().equals("Reserva")) {
-                    ReservaController reservaController = new ReservaController();
-                    ArrayList<Reserva> reservas = reservaController.listar();
-                    for (Object obj : reservas) {
-                        txtInfo.append(obj.toString() + "\n");
-                    }
-                    /*ClienteController clienteController = new ClienteController();
-                    ArrayList<Cliente> clientes = clienteController.listarTodos();
-                    for (Object obj : clientes) {
-                        txtInfo.append(obj.toString() + "\n");
-                    }*/
 
-                }
             }
         });
     }
@@ -68,9 +66,6 @@ public class VerInfo {
         cmbInfo.addItem("Reserva");
     }
 
-    public JComboBox getCmbInfo() {
-        return cmbInfo;
-    }
 
     public void setCmbInfo(JComboBox cmbInfo) {
         this.cmbInfo = cmbInfo;

@@ -92,8 +92,8 @@ public class AltaServicio {
                         mensaje = "Proveedor no seleccionado";
                         throw new EmptyStackException();
                     }
+                    ProductoController productoController = new ProductoController();
                     Servicio servicio = new Servicio();
-                    servicio.setId(1);
                     servicio.setNombre(txtNombre.getText());
                     servicio.setDescripcion(txtDescripcion.getText());
                     double aDouble = Double.parseDouble(txtPrecio.getText());
@@ -106,7 +106,6 @@ public class AltaServicio {
                     servicio.setDestino(ciudad1);
                     //Integer idcategoria = Integer.parseInt(categoriaSeleccionada.toString());
                     servicio.setIdCategorias(1);
-                    ProductoController productoController = new ProductoController();
                     productoController.agregar(servicio);
 
                 } catch (EmptyStackException e) {
