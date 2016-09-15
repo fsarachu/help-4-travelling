@@ -1,7 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.ServicioController;
+import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -31,8 +31,8 @@ public class AltaPromocion {
     }
 
     private void cargarServicios() {
-        ServicioController servicioController = new ServicioController();
-        List<Servicio> servicios = servicioController.listar();
+        ProductoController productoController = new ProductoController();
+        List<Servicio> servicios = productoController.listarServicios();
         ComboBoxModel<Servicio> mdlCombo = new DefaultComboBoxModel<>(new Vector<Servicio>(servicios));
         cmbServicios.setModel(mdlCombo);
     }

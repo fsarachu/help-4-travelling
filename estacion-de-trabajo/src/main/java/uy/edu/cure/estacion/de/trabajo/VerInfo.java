@@ -1,7 +1,12 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.*;
+import uy.edu.cure.servidor.central.dto.Promocion;
+import uy.edu.cure.servidor.central.dto.Proveedor;
+import uy.edu.cure.servidor.central.dto.Reserva;
+import uy.edu.cure.servidor.central.dto.Servicio;
+import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -26,15 +31,15 @@ public class VerInfo {
                     }
                 }
                 if (cmbInfo.getSelectedItem().equals("Servicios")) {
-                    ServicioController servicioController = new ServicioController();
-                    ArrayList<Servicio> servicios = servicioController.listar();
+                    ProductoController productoController = new ProductoController();
+                    ArrayList<Servicio> servicios = productoController.listarServicios();
                     for (Object obj : servicios) {
                         txtInfo.append(obj.toString() + "\n");
                     }
                 }
                 if (cmbInfo.getSelectedItem().equals("Promociones")) {
-                    PromocionController promocionController = new PromocionController();
-                    ArrayList<Promocion> promociones = promocionController.listar();
+                    ProductoController productoController = new ProductoController();
+                    ArrayList<Promocion> promociones = productoController.listarPromociones();
                     for (Object obj : promociones) {
                         txtInfo.append(obj.toString() + "\n");
                     }
@@ -46,7 +51,7 @@ public class VerInfo {
                         txtInfo.append(obj.toString() + "\n");
                     }
                     /*ClienteController clienteController = new ClienteController();
-                    ArrayList<Cliente> clientes = clienteController.listar();
+                    ArrayList<Cliente> clientes = clienteController.listarTodos();
                     for (Object obj : clientes) {
                         txtInfo.append(obj.toString() + "\n");
                     }*/

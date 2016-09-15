@@ -6,8 +6,8 @@ import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
+import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
-import uy.edu.cure.servidor.central.lib.controllers.ServicioController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -21,8 +21,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -108,8 +106,8 @@ public class AltaServicio {
                     servicio.setDestino(ciudad1);
                     //Integer idcategoria = Integer.parseInt(categoriaSeleccionada.toString());
                     servicio.setIdCategorias(1);
-                    ServicioController servicioController = new ServicioController();
-                    servicioController.nuevo(servicio);
+                    ProductoController productoController = new ProductoController();
+                    productoController.agregar(servicio);
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
@@ -154,11 +152,10 @@ public class AltaServicio {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 fileChooser = new JFileChooser();
-                if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION)
-                {
+                if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
                     File archivoElegido = fileChooser.getSelectedFile();
                     txtImagen1 = archivoElegido.getAbsolutePath();
-                    JOptionPane.showMessageDialog(null,txtImagen1,"Atencion",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, txtImagen1, "Atencion", JOptionPane.ERROR_MESSAGE);
                     String path = txtImagen1;
                     URL url = this.getClass().getResource(path);
                     ImageIcon icon = new ImageIcon(url);
