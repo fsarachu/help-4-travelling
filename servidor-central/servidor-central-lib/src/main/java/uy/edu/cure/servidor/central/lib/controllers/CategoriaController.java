@@ -37,4 +37,12 @@ public class CategoriaController {
 
         return categoriaService.listar();
     }
+
+    public ArrayList<Categoria> listarHijos(Categoria padre) {
+        CategoriaService categoriaService = ServiceFactory.getCategoriaService();
+
+        return categoriaService.listarHijos(padre);
+    }
+
+
 }
