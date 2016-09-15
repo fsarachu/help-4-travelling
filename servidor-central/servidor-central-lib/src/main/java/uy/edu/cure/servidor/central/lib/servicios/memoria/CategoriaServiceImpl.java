@@ -3,6 +3,7 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class CategoriaServiceImpl extends GenericServiceImpl<Categoria> implements CategoriaService {
@@ -26,5 +27,20 @@ public class CategoriaServiceImpl extends GenericServiceImpl<Categoria> implemen
         }
 
         return maxId + 1;
+    }
+
+    public ArrayList<Categoria> listarHijos(Categoria padre) {
+        ArrayList<Categoria> hijos = new ArrayList<>();
+        Categoria categoria;
+
+        for (Map.Entry<Integer, Categoria> entry : coleccion.entrySet()) {
+            categoria = entry.getValue();
+
+            if (padre == categoria.getPadre()) {
+                hijos.add(categoria);
+            }
+        }
+
+        return hijos;
     }
 }

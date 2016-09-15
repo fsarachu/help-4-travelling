@@ -7,34 +7,35 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.ArrayList;
 
 public class CategoriaController {
+    private CategoriaService categoriaService;
 
-    public void nueva(Categoria categoria) {
-        CategoriaService categoriaService = ServiceFactory.getCategoriaService();
-
-        categoriaService.agregar(categoria.getId(), categoria);
+    public CategoriaController() {
+        this.categoriaService = ServiceFactory.getCategoriaService();
     }
 
-    public void eliminar(int id) {
-        CategoriaService ciudadService = ServiceFactory.getCategoriaService();
+    public void nueva(Categoria categoria) {
+        this.categoriaService.agregar(categoria.getId(), categoria);
+    }
 
-        ciudadService.eliminar(id);
+    public void eliminar(Integer idCategoria) {
+        this.categoriaService.eliminar(idCategoria);
     }
 
     public Categoria obtener(Integer id) {
-        CategoriaService ciudadService = ServiceFactory.getCategoriaService();
-
-        return ciudadService.obtener(id);
+        return this.categoriaService.obtener(id);
     }
 
     public void modificar(Integer id, Categoria ciudad1) {
-        CategoriaService ciudadService = ServiceFactory.getCategoriaService();
-
-        ciudadService.modificar(id, ciudad1);
+        this.categoriaService.modificar(id, ciudad1);
     }
 
     public ArrayList<Categoria> listar() {
-        CategoriaService categoriaService = ServiceFactory.getCategoriaService();
-
-        return categoriaService.listar();
+        return this.categoriaService.listar();
     }
+
+    public ArrayList<Categoria> listarHijos(Categoria padre) {
+        return this.categoriaService.listarHijos(padre);
+    }
+
+
 }
