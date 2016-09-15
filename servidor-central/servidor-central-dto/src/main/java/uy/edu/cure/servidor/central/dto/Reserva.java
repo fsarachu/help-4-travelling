@@ -20,10 +20,6 @@ public class Reserva {
         this.estado = estado;
     }
 
-    public Reserva() {
-
-    }
-
     public Integer getId() {
         return id;
     }
