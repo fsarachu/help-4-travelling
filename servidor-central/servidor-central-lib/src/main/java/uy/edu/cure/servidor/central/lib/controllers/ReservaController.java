@@ -27,7 +27,6 @@ public class ReservaController {
 
     public void nueva(Cliente cliente) {
         Reserva reserva = new Reserva();
-
         reserva.setId(this.reservaService.nextId());
         reserva.setCliente(cliente);
         reserva.setCarrito(cliente.getCarrito());

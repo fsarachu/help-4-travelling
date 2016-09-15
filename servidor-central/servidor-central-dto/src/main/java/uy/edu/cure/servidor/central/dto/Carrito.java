@@ -9,6 +9,8 @@ public class Carrito {
     private double total;
 
     public Carrito() {
+        this.items = new ArrayList<>();
+        this.total = 0.0;
     }
 
     public Carrito(Integer id, ArrayList<ItemReserva> items, Cliente cliente, double total) {
