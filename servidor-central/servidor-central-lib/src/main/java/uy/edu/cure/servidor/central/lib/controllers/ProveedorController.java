@@ -7,34 +7,30 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.ArrayList;
 
 public class ProveedorController {
+    private ProveedorService proveedorService;
+
+    public ProveedorController() {
+        this.proveedorService = ServiceFactory.getProveedorService();
+    }
 
     public void nuevo(Proveedor proveedor) {
-        ProveedorService proveedorService = ServiceFactory.getProveedorService();
-
+        proveedor.setId(this.proveedorService.nextId());
         proveedorService.agregar(proveedor.getId(), proveedor);
     }
 
-    public void eliminar(int id) {
-        ProveedorService ciudadService = ServiceFactory.getProveedorService();
-
-        ciudadService.eliminar(id);
+    public void eliminar(Integer idProveedor) {
+        this.proveedorService.eliminar(idProveedor);
     }
 
-    Proveedor obtener(Integer id) {
-        ProveedorService ciudadService = ServiceFactory.getProveedorService();
-
-        return ciudadService.obtener(id);
+    Proveedor obtener(Integer idProveedor) {
+        return this.proveedorService.obtener(idProveedor);
     }
 
-    public void modificar(Integer id, Proveedor ciudad1) {
-        ProveedorService ciudadService = ServiceFactory.getProveedorService();
-
-        ciudadService.modificar(id, ciudad1);
+    public void modificar(Proveedor proveedor) {
+        this.proveedorService.modificar(proveedor.getId(), proveedor);
     }
 
     public ArrayList<Proveedor> listar() {
-        ProveedorService proveedorService = ServiceFactory.getProveedorService();
-
-        return proveedorService.listar();
+        return this.proveedorService.listar();
     }
 }
