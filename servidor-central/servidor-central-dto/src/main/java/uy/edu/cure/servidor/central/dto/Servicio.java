@@ -12,6 +12,8 @@ public class Servicio extends Producto {
 
     public Servicio() {
         this.setTipo(TipoProducto.servicio);
+        this.imagenes = new ArrayList<>();
+        this.categorias = new ArrayList<>();
     }
 
     public ArrayList<BufferedImage> getImagenes() {

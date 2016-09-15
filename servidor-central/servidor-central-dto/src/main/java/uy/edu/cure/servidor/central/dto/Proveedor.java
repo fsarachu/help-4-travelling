@@ -8,7 +8,6 @@ public class Proveedor extends Usuario {
     private String linkEmpresa;
 
     public Proveedor() {
-
     }
 
     public Proveedor(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, String nombreEmpresa, String linkEmpresa) {

@@ -9,6 +9,8 @@ public class Promocion extends Producto {
 
     public Promocion() {
         this.setTipo(TipoProducto.promocion);
+        this.idServicios = new ArrayList<>();
+        this.servicios = new ArrayList<>();
     }
 
     public int getDescuento() {
