@@ -24,7 +24,6 @@ public class AltaCategoria {
     private DefaultMutableTreeNode hijo;
 
 
-
     public AltaCategoria() {
         cargarTree();
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
@@ -48,7 +47,7 @@ public class AltaCategoria {
         btnCancelar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-           panelMain.setVisible(false);
+                panelMain.setVisible(false);
             }
         });
     }
@@ -62,17 +61,11 @@ public class AltaCategoria {
                 DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
                 cat.setUserObject(categoria.getNombre());
                 raiz.add(cat);
-            } else {
-                while (categoria.getPadre() < categorias.size()) {
-                    hijo = new DefaultMutableTreeNode(categoria.getNombre());
-                    categoriaController.obtener(categoria.getPadre()).getId();
-                }
             }
         }
         DefaultTreeModel modelo = new DefaultTreeModel(raiz);
         this.tree1.setModel(modelo);
         tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-
 
 
     }
