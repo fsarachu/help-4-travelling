@@ -8,14 +8,9 @@ public class Promocion extends Producto {
     private ArrayList<Servicio> servicios;
 
     public Promocion() {
-
-    }
-
-    public Promocion(Integer id, String nombre, String descripcion, double precio, Proveedor proveedor, int descuento, ArrayList<Integer> idServicios, ArrayList<Servicio> servicios) {
-        super(id, nombre, descripcion, precio, proveedor);
-        this.descuento = descuento;
-        this.idServicios = idServicios;
-        this.servicios = servicios;
+        this.setTipo(TipoProducto.promocion);
+        this.idServicios = new ArrayList<>();
+        this.servicios = new ArrayList<>();
     }
 
     public int getDescuento() {
@@ -30,9 +25,16 @@ public class Promocion extends Producto {
         return idServicios;
     }
 
+    public void setIdServicios(ArrayList<Integer> idServicios) {
+        this.idServicios = idServicios;
+    }
+
     public ArrayList<Servicio> getServicios() {
         return servicios;
     }
 
+    public void setServicios(ArrayList<Servicio> servicios) {
+        this.servicios = servicios;
+    }
 }
 

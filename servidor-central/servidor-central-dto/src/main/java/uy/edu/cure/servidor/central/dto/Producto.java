@@ -6,17 +6,7 @@ public abstract class Producto {
     private String descripcion;
     private double precio;
     private Proveedor proveedor;
-
-    public Producto() {
-    }
-
-    public Producto(Integer id, String nombre, String descripcion, double precio, Proveedor proveedor) {
-        this.id = id;
-        this.nombre = nombre;
-        this.descripcion = descripcion;
-        this.precio = precio;
-        this.proveedor = proveedor;
-    }
+    private TipoProducto tipo;
 
     public Integer getId() {
         return id;
@@ -56,5 +46,13 @@ public abstract class Producto {
 
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
+    }
+
+    public TipoProducto getTipo() {
+        return tipo;
+    }
+
+    protected void setTipo(TipoProducto tipo) {
+        this.tipo = tipo;
     }
 }

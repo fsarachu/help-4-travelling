@@ -3,6 +3,10 @@ package uy.edu.cure.servidor.central.lib.servicios;
 import uy.edu.cure.servidor.central.lib.servicios.memoria.*;
 
 public class ServiceFactory {
+    public static CarritoService getCarritoService() {
+        return CarritoServiceImpl.getInstance();
+    }
+
     public static CategoriaService getCategoriaService() {
         return CategoriaServiceImpl.getInstance();
     }
@@ -19,23 +23,19 @@ public class ServiceFactory {
         return PaisServiceImpl.getInstance();
     }
 
+    public static ProductoService getProductoService() {
+        return ProductoServiceImpl.getInstance();
+    }
+
     public static ProveedorService getProveedorService() {
         return ProveedorServiceImpl.getInstance();
     }
 
-    public static ServicioService getServicioService() {
-        return ServicioServiceImpl.getInstance();
-    }
-
-    public static PromocionService getPromocionService() {
-        return PromocionServiceImpl.getInstance();
+    public static ItemReservaService getItemReservaService() {
+        return ItemReservaServiceImpl.getInstance();
     }
 
     public static ReservaService getReservaService() {
         return ReservaServiceImpl.getInstance();
-    }
-
-    public static OrdenService getOrdenService() {
-        return OrdenServiceImpl.getInstance();
     }
 }
