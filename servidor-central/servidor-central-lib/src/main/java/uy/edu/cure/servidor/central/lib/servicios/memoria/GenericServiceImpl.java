@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map.Entry;
 import java.util.Vector;
 
-public class GenericService<T> {
+public class GenericServiceImpl<T> {
     protected HashMap<Integer, T> coleccion;
 
-    protected GenericService() {
+    protected GenericServiceImpl() {
         this.coleccion = new HashMap<>();
     }
 

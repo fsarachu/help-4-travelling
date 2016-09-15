@@ -4,25 +4,20 @@ import java.util.Date;
 
 public class Reserva {
     private Integer id;
-    private Date fechaInicio;
-    private Date fechaFin;
-    private Producto producto;
-    private int cantidad;
-    private double precio;
-    private Orden orden;
-
-    public Reserva(Integer id, Date fechaInicio, Date fechaFin, Producto producto, int cantidad, double precio, Orden orden) {
-        this.id = id;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.producto = producto;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.orden = orden;
-    }
+    private Carrito carrito;
+    private Cliente cliente;
+    private Date fechaCreacion;
+    private EstadoReserva estado;
 
     public Reserva() {
+    }
 
+    public Reserva(Integer id, Carrito carrito, Cliente cliente, Date fechaCreacion, EstadoReserva estado) {
+        this.id = id;
+        this.carrito = carrito;
+        this.cliente = cliente;
+        this.fechaCreacion = fechaCreacion;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -33,51 +28,35 @@ public class Reserva {
         this.id = id;
     }
 
-    public Date getFechaInicio() {
-        return fechaInicio;
+    public Carrito getCarrito() {
+        return carrito;
     }
 
-    public void setFechaInicio(Date fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setCarrito(Carrito carrito) {
+        this.carrito = carrito;
     }
 
-    public Date getFechaFin() {
-        return fechaFin;
+    public Cliente getCliente() {
+        return cliente;
     }
 
-    public void setFechaFin(Date fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
     }
 
-    public Producto getProducto() {
-        return producto;
+    public Date getFechaCreacion() {
+        return fechaCreacion;
     }
 
-    public void setProducto(Producto producto) {
-        this.producto = producto;
+    public void setFechaCreacion(Date fechaCreacion) {
+        this.fechaCreacion = fechaCreacion;
     }
 
-    public int getCantidad() {
-        return cantidad;
+    public EstadoReserva getEstado() {
+        return estado;
     }
 
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
-
-    public double getPrecio() {
-        return precio;
-    }
-
-    public void setPrecio(double precio) {
-        this.precio = precio;
-    }
-
-    public Orden getOrden() {
-        return orden;
-    }
-
-    public void setOrden(Orden orden) {
-        this.orden = orden;
+    public void setEstado(EstadoReserva estado) {
+        this.estado = estado;
     }
 }
