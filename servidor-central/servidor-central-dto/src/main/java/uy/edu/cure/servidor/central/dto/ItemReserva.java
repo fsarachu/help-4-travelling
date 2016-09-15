@@ -79,4 +79,8 @@ public class ItemReserva {
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
+
+    public void actualizarSubTotal() {
+        this.subTotal = this.producto.getPrecio() * this.cantidad;
+    }
 }
