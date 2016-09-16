@@ -6,13 +6,13 @@ import java.util.ArrayList;
 public class Categoria {
     private Integer id;
     private String nombre;
-    private Integer padre;
+    private Categoria padre;
     private ArrayList<Categoria> hijos;
 
     public Categoria() {
     }
 
-    public Categoria(Integer id, String nombre, Integer padre, ArrayList<Categoria> hijos) {
+    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Categoria> hijos) {
         this.id = id;
         this.nombre = nombre;
         this.padre = padre;
@@ -35,11 +35,11 @@ public class Categoria {
         this.nombre = nombre;
     }
 
-    public Integer getPadre() {
+    public Categoria getPadre() {
         return padre;
     }
 
-    public void setPadre(Integer padre) {
+    public void setPadre(Categoria padre) {
         this.padre = padre;
     }
 

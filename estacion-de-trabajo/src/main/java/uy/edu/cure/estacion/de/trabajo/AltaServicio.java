@@ -92,8 +92,8 @@ public class AltaServicio {
                         mensaje = "Proveedor no seleccionado";
                         throw new EmptyStackException();
                     }
+                    ProductoController productoController = new ProductoController();
                     Servicio servicio = new Servicio();
-                    servicio.setId(1);
                     servicio.setNombre(txtNombre.getText());
                     servicio.setDescripcion(txtDescripcion.getText());
                     double aDouble = Double.parseDouble(txtPrecio.getText());
@@ -106,7 +106,6 @@ public class AltaServicio {
                     servicio.setDestino(ciudad1);
                     //Integer idcategoria = Integer.parseInt(categoriaSeleccionada.toString());
                     servicio.setIdCategorias(1);
-                    ProductoController productoController = new ProductoController();
                     productoController.agregar(servicio);
 
                 } catch (EmptyStackException e) {
@@ -156,12 +155,9 @@ public class AltaServicio {
                     File archivoElegido = fileChooser.getSelectedFile();
                     txtImagen1 = archivoElegido.getAbsolutePath();
                     JOptionPane.showMessageDialog(null, txtImagen1, "Atencion", JOptionPane.ERROR_MESSAGE);
-                    String path = txtImagen1;
-                    URL url = this.getClass().getResource(path);
-                    ImageIcon icon = new ImageIcon(url);
+                    ImageIcon icon = new ImageIcon(txtImagen1);
                     Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblImagen1.getWidth(), lblImagen1.getHeight(), Image.SCALE_DEFAULT));
                     lblImagen1.setIcon(icono);
-
                 }
             }
         });

@@ -25,7 +25,7 @@ public class CategoriaServiceTest extends TestCase {
         categoria.setNombre("yo");
         categoria.setPadre(null);
 
-        this.categoriaService.agregar(categoria.getId(),categoria);
+        this.categoriaService.agregar(categoria.getId(), categoria);
 
         assertEquals(categoria, this.categoriaService.obtener(1));
 
@@ -51,8 +51,8 @@ public class CategoriaServiceTest extends TestCase {
         categoria1.setId(101);
         categoria1.setNombre("auto");
 
-        this.categoriaService.agregar(categoria.getId(),categoria);
-        this.categoriaService.modificar(categoria1.getId(),categoria1);
+        this.categoriaService.agregar(categoria.getId(), categoria);
+        this.categoriaService.modificar(categoria1.getId(), categoria1);
 
         assertEquals(categoria1, categoriaService.obtener(101));
     }
@@ -63,7 +63,7 @@ public class CategoriaServiceTest extends TestCase {
         categoria.setNombre("pepe");
         categoria.setPadre(null);
 
-        this.categoriaService.agregar(101,categoria);
+        this.categoriaService.agregar(101, categoria);
 
         assertEquals(categoria, categoriaService.obtener(101));
 
@@ -71,14 +71,14 @@ public class CategoriaServiceTest extends TestCase {
 
     public void testListar() throws Exception {
         ArrayList<Categoria> expected = new ArrayList<>();
-        expected.add(new Categoria(1,"uno",1,null));
-        expected.add(new Categoria(2,"dos",1,null));
-        expected.add(new Categoria(3,"tre",1,null));
-        for (Categoria categoria : expected){
-            this.categoriaService.agregar(categoria.getId(),categoria);
+        expected.add(new Categoria(1, "uno", null, null));
+        expected.add(new Categoria(2, "dos", null, null));
+        expected.add(new Categoria(3, "tre", null, null));
+        for (Categoria categoria : expected) {
+            this.categoriaService.agregar(categoria.getId(), categoria);
         }
         ArrayList<Categoria> actual = categoriaService.listar();
-        for (int n=0 ; n<3 ; n++) {
+        for (int n = 0; n < 3; n++) {
             assertEquals(expected.get(n), actual.get(n));
         }
 
