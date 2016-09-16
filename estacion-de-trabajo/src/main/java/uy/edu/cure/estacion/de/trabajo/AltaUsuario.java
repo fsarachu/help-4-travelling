@@ -12,6 +12,7 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -31,9 +32,12 @@ public class AltaUsuario extends JFrame {
     private JButton btnAceptar;
     private JButton cancelarButton;
     private JPanel panelMain;
-    //private JFrame panelMain;
     private JLabel lblEmpresa;
     private JLabel lblLink;
+    private JButton btnFoto;
+    private JLabel lblFoto;
+    private JFileChooser fileChooser;
+    private String txtImagen1;
 
     public AltaUsuario() {
         rbtnCliente.setSelected(true);
@@ -59,6 +63,20 @@ public class AltaUsuario extends JFrame {
                     txtLink.setVisible(false);
                     lblEmpresa.setVisible(false);
                     lblLink.setVisible(false);
+                }
+            }
+        });
+        btnFoto.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                fileChooser = new JFileChooser();
+                if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                    File archivoElegido = fileChooser.getSelectedFile();
+                    txtImagen1 = archivoElegido.getAbsolutePath();
+                    JOptionPane.showMessageDialog(null, txtImagen1, "Atencion", JOptionPane.ERROR_MESSAGE);
+                    ImageIcon icon = new ImageIcon(txtImagen1);
+                    Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblFoto.getWidth(), lblFoto.getHeight(), Image.SCALE_DEFAULT));
+                    lblFoto.setIcon(icono);
                 }
             }
         });
@@ -96,6 +114,7 @@ public class AltaUsuario extends JFrame {
                         cliente.setApellido(txtApellido.getText());
                         cliente.setCorreo(txtCorreo.getText());
                         cliente.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
+                        cliente.setImagen(txtImagen1);
                         ClienteController clienteController = new ClienteController();
                         clienteController.nuevo(cliente);
                         panelMain.setVisible(false);
@@ -120,6 +139,7 @@ public class AltaUsuario extends JFrame {
                         provedor.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
                         provedor.setNombreEmpresa(txtEmpresa.getText());
                         provedor.setLinkEmpresa(txtLink.getText());
+                        provedor.setImagen(txtImagen1);
                         ProveedorController proveedorController = new ProveedorController();
                         proveedorController.nuevo(provedor);
                         panelMain.setVisible(false);
