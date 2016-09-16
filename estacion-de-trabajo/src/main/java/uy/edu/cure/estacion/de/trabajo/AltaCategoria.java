@@ -41,10 +41,10 @@ public class AltaCategoria {
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
-                if (nodo != null) {
-                    DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
-                    mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()), nodo, mdl.getChildCount(nodo));
+                if (node.getUserObject() instanceof Categoria) {
+                    Categoria categoria = (Categoria) node.getUserObject();
+
+                    agregarHijo(categoria);
                 }
             }
         });
@@ -54,6 +54,24 @@ public class AltaCategoria {
                 panelMain.setVisible(false);
             }
         });
+    }
+
+    private void agregarHijo(Categoria cate) {
+        CategoriaController categoriaController = new CategoriaController();
+
+        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+        if (nodo != null) {
+            Categoria categoria = new Categoria();
+            categoria.setNombre(txtCategoria.getText());
+            categoria.setPadre(cate);
+            DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
+            hijo.setUserObject(categoria);
+            node.add(hijo);
+
+//                    DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
+            //                  mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()), nodo, mdl.getChildCount(nodo));
+        }
+
     }
 
     private void cargarTree() {
