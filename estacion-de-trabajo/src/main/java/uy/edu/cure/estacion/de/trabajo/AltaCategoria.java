@@ -6,10 +6,7 @@ import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreePath;
-import javax.swing.tree.TreeSelectionModel;
+import javax.swing.tree.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -20,8 +17,9 @@ public class AltaCategoria {
     private JTextField txtCategoria;
     private JButton btnAgregar;
     private JButton btnCancelar;
-    private DefaultMutableTreeNode tm;
+    private DefaultMutableTreeNode node;
     private DefaultMutableTreeNode hijo;
+    private DefaultMutableTreeNode raiz;
 
 
     public AltaCategoria() {
@@ -29,8 +27,14 @@ public class AltaCategoria {
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
-                TreePath tp = tree1.getSelectionPath();
-                tm = (DefaultMutableTreeNode) tp.getLastPathComponent();
+                node = ((DefaultMutableTreeNode )tree1.getLastSelectedPathComponent());
+
+                if (node.getUserObject() instanceof Categoria) {
+                    Categoria categoria = (Categoria) node.getUserObject();
+
+                    cargarHijos(categoria);
+                }
+
             }
         });
 
@@ -53,21 +57,30 @@ public class AltaCategoria {
     }
 
     private void cargarTree() {
-        DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorias");
+        raiz = new DefaultMutableTreeNode("Categorias");
         CategoriaController categoriaController = new CategoriaController();
         ArrayList<Categoria> categorias = categoriaController.listar();
         for (Categoria categoria : categorias) {
             if (categoria.getPadre() == null) {
                 DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
-                cat.setUserObject(categoria.getNombre());
+                cat.setUserObject(categoria);
                 raiz.add(cat);
             }
         }
         DefaultTreeModel modelo = new DefaultTreeModel(raiz);
         this.tree1.setModel(modelo);
         tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
+    }
 
+    private void cargarHijos(Categoria cate) {
+        CategoriaController categoriaController = new CategoriaController();
 
+        ArrayList<Categoria> categorias = categoriaController.listarHijos(cate);
+        for (Categoria categoria : categorias) {
+            DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
+            hijo.setUserObject(categoria);
+            node.add(hijo);
+        }
     }
 
     public JTree getTree1() {

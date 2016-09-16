@@ -1,9 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.dto.Promocion;
-import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.dto.Servicio;
+import uy.edu.cure.servidor.central.dto.*;
+import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
 import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
@@ -46,13 +44,21 @@ public class VerInfo {
                             txtInfo.append(obj.toString() + "\n");
                         }
                     }
-                    if (cmbInfo.getSelectedItem().equals("Reserva")) {
+                    /*if (cmbInfo.getSelectedItem().equals("Reserva")) {
                         ReservaController reservaController = new ReservaController();
                         ArrayList<Reserva> reservas = reservaController.listar();
                         for (Object obj : reservas) {
                             txtInfo.append(obj.toString() + "\n");
                         }
+                    }*/
+                    if (cmbInfo.getSelectedItem().equals("Categoria")) {
+                        CategoriaController categoriaController = new CategoriaController();
+                        ArrayList<Categoria> categorias = categoriaController.listar();
+                        for (Object obj : categorias) {
+                            txtInfo.append(obj.toString() + "\n");
+                        }
                     }
+
                 }
 
             }

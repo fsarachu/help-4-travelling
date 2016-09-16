@@ -58,6 +58,11 @@ public class Hardcodeo {
         prueba2.setPadre(null);
         prueba2.setNombre("Hotel");
         categoriaController.nueva(prueba2);
+        Categoria prueba3 = new Categoria();
+        prueba3.setId(4);
+        prueba3.setPadre(prueba2);
+        prueba3.setNombre("premio");
+        categoriaController.nueva(prueba3);
     }
     private void harcodeoProveedor() {
         ProveedorController proveedorController = new ProveedorController();
