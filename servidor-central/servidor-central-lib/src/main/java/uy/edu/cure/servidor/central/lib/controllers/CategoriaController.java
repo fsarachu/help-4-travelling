@@ -13,20 +13,25 @@ public class CategoriaController {
         this.categoriaService = ServiceFactory.getCategoriaService();
     }
 
-    public void nueva(Categoria categoria) {
-        this.categoriaService.agregar(categoria.getId(), categoria);
+    public void nueva(Categoria nuevaCategoria) {
+        nuevaCategoria.setId(this.categoriaService.nextId());
+
+        Categoria padre = nuevaCategoria.getPadre();
+        padre.getHijos().add(nuevaCategoria);
+
+        this.categoriaService.agregar(nuevaCategoria.getId(), nuevaCategoria);
     }
 
-    public void eliminar(Integer idCategoria) {
-        this.categoriaService.eliminar(idCategoria);
+    /*public void eliminar(Integer idCategoria) {
+        this.categoriaService.eliminar(idCategoria); //TODO
+    }*/
+
+    public Categoria obtener(Integer idCategoria) {
+        return this.categoriaService.obtener(idCategoria);
     }
 
-    public Categoria obtener(Integer id) {
-        return this.categoriaService.obtener(id);
-    }
-
-    public void modificar(Integer id, Categoria ciudad1) {
-        this.categoriaService.modificar(id, ciudad1);
+    public void modificar(Categoria categoria) {
+        this.categoriaService.modificar(categoria.getId(), categoria);
     }
 
     public ArrayList<Categoria> listar() {

@@ -41,4 +41,8 @@ public class ProductoController {
         return this.productoService.listarPromociones();
     }
 
+    public Producto obtener(Integer idProducto) {
+        return this.productoService.obtener(idProducto);
+    }
+
 }
