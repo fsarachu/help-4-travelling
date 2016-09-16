@@ -17,14 +17,10 @@ public class CategoriaController {
         nuevaCategoria.setId(this.categoriaService.nextId());
 
         Categoria padre = nuevaCategoria.getPadre();
-        padre.getHijos().add(nuevaCategoria);
+        //padre.getHijos().add(nuevaCategoria);
 
         this.categoriaService.agregar(nuevaCategoria.getId(), nuevaCategoria);
     }
-
-    /*public void eliminar(Integer idCategoria) {
-        this.categoriaService.eliminar(idCategoria); //TODO
-    }*/
 
     public Categoria obtener(Integer idCategoria) {
         return this.categoriaService.obtener(idCategoria);
