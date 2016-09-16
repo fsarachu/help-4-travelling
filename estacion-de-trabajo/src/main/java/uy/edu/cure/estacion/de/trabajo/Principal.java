@@ -123,7 +123,8 @@ public class Principal extends JFrame {
         item6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Ingresar Reserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                setContentPane(new RealizarReserva().getPanelAltaReserva());
+                setVisible(true);
             }
         });
         item7.addActionListener(new ActionListener() {

@@ -104,7 +104,6 @@ public class RealizarReserva {
         jcbPromocion.setModel(mdlCombo);
     }
 
-
     private void cargarComboServicio () {
         ProductoController productoController = new ProductoController();
         ArrayList<Servicio> servicio = productoController.listarServicios();
