@@ -28,15 +28,6 @@ public class CategoriaControllerTest extends TestCase {
         assertEquals(categoria, this.categoriaController.obtener(1));
     }
 
-    public void testEliminar() throws Exception {
-        Categoria categoria = new Categoria();
-        categoria.setId(101);
-        categoria.setNombre("Autos");
-
-        this.categoriaController.eliminar(101);
-
-        assertNull(this.categoriaController.obtener(101));
-    }
 
     public void testModificar() throws Exception {
         Categoria categoria = new Categoria();
@@ -47,7 +38,7 @@ public class CategoriaControllerTest extends TestCase {
         categoria1.setNombre("Motos");
 
         this.categoriaController.nueva(categoria);
-        this.categoriaController.modificar(categoria1.getId(), categoria1);
+        this.categoriaController.modificar(categoria1);
 
         assertEquals(categoria1, categoriaController.obtener(101));
     }

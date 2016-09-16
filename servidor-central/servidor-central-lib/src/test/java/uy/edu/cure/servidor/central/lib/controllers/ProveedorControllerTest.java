@@ -47,7 +47,7 @@ public class ProveedorControllerTest extends TestCase {
         proveedor1.setNombre("Parmalat");
 
         this.proveedorController.nuevo(proveedor);
-        this.proveedorController.modificar(proveedor1.getId(), proveedor1);
+        this.proveedorController.modificar(proveedor1);
 
         assertEquals(proveedor1, proveedorController.obtener(101));
     }

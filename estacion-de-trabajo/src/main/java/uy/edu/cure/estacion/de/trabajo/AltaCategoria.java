@@ -20,7 +20,7 @@ public class AltaCategoria {
     private DefaultMutableTreeNode node;
     private DefaultMutableTreeNode hijo;
     private DefaultMutableTreeNode raiz;
-
+    private Categoria padre;
 
     public AltaCategoria() {
         cargarTree();
@@ -31,7 +31,7 @@ public class AltaCategoria {
 
                 if (node.getUserObject() instanceof Categoria) {
                     Categoria categoria = (Categoria) node.getUserObject();
-
+                    padre = categoria;
                     cargarHijos(categoria);
                 }
 
@@ -41,11 +41,17 @@ public class AltaCategoria {
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                if (node.getUserObject() instanceof Categoria) {
-                    Categoria categoria = (Categoria) node.getUserObject();
-
-                    agregarHijo(categoria);
+                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+                if (nodo != null) {
+                    DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
+                    mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()), nodo, mdl.getChildCount(nodo));
                 }
+                Categoria categoria = new Categoria();
+                categoria.setPadre(padre);
+                categoria.setNombre(txtCategoria.getText());
+                categoria.setHijos(null);
+                CategoriaController categoriaController = new CategoriaController();
+                categoriaController.nueva(categoria);
             }
         });
         btnCancelar.addActionListener(new ActionListener() {
@@ -54,24 +60,6 @@ public class AltaCategoria {
                 panelMain.setVisible(false);
             }
         });
-    }
-
-    private void agregarHijo(Categoria cate) {
-        CategoriaController categoriaController = new CategoriaController();
-
-        DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
-        if (nodo != null) {
-            Categoria categoria = new Categoria();
-            categoria.setNombre(txtCategoria.getText());
-            categoria.setPadre(cate);
-            DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
-            hijo.setUserObject(categoria);
-            node.add(hijo);
-
-//                    DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
-            //                  mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()), nodo, mdl.getChildCount(nodo));
-        }
-
     }
 
     private void cargarTree() {
