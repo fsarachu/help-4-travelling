@@ -8,6 +8,18 @@ public abstract class Producto {
     private Proveedor proveedor;
     private TipoProducto tipo;
 
+    public Producto() {
+
+    }
+    public Producto(Integer id, String nombre, String descripcion, double precio, Proveedor proveedor, TipoProducto tipo) {
+        this.id = id;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.proveedor = proveedor;
+        this.tipo = tipo;
+    }
+
     public Integer getId() {
         return id;
     }

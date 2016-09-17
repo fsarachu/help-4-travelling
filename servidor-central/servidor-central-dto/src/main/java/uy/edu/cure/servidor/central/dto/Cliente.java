@@ -1,6 +1,5 @@
 package uy.edu.cure.servidor.central.dto;
 
-import java.awt.image.BufferedImage;
 import java.util.Date;
 
 public class Cliente extends Usuario {
@@ -9,7 +8,11 @@ public class Cliente extends Usuario {
     public Cliente() {
     }
 
-    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, Carrito carrito) {
+    public Cliente(Carrito carrito) {
+        this.carrito = carrito;
+    }
+
+    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, Carrito carrito) {
         super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
         this.carrito = carrito;
     }

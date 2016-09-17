@@ -1,10 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.lib.controllers.*;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -21,7 +18,15 @@ public class VerInfo {
         cmbInfo.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
+                txtInfo.setText(null);
                 if (itemEvent.getStateChange() == 1) {
+                    if (cmbInfo.getSelectedItem().equals("Clientes")) {
+                        ClienteController clienteController = new ClienteController();
+                        ArrayList<Cliente> clientes = clienteController.listar();
+                        for (Object obj : clientes) {
+                            txtInfo.append(obj.toString() + "\n");
+                        }
+                    }
                     if (cmbInfo.getSelectedItem().equals("Proveedores")) {
                         ProveedorController proveedorController = new ProveedorController();
                         ArrayList<Proveedor> proveedores = proveedorController.listar();
@@ -32,7 +37,6 @@ public class VerInfo {
                     if (cmbInfo.getSelectedItem().equals("Servicios")) {
                         ProductoController productoController = new ProductoController();
                         ArrayList<Servicio> servicios = productoController.listarServicios();
-                        JOptionPane.showMessageDialog(null, servicios.size(), "Atencion", JOptionPane.ERROR_MESSAGE);
                         for (Object obj : servicios) {
                             txtInfo.append(obj.toString() + "\n");
                         }
@@ -44,20 +48,20 @@ public class VerInfo {
                             txtInfo.append(obj.toString() + "\n");
                         }
                     }
-                    /*if (cmbInfo.getSelectedItem().equals("Reserva")) {
+                    if (cmbInfo.getSelectedItem().equals("Reserva")) {
                         ReservaController reservaController = new ReservaController();
                         ArrayList<Reserva> reservas = reservaController.listar();
                         for (Object obj : reservas) {
                             txtInfo.append(obj.toString() + "\n");
                         }
-                    }*/
-                    if (cmbInfo.getSelectedItem().equals("Categoria")) {
+                    }
+                    /*if (cmbInfo.getSelectedItem().equals("Reserva")) {
                         CategoriaController categoriaController = new CategoriaController();
                         ArrayList<Categoria> categorias = categoriaController.listar();
                         for (Object obj : categorias) {
                             txtInfo.append(obj.toString() + "\n");
                         }
-                    }
+                    }*/
 
                 }
 
@@ -66,6 +70,7 @@ public class VerInfo {
     }
 
     private void cargarCombo() {
+        cmbInfo.addItem("Clientes");
         cmbInfo.addItem("Proveedores");
         cmbInfo.addItem("Servicios");
         cmbInfo.addItem("Promociones");

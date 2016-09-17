@@ -4,6 +4,7 @@ import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.LlenarCombobox;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
@@ -21,6 +22,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.awt.geom.Arc2D;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -43,8 +45,8 @@ public class AltaServicio {
     private JLabel lblImagen2;
     private JLabel lblImagen3;
     private JButton btnImagen1;
-    private JButton button2;
-    private JButton button3;
+    private JButton btnImagen2;
+    private JButton btnImagen3;
     private Integer txtIdCiudadOrigen;
     private Integer txtIdCiudadDestino;
     private String mensaje;
@@ -54,13 +56,34 @@ public class AltaServicio {
     private String txtImagen1;
     private String txtImagen2;
     private String txtImagen3;
-
+    private Integer txtIdCategoria;
+    private Categoria padre;
+    private DefaultMutableTreeNode raiz;
+    private DefaultMutableTreeNode node;
 
     public AltaServicio() {
-        cargarComboCiudad(cmbCiudadOrigen);
-        cargarComboCiudad(cmbCiudadDestino);
-        cargarComboProveedores();
+        final LlenarCombobox llenarCombobox = new LlenarCombobox();
+        cmbCiudadOrigen.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadOrigen));
+        cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));
+        cmbProveedor.setModel(llenarCombobox.cargarComboProveedores());
         cargarCategorias();
+        llenarCombobox.cargarTree(raiz, tree1);
+        tree1.addTreeSelectionListener(new TreeSelectionListener() {
+            @Override
+            public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
+                node = ((DefaultMutableTreeNode )tree1.getLastSelectedPathComponent());
+
+                if (node.getUserObject() instanceof Categoria) {
+                    Categoria categoria = (Categoria) node.getUserObject();
+                    txtIdCategoria = categoria.getId();
+                    padre = categoria;
+                    cargarHijos(categoria);
+
+                }
+
+            }
+        });
+
         btnAceptar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -75,18 +98,18 @@ public class AltaServicio {
                         mensaje = "Descripcion";
                         throw new EmptyStackException();
                     }
-                    if (txtPrecio.getText().equals("")) {
+                    if (txtPrecio.getText().isEmpty()) {
+                        Double.parseDouble(txtPrecio.getText());
                         txtPrecio.requestFocus();
                         mensaje = "Precio";
-                        throw new EmptyStackException();
+                        throw new NumberFormatException();
                     }
                     if (cmbCiudadOrigen.getSelectedItem().equals("")) {
                         mensaje = "Ciudad Origen no seleccionada";
                         throw new EmptyStackException();
                     }
                     if (cmbCiudadDestino.getSelectedItem().equals("")) {
-                        mensaje = "Ciudad Destino no seleccionada";
-                        throw new EmptyStackException();
+                        cmbCiudadDestino.setSelectedItem(cmbCiudadOrigen.getSelectedItem());
                     }
                     if (cmbProveedor.getSelectedItem().equals("")) {
                         mensaje = "Proveedor no seleccionado";
@@ -104,12 +127,18 @@ public class AltaServicio {
                     Ciudad ciudad1 = new Ciudad();
                     ciudad1.setId(cmbCiudadDestino.getSelectedIndex());
                     servicio.setDestino(ciudad1);
-                    //Integer idcategoria = Integer.parseInt(categoriaSeleccionada.toString());
-                    servicio.setIdCategorias(1);
+                    servicio.setIdCategorias(txtIdCategoria);
+                    ArrayList<String> imagenes = new ArrayList<String>();
+                    imagenes.add(txtImagen1);
+                    imagenes.add(txtImagen2);
+                    imagenes.add(txtImagen3);
+                    servicio.setImagenes(imagenes);
                     productoController.agregar(servicio);
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null,"El precio es incorrecto","Atencion",JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -150,32 +179,33 @@ public class AltaServicio {
         btnImagen1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                fileChooser = new JFileChooser();
-                if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-                    File archivoElegido = fileChooser.getSelectedFile();
-                    txtImagen1 = archivoElegido.getAbsolutePath();
-                    JOptionPane.showMessageDialog(null, txtImagen1, "Atencion", JOptionPane.ERROR_MESSAGE);
-                    ImageIcon icon = new ImageIcon(txtImagen1);
-                    Icon icono = new ImageIcon(icon.getImage().getScaledInstance(lblImagen1.getWidth(), lblImagen1.getHeight(), Image.SCALE_DEFAULT));
-                    lblImagen1.setIcon(icono);
-                }
+                txtImagen1 = llenarCombobox.seleccionarImagen(lblImagen1, txtImagen1);
+            }
+        });
+        btnImagen2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                txtImagen2 = llenarCombobox.seleccionarImagen(lblImagen2, txtImagen2);
+            }
+        });
+        btnImagen3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                txtImagen3 = llenarCombobox.seleccionarImagen(lblImagen3, txtImagen3);
             }
         });
     }
 
 
-    private void cargarComboCiudad(JComboBox cmb) {
-        CiudadController ciudadController = new CiudadController();
-        List<Ciudad> ciudades = ciudadController.listar();
-        ComboBoxModel<Ciudad> mdlCombo = new DefaultComboBoxModel<>(new Vector<Ciudad>(ciudades));
-        cmb.setModel(mdlCombo);
-    }
+    private void cargarHijos(Categoria cate) {
+        CategoriaController categoriaController = new CategoriaController();
 
-    private void cargarComboProveedores() {
-        ProveedorController proveedorController = new ProveedorController();
-        List<Proveedor> proveedores = proveedorController.listar();
-        ComboBoxModel<Proveedor> mdlCombo = new DefaultComboBoxModel<>(new Vector<Proveedor>(proveedores));
-        cmbProveedor.setModel(mdlCombo);
+        ArrayList<Categoria> categorias = categoriaController.listarHijos(cate);
+        for (Categoria categoria : categorias) {
+            DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
+            hijo.setUserObject(categoria);
+            node.add(hijo);
+        }
     }
 
     private void cargarCategorias() {
