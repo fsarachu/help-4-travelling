@@ -18,18 +18,17 @@ public class ClienteController {
         this.clienteService.agregar(cliente.getId(), cliente);
     }
 
-    public void eliminar(int id) {
-        this.clienteService.eliminar(id);
+    public void eliminar(Integer idCliente) {
+        this.clienteService.eliminar(idCliente);
     }
 
-    Cliente obtener(Integer id) {
-        return this.clienteService.obtener(id);
+    Cliente obtener(Integer idCliente) {
+        return this.clienteService.obtener(idCliente);
     }
 
-    public void modificar(Integer id, Cliente ciudad1) {
-        this.clienteService.modificar(id, ciudad1);
+    public void modificar(Cliente cliente) {
+        this.clienteService.modificar(cliente.getId(), cliente);
     }
-
 
     public ArrayList<Cliente> listar() {
         return this.clienteService.listar();

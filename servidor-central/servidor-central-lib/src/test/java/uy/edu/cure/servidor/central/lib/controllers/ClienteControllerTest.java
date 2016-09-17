@@ -53,7 +53,7 @@ public class ClienteControllerTest {
 
         Cliente clienteNew = new Cliente();
         clienteNew.setId(clienteOld.getId());
-        clienteController.modificar(clienteNew.getId(), clienteNew);
+        clienteController.modificar(clienteNew);
 
         assertEquals(clienteNew, clienteController.obtener(clienteOld.getId()));
     }
