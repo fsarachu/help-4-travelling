@@ -14,4 +14,6 @@ public interface GenericService<T> {
     ArrayList<T> listar();
 
     Integer nextId();
+
+    void vaciar();
 }
