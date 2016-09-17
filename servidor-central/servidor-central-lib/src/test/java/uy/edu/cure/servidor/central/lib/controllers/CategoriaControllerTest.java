@@ -22,7 +22,6 @@ public class CategoriaControllerTest extends TestCase {
         this.categoriaService.vaciar();
     }
 
-    @Test
     public void testNuevo() throws Exception {
         Categoria categoria = new Categoria();
         categoria.setNombre("Autos");
@@ -32,7 +31,6 @@ public class CategoriaControllerTest extends TestCase {
         assertEquals(categoria, this.categoriaController.obtener(categoria.getId()));
     }
 
-    @Test
     public void testModificar() throws Exception {
         Categoria categoriaOld = new Categoria();
         categoriaOld.setNombre("Autos");
@@ -48,7 +46,6 @@ public class CategoriaControllerTest extends TestCase {
         assertEquals(categoriaNew, categoriaController.obtener(categoriaNew.getId()));
     }
 
-    @Test
     public void testObtener() throws Exception {
         Categoria categoria = new Categoria();
         categoria.setNombre("Autos");
@@ -59,7 +56,6 @@ public class CategoriaControllerTest extends TestCase {
 
     }
 
-    @Test
     public void testListar() throws Exception {
         List<Categoria> expected = new ArrayList<>();
 
