@@ -1,87 +1,93 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
-import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Proveedor;
+import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
+import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ProveedorControllerTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
-    private ProveedorController proveedorController;
+public class ProveedorControllerTest {
+
+    private static ProveedorController proveedorController;
+    private static ProveedorService proveedorService;
 
     @BeforeClass
-    public void setUp() {
-        this.proveedorController = new ProveedorController();
+    public static void beforeAll() {
+        proveedorController = new ProveedorController();
+        proveedorService = ServiceFactory.getProveedorService();
     }
 
+    @Before
+    public void beforeEach() throws Exception {
+        proveedorService.vaciar();
+    }
 
     @Test
     public void testNuevo() throws Exception {
         Proveedor proveedor = new Proveedor();
-        proveedor.setId(1);
-        proveedor.setNombre("Conaprole");
 
-        this.proveedorController.nuevo(proveedor);
+        proveedorController.nuevo(proveedor);
 
-        assertEquals(proveedor, this.proveedorController.obtener(1));
+        assertEquals(proveedor, proveedorController.obtener(proveedor.getId()));
     }
 
+    @Test
     public void testEliminar() throws Exception {
         Proveedor proveedor = new Proveedor();
-        proveedor.setId(101);
-        proveedor.setNombre("Conaprole");
 
-        this.proveedorController.eliminar(101);
+        proveedorController.nuevo(proveedor);
 
-        assertNull(this.proveedorController.obtener(101));
+        assertEquals(proveedor, proveedorController.obtener(proveedor.getId()));
+
+        proveedorController.eliminar(proveedor.getId());
+
+        assertNull(proveedorController.obtener(proveedor.getId()));
     }
 
+    @Test
     public void testModificar() throws Exception {
-        Proveedor proveedor = new Proveedor();
-        proveedor.setId(101);
-        proveedor.setNombre("Conaprole");
-        Proveedor proveedor1 = new Proveedor();
-        proveedor1.setId(101);
-        proveedor1.setNombre("Parmalat");
+        Proveedor proveedorOld = new Proveedor();
+        proveedorController.nuevo(proveedorOld);
 
-        this.proveedorController.nuevo(proveedor);
-        this.proveedorController.modificar(proveedor1);
+        Proveedor proveedorNew = new Proveedor();
+        proveedorNew.setId(proveedorOld.getId());
+        proveedorController.modificar(proveedorNew);
 
-        assertEquals(proveedor1, proveedorController.obtener(101));
+        assertEquals(proveedorNew, proveedorController.obtener(proveedorOld.getId()));
     }
 
+    @Test
     public void testObtener() throws Exception {
         Proveedor proveedor = new Proveedor();
-        proveedor.setId(101);
-        proveedor.setNombre("Conaprole");
 
-        this.proveedorController.nuevo(proveedor);
+        proveedorController.nuevo(proveedor);
 
-        assertEquals(proveedor, proveedorController.obtener(101));
-
+        assertEquals(proveedor, proveedorController.obtener(proveedor.getId()));
     }
 
 
+    @Test
     public void testListar() throws Exception {
-        ArrayList<Proveedor> expected = new ArrayList<>();
-        Proveedor proveedor1 = new Proveedor();
-        proveedor1.setId(1);
-        proveedor1.setNombre("Conaprole");
-        Proveedor proveedor2 = new Proveedor();
-        proveedor2.setId(2);
-        proveedor2.setNombre("Parmalat");
-        expected.add(proveedor1);
-        expected.add(proveedor2);
+        List<Proveedor> expected = new ArrayList<>();
+
+        expected.add(new Proveedor());
+        expected.add(new Proveedor());
+
         for (Proveedor proveedor : expected) {
-            this.proveedorController.nuevo(proveedor);
-        }
-        ArrayList<Proveedor> actual = proveedorController.listar();
-        for (int n = 0; n < 2; n++) {
-            assertEquals(expected.get(n), actual.get(n));
+            proveedorController.nuevo(proveedor);
         }
 
+        List<Proveedor> actual = proveedorController.listar();
+
+        assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
 
 }

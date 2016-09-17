@@ -38,4 +38,8 @@ public class GenericServiceImpl<T> {
         return list;
     }
 
+    public void vaciar() {
+        this.coleccion.clear();
+    }
+
 }

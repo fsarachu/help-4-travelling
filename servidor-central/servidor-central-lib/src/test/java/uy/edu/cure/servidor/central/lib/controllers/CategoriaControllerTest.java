@@ -1,77 +1,95 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
-import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
+import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CategoriaControllerTest extends TestCase {
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
-    private CategoriaController categoriaController;
+public class CategoriaControllerTest {
+
+    private static CategoriaController categoriaController;
+    private static CategoriaService categoriaService;
 
     @BeforeClass
-    public void setUp() {
-        this.categoriaController = new CategoriaController();
+    public static void beforeAll() {
+        categoriaController = new CategoriaController();
+        categoriaService = ServiceFactory.getCategoriaService();
     }
 
+    @Before
+    public void beforeEach() throws Exception {
+        categoriaService.vaciar();
+    }
 
     @Test
     public void testNuevo() throws Exception {
         Categoria categoria = new Categoria();
-        categoria.setId(1);
         categoria.setNombre("Autos");
 
-        this.categoriaController.nueva(categoria);
+        categoriaController.nueva(categoria);
 
-        assertEquals(categoria, this.categoriaController.obtener(1));
+        assertEquals(categoria, categoriaController.obtener(categoria.getId()));
     }
 
-
+    @Test
     public void testModificar() throws Exception {
-        Categoria categoria = new Categoria();
-        categoria.setId(101);
-        categoria.setNombre("Autos");
-        Categoria categoria1 = new Categoria();
-        categoria1.setId(101);
-        categoria1.setNombre("Motos");
+        Categoria categoriaOld = new Categoria();
+        categoriaOld.setNombre("Autos");
 
-        this.categoriaController.nueva(categoria);
-        this.categoriaController.modificar(categoria1);
+        categoriaController.nueva(categoriaOld);
 
-        assertEquals(categoria1, categoriaController.obtener(101));
+        Categoria categoriaNew = new Categoria();
+        categoriaNew.setId(categoriaOld.getId());
+        categoriaNew.setNombre("Motos");
+
+        categoriaController.modificar(categoriaNew);
+
+        assertEquals(categoriaNew, categoriaController.obtener(categoriaNew.getId()));
     }
 
+    @Test
     public void testObtener() throws Exception {
         Categoria categoria = new Categoria();
-        categoria.setId(101);
         categoria.setNombre("Autos");
 
-        this.categoriaController.nueva(categoria);
+        categoriaController.nueva(categoria);
 
-        assertEquals(categoria, categoriaController.obtener(101));
+        assertEquals(categoria, categoriaController.obtener(categoria.getId()));
 
     }
 
-
+    @Test
     public void testListar() throws Exception {
-        ArrayList<Categoria> expected = new ArrayList<>();
-        Categoria categoria1 = new Categoria();
-        categoria1.setId(1);
-        categoria1.setNombre("Autos");
-        Categoria categoria2 = new Categoria();
-        categoria2.setId(2);
-        categoria2.setNombre("Motos");
-        expected.add(categoria1);
-        expected.add(categoria2);
+        List<Categoria> expected = new ArrayList<>();
+
+        expected.add(new Categoria(null, "Autos", null, null));
+        expected.add(new Categoria(null, "Vuelo", null, null));
+
         for (Categoria categoria : expected) {
-            this.categoriaController.nueva(categoria);
+            categoriaController.nueva(categoria);
         }
-        ArrayList<Categoria> actual = categoriaController.listar();
-        for (int n = 0; n < 2; n++) {
-            assertEquals(expected.get(n), actual.get(n));
+
+        System.out.println("Expected:");
+        for (Categoria categoria : expected) {
+            System.out.println(categoria.getId() + " - " + categoria.getNombre());
         }
+
+        List<Categoria> actual = categoriaController.listar();
+
+        System.out.println("Actual:");
+        for (Categoria categoria : actual) {
+            System.out.println(categoria.getId() + " - " + categoria.getNombre());
+        }
+
+        assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 
     }
 

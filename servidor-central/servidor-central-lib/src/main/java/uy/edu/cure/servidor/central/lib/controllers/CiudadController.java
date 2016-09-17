@@ -7,35 +7,31 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.ArrayList;
 
 public class CiudadController {
+    private CiudadService ciudadService;
 
-    public void nuevo(Ciudad ciudad) {
-        CiudadService ciudadService = ServiceFactory.getCiudadService();
-
-        ciudadService.agregar(ciudad.getId(), ciudad);
+    public CiudadController() {
+        this.ciudadService = ServiceFactory.getCiudadService();
     }
 
-    public void eliminar(int id) {
-        CiudadService ciudadService = ServiceFactory.getCiudadService();
-
-        ciudadService.eliminar(id);
+    public void nueva(Ciudad ciudad) {
+        ciudad.setId(this.ciudadService.nextId());
+        this.ciudadService.agregar(ciudad.getId(), ciudad);
     }
 
-    Ciudad obtener(Integer id) {
-        CiudadService ciudadService = ServiceFactory.getCiudadService();
-
-        return ciudadService.obtener(id);
+    public void eliminar(Integer idCiudad) {
+        this.ciudadService.eliminar(idCiudad);
     }
 
-    public void modificar(Integer id, Ciudad ciudad1) {
-        CiudadService ciudadService = ServiceFactory.getCiudadService();
+    Ciudad obtener(Integer idCiudad) {
+        return this.ciudadService.obtener(idCiudad);
+    }
 
-        ciudadService.modificar(id, ciudad1);
+    public void modificar(Ciudad ciudad) {
+        this.ciudadService.modificar(ciudad.getId(), ciudad);
     }
 
     public ArrayList<Ciudad> listar() {
-        CiudadService ciudadService = ServiceFactory.getCiudadService();
-
-        return ciudadService.listar();
+        return this.ciudadService.listar();
     }
 
 }
