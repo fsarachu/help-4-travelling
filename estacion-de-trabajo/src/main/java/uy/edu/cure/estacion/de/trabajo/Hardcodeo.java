@@ -25,12 +25,12 @@ public class Hardcodeo {
         ciudad.setId(1);
         ciudad.setNombre("Maldonado");
         ciudad.setPais(pais);
-        ciudadController.nuevo(ciudad);
+        ciudadController.nueva(ciudad);
         Ciudad ciudad2 = new Ciudad();
         ciudad2.setId(2);
         ciudad2.setNombre("Punta del este");
         ciudad2.setPais(pais);
-        ciudadController.nuevo(ciudad2);
+        ciudadController.nueva(ciudad2);
         Pais pais1 = new Pais();
         pais1.setId(2);
         pais1.setNombre("Brasil");
@@ -38,7 +38,7 @@ public class Hardcodeo {
         ciudad3.setId(3);
         ciudad3.setNombre("Floripa");
         ciudad3.setPais(pais);
-        ciudadController.nuevo(ciudad3);
+        ciudadController.nueva(ciudad3);
     }
 
     private void harcodeoCategoria() {
