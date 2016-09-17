@@ -1,87 +1,88 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
-import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Ciudad;
+import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
+import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class CiudadControllerTest extends TestCase {
+import static org.junit.Assert.*;
 
-    private CiudadController ciudadController;
+public class CiudadControllerTest {
+
+    private static CiudadController ciudadController;
+    private static CiudadService ciudadService;
 
     @BeforeClass
-    public void setUp() {
-        this.ciudadController = new CiudadController();
+    public static void beforeAll() {
+        ciudadController = new CiudadController();
+        ciudadService = ServiceFactory.getCiudadService();
     }
 
+    @Before
+    public void beforeEach() throws Exception {
+        ciudadService.vaciar();
+    }
 
     @Test
     public void testNuevo() throws Exception {
         Ciudad ciudad = new Ciudad();
-        ciudad.setId(1);
-        ciudad.setNombre("Maldonado");
 
-        this.ciudadController.nuevo(ciudad);
+        ciudadController.nueva(ciudad);
 
-        assertEquals(ciudad, this.ciudadController.obtener(1));
+        assertEquals(ciudad, ciudadController.obtener(ciudad.getId()));
     }
 
+    @Test
     public void testEliminar() throws Exception {
         Ciudad ciudad = new Ciudad();
-        ciudad.setId(101);
-        ciudad.setNombre("Maldonado");
 
-        this.ciudadController.eliminar(101);
+        ciudadController.nueva(ciudad);
+        ciudadController.eliminar(ciudad.getId());
 
-        assertNull(this.ciudadController.obtener(101));
+        assertNull(ciudadController.obtener(ciudad.getId()));
     }
 
+    @Test
     public void testModificar() throws Exception {
-        Ciudad ciudad = new Ciudad();
-        ciudad.setId(101);
-        ciudad.setNombre("Maldonado");
-        Ciudad ciudad1 = new Ciudad();
-        ciudad1.setId(101);
-        ciudad1.setNombre("Punta del Este");
+        Ciudad ciudadOld = new Ciudad();
+        ciudadController.nueva(ciudadOld);
 
-        this.ciudadController.nuevo(ciudad);
-        this.ciudadController.modificar(ciudad1.getId(), ciudad1);
+        Ciudad ciudadNew = new Ciudad();
+        ciudadNew.setId(ciudadOld.getId());
+        ciudadController.modificar(ciudadNew);
 
-        assertEquals(ciudad1, ciudadController.obtener(101));
+        assertEquals(ciudadNew, ciudadController.obtener(ciudadOld.getId()));
     }
 
+    @Test
     public void testObtener() throws Exception {
         Ciudad ciudad = new Ciudad();
-        ciudad.setId(101);
-        ciudad.setNombre("Maldonado");
+        ciudadController.nueva(ciudad);
 
-        this.ciudadController.nuevo(ciudad);
-
-        assertEquals(ciudad, ciudadController.obtener(101));
-
+        assertEquals(ciudad, ciudadController.obtener(ciudad.getId()));
     }
 
 
+    @Test
     public void testListar() throws Exception {
-        ArrayList<Ciudad> expected = new ArrayList<>();
-        Ciudad ciudad1 = new Ciudad();
-        ciudad1.setId(1);
-        ciudad1.setNombre("Uruguay");
-        Ciudad ciudad2 = new Ciudad();
-        ciudad2.setId(2);
-        ciudad2.setNombre("Argentina");
-        expected.add(ciudad1);
-        expected.add(ciudad2);
-        for (Ciudad ciudad : expected) {
-            this.ciudadController.nuevo(ciudad);
-        }
-        ArrayList<Ciudad> actual = ciudadController.listar();
-        for (int n = 0; n < 2; n++) {
-            assertEquals(expected.get(n), actual.get(n));
+        List<Ciudad> expected = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            expected.add(new Ciudad());
         }
 
+        for (Ciudad ciudad : expected) {
+            ciudadController.nueva(ciudad);
+        }
+
+        List<Ciudad> actual = ciudadController.listar();
+
+        assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
 
 
