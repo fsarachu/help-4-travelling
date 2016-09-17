@@ -1,87 +1,87 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
-import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.lib.servicios.ClienteService;
+import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class ClienteControllerTest extends TestCase {
+import static org.junit.Assert.*;
 
-    private ClienteController clienteController;
+public class ClienteControllerTest {
+
+    private static ClienteController clienteController;
+    private static ClienteService clienteService;
 
     @BeforeClass
-    public void setUp() {
-        this.clienteController = new ClienteController();
+    public static void beforeAll() {
+        clienteController = new ClienteController();
+        clienteService = ServiceFactory.getClienteService();
     }
 
+    @Before
+    public void beforeEach() throws Exception {
+        clienteService.vaciar();
+    }
 
     @Test
     public void testNuevo() throws Exception {
         Cliente cliente = new Cliente();
-        cliente.setId(1);
-        cliente.setNombre("Conaprole");
+        clienteController.nuevo(cliente);
 
-        this.clienteController.nuevo(cliente);
-
-        assertEquals(cliente, this.clienteController.obtener(1));
+        assertEquals(cliente, clienteController.obtener(cliente.getId()));
     }
 
+    @Test
     public void testEliminar() throws Exception {
         Cliente cliente = new Cliente();
-        cliente.setId(101);
-        cliente.setNombre("Parmalat");
+        clienteController.nuevo(cliente);
 
-        this.clienteController.eliminar(101);
+        clienteController.eliminar(cliente.getId());
 
-        assertNull(this.clienteController.obtener(101));
+        assertNull(clienteController.obtener(cliente.getId()));
     }
 
+    @Test
     public void testModificar() throws Exception {
-        Cliente cliente = new Cliente();
-        cliente.setId(101);
-        cliente.setNombre("Conaprole");
-        Cliente cliente1 = new Cliente();
-        cliente1.setId(101);
-        cliente1.setNombre("Parmalat");
+        Cliente clienteOld = new Cliente();
+        clienteController.nuevo(clienteOld);
 
-        this.clienteController.nuevo(cliente);
-        this.clienteController.modificar(cliente1.getId(), cliente1);
+        Cliente clienteNew = new Cliente();
+        clienteNew.setId(clienteOld.getId());
+        clienteController.modificar(clienteNew.getId(), clienteNew);
 
-        assertEquals(cliente1, clienteController.obtener(101));
+        assertEquals(clienteNew, clienteController.obtener(clienteOld.getId()));
     }
 
+    @Test
     public void testObtener() throws Exception {
         Cliente cliente = new Cliente();
-        cliente.setId(101);
-        cliente.setNombre("Conaprole");
+        clienteController.nuevo(cliente);
 
-        this.clienteController.nuevo(cliente);
-
-        assertEquals(cliente, clienteController.obtener(101));
-
+        assertEquals(cliente, clienteController.obtener(cliente.getId()));
     }
 
 
+    @Test
     public void testListar() throws Exception {
-        ArrayList<Cliente> expected = new ArrayList<>();
-        Cliente cliente1 = new Cliente();
-        cliente1.setId(1);
-        cliente1.setNombre("Conaprole");
-        Cliente cliente2 = new Cliente();
-        cliente2.setId(2);
-        cliente2.setNombre("Parmalat");
-        expected.add(cliente1);
-        expected.add(cliente2);
-        for (Cliente cliente : expected){
-            this.clienteController.nuevo(cliente);
-        }
-        ArrayList<Cliente> actual = clienteController.listar();
-        for (int n=0 ; n<2 ; n++) {
-            assertEquals(expected.get(n), actual.get(n));
+        List<Cliente> expected = new ArrayList<>();
+
+        for (int i = 0; i < 2; i++) {
+            expected.add(new Cliente());
         }
 
+        for (Cliente cliente : expected) {
+            clienteController.nuevo(cliente);
+        }
+
+        List<Cliente> actual = clienteController.listar();
+
+        assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
 
 }
