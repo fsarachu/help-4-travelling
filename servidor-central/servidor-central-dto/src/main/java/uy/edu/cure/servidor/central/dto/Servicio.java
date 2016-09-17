@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
 public class Servicio extends Producto {
-    private ArrayList<BufferedImage> imagenes;
+    private ArrayList<String> imagenes;
     private Integer idCategorias;
     private ArrayList<Categoria> categorias;
     private Ciudad origen;
@@ -16,11 +16,19 @@ public class Servicio extends Producto {
         this.categorias = new ArrayList<>();
     }
 
-    public ArrayList<BufferedImage> getImagenes() {
+    public Servicio(ArrayList<String> imagenes, Integer idCategorias, ArrayList<Categoria> categorias, Ciudad origen, Ciudad destino) {
+        this.imagenes = imagenes;
+        this.idCategorias = idCategorias;
+        this.categorias = categorias;
+        this.origen = origen;
+        this.destino = destino;
+    }
+
+    public ArrayList<String> getImagenes() {
         return imagenes;
     }
 
-    public void setImagenes(ArrayList<BufferedImage> imagenes) {
+    public void setImagenes(ArrayList<String> imagenes) {
         this.imagenes = imagenes;
     }
 

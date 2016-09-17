@@ -1,6 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.LlenarCombobox;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 
 import javax.swing.*;
@@ -23,7 +24,8 @@ public class AltaCategoria {
     private Categoria padre;
 
     public AltaCategoria() {
-        cargarTree();
+        LlenarCombobox llenarCombobox = new LlenarCombobox();
+        llenarCombobox.cargarTree(raiz, tree1);
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
@@ -62,21 +64,6 @@ public class AltaCategoria {
         });
     }
 
-    private void cargarTree() {
-        raiz = new DefaultMutableTreeNode("Categorias");
-        CategoriaController categoriaController = new CategoriaController();
-        ArrayList<Categoria> categorias = categoriaController.listar();
-        for (Categoria categoria : categorias) {
-            if (categoria.getPadre() == null) {
-                DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
-                cat.setUserObject(categoria);
-                raiz.add(cat);
-            }
-        }
-        DefaultTreeModel modelo = new DefaultTreeModel(raiz);
-        this.tree1.setModel(modelo);
-        tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
-    }
 
     private void cargarHijos(Categoria cate) {
         CategoriaController categoriaController = new CategoriaController();

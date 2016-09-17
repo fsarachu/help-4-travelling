@@ -10,7 +10,12 @@ public class Proveedor extends Usuario {
     public Proveedor() {
     }
 
-    public Proveedor(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen, String nombreEmpresa, String linkEmpresa) {
+    public Proveedor(String nombreEmpresa, String linkEmpresa) {
+        this.nombreEmpresa = nombreEmpresa;
+        this.linkEmpresa = linkEmpresa;
+    }
+
+    public Proveedor(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, String nombreEmpresa, String linkEmpresa) {
         super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
         this.nombreEmpresa = nombreEmpresa;
         this.linkEmpresa = linkEmpresa;

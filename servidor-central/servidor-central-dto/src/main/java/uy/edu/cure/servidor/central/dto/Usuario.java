@@ -10,12 +10,12 @@ public abstract class Usuario {
     private String apellido;
     private String correo;
     private Date fechaNacimiento;
-    private BufferedImage imagen;
+    private String imagen;
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, BufferedImage imagen) {
+    public Usuario(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen) {
         this.id = id;
         this.nickname = nickname;
         this.nombre = nombre;
@@ -73,11 +73,11 @@ public abstract class Usuario {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public BufferedImage getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(BufferedImage imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 }

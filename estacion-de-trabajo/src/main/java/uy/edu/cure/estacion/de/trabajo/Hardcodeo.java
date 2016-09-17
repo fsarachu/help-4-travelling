@@ -3,6 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
+import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
 
 import java.util.Date;
@@ -15,6 +16,7 @@ public class Hardcodeo {
         harcodeoCategoria();
         hardcodeoCiudadPais();
         harcodeoProveedor();
+        harcodeoServicios();
     }
     private void hardcodeoCiudadPais() {
         CiudadController ciudadController = new CiudadController();
@@ -79,8 +81,37 @@ public class Hardcodeo {
         proveedor1.setNombre("Parmalat");
         proveedor1.setNickname("Parmalat");
         Date nacimiento1 = new Date(2016,02,15);
-        proveedor1.setFechaNacimiento(nacimiento);
+        proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Parmalat LTDA");
         proveedorController.nuevo(proveedor1);
     }
+
+    private void harcodeoServicios() {
+        Proveedor proveedor1 = new Proveedor();
+        proveedor1.setId(2);
+        proveedor1.setNombre("Parmalat");
+        proveedor1.setNickname("Parmalat");
+        Date nacimiento1 = new Date(2016,02,15);
+        proveedor1.setFechaNacimiento(nacimiento1);
+        proveedor1.setNombreEmpresa("Parmalat LTDA");
+        Pais pais1 = new Pais();
+        pais1.setId(2);
+        pais1.setNombre("Brasil");
+        Ciudad ciudad3 = new Ciudad();
+        ciudad3.setId(3);
+        ciudad3.setNombre("Floripa");
+        ciudad3.setPais(pais1);
+        ProductoController productoController = new ProductoController();
+        Servicio servicio = new Servicio();
+        servicio.setId(1);
+        servicio.setNombre("Japon");
+        servicio.setIdCategorias(1);
+        servicio.setProveedor(proveedor1);
+        servicio.setOrigen(ciudad3);
+        servicio.setDestino(ciudad3);
+        servicio.setDescripcion("Venta en grupo");
+        servicio.setPrecio(10);
+        productoController.agregar(servicio);
+    }
+
 }
