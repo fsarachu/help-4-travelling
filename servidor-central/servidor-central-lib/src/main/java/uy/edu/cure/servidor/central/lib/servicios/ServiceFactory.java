@@ -23,9 +23,7 @@ public class ServiceFactory {
         return PaisServiceImpl.getInstance();
     }
 
-    public static ProductoService getProductoService() {
-        return ProductoServiceImpl.getInstance();
-    }
+    public static ProductoService getProductoService() { return ProductoServiceImpl.getInstance(); }
 
     public static ProveedorService getProveedorService() {
         return ProveedorServiceImpl.getInstance();

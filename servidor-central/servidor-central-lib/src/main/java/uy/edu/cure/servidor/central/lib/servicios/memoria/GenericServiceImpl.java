@@ -24,9 +24,7 @@ public class GenericServiceImpl<T> {
         this.coleccion.put(id, value);
     }
 
-    public T obtener(Integer id) {
-        return coleccion.get(id);
-    }
+    public T obtener(Integer id) { return coleccion.get(id); }
 
     public ArrayList<T> listar() {
         ArrayList<T> list = new ArrayList<>();

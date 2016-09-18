@@ -12,4 +12,6 @@ public interface ProductoService extends GenericService<Producto> {
 
     public ArrayList<Promocion> listarPromociones();
 
+    public Servicio obtener(Integer idServicio);
+
 }

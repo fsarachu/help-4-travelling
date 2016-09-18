@@ -1,8 +1,8 @@
 package uy.edu.cure.estacion.de.trabajo;
 
+import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.LlenarCombobox;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 
 import javax.swing.*;
@@ -10,12 +10,15 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.geom.Arc2D;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 public class AltaPromocion {
     private JTextField txtNombre;
-    private JButton agregarServicioButton;
+    private JButton btnCalcularTotal;
     private JComboBox cmbServicios;
     private JButton aceptarButton;
     private JButton cancelarButton;
@@ -23,10 +26,13 @@ public class AltaPromocion {
     private JLabel txtPrecio;
     private JTextField txtDescuento;
     private JPanel panelPromo;
-    private JList list;
-    private JList listElegidos;
+    private JList<Servicio> list;
+    private JList<Servicio> listElegidos;
+    private JPanel lista1;
+    private JTextArea txtLista;
     private JScrollPane scroolPanelPromo;
     private JButton calcularPrecioButton;
+    private DefaultListModel mdllista;
 
 
     public AltaPromocion() {
@@ -35,6 +41,12 @@ public class AltaPromocion {
         final DefaultListModel mdlservicios = new DefaultListModel();
         final List<Servicio> serviciosElegidos = new ArrayList<>();
         final DefaultListModel mdlElegidos = new DefaultListModel();
+        if(!servicios.isEmpty()) { //persona es tu arraylist o list
+            Iterator iterador = servicios.listIterator(); //el objeto iterador te ayuda a recorrer una coleccion.
+            while(iterador.hasNext()) {
+                txtLista.append(iterador.next() + "\n"); //el objeto at es un JTextArea y el método append agrega el contenido de persona al area de texto
+            }
+        }
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -46,15 +58,28 @@ public class AltaPromocion {
             public void mouseClicked(MouseEvent mouseEvent) {
                 super.mouseClicked(mouseEvent);
                 if (mouseEvent.getClickCount() == 2) {
-                    //int index= list.getSelectedIndex();
-                   // Servicio objServicio = (Servicio)mdlservicios.getElementAt(index);
-                   // servicios.add(objServicio);
-                    //int posicion = list.locationToIndex(mouseEvent.getPoint());
-                    //serviciosElegidos.add(servicios.get(posicion));
-
+                    int index = list.getSelectedIndex();
+                    mdlElegidos.addElement(list.getSelectedValue());
+                    listElegidos.setModel(mdlElegidos);
+                    serviciosElegidos.add(list.getSelectedValue());
+                    mdllista.removeElementAt(index);
                 }
             }
         });
+        listElegidos.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                if (mouseEvent.getClickCount() == 2) {
+                    int index = listElegidos.getSelectedIndex();
+                    mdllista.addElement(listElegidos.getSelectedValue());
+                    list.setModel(mdllista);
+                    serviciosElegidos.remove(listElegidos.getSelectedValue());
+                    mdlElegidos.removeElementAt(index);
+                }
+            }
+        });
+
         aceptarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -66,18 +91,31 @@ public class AltaPromocion {
                 promocion.setDescripcion(txtNombre.getText());
                 Integer dto = new Integer(getTxtDescuento().getText());
                 promocion.setDescuento(dto);
-                ArrayList<Servicio> ArrServicios = new ArrayList<Servicio>(servicios);
+                ArrayList<Servicio> ArrServicios = new ArrayList<Servicio>(serviciosElegidos);
                 promocion.setServicios(ArrServicios);
                 productoController.agregar(promocion);
+            }
+        });
+        btnCalcularTotal.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                JOptionPane.showMessageDialog(null,"hola","Atencion",JOptionPane.ERROR_MESSAGE);
+                Iterator<Servicio> iterator = serviciosElegidos.listIterator();
+                for (int x=0 ; x< serviciosElegidos.size() ; x++){
+                            ProductoController productoController = new ProductoController();
+                            Servicio servicio = new Servicio();
+                            servicio = productoController.obtener(x);
+                    JOptionPane.showMessageDialog(null,servicio.getPrecio(),"Atencion",JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }
 
     private void cargoServicios() {
+        mdllista = new DefaultListModel();
+        list.setModel(mdllista);
         ProductoController productoController = new ProductoController();
         List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
-        DefaultListModel mdllista = new DefaultListModel();
-        list.setModel(mdllista);
         for (Servicio servicio : list1) {
             mdllista.addElement(servicio);
         }
@@ -92,12 +130,12 @@ public class AltaPromocion {
         this.txtNombre = txtNombre;
     }
 
-    public JButton getAgregarServicioButton() {
-        return agregarServicioButton;
+    public JButton getBtnCalcularTotal() {
+        return btnCalcularTotal;
     }
 
-    public void setAgregarServicioButton(JButton agregarServicioButton) {
-        this.agregarServicioButton = agregarServicioButton;
+    public void setBtnCalcularTotal(JButton btnCalcularTotal) {
+        this.btnCalcularTotal = btnCalcularTotal;
     }
 
     public JComboBox getCmbServicios() {
