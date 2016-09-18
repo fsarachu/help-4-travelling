@@ -32,7 +32,6 @@ public class CategoriaControllerTest {
     @Test
     public void testNuevo() throws Exception {
         Categoria categoria = new Categoria();
-        categoria.setNombre("Autos");
 
         categoriaController.nueva(categoria);
 
@@ -42,13 +41,11 @@ public class CategoriaControllerTest {
     @Test
     public void testModificar() throws Exception {
         Categoria categoriaOld = new Categoria();
-        categoriaOld.setNombre("Autos");
 
         categoriaController.nueva(categoriaOld);
 
         Categoria categoriaNew = new Categoria();
         categoriaNew.setId(categoriaOld.getId());
-        categoriaNew.setNombre("Motos");
 
         categoriaController.modificar(categoriaNew);
 
@@ -58,7 +55,6 @@ public class CategoriaControllerTest {
     @Test
     public void testObtener() throws Exception {
         Categoria categoria = new Categoria();
-        categoria.setNombre("Autos");
 
         categoriaController.nueva(categoria);
 
@@ -70,24 +66,15 @@ public class CategoriaControllerTest {
     public void testListar() throws Exception {
         List<Categoria> expected = new ArrayList<>();
 
-        expected.add(new Categoria(null, "Autos", null, null));
-        expected.add(new Categoria(null, "Vuelo", null, null));
+        for (int i = 0; i < 3; i++) {
+            expected.add(new Categoria(null, null, null, null));
+        }
 
         for (Categoria categoria : expected) {
             categoriaController.nueva(categoria);
         }
 
-        System.out.println("Expected:");
-        for (Categoria categoria : expected) {
-            System.out.println(categoria.getId() + " - " + categoria.getNombre());
-        }
-
         List<Categoria> actual = categoriaController.listar();
-
-        System.out.println("Actual:");
-        for (Categoria categoria : actual) {
-            System.out.println(categoria.getId() + " - " + categoria.getNombre());
-        }
 
         assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
 
