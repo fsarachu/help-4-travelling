@@ -12,7 +12,7 @@ import java.util.List;
 
 import static org.junit.Assert.*;
 
-public class CiudadControllerTest {
+    public class CiudadControllerTest {
 
     private static CiudadController ciudadController;
     private static CiudadService ciudadService;

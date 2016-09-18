@@ -31,6 +31,7 @@ public class CategoriaServiceTest extends TestCase {
 
     }
 
+    @Test
     public void testEliminar() throws Exception {
         Categoria categoria = new Categoria();
         categoria.setId(101);
@@ -42,6 +43,7 @@ public class CategoriaServiceTest extends TestCase {
         assertNull(this.categoriaService.obtener(101));
     }
 
+    @Test
     public void testModificar() throws Exception {
         Categoria categoria = new Categoria();
         categoria.setId(101);
@@ -83,5 +85,39 @@ public class CategoriaServiceTest extends TestCase {
         }
 
     }
+
+    @Test
+    public void testNextId() throws Exception {
+        int num1 = categoriaService.nextId();
+        Categoria cat1 = new Categoria();
+        cat1.setId( num1 );
+        categoriaService.agregar(cat1.getId(), cat1);
+
+        int num2 = categoriaService.nextId();
+        Categoria cat2 = new Categoria();
+        cat2.setId( num2 );
+        categoriaService.agregar(cat2.getId(), cat2);
+
+
+        assertNotSame(num1, num2);
+
+    }
+
+    @Test
+    public void testListarHijos() throws Exception {
+        Categoria cat1 = new Categoria();
+        cat1.setId( 1 );
+        ArrayList<Categoria> hijos1 = new ArrayList<>();
+        cat1.setHijos(hijos1);
+
+        categoriaService.agregar(cat1.getId(), cat1);
+
+        ArrayList<Categoria> hijos2 = categoriaService.listarHijos(cat1);
+
+        assertEquals(hijos1, hijos2 );
+
+
+    }
+
 
 }

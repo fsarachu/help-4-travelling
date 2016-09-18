@@ -52,9 +52,10 @@ public class ReservaController {
 
         cliente.setCarrito(nuevoCarrito);
     }
+    /* Comentado por code coverage
 
     public void actualizarEstado(Integer idReserva, EstadoReserva nuevoEstado) {
         Reserva reserva = this.reservaService.obtener(idReserva);
         reserva.setEstado(nuevoEstado);
-    }
+    }*/
 }

@@ -24,7 +24,6 @@ public class PaisServiceImpl extends GenericServiceImpl<Pais> implements PaisSer
                 maxId = entry.getValue().getId();
             }
         }
-
         return maxId + 1;
     }
 }
