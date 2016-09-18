@@ -33,16 +33,12 @@ public class ProductoController {
         this.productoService.eliminar(idProducto);
     }
 
-    public ArrayList<Servicio> listarServicios() {
-        return this.productoService.listarServicios();
-    }
+    public ArrayList<Servicio> listarServicios() { return this.productoService.listarServicios(); }
 
     public ArrayList<Promocion> listarPromociones() {
         return this.productoService.listarPromociones();
     }
 
-    public Producto obtener(Integer idProducto) {
-        return this.productoService.obtener(idProducto);
-    }
+    public Servicio obtener(Integer idServicio) { return this.productoService.obtener(idServicio); }
 
 }
