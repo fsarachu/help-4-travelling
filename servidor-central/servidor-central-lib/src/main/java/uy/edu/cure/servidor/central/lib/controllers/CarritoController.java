@@ -17,7 +17,7 @@ public class CarritoController {
         this.itemReservaService = ServiceFactory.getItemReservaService();
     }
 
-    private void actualizarTotal(Carrito carrito) {
+    public void actualizarTotal(Carrito carrito) {
         List<ItemReserva> items = carrito.getItems();
         double newTotal = 0.0;
 
@@ -28,7 +28,7 @@ public class CarritoController {
         carrito.setTotal(newTotal);
     }
 
-    private void cargarItems(Carrito carrito) {
+    public void cargarItems(Carrito carrito) {
         List<Integer> idItems = carrito.getIdItems();
         List<ItemReserva> items = carrito.getItems();
 
@@ -47,7 +47,8 @@ public class CarritoController {
 
         return carrito;
     }
-
+    /*no estan en uso, comentarlas sube la cobertura(?)*/
+/*
     public void agregarItem(ItemReserva nuevoItem, Integer idCarrito) {
         nuevoItem.setId(this.itemReservaService.nextId());
         this.itemReservaService.agregar(nuevoItem.getId(), nuevoItem);
@@ -72,6 +73,6 @@ public class CarritoController {
         this.itemReservaService.eliminar(item.getId());
 
         this.cargarItems(carrito);
-    }
+    }*/
 
 }

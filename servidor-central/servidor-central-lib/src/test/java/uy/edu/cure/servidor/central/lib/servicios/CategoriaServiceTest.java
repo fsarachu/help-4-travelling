@@ -31,6 +31,7 @@ public class CategoriaServiceTest extends TestCase {
 
     }
 
+    @Test
     public void testEliminar() throws Exception {
         Categoria categoria = new Categoria();
         categoria.setId(101);
@@ -42,6 +43,7 @@ public class CategoriaServiceTest extends TestCase {
         assertNull(this.categoriaService.obtener(101));
     }
 
+    @Test
     public void testModificar() throws Exception {
         Categoria categoria = new Categoria();
         categoria.setId(101);
