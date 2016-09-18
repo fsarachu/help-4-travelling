@@ -15,15 +15,11 @@ public class ProductoController {
     public ProductoController() {
         this.productoService = ServiceFactory.getProductoService();
     }
-    /**
-     *  @see
-     *
-     */
-    /*
+
     public ArrayList<Producto> listarTodos() {
         return this.productoService.listar();
     }
-    */
+
     public void agregar(Producto producto) {
         producto.setId(this.productoService.nextId());
         this.productoService.agregar(producto.getId(), producto);
