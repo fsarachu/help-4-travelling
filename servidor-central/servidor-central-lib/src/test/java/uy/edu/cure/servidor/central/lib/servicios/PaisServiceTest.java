@@ -32,7 +32,7 @@ public class PaisServiceTest extends TestCase {
 
     }
 
-
+    @Test
     public void testEliminar() throws Exception {
         Pais pais = new Pais();
         pais.setId(101);
@@ -43,6 +43,7 @@ public class PaisServiceTest extends TestCase {
         assertNull(this.paisService.obtener(101));
     }
 
+    @Test
     public void testModificar() throws Exception {
         Pais pais = new Pais();
         pais.setId(101);
@@ -68,6 +69,7 @@ public class PaisServiceTest extends TestCase {
 
     }
 
+    @Test
     public void testListar() throws Exception {
         ArrayList<Pais> expected = new ArrayList<>();
         Pais pais1 = new Pais();
@@ -85,6 +87,23 @@ public class PaisServiceTest extends TestCase {
         for (int n = 0; n < 2; n++) {
             assertEquals(expected.get(n), actual.get(n));
         }
+
+    }
+
+    @Test
+    public void testNextId() throws Exception {
+        int num1 = paisService.nextId();
+        Pais pais1 = new Pais();
+        pais1.setId( num1 );
+        paisService.agregar(pais1.getId(), pais1);
+
+        int num2 = paisService.nextId();
+        Pais pais2 = new Pais();
+        pais2.setId( num2 );
+        paisService.agregar(pais2.getId(), pais2);
+
+
+        assertNotSame(num1, num2);
 
     }
 

@@ -8,6 +8,9 @@ public class Reserva {
     private Cliente cliente;
     private Date fechaCreacion;
     private EstadoReserva estado;
+    private Date fechaInicio;
+    private Date fechaFin;
+
 
     public Reserva() {
     }

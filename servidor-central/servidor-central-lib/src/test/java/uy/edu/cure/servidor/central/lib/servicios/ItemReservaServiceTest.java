@@ -92,5 +92,21 @@ public class ItemReservaServiceTest extends TestCase {
 
     }
 
+    @Test
+    public void testNextId() throws Exception {
+        int num1 = itemReservaService.nextId();
+        ItemReserva itemReserva1 = new ItemReserva();
+        itemReserva1.setId( num1 );
+        itemReservaService.agregar(itemReserva1.getId(), itemReserva1);
+
+        int num2 = itemReservaService.nextId();
+        ItemReserva itemReserva2 = new ItemReserva();
+        itemReserva2.setId( num2 );
+        itemReservaService.agregar(itemReserva2.getId(), itemReserva2);
+
+
+        assertNotSame(num1, num2);
+
+    }
 
 }
