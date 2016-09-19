@@ -106,8 +106,7 @@ public class AltaPromocion {
         Iterator<Servicio> iterator = serviciosElegidos.listIterator();
         for (int x = 0; x < serviciosElegidos.size(); x++) {
             ProductoController productoController = new ProductoController();
-            Servicio servicio = new Servicio();
-            servicio = productoController.obtener(serviciosElegidos.get(x).getId());
+            Servicio servicio = (Servicio)productoController.obtener(serviciosElegidos.get(x).getId());
             precio = precio + servicio.getPrecio();
             txtPrecio.setText(Double.toString(precio));
             descuento = Double.parseDouble(txtDescuento.getText());
