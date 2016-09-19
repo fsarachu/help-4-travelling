@@ -4,6 +4,7 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Proveedor;
+import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
@@ -90,4 +91,23 @@ public class ProveedorControllerTest {
         assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
 
+    @Test
+    public void nicknameExiste() throws Exception {
+        Proveedor proveedor = new Proveedor();
+        proveedor.setNickname("lala");
+
+        proveedorController.nuevo(proveedor);
+
+        assertTrue(proveedorController.nicknameExiste(proveedor.getNickname()));
+    }
+
+    @Test
+    public void emailExiste() throws Exception {
+        Proveedor proveedor = new Proveedor();
+        proveedor.setCorreo("lala@gmail.com");
+
+        proveedorController.nuevo(proveedor);
+
+        assertTrue(proveedorController.emailExiste(proveedor.getCorreo()));
+    }
 }

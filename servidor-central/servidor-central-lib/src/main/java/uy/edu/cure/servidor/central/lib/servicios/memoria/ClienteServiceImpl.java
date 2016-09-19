@@ -3,6 +3,7 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.lib.servicios.ClienteService;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements ClienteService {
@@ -26,5 +27,36 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
         }
 
         return maxId + 1;
+    }
+
+
+    @Override
+    public boolean nicknameExiste(String nickname) {
+        Cliente cliente;
+
+        for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
+            cliente = entry.getValue();
+
+            if (cliente.getNickname().equals(nickname)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean emailExiste(String email) {
+        Cliente cliente;
+
+        for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
+            cliente = entry.getValue();
+
+            if (cliente.getCorreo().equals(email)) {
+                return true;
+            }
+        }
+
+        return false;
     }
 }

@@ -33,4 +33,12 @@ public class ProveedorController {
     public ArrayList<Proveedor> listar() {
         return this.proveedorService.listar();
     }
+
+    public boolean nicknameExiste(String nickname) {
+        return this.proveedorService.nicknameExiste(nickname);
+    }
+
+    public boolean emailExiste(String email) {
+        return this.proveedorService.emailExiste(email);
+    }
 }

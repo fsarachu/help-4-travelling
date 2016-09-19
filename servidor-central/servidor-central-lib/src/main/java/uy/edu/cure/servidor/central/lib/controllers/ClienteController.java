@@ -33,4 +33,12 @@ public class ClienteController {
     public ArrayList<Cliente> listar() {
         return this.clienteService.listar();
     }
+
+    public boolean nicknameExiste(String nickname) {
+        return this.clienteService.nicknameExiste(nickname);
+    }
+
+    public boolean emailExiste(String email) {
+        return this.clienteService.emailExiste(email);
+    }
 }

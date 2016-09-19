@@ -1,6 +1,6 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
-import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Proveedor;
@@ -8,13 +8,20 @@ import uy.edu.cure.servidor.central.lib.servicios.memoria.ProveedorServiceImpl;
 
 import java.util.ArrayList;
 
-public class ProveedorServiceTest extends TestCase {
+import static org.junit.Assert.*;
 
-    private ProveedorService proveedorService;
+public class ProveedorServiceTest {
+
+    private static ProveedorService proveedorService;
 
     @BeforeClass
-    public void setUp() {
-        this.proveedorService = ProveedorServiceImpl.getInstance();
+    public static void setUp() {
+        proveedorService = ProveedorServiceImpl.getInstance();
+    }
+
+    @Before
+    public void beforeEach() {
+        proveedorService.vaciar();
     }
 
     @Test
@@ -23,23 +30,25 @@ public class ProveedorServiceTest extends TestCase {
         proveedor.setId(1);
         proveedor.setNombre("Conaprole");
 
-        this.proveedorService.agregar(proveedor.getId(),proveedor);
+        proveedorService.agregar(proveedor.getId(), proveedor);
 
-        assertEquals(proveedor, this.proveedorService.obtener(1));
+        assertEquals(proveedor, proveedorService.obtener(1));
 
     }
 
 
+    @Test
     public void testEliminar() throws Exception {
         Proveedor proveedor = new Proveedor();
         proveedor.setId(101);
         proveedor.setNombre("Parmalat");
 
-        this.proveedorService.eliminar(101);
+        proveedorService.eliminar(101);
 
-        assertNull(this.proveedorService.obtener(101));
+        assertNull(proveedorService.obtener(101));
     }
 
+    @Test
     public void testModificar() throws Exception {
         Proveedor proveedor = new Proveedor();
         proveedor.setId(101);
@@ -48,23 +57,24 @@ public class ProveedorServiceTest extends TestCase {
         proveedor1.setId(101);
         proveedor1.setNombre("Conaprole");
 
-        this.proveedorService.agregar(proveedor.getId(),proveedor);
-        this.proveedorService.modificar(proveedor1.getId(),proveedor1);
+        proveedorService.agregar(proveedor.getId(), proveedor);
+        proveedorService.modificar(proveedor1.getId(), proveedor1);
 
         assertEquals(proveedor1, proveedorService.obtener(101));
     }
 
+    @Test
     public void testObtener() throws Exception {
         Proveedor proveedor = new Proveedor();
         proveedor.setId(101);
         proveedor.setNombre("Conaprole");
 
-        this.proveedorService.agregar(101,proveedor);
+        proveedorService.agregar(101, proveedor);
 
         assertEquals(proveedor, proveedorService.obtener(101));
-
     }
 
+    @Test
     public void testListar() throws Exception {
         ArrayList<Proveedor> expected = new ArrayList<>();
         Proveedor proveedor1 = new Proveedor();
@@ -75,15 +85,36 @@ public class ProveedorServiceTest extends TestCase {
         proveedor2.setNombre("Parmalat");
         expected.add(proveedor1);
         expected.add(proveedor2);
-        for (Proveedor proveedor : expected){
-            this.proveedorService.agregar(proveedor.getId(),proveedor);
+        for (Proveedor proveedor : expected) {
+            proveedorService.agregar(proveedor.getId(), proveedor);
         }
         ArrayList<Proveedor> actual = proveedorService.listar();
-        for (int n=0 ; n<2 ; n++) {
+        for (int n = 0; n < 2; n++) {
             assertEquals(expected.get(n), actual.get(n));
         }
 
     }
 
+    @Test
+    public void testNicknameExiste() throws Exception {
+        Proveedor proveedor = new Proveedor();
+        proveedor.setId(proveedorService.nextId());
+        proveedor.setNickname("Iberia");
 
+        proveedorService.agregar(proveedor.getId(), proveedor);
+
+        assertTrue(proveedorService.nicknameExiste(proveedor.getNickname()));
+    }
+
+    @Test
+    public void testEmailExiste() throws Exception {
+        Proveedor proveedor = new Proveedor();
+        proveedor.setId(proveedorService.nextId());
+        proveedor.setCorreo("hola@iberia.com");
+
+        proveedorService.agregar(proveedor.getId(), proveedor);
+
+        assertTrue(proveedorService.emailExiste(proveedor.getCorreo()));
+
+    }
 }

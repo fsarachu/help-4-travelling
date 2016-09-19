@@ -84,4 +84,23 @@ public class ClienteControllerTest {
         assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
 
+    @Test
+    public void nicknameExiste() throws Exception {
+        Cliente cliente = new Cliente();
+        cliente.setNickname("lala");
+
+        clienteController.nuevo(cliente);
+
+        assertTrue(clienteController.nicknameExiste(cliente.getNickname()));
+    }
+
+    @Test
+    public void emailExiste() throws Exception {
+        Cliente cliente = new Cliente();
+        cliente.setCorreo("lala@gmail.com");
+
+        clienteController.nuevo(cliente);
+
+        assertTrue(clienteController.emailExiste(cliente.getCorreo()));
+    }
 }
