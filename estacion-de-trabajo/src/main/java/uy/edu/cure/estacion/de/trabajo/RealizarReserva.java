@@ -8,11 +8,7 @@ import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.xml.soap.Text;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -52,7 +48,8 @@ public class RealizarReserva {
                 if (servicioRadioButton.isSelected()) {
                     cargarComboServicio();
 
-                } else { if (promocionRadioButton.isSelected()){
+                } else {
+                    if (promocionRadioButton.isSelected()) {
                         cargarComboPromocion();
                     }
                 }
@@ -64,12 +61,12 @@ public class RealizarReserva {
             public void actionPerformed(ActionEvent actionEvent) {
 
                 try {
-                    if (jcbCliente.getSelectedItem().equals(-1)){
+                    if (jcbCliente.getSelectedItem().equals(-1)) {
                         jcbCliente.requestFocus();
                         mensaje = "Seleccione Cliente";
                         throw new EmptyStackException();
                     }
-                    if (servicioRadioButton.isSelected() == promocionRadioButton.isSelected()){
+                    if (servicioRadioButton.isSelected() == promocionRadioButton.isSelected()) {
                         mensaje = "Servicio o Promocion";
                         throw new EmptyStackException();
                     }
@@ -90,25 +87,38 @@ public class RealizarReserva {
                     }
 
                     ItemReserva item = new ItemReserva();
-                    item.setCarrito( carrito );
-                    item.setCantidad( (Integer.parseInt( txtCantidadServicio.getText() )) );
-                    item.setFechaInicio( formatter.parse( getTxtFechaInicio().getText() ) );
-                    item.setFechaFin( formatter.parse( getTxtFechaFin().getText() ) );
-                    item.setProducto( producto );
-                    item.setSubTotal( item.getCantidad() );//* producto.getPrecio() );
+                    item.setCarrito(carrito);
+                    item.setCantidad((Integer.parseInt(txtCantidadServicio.getText())));
+                    item.setFechaInicio(formatter.parse(getTxtFechaInicio().getText()));
+                    item.setFechaFin(formatter.parse(getTxtFechaFin().getText()));
+                    item.setProducto(producto);
+                    item.setSubTotal(item.getCantidad());//* producto.getPrecio() );
                     CarritoController carritofinal = new CarritoController();
-                    carritofinal.agregarItem( item, carrito);
+                    carritofinal.agregarItem(item, item.getCarrito());
                     mostrarListaReservas();
 
                 } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog( null, "Verifique la información ingresada. " + e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, "Verifique la información ingresada. " + e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
         });
 
+        listReservas.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                if (mouseEvent.getClickCount() == 2) {
+                    int index = listReservas.getSelectedIndex();
+                    mdllista.addElement(listReservas.getSelectedValue());
+                    //list.setModel(mdllista);
+                    //serviciosElegidos.remove(listElegidos.getSelectedValue());
+                    mdllista.removeElementAt(index);
+                }
+            }
+        });
 
         cancelarButton.addActionListener(new ActionListener() {
             @Override
@@ -117,17 +127,21 @@ public class RealizarReserva {
             }
         });
 
-        jcbCliente.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                cliente = (Cliente) jcbCliente.getSelectedItem();
-                carrito = cliente.getCarrito();
-            }
-        });
         jcbPromoServicio.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 producto = (Producto) jcbPromoServicio.getSelectedItem();
+            }
+        });
+
+        jcbCliente.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if (itemEvent.getStateChange() == 1) {
+                    JOptionPane.showMessageDialog(null, "HOLA", "Atencion", JOptionPane.ERROR_MESSAGE);
+                    cliente = (Cliente) jcbCliente.getSelectedItem();
+                    carrito = cliente.getCarrito();
+                }
             }
         });
     }
@@ -139,14 +153,14 @@ public class RealizarReserva {
         jcbPromoServicio.setModel(mdlCombo);
     }
 
-    private void cargarComboServicio () {
+    private void cargarComboServicio() {
         ProductoController productoController = new ProductoController();
         ArrayList<Servicio> servicio = productoController.listarServicios();
         ComboBoxModel<Servicio> mdlCombo = new DefaultComboBoxModel<>(new Vector<Servicio>(servicio));
         jcbPromoServicio.setModel(mdlCombo);
     }
 
-    private void cargaComboCliente () {
+    private void cargaComboCliente() {
         ClienteController clientecontroller = new ClienteController();
         ArrayList<Cliente> clientes = clientecontroller.listar();
         ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes));
