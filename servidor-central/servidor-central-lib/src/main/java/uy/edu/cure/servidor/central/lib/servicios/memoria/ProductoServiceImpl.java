@@ -1,9 +1,6 @@
 package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
-import uy.edu.cure.servidor.central.dto.Producto;
-import uy.edu.cure.servidor.central.dto.Promocion;
-import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.dto.TipoProducto;
+import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.servicios.ProductoService;
 
 import java.util.ArrayList;
@@ -60,4 +57,24 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
 
         return promociones;
     }
+
+    @Override
+    public ArrayList<Servicio> listarServiciosPorCiudad(Ciudad ciudad) {
+        ArrayList<Servicio> servicios = new ArrayList<>();
+        Producto producto;
+
+        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
+            producto = entry.getValue();
+
+            if (producto.getTipo() == TipoProducto.servicio) {
+                Servicio servicio = (Servicio) producto;
+                if (servicio.getOrigen() == ciudad || servicio.getDestino() == ciudad) {
+                    servicios.add((Servicio) producto);
+                }
+            }
+        }
+
+        return servicios;
+    }
+
 }
