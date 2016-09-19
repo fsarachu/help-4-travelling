@@ -48,11 +48,11 @@ public class CarritoController {
         return carrito;
     }
 
-    public void agregarItem(ItemReserva itemReserva) {
+    public void agregarItem(ItemReserva itemReserva, Carrito carrito) {
         itemReserva.setId(this.itemReservaService.nextId());
+        itemReserva.setCarrito(carrito);
         this.itemReservaService.agregar(itemReserva.getId(), itemReserva);
 
-        Carrito carrito = itemReserva.getCarrito();
         carrito.addItem(itemReserva);
 
         this.actualizarTotal(carrito);
