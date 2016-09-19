@@ -71,6 +71,8 @@ public class ActualizarEstadoReserva {
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
                 }
+                JOptionPane.showMessageDialog(null,"Reserva actualizada con exito","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                panelActualizarEstado.setVisible(false);
             }
         } );
 

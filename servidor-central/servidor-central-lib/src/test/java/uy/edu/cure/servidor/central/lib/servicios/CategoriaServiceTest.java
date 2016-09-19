@@ -4,6 +4,7 @@ import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.dto.EstadoCategoria;
 import uy.edu.cure.servidor.central.lib.servicios.memoria.CategoriaServiceImpl;
 
 import java.util.ArrayList;
@@ -73,9 +74,9 @@ public class CategoriaServiceTest extends TestCase {
 
     public void testListar() throws Exception {
         ArrayList<Categoria> expected = new ArrayList<>();
-        expected.add(new Categoria(1, "uno", null, null));
-        expected.add(new Categoria(2, "dos", null, null));
-        expected.add(new Categoria(3, "tre", null, null));
+        expected.add(new Categoria(1, "uno", null, null, EstadoCategoria.visible));
+        expected.add(new Categoria(2, "dos", null, null, EstadoCategoria.visible));
+        expected.add(new Categoria(3, "tre", null, null, EstadoCategoria.visible));
         for (Categoria categoria : expected) {
             this.categoriaService.agregar(categoria.getId(), categoria);
         }
