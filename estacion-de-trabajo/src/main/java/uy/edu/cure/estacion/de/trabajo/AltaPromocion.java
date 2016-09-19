@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -32,10 +33,9 @@ public class AltaPromocion {
     private JScrollPane scroolPanelPromo;
     private JButton calcularPrecioButton;
     private DefaultListModel mdllista;
-
+    private String mensaje;
 
     public AltaPromocion() {
-        txtDescuento.setText("0");
         cargoServicios();
         final List<Servicio> servicios = new ArrayList<>();
         final DefaultListModel mdlservicios = new DefaultListModel();
@@ -79,16 +79,37 @@ public class AltaPromocion {
         aceptarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                ProductoController productoController = new ProductoController();
-                promocion.setNombre(txtNombre.getText());
-                Double precio = new Double(txtPrecio.getText());
-                promocion.setPrecio(precio);
-                promocion.setDescripcion(txtNombre.getText());
-                Integer dto = new Integer(getTxtDescuento().getText());
-                promocion.setDescuento(dto);
-                ArrayList<Servicio> ArrServicios = new ArrayList<Servicio>(serviciosElegidos);
-                promocion.setServicios(ArrServicios);
-                productoController.agregar(promocion);
+                try {
+                    if (txtNombre.getText().equals("")) {
+                        txtNombre.requestFocus();
+                        mensaje = "Ingrese Nombre de la Promocion";
+                        throw new EmptyStackException();
+                    }
+                    /*if (txtDescuento.getText().isEmpty()) {
+                        Double.parseDouble(txtDescuento.getText());
+                        txtDescuento.requestFocus();
+                        mensaje = "Descuento Incorrecto";
+                        throw new NumberFormatException();
+                    }*/
+
+                    ProductoController productoController = new ProductoController();
+                    promocion = new Promocion();
+                    promocion.setNombre(txtNombre.getText());
+                    Double precio = new Double(txtPrecio.getText());
+                    promocion.setPrecio(precio);
+                    promocion.setDescripcion(txtNombre.getText());
+                    Integer dto = new Integer(getTxtDescuento().getText());
+                    promocion.setDescuento(dto);
+                    ArrayList<Servicio> ArrServicios = new ArrayList<Servicio>(serviciosElegidos);
+                    promocion.setServicios(ArrServicios);
+                    productoController.agregar(promocion);
+                    panelPromocion.setVisible(false);
+                } catch (EmptyStackException e){
+                    JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
+                } catch (NumberFormatException e) {
+                    JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
+                }
+
             }
         });
     }

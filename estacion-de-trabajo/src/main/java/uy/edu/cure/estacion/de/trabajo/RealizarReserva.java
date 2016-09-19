@@ -97,7 +97,7 @@ public class RealizarReserva {
                     item.setSubTotal(item.getCantidad());
                     CarritoController carritofinal = new CarritoController();
                     carritofinal.agregarItem(item, item.getCarrito());
-                    mostrarListaReservas(item);
+                    mostrarListaReservas();
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
@@ -141,6 +141,7 @@ public class RealizarReserva {
                 if (itemEvent.getStateChange() == 1) {
                     cliente = (Cliente) jcbCliente.getSelectedItem();
                     carrito = cliente.getCarrito();
+                    mostrarListaReservas();
                 }
             }
         });
@@ -149,6 +150,8 @@ public class RealizarReserva {
             public void actionPerformed(ActionEvent actionEvent) {
                 ReservaController reservaController = new ReservaController();
                 reservaController.nueva(cliente);
+                JOptionPane.showMessageDialog(null,"Reserva realizada con exito","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                PanelAltaReserva.setVisible(false);
             }
         });
     }
@@ -174,7 +177,7 @@ public class RealizarReserva {
         jcbCliente.setModel(mdlCombo);
     }
 
-    private void mostrarListaReservas(ItemReserva item) {
+    private void mostrarListaReservas() {
         mdllista = new DefaultListModel();
         listReservas.setModel(mdllista);
         List<ItemReserva> carritoItems = carrito.getItems();

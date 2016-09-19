@@ -134,7 +134,7 @@ public class AltaServicio {
                     imagenes.add(txtImagen3);
                     servicio.setImagenes(imagenes);
                     productoController.agregar(servicio);
-
+                    panelServicio.setVisible(false);
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (NumberFormatException e) {

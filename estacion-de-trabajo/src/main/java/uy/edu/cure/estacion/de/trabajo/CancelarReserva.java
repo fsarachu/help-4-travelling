@@ -1,6 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
@@ -57,7 +58,7 @@ public class CancelarReserva {
 
                     reserva = (Reserva) jcbReservas.getSelectedItem();
                     ReservaController reservaController = new ReservaController();
-                    reservaController.eliminar( reserva.getId() );
+                    reservaController.actualizarEstado( reserva.getId(), EstadoReserva.cancelada );
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
