@@ -1,8 +1,10 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 //import javafx.stage.WindowEvent;
+
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.EmailValidator;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
 
@@ -16,7 +18,6 @@ import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.EmptyStackException;
 
 public class AltaUsuario extends JFrame {
     private JLabel lblNickname;
@@ -88,7 +89,7 @@ public class AltaUsuario extends JFrame {
                 try {
                     if (txtNickName.getText().equals("")) {
                         txtNickName.requestFocus();
-                        throw  new IllegalArgumentException("Ingrese Nickname");
+                        throw new IllegalArgumentException("Ingrese Nickname");
                     }
                     if (txtNombre.getText().equals("")) {
                         txtNombre.requestFocus();
@@ -98,14 +99,16 @@ public class AltaUsuario extends JFrame {
                         txtApellido.requestFocus();
                         throw new IllegalArgumentException("Ingrese Apellido");
                     }
-                    if (txtCorreo.getText().equals("")) {
+
+                    EmailValidator emailValidator = new EmailValidator();
+
+                    if (!emailValidator.validate(txtCorreo.getText().trim())) {
                         txtCorreo.requestFocus();
-                        throw new IllegalArgumentException("Ingrese Correo");
+                        throw new IllegalArgumentException("Compruebe Correo");
                     }
 
 
-
-                    if(rbtnCliente.isSelected() == true){
+                    if (rbtnCliente.isSelected() == true) {
 
                         Cliente cliente = new Cliente();
                         cliente.setId(1);
@@ -119,7 +122,7 @@ public class AltaUsuario extends JFrame {
                         clienteController.nuevo(cliente);
                         panelMain.setVisible(false);
 
-                    }else if (rbtnProveedor.isSelected() == true ) {
+                    } else if (rbtnProveedor.isSelected() == true) {
 
                         if (txtEmpresa.getText().equals("")) {
                             txtEmpresa.requestFocus();
@@ -147,7 +150,7 @@ public class AltaUsuario extends JFrame {
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(null, "Verifique la información ingresada. "+e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Verifique la información ingresada. " + e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -259,6 +262,7 @@ public class AltaUsuario extends JFrame {
     public JPanel getPanelMain() {
         return panelMain;
     }
+
     public void setPanelMain(JPanel panelMain) {
         this.panelMain = panelMain;
     }
