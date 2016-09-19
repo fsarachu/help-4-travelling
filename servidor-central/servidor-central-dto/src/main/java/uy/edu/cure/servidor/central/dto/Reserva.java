@@ -63,6 +63,7 @@ public class Reserva {
 
     @Override
     public String toString() {
+
         return "Reserva: " + id + "\nCliente: " + cliente + "\nEstado: " + estado ;
     }
 }

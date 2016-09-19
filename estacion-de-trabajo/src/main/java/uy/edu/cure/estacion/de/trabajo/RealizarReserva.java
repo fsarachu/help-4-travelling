@@ -90,7 +90,11 @@ public class RealizarReserva {
                         mensaje = "Fecha de Inicio";
                         throw new EmptyStackException();
                     }
-
+                    if (carrito == null) {
+                        jcbCliente.requestFocus();
+                        mensaje = "Debe elegir un Cliente";
+                        throw new EmptyStackException();
+                    }
                     ItemReserva item = new ItemReserva();
                     item.setCarrito(carrito);
                     item.setCantidad((Integer.parseInt(txtCantidadServicio.getText())));

@@ -86,6 +86,6 @@ public class ItemReserva {
 
     @Override
     public String toString() {
-        return ""+ id + " " + producto ;
+        return ""+ id + " " + producto  ;
     }
 }
