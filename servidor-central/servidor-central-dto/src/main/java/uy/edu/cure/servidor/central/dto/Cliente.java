@@ -6,6 +6,7 @@ public class Cliente extends Usuario {
     private Carrito carrito;
 
     public Cliente() {
+        this.carrito = new Carrito();
     }
 
     public Cliente(Carrito carrito) {
