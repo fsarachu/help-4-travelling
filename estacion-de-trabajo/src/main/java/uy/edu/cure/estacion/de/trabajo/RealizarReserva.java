@@ -41,8 +41,6 @@ public class RealizarReserva {
 
     public RealizarReserva() {
         new Hardcodeo();
-        Carrito carro = new Carrito();
-        carrito = carro;
 
         Date hoy = new Date();
 
@@ -109,7 +107,6 @@ public class RealizarReserva {
 //                    }
 //
                     ItemReserva item = new ItemReserva();
-
                     item.setCarrito( carrito );
                     item.setCantidad( (Integer.parseInt( txtCantidadServicio.getText() )) );
                     item.setFechaInicio( formatter.parse( getTxtFechaInicio().getText() ) );
@@ -117,8 +114,8 @@ public class RealizarReserva {
                     item.setProducto( producto );
                     item.setSubTotal( item.getCantidad() );//* producto.getPrecio() );
                     CarritoController carritofinal = new CarritoController();
-                    carritofinal.agregarItem( item, carrito.getId() );
-//
+                    carritofinal.agregarItem( item, carrito.getId());
+
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
                 } catch (ParseException e) {
@@ -164,6 +161,7 @@ public class RealizarReserva {
                     JLabel myText = new JLabel("carrito");
                     frame.getContentPane().add(myText);
                     myText.setText( carrito.toString());
+
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);

@@ -8,8 +8,6 @@ public class Reserva {
     private Cliente cliente;
     private Date fechaCreacion;
     private EstadoReserva estado;
-    private Date fechaInicio;
-    private Date fechaFin;
 
 
     public Reserva() {
@@ -21,8 +19,6 @@ public class Reserva {
         this.cliente = cliente;
         this.fechaCreacion = fechaCreacion;
         this.estado = estado;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
     }
 
     public Integer getId() {
