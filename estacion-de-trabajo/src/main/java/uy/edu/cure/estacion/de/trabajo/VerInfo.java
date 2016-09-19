@@ -55,14 +55,6 @@ public class VerInfo {
                             txtInfo.append(obj.toString() + "\n");
                         }
                     }
-                    /*if (cmbInfo.getSelectedItem().equals("Reserva")) {
-                        CategoriaController categoriaController = new CategoriaController();
-                        ArrayList<Categoria> categorias = categoriaController.listar();
-                        for (Object obj : categorias) {
-                            txtInfo.append(obj.toString() + "\n");
-                        }
-                    }*/
-
                 }
 
             }

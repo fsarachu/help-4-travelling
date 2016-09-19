@@ -4,6 +4,7 @@ import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -26,7 +27,8 @@ public class RealizarReserva {
     private JComboBox jcbCliente;
     private JRadioButton servicioRadioButton;
     private JRadioButton promocionRadioButton;
-    private JList<Producto> listReservas;
+    private JList<ItemReserva> listReservas;
+    private JButton btnAceptar;
     private DefaultListModel mdllista;
     private String mensaje;
     private Carrito carrito;
@@ -92,10 +94,10 @@ public class RealizarReserva {
                     item.setFechaInicio(formatter.parse(getTxtFechaInicio().getText()));
                     item.setFechaFin(formatter.parse(getTxtFechaFin().getText()));
                     item.setProducto(producto);
-                    item.setSubTotal(item.getCantidad());//* producto.getPrecio() );
+                    item.setSubTotal(item.getCantidad());
                     CarritoController carritofinal = new CarritoController();
                     carritofinal.agregarItem(item, item.getCarrito());
-                    mostrarListaReservas();
+                    mostrarListaReservas(item);
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
@@ -112,9 +114,8 @@ public class RealizarReserva {
                 super.mouseClicked(mouseEvent);
                 if (mouseEvent.getClickCount() == 2) {
                     int index = listReservas.getSelectedIndex();
-                    mdllista.addElement(listReservas.getSelectedValue());
-                    //list.setModel(mdllista);
-                    //serviciosElegidos.remove(listElegidos.getSelectedValue());
+                    CarritoController carritoController = new CarritoController();
+                    carritoController.eliminarItem(listReservas.getSelectedValue());
                     mdllista.removeElementAt(index);
                 }
             }
@@ -138,10 +139,16 @@ public class RealizarReserva {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
                 if (itemEvent.getStateChange() == 1) {
-                    JOptionPane.showMessageDialog(null, "HOLA", "Atencion", JOptionPane.ERROR_MESSAGE);
                     cliente = (Cliente) jcbCliente.getSelectedItem();
                     carrito = cliente.getCarrito();
                 }
+            }
+        });
+        btnAceptar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                ReservaController reservaController = new ReservaController();
+                reservaController.nueva(cliente);
             }
         });
     }
@@ -167,15 +174,13 @@ public class RealizarReserva {
         jcbCliente.setModel(mdlCombo);
     }
 
-    private void mostrarListaReservas() {
+    private void mostrarListaReservas(ItemReserva item) {
         mdllista = new DefaultListModel();
         listReservas.setModel(mdllista);
-        ProductoController productoController = new ProductoController();
-        List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
-        for (Servicio servicio : list1) {
-            mdllista.addElement(servicio);
+        List<ItemReserva> carritoItems = carrito.getItems();
+        for (ItemReserva itemReserva : carritoItems) {
+            mdllista.addElement(itemReserva);
         }
-        listReservas.setVisible(true);
     }
 
     public JTextField getTxtPrecioTotal() {
