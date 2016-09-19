@@ -1,6 +1,5 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
@@ -10,11 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.geom.Arc2D;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
 public class AltaPromocion {
     private JTextField txtNombre;
@@ -41,9 +38,9 @@ public class AltaPromocion {
         final DefaultListModel mdlservicios = new DefaultListModel();
         final List<Servicio> serviciosElegidos = new ArrayList<>();
         final DefaultListModel mdlElegidos = new DefaultListModel();
-        if(!servicios.isEmpty()) { //persona es tu arraylist o list
+        if (!servicios.isEmpty()) { //persona es tu arraylist o list
             Iterator iterador = servicios.listIterator(); //el objeto iterador te ayuda a recorrer una coleccion.
-            while(iterador.hasNext()) {
+            while (iterador.hasNext()) {
                 txtLista.append(iterador.next() + "\n"); //el objeto at es un JTextArea y el método append agrega el contenido de persona al area de texto
             }
         }
@@ -99,13 +96,12 @@ public class AltaPromocion {
         btnCalcularTotal.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null,"hola","Atencion",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "hola", "Atencion", JOptionPane.ERROR_MESSAGE);
                 Iterator<Servicio> iterator = serviciosElegidos.listIterator();
-                for (int x=0 ; x< serviciosElegidos.size() ; x++){
-                            ProductoController productoController = new ProductoController();
-                            Servicio servicio = new Servicio();
-                            servicio = productoController.obtener(x);
-                    JOptionPane.showMessageDialog(null,servicio.getPrecio(),"Atencion",JOptionPane.ERROR_MESSAGE);
+                for (int x = 0; x < serviciosElegidos.size(); x++) {
+                    ProductoController productoController = new ProductoController();
+                    Servicio servicio = (Servicio) (productoController.obtener(x));
+                    JOptionPane.showMessageDialog(null, servicio.getPrecio(), "Atencion", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

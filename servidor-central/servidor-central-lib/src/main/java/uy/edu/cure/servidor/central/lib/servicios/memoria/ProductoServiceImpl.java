@@ -60,18 +60,4 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
 
         return promociones;
     }
-
-    public Servicio obtener(Integer idServicio) {
-        Servicio servicio = new Servicio();
-        Producto producto;
-
-        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
-            producto = entry.getValue();
-
-            if (producto.getId().equals(idServicio)) {
-                servicio = (Servicio) producto;
-            }
-        }
-        return servicio;
-    }
 }
