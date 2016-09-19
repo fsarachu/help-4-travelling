@@ -36,5 +36,12 @@ public class Promocion extends Producto {
     public void setServicios(ArrayList<Servicio> servicios) {
         this.servicios = servicios;
     }
+
+    @Override
+    public String toString() {
+        return "Descuento: " + descuento +
+                ", servicios: " + servicios +
+                '}';
+    }
 }
 
