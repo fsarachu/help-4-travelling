@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public interface ProductoService extends GenericService<Producto> {
 
-    public ArrayList<Servicio> listarServicios();
+    ArrayList<Servicio> listarServicios();
 
-    public ArrayList<Promocion> listarPromociones();
+    ArrayList<Promocion> listarPromociones();
 
 }
