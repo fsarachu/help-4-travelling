@@ -4,14 +4,14 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.lib.servicios.ReservaService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.List;
 
-import static junit.framework.TestCase.assertEquals;
-import static junit.framework.TestCase.assertTrue;
+import static junit.framework.TestCase.*;
 
 public class ReservaControllerTest {
 
@@ -82,17 +82,46 @@ public class ReservaControllerTest {
 
     @Test
     public void eliminar() throws Exception {
+        Cliente cliente = new Cliente();
+        clienteController.nuevo(cliente);
+
+        reservaController.nueva(cliente);
+
+        Reserva reserva = reservaService.listarReservasCliente(cliente).get(0);
+
+        assertEquals(reserva, reservaController.obtener(reserva.getId()));
+
+        reservaController.eliminar(reserva.getId());
+
+        assertNull(reservaController.obtener(reserva.getId()));
 
     }
 
     @Test
     public void listar() throws Exception {
+        assertTrue(reservaService.listar().size() == 0);
 
+        for (int i = 0; i < 3; i++) {
+            Cliente cliente = new Cliente();
+            clienteController.nuevo(cliente);
+            assertTrue(reservaService.listarReservasCliente(cliente).size() == 0);
+            reservaController.nueva(cliente);
+            assertTrue(reservaService.listarReservasCliente(cliente).size() == 1);
+            assertTrue(reservaService.listar().size() == i + 1);
+        }
     }
 
     @Test
     public void actualizarEstado() throws Exception {
+        Cliente cliente = new Cliente();
+        clienteController.nuevo(cliente);
+        reservaController.nueva(cliente);
 
+        Reserva reserva = reservaService.listarReservasCliente(cliente).get(0);
+        assertTrue(reserva.getEstado() == EstadoReserva.registrada);
+
+        reservaController.actualizarEstado(reserva.getId(), EstadoReserva.cancelada);
+        assertTrue(reserva.getEstado() == EstadoReserva.cancelada);
     }
 
 }
