@@ -21,10 +21,6 @@ public class ReservaController {
         this.carritoService = ServiceFactory.getCarritoService();
     }
 
-    Reserva obtener(Integer idReserva) {
-        return this.reservaService.obtener(idReserva);
-    }
-
     public void nueva(Cliente cliente) {
         Reserva reserva = new Reserva();
         reserva.setId(this.reservaService.nextId());
@@ -39,6 +35,10 @@ public class ReservaController {
         this.carritoService.agregar(nuevoCarrito.getId(), nuevoCarrito);
 
         cliente.setCarrito(nuevoCarrito);
+    }
+
+    Reserva obtener(Integer idReserva) {
+        return this.reservaService.obtener(idReserva);
     }
 
     public void modificar(Reserva reserva) {
@@ -56,5 +56,9 @@ public class ReservaController {
     public void actualizarEstado(Integer idReserva, EstadoReserva nuevoEstado) {
         Reserva reserva = this.reservaService.obtener(idReserva);
         reserva.setEstado(nuevoEstado);
+    }
+
+    public ArrayList<Reserva> listarReservasCliente(Cliente cliente) {
+        return this.reservaService.listarReservasCliente(cliente);
     }
 }
