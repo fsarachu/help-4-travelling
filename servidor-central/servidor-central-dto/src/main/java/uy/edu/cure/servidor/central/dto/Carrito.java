@@ -62,4 +62,14 @@ public class Carrito {
     public void setTotal(double total) {
         this.total = total;
     }
+
+    public void addItem(ItemReserva itemReserva) {
+        this.idItems.add(itemReserva.getId());
+        this.items.add(itemReserva);
+    }
+
+    public void removeItem(ItemReserva itemReserva) {
+        this.idItems.remove(itemReserva.getId());
+        this.items.remove(itemReserva);
+    }
 }
