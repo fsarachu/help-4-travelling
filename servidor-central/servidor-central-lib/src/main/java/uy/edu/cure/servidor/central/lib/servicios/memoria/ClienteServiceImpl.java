@@ -32,7 +32,6 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
 
     @Override
     public boolean nicknameExiste(String nickname) {
-        ArrayList<Cliente> clientes = new ArrayList<>();
         Cliente cliente;
 
         for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
@@ -48,7 +47,6 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
 
     @Override
     public boolean emailExiste(String email) {
-        ArrayList<Cliente> clientes = new ArrayList<>();
         Cliente cliente;
 
         for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
