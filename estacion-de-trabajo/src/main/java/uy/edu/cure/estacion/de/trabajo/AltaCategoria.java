@@ -18,6 +18,7 @@ public class AltaCategoria {
     private JTextField txtCategoria;
     private JButton btnAgregar;
     private JButton btnCancelar;
+    private JButton cmdOcultar;
     private DefaultMutableTreeNode node;
     private DefaultMutableTreeNode hijo;
     private DefaultMutableTreeNode raiz;
@@ -60,6 +61,13 @@ public class AltaCategoria {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 panelMain.setVisible(false);
+            }
+        });
+        cmdOcultar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                CategoriaController categoriaController = new CategoriaController();
+                //categoriaController
             }
         });
     }
