@@ -8,17 +8,10 @@ import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
-import javax.xml.soap.Text;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.EmptyStackException;
-import java.util.Vector;
+import java.util.*;
 
 public class RealizarReserva {
     private JTextField txtPrecioTotal;
@@ -33,15 +26,14 @@ public class RealizarReserva {
     private JComboBox jcbCliente;
     private JRadioButton servicioRadioButton;
     private JRadioButton promocionRadioButton;
-    private JLabel precioTotal;
+    private JList<Producto> listReservas;
+    private DefaultListModel mdllista;
     private String mensaje;
     private Carrito carrito;
     private Cliente cliente;
     private Producto producto;
 
     public RealizarReserva() {
-        new Hardcodeo();
-
         Date hoy = new Date();
 
         final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -56,7 +48,8 @@ public class RealizarReserva {
                 if (servicioRadioButton.isSelected()) {
                     cargarComboServicio();
 
-                } else { if (promocionRadioButton.isSelected()){
+                } else {
+                    if (promocionRadioButton.isSelected()) {
                         cargarComboPromocion();
                     }
                 }
@@ -68,107 +61,63 @@ public class RealizarReserva {
             public void actionPerformed(ActionEvent actionEvent) {
 
                 try {
-//                    if( servicioRadioButton.isSelected() == true){
-//                        //agregar servicio
-//                    } else if( promocionRadioButton.isSelected() == true){
-//                        //agregar promocion
-//                    }else {
-//                        mensaje = "Servicio o Promocion";
-////                        throw new EmptyStackException();
-////                    }
-//                    if (jcbPromoServicio.getSelectedItem().equals("")){
-//                        jcbPromoServicio.requestFocus();
-//                        mensaje = "Servicio o Promocion";
-//                    }
-//                    if (txtPrecioTotal.getText().equals("")) {
-//                        txtPrecioTotal.requestFocus();
-//                        mensaje = "Precio Total";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (jcbCliente.getSelectedItem().equals("")) {
-//                        jcbCliente.requestFocus();
-//                        mensaje = "Cliente";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (txtCantidadServicio.getText().equals("")) {
-//                        txtCantidadServicio.requestFocus();
-//                        mensaje = "Cantidad Servicio";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (txtFechaFin.getText().equals("")) {
-//                        txtFechaFin.requestFocus();
-//                        mensaje = "Fecha de Fin";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (txtFechaInicio.getText().equals("")) {
-//                        txtFechaInicio.requestFocus();
-//                        mensaje = "Fecha de Inicio";
-//                        throw new EmptyStackException();
-//                    }
-//
+                    if (jcbCliente.getSelectedItem().equals(-1)) {
+                        jcbCliente.requestFocus();
+                        mensaje = "Seleccione Cliente";
+                        throw new EmptyStackException();
+                    }
+                    if (servicioRadioButton.isSelected() == promocionRadioButton.isSelected()) {
+                        mensaje = "Servicio o Promocion";
+                        throw new EmptyStackException();
+                    }
+                    if (txtCantidadServicio.getText().equals("")) {
+                        txtCantidadServicio.requestFocus();
+                        mensaje = "Cantidad Servicio";
+                        throw new EmptyStackException();
+                    }
+                    if (txtFechaFin.getText().equals("")) {
+                        txtFechaFin.requestFocus();
+                        mensaje = "Fecha de Fin";
+                        throw new EmptyStackException();
+                    }
+                    if (txtFechaInicio.getText().equals("")) {
+                        txtFechaInicio.requestFocus();
+                        mensaje = "Fecha de Inicio";
+                        throw new EmptyStackException();
+                    }
+
                     ItemReserva item = new ItemReserva();
-                    item.setCarrito( carrito );
-                    item.setCantidad( (Integer.parseInt( txtCantidadServicio.getText() )) );
-                    item.setFechaInicio( formatter.parse( getTxtFechaInicio().getText() ) );
-                    item.setFechaFin( formatter.parse( getTxtFechaFin().getText() ) );
-                    item.setProducto( producto );
-                    item.setSubTotal( item.getCantidad() );//* producto.getPrecio() );
+                    item.setCarrito(carrito);
+                    item.setCantidad((Integer.parseInt(txtCantidadServicio.getText())));
+                    item.setFechaInicio(formatter.parse(getTxtFechaInicio().getText()));
+                    item.setFechaFin(formatter.parse(getTxtFechaFin().getText()));
+                    item.setProducto(producto);
+                    item.setSubTotal(item.getCantidad());//* producto.getPrecio() );
                     CarritoController carritofinal = new CarritoController();
-                    carritofinal.agregarItem( item, carrito.getId());
+                    carritofinal.agregarItem(item, item.getCarrito());
+                    mostrarListaReservas();
 
                 } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog( null, "Verifique la información ingresada. " + e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, "Verifique la información ingresada. " + e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
             }
 
         });
 
-        mostrarDatosButton.addActionListener(new ActionListener() {
+        listReservas.addMouseListener(new MouseAdapter() {
             @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                try {
-//                    if (txtPrecioTotal.getText().equals("")) {
-//                        txtPrecioTotal.requestFocus();
-//                        mensaje = "Precio Total";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (jcbCliente.getSelectedItem().equals("")) {
-//                        jcbCliente.requestFocus();
-//                        mensaje = "Cliente";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (txtCantidadServicio.getText().equals("")) {
-//                        txtCantidadServicio.requestFocus();
-//                        mensaje = "Cantidad Servicio";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (txtFechaFin.getText().equals("")) {
-//                        txtFechaFin.requestFocus();
-//                        mensaje = "Fecha de Fin";
-//                        throw new EmptyStackException();
-//                    }
-//                    if (txtFechaInicio.getText().equals("")) {
-//                        txtFechaInicio.requestFocus();
-//                        mensaje = "Fecha de Inicio";
-//                        throw new EmptyStackException();
-//                    }
-
-                    JFrame frame = new JFrame ("Datos de la reserva");
-                    frame.setVisible(true);
-                    frame.setBounds(300, 200, 700, 400);
-                    JLabel myText = new JLabel("carrito");
-                    frame.getContentPane().add(myText);
-                    myText.setText( carrito.toString());
-
-
-                } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
+            public void mouseClicked(MouseEvent mouseEvent) {
+                super.mouseClicked(mouseEvent);
+                if (mouseEvent.getClickCount() == 2) {
+                    int index = listReservas.getSelectedIndex();
+                    mdllista.addElement(listReservas.getSelectedValue());
+                    //list.setModel(mdllista);
+                    //serviciosElegidos.remove(listElegidos.getSelectedValue());
+                    mdllista.removeElementAt(index);
                 }
-
             }
-
         });
 
         cancelarButton.addActionListener(new ActionListener() {
@@ -178,17 +127,21 @@ public class RealizarReserva {
             }
         });
 
-        jcbCliente.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                cliente = (Cliente) jcbCliente.getSelectedItem();
-                carrito = cliente.getCarrito();
-            }
-        });
         jcbPromoServicio.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
                 producto = (Producto) jcbPromoServicio.getSelectedItem();
+            }
+        });
+
+        jcbCliente.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                if (itemEvent.getStateChange() == 1) {
+                    JOptionPane.showMessageDialog(null, "HOLA", "Atencion", JOptionPane.ERROR_MESSAGE);
+                    cliente = (Cliente) jcbCliente.getSelectedItem();
+                    carrito = cliente.getCarrito();
+                }
             }
         });
     }
@@ -200,18 +153,29 @@ public class RealizarReserva {
         jcbPromoServicio.setModel(mdlCombo);
     }
 
-    private void cargarComboServicio () {
+    private void cargarComboServicio() {
         ProductoController productoController = new ProductoController();
         ArrayList<Servicio> servicio = productoController.listarServicios();
         ComboBoxModel<Servicio> mdlCombo = new DefaultComboBoxModel<>(new Vector<Servicio>(servicio));
         jcbPromoServicio.setModel(mdlCombo);
     }
 
-    private void cargaComboCliente () {
+    private void cargaComboCliente() {
         ClienteController clientecontroller = new ClienteController();
         ArrayList<Cliente> clientes = clientecontroller.listar();
         ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes));
         jcbCliente.setModel(mdlCombo);
+    }
+
+    private void mostrarListaReservas() {
+        mdllista = new DefaultListModel();
+        listReservas.setModel(mdllista);
+        ProductoController productoController = new ProductoController();
+        List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
+        for (Servicio servicio : list1) {
+            mdllista.addElement(servicio);
+        }
+        listReservas.setVisible(true);
     }
 
     public JTextField getTxtPrecioTotal() {
