@@ -29,16 +29,21 @@ public class CarritoController {
     }
 
     public void cargarItems(Carrito carrito) {
-        List<Integer> idItems = carrito.getIdItems();
-        List<ItemReserva> items = carrito.getItems();
+        if(carrito != null){
+            List<Integer> idItems = carrito.getIdItems();
+            List<ItemReserva> items = carrito.getItems();
 
-        items.clear();
+            items.clear();
 
-        for (Integer idItem : idItems) {
-            items.add(this.itemReservaService.obtener(idItem));
+            for (Integer idItem : idItems) {
+                items.add(this.itemReservaService.obtener(idItem));
+            }
+
+            this.actualizarTotal(carrito);
+        }else{
+            System.out.println( "Lugar: " + this.toString() + " Obj: carrito en CargarItems" );
         }
 
-        this.actualizarTotal(carrito);
     }
 
     public Carrito obtenerCarrito(Integer idCarrito) {
@@ -48,7 +53,7 @@ public class CarritoController {
         return carrito;
     }
     /*no estan en uso, comentarlas sube la cobertura(?)*/
-/*
+
     public void agregarItem(ItemReserva nuevoItem, Integer idCarrito) {
         nuevoItem.setId(this.itemReservaService.nextId());
         this.itemReservaService.agregar(nuevoItem.getId(), nuevoItem);
@@ -73,6 +78,6 @@ public class CarritoController {
         this.itemReservaService.eliminar(item.getId());
 
         this.cargarItems(carrito);
-    }*/
+    }
 
 }
