@@ -61,8 +61,10 @@ public class CancelarReserva {
                     reservaController.actualizarEstado( reserva.getId(), EstadoReserva.cancelada );
 
                 } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos",JOptionPane.ERROR_MESSAGE );
                 }
+                JOptionPane.showMessageDialog(null,"Reserva cancelada con exito","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                PanelCancelarReserva.setVisible(false);
             }
         } );
         cancelarButton.addActionListener( new ActionListener() {
