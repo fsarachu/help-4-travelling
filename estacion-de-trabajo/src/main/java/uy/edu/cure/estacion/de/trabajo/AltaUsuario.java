@@ -111,7 +111,6 @@ public class AltaUsuario extends JFrame {
                     if (rbtnCliente.isSelected() == true) {
 
                         Cliente cliente = new Cliente();
-                        cliente.setId(1);
                         cliente.setNickname(txtNickName.getText());
                         cliente.setNombre(txtNombre.getText());
                         cliente.setApellido(txtApellido.getText());
