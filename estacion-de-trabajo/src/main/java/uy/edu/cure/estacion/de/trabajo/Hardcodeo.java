@@ -1,10 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
-import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.lib.controllers.*;
 
 import java.util.Date;
 
@@ -17,7 +14,20 @@ public class Hardcodeo {
         hardcodeoCiudadPais();
         harcodeoProveedor();
         harcodeoServicios();
+        hardcodeoClientes();
     }
+
+    private void hardcodeoClientes() {
+        ClienteController clienteController = new ClienteController();
+        Cliente cliente = new Cliente();
+        cliente.setId(1);
+        cliente.setNombre("Pepe");
+        cliente.setApellido("Argento");
+        cliente.setCorreo("pepeargento@quetal.com");
+        cliente.setNickname("elPepe");
+        clienteController.nuevo(cliente);
+    }
+
     private void hardcodeoCiudadPais() {
         CiudadController ciudadController = new CiudadController();
         Ciudad ciudad = new Ciudad();
@@ -66,13 +76,14 @@ public class Hardcodeo {
         prueba3.setNombre("premio");
         categoriaController.nueva(prueba3);
     }
+
     private void harcodeoProveedor() {
         ProveedorController proveedorController = new ProveedorController();
         Proveedor proveedor = new Proveedor();
         proveedor.setId(1);
         proveedor.setNombre("Conaprole");
         proveedor.setNickname("Conaprole");
-        Date nacimiento = new Date(2016,02,12);
+        Date nacimiento = new Date(2016, 02, 12);
         proveedor.setFechaNacimiento(nacimiento);
         proveedor.setNombreEmpresa("Conaprole S.A.");
         proveedorController.nuevo(proveedor);
@@ -80,7 +91,7 @@ public class Hardcodeo {
         proveedor1.setId(2);
         proveedor1.setNombre("Parmalat");
         proveedor1.setNickname("Parmalat");
-        Date nacimiento1 = new Date(2016,02,15);
+        Date nacimiento1 = new Date(2016, 02, 15);
         proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Parmalat LTDA");
         proveedorController.nuevo(proveedor1);
@@ -91,7 +102,7 @@ public class Hardcodeo {
         proveedor1.setId(2);
         proveedor1.setNombre("Parmalat");
         proveedor1.setNickname("Parmalat");
-        Date nacimiento1 = new Date(2016,02,15);
+        Date nacimiento1 = new Date(2016, 02, 15);
         proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Parmalat LTDA");
         Pais pais1 = new Pais();

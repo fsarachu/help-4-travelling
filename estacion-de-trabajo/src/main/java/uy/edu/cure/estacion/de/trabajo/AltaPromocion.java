@@ -28,6 +28,7 @@ public class AltaPromocion {
     private JList<Servicio> listElegidos;
     private JLabel txtTotalPromo;
     private JTextArea txtLista;
+    private Promocion promocion;
     private JScrollPane scroolPanelPromo;
     private JButton calcularPrecioButton;
     private DefaultListModel mdllista;
@@ -40,12 +41,6 @@ public class AltaPromocion {
         final DefaultListModel mdlservicios = new DefaultListModel();
         final List<Servicio> serviciosElegidos = new ArrayList<>();
         final DefaultListModel mdlElegidos = new DefaultListModel();
-/*        if (!servicios.isEmpty()) { //persona es tu arraylist o list
-            Iterator iterador = servicios.listIterator(); //el objeto iterador te ayuda a recorrer una coleccion.
-            while (iterador.hasNext()) {
-                txtLista.append(iterador.next() + "\n"); //el objeto at es un JTextArea y el método append agrega el contenido de persona al area de texto
-            }
-        }*/
         cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -85,7 +80,6 @@ public class AltaPromocion {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 ProductoController productoController = new ProductoController();
-                Promocion promocion = new Promocion();
                 promocion.setNombre(txtNombre.getText());
                 Double precio = new Double(txtPrecio.getText());
                 promocion.setPrecio(precio);
