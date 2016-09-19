@@ -137,7 +137,8 @@ public class Principal extends JFrame {
         item8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                JOptionPane.showMessageDialog(null, "Opcion Actualizar estado de la Reserva", "Atencion", JOptionPane.INFORMATION_MESSAGE);
+                setContentPane(new ActualizarEstadoReserva().getPanelActualizarEstado());
+                setVisible(true);
             }
         });
         item9.addActionListener(new ActionListener() {
