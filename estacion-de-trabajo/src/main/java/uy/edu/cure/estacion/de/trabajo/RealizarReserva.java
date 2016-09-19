@@ -47,13 +47,16 @@ public class RealizarReserva {
         servicioRadioButton.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent changeEvent) {
-                if (servicioRadioButton.isSelected()) {
+                if (servicioRadioButton.isSelected() == true) {
                     cargarComboServicio();
-
-                } else {
-                    if (promocionRadioButton.isSelected()) {
-                        cargarComboPromocion();
-                    }
+                }
+            }
+        });
+        promocionRadioButton.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent changeEvent) {
+                if (promocionRadioButton.isSelected() == true) {
+                    cargarComboPromocion();
                 }
             }
         });
