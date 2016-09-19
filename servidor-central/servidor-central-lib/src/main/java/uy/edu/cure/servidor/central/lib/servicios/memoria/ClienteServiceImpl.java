@@ -79,7 +79,7 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
                 ArrayList<ItemReserva> itemsReserva = carrito.getItems();
 
                 for (ItemReserva item : itemsReserva) {
-                    if (item.getProducto().equals((Producto) servicio)) {
+                    if (item.getProducto().equals(servicio)) {
                         clientes.add(cliente);
                     }
                 }
