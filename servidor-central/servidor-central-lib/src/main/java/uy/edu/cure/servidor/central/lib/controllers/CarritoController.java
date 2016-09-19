@@ -9,6 +9,7 @@ import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 import java.util.List;
 
 public class CarritoController {
+
     private CarritoService carritoService;
     private ItemReservaService itemReservaService;
 
@@ -17,7 +18,7 @@ public class CarritoController {
         this.itemReservaService = ServiceFactory.getItemReservaService();
     }
 
-    public void actualizarTotal(Carrito carrito) {
+    private void actualizarTotal(Carrito carrito) {
         List<ItemReserva> items = carrito.getItems();
         double newTotal = 0.0;
 
@@ -28,56 +29,51 @@ public class CarritoController {
         carrito.setTotal(newTotal);
     }
 
-    public void cargarItems(Carrito carrito) {
-        if(carrito != null){
-            List<Integer> idItems = carrito.getIdItems();
-            List<ItemReserva> items = carrito.getItems();
+    private void cargarItemsDesdeIds(Carrito carrito) {
+        List<Integer> idItems = carrito.getIdItems();
+        List<ItemReserva> items = carrito.getItems();
 
-            items.clear();
+        items.clear();
 
-            for (Integer idItem : idItems) {
-                items.add(this.itemReservaService.obtener(idItem));
-            }
-
-            this.actualizarTotal(carrito);
-        }else{
-            System.out.println( "Lugar: " + this.toString() + " Obj: carrito en CargarItems" );
+        for (Integer idItem : idItems) {
+            items.add(this.itemReservaService.obtener(idItem));
         }
-
     }
 
     public Carrito obtenerCarrito(Integer idCarrito) {
         Carrito carrito = this.carritoService.obtener(idCarrito);
-        this.cargarItems(carrito);
+        this.cargarItemsDesdeIds(carrito);
+        this.actualizarTotal(carrito);
 
         return carrito;
     }
-    /*no estan en uso, comentarlas sube la cobertura(?)*/
 
-    public void agregarItem(ItemReserva nuevoItem, Integer idCarrito) {
-        nuevoItem.setId(this.itemReservaService.nextId());
-        this.itemReservaService.agregar(nuevoItem.getId(), nuevoItem);
+    public void agregarItem(ItemReserva itemReserva) {
+        itemReserva.setId(this.itemReservaService.nextId());
+        this.itemReservaService.agregar(itemReserva.getId(), itemReserva);
 
-        Carrito carrito = this.obtenerCarrito(idCarrito);
+        Carrito carrito = itemReserva.getCarrito();
+        carrito.addItem(itemReserva);
 
-        carrito.getIdItems().add(nuevoItem.getId());
-
-        this.cargarItems(carrito);
+        this.actualizarTotal(carrito);
     }
 
-    public void modificarItem(ItemReserva item) {
-        this.itemReservaService.modificar(item.getId(), item);
+    public void modificarItem(ItemReserva itemReserva) {
+        this.itemReservaService.modificar(itemReserva.getId(), itemReserva);
 
-        this.cargarItems(item.getCarrito());
+        Carrito carrito = itemReserva.getCarrito();
+        this.cargarItemsDesdeIds(carrito);
+        this.actualizarTotal(carrito);
     }
 
-    public void eliminarItem(ItemReserva item) {
-        Carrito carrito = item.getCarrito();
+    public void eliminarItem(ItemReserva itemReserva) {
+        Carrito carrito = itemReserva.getCarrito();
 
-        carrito.getIdItems().remove(item.getId());
-        this.itemReservaService.eliminar(item.getId());
+        carrito.removeItem(itemReserva);
+        this.itemReservaService.eliminar(itemReserva.getId());
 
-        this.cargarItems(carrito);
+        this.actualizarTotal(carrito);
+
     }
 
 }
