@@ -1,6 +1,7 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.dto.EstadoCategoria;
 import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
@@ -24,9 +25,15 @@ public class CategoriaController {
         this.categoriaService.agregar(nuevaCategoria.getId(), nuevaCategoria);
     }
 
-    /*public void eliminar(Integer idCategoria) {
-        this.categoriaService.eliminar(idCategoria); //TODO
-    }*/
+    public void ocultar(Categoria categoria) {
+        categoria.setEstado(EstadoCategoria.oculta);
+
+        ArrayList<Categoria> hijos = categoria.getHijos();
+
+        for (Categoria hijo : hijos) {
+            ocultar(hijo);
+        }
+    }
 
     public Categoria obtener(Integer idCategoria) {
         return this.categoriaService.obtener(idCategoria);
