@@ -17,43 +17,70 @@ public class CancelarReserva {
     private JButton cancelarButton;
     private JButton aceptarButton;
     private JComboBox jcbCliente;
+    private JPanel PanelCancelarReserva;
     private String mensaje;
     private Cliente cliente;
+    private Reserva reserva;
 
-    CargarComboCliente();
+    public CancelarReserva() {
 
-    CargarComboReserva();
+        cargaComboCliente();
 
-    aceptarButton.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed (ActionEvent actionEvent){
-            try{
-                if (jcbCliente.getSelectedItem().equals("")){
-                    jcbCliente.requestFocus();
-                    mensaje = "Cliente";
+        jcbCliente.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    if (jcbCliente.getSelectedItem().equals( "" )) {
+                        jcbCliente.requestFocus();
+                        mensaje = "Cliente";
+                    }
+                    cliente = (Cliente) jcbCliente.getSelectedItem();
+                    if (cliente == null) {
+                        throw new EmptyStackException();
+                    }
+                    cargarComboReserva( cliente );
+                } catch (EmptyStackException e) {
+                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
+
                 }
-                if (jcbReservas.getSelectedItem().equals("")) {
-                    jcbReservas.requestFocus();
-                    mensaje = "Reserva";
+            }
+        });
+
+        aceptarButton.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    if (jcbReservas.getSelectedItem().equals( "" )) {
+                        jcbReservas.requestFocus();
+                        mensaje = "Reserva";
+                    }
+
+                    reserva = (Reserva) jcbReservas.getSelectedItem();
+                    ReservaController reservaController = new ReservaController();
+                    reservaController.eliminar( reserva.getId() );
+
+                } catch (EmptyStackException e) {
+                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
                 }
-                cliente = (Cliente) jcbCliente.getSelectedItem();
+            }
+        } );
+        cancelarButton.addActionListener( new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                PanelCancelarReserva.setVisible( false );
+            }
+        } );
+    }
 
-            } catch (EmptyStackException e) {
-            JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
-        }
-
-        }
-    });
-
-    CargarComboCliente(){
+    private void cargaComboCliente() {
         ClienteController clientecontroller = new ClienteController();
         ArrayList<Cliente> clientes = clientecontroller.listar();
         ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes));
         jcbCliente.setModel(mdlCombo);
     }
-    cargarComboReserva(){
+    private void cargarComboReserva(Cliente cliente){
         ReservaController reservaController = new ReservaController();
-        ArrayList<Reserva> reservas = reservaController.listar();
+        ArrayList<Reserva> reservas = reservaController.listarReservasCliente( cliente );
         ComboBoxModel<Reserva> mdlCombo = new DefaultComboBoxModel<>( new Vector<Reserva>(reservas) );
         jcbReservas.setModel( mdlCombo );
     }
@@ -88,5 +115,13 @@ public class CancelarReserva {
 
     public void setJcbCliente(JComboBox jcbCliente) {
         this.jcbCliente = jcbCliente;
+    }
+
+    public JPanel getPanelCancelarReserva() {
+        return PanelCancelarReserva;
+    }
+
+    public void setPanelCancelarReserva(JPanel panelCancelarReserva) {
+        PanelCancelarReserva = panelCancelarReserva;
     }
 }
