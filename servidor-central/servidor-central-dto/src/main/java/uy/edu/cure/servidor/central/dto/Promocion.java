@@ -40,9 +40,7 @@ public class Promocion extends Producto {
     @Override
     public String toString() {
 
-        return "Descuento: " + descuento +
-                ", servicios: " + servicios +
-                '}';
+        return super.getNombre();
     }
 }
 

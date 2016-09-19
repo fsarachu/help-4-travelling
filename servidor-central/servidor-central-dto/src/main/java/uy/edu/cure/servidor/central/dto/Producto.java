@@ -67,4 +67,5 @@ public abstract class Producto {
     protected void setTipo(TipoProducto tipo) {
         this.tipo = tipo;
     }
+
 }
