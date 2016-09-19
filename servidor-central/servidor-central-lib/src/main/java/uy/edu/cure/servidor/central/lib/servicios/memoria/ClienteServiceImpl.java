@@ -52,7 +52,7 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
         for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
             cliente = entry.getValue();
 
-            if (cliente.getNickname().equals(email)) {
+            if (cliente.getCorreo().equals(email)) {
                 return true;
             }
         }

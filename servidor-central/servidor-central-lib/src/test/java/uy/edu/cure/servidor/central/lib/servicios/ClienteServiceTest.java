@@ -1,6 +1,7 @@
 package uy.edu.cure.servidor.central.lib.servicios;
 
 import junit.framework.TestCase;
+import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Cliente;
@@ -8,16 +9,20 @@ import uy.edu.cure.servidor.central.lib.servicios.memoria.ClienteServiceImpl;
 
 import java.util.ArrayList;
 
-public class ClienteServiceTest extends TestCase {
+import static org.junit.Assert.*;
 
+public class ClienteServiceTest {
 
-    private ClienteService clienteService;
+    private static ClienteService clienteService;
 
     @BeforeClass
-    public void setUp() {
+    public static void beforeAll() {
+        clienteService = ClienteServiceImpl.getInstance();
+    }
 
-        this.clienteService = ClienteServiceImpl.getInstance();
-
+    @Before
+    public void beforeEach() {
+        clienteService.vaciar();
     }
 
     @Test
@@ -26,22 +31,24 @@ public class ClienteServiceTest extends TestCase {
         cliente.setId(1);
         cliente.setNombre("pepe");
 
-        this.clienteService.agregar(cliente.getId(), cliente);
+        clienteService.agregar(cliente.getId(), cliente);
 
-        assertEquals(cliente, this.clienteService.obtener(1));
+        assertEquals(cliente, clienteService.obtener(1));
 
     }
 
+    @Test
     public void testEliminar() throws Exception {
         Cliente cliente = new Cliente();
         cliente.setId(101);
         cliente.setNombre("pepe");
 
-        this.clienteService.eliminar(101);
+        clienteService.eliminar(101);
 
-        assertNull(this.clienteService.obtener(101));
+        assertNull(clienteService.obtener(101));
     }
 
+    @Test
     public void testModificar() throws Exception {
         Cliente cliente = new Cliente();
         cliente.setId(101);
@@ -50,23 +57,25 @@ public class ClienteServiceTest extends TestCase {
         cliente1.setId(101);
         cliente1.setNombre("pepito");
 
-        this.clienteService.agregar(cliente.getId(), cliente);
-        this.clienteService.modificar(cliente1.getId(), cliente1);
+        clienteService.agregar(cliente.getId(), cliente);
+        clienteService.modificar(cliente1.getId(), cliente1);
 
         assertEquals(cliente1, clienteService.obtener(101));
     }
 
+    @Test
     public void testObtener() throws Exception {
         Cliente cliente = new Cliente();
         cliente.setId(101);
         cliente.setNombre("pepe");
 
-        this.clienteService.agregar(101, cliente);
+        clienteService.agregar(101, cliente);
 
         assertEquals(cliente, clienteService.obtener(101));
 
     }
 
+    @Test
     public void testListar() throws Exception {
         ArrayList<Cliente> expected = new ArrayList<>();
         Cliente cliente1 = new Cliente();
@@ -78,7 +87,7 @@ public class ClienteServiceTest extends TestCase {
         expected.add(cliente1);
         expected.add(cliente2);
         for (Cliente cliente : expected) {
-            this.clienteService.agregar(cliente.getId(), cliente);
+            clienteService.agregar(cliente.getId(), cliente);
         }
         ArrayList<Cliente> actual = clienteService.listar();
         for (int n = 0; n < 2; n++) {
@@ -87,22 +96,24 @@ public class ClienteServiceTest extends TestCase {
 
     }
 
+    @Test
     public void testNicknameExiste() throws Exception {
         Cliente cliente = new Cliente();
-        cliente.setId(this.clienteService.nextId());
+        cliente.setId(clienteService.nextId());
         cliente.setNickname("lala");
 
-        this.clienteService.agregar(cliente.getId(), cliente);
+        clienteService.agregar(cliente.getId(), cliente);
 
         assertTrue(clienteService.nicknameExiste(cliente.getNickname()));
     }
 
+    @Test
     public void testEmailExiste() throws Exception {
         Cliente cliente = new Cliente();
-        cliente.setId(this.clienteService.nextId());
+        cliente.setId(clienteService.nextId());
         cliente.setCorreo("lala@gmail.com");
 
-        this.clienteService.agregar(cliente.getId(), cliente);
+        clienteService.agregar(cliente.getId(), cliente);
 
         assertTrue(clienteService.emailExiste(cliente.getCorreo()));
 

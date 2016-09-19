@@ -51,7 +51,7 @@ public class ProveedorServiceImpl extends GenericServiceImpl<Proveedor> implemen
         for (Map.Entry<Integer, Proveedor> entry : coleccion.entrySet()) {
             proveedor = entry.getValue();
 
-            if (proveedor.getNickname().equals(email)) {
+            if (proveedor.getCorreo().equals(email)) {
                 return true;
             }
         }
