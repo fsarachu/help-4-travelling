@@ -1,10 +1,7 @@
 package uy.edu.cure.servidor.central.lib.controlErroresInteface;
 
 
-import uy.edu.cure.servidor.central.dto.Categoria;
-import uy.edu.cure.servidor.central.dto.Ciudad;
-import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.dto.Servicio;
+import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
@@ -44,7 +41,9 @@ public class LlenarCombobox {
             if (categoria.getPadre() == null) {
                 DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
                 cat.setUserObject(categoria);
-                root.add(cat);
+                if (categoria.getEstado().equals(EstadoCategoria.visible)) {
+                    root.add(cat);
+                }
             }
         }
         DefaultTreeModel modelo = new DefaultTreeModel(root);
