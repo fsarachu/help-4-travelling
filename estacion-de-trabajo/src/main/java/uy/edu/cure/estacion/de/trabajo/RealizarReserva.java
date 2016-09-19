@@ -15,10 +15,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.EmptyStackException;
-import java.util.Vector;
+import java.util.*;
 
 public class RealizarReserva {
     private JTextField txtPrecioTotal;
@@ -33,14 +30,14 @@ public class RealizarReserva {
     private JComboBox jcbCliente;
     private JRadioButton servicioRadioButton;
     private JRadioButton promocionRadioButton;
-    private JLabel precioTotal;
+    private JList<Producto> listReservas;
+    private DefaultListModel mdllista;
     private String mensaje;
     private Carrito carrito;
     private Cliente cliente;
     private Producto producto;
 
     public RealizarReserva() {
-        new Hardcodeo();
         Date hoy = new Date();
 
         final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -67,21 +64,13 @@ public class RealizarReserva {
             public void actionPerformed(ActionEvent actionEvent) {
 
                 try {
-                    if( servicioRadioButton.isSelected() == true){
-                        //agregar servicio
-                    } else if( promocionRadioButton.isSelected() == true){
-                        //agregar promocion
-                    }else {
-                        mensaje = "Servicio o Promocion";
+                    if (jcbCliente.getSelectedItem().equals(-1)){
+                        jcbCliente.requestFocus();
+                        mensaje = "Seleccione Cliente";
                         throw new EmptyStackException();
                     }
-                    if (jcbPromoServicio.getSelectedItem().equals("")){
-                        jcbPromoServicio.requestFocus();
+                    if (servicioRadioButton.isSelected() == promocionRadioButton.isSelected()){
                         mensaje = "Servicio o Promocion";
-                    }
-                    if (jcbCliente.getSelectedItem().equals("")) {
-                        jcbCliente.requestFocus();
-                        mensaje = "Cliente";
                         throw new EmptyStackException();
                     }
                     if (txtCantidadServicio.getText().equals("")) {
@@ -100,12 +89,6 @@ public class RealizarReserva {
                         throw new EmptyStackException();
                     }
 
-                    cliente = (Cliente) jcbCliente.getSelectedItem();
-                    carrito =  cliente.getCarrito();
-
-                    if(carrito == null){
-                        throw new EmptyStackException();
-                    }
                     ItemReserva item = new ItemReserva();
                     item.setCarrito( carrito );
                     item.setCantidad( (Integer.parseInt( txtCantidadServicio.getText() )) );
@@ -115,6 +98,7 @@ public class RealizarReserva {
                     item.setSubTotal( item.getCantidad() );//* producto.getPrecio() );
                     CarritoController carritofinal = new CarritoController();
                     carritofinal.agregarItem( item, carrito);
+                    mostrarListaReservas();
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
@@ -125,38 +109,6 @@ public class RealizarReserva {
 
         });
 
-        mostrarDatosButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                try {
-                    if (jcbCliente.getSelectedItem().equals("")) {
-                        jcbCliente.requestFocus();
-                        mensaje = "Cliente";
-                        throw new EmptyStackException();
-                    }
-                    if (txtCantidadServicio.getText().equals("")) {
-                        txtCantidadServicio.requestFocus();
-                        mensaje = "Cantidad Servicio";
-                        throw new EmptyStackException();
-                    }
-                    if (txtFechaFin.getText().equals("")) {
-                        txtFechaFin.requestFocus();
-                        mensaje = "Fecha de Fin";
-                        throw new EmptyStackException();
-                    }
-                    if (txtFechaInicio.getText().equals("")) {
-                        txtFechaInicio.requestFocus();
-                        mensaje = "Fecha de Inicio";
-                        throw new EmptyStackException();
-                    }
-                    
-                } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
-                }
-
-            }
-
-        });
 
         cancelarButton.addActionListener(new ActionListener() {
             @Override
@@ -199,6 +151,17 @@ public class RealizarReserva {
         ArrayList<Cliente> clientes = clientecontroller.listar();
         ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes));
         jcbCliente.setModel(mdlCombo);
+    }
+
+    private void mostrarListaReservas() {
+        mdllista = new DefaultListModel();
+        listReservas.setModel(mdllista);
+        ProductoController productoController = new ProductoController();
+        List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
+        for (Servicio servicio : list1) {
+            mdllista.addElement(servicio);
+        }
+        listReservas.setVisible(true);
     }
 
     public JTextField getTxtPrecioTotal() {
