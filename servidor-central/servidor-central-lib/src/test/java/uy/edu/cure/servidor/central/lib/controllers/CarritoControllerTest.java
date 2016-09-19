@@ -4,144 +4,90 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Carrito;
-import uy.edu.cure.servidor.central.dto.Cliente; //feo
-import uy.edu.cure.servidor.central.dto.ItemReserva; //feo
+import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.lib.servicios.CarritoService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
-import uy.edu.cure.servidor.central.lib.servicios.ItemReservaService;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-public class CarritoControllerTest{//} extends TestCase {
+public class CarritoControllerTest {
 
     private static CarritoController carritoController;
     private static CarritoService carritoService;
-    private static ItemReservaService itemService;
 
     @BeforeClass
     public static void beforeAll() {
-
         carritoController = new CarritoController();
         carritoService = ServiceFactory.getCarritoService();
-        carritoService.vaciar();
-        itemService = ServiceFactory.getItemReservaService();
-
-        Carrito carrito1 = new Carrito();
-        carrito1.setId(1);
-            Cliente cliente1 = new Cliente();
-        carrito1.setCliente(cliente1);
-            ArrayList<ItemReserva> items = new ArrayList<>();
-            ArrayList<Integer> itemids =  new ArrayList<>();
-            ItemReserva item1 = new ItemReserva();
-            ItemReserva item2 = new ItemReserva();
-            item1.setId(1);
-            item2.setId(2);
-            item1.setSubTotal(4023);
-            item2.setSubTotal(1000);
-            items.add(item1);
-            items.add(item2);
-            itemids.add(1);
-            itemids.add(2);
-        itemService.agregar(1, item1);
-        itemService.agregar(2, item1);
-        carrito1.setItems(items);
-        carrito1.setIdItems(itemids);
-        carrito1.setTotal(5023);
-        carritoService.agregar( 1, carrito1);
-
     }
 
     @Before
-    public void beforeEach() throws Exception {
-        //carritoService.vaciar();
-    }
-
-    @Test
-    public void testActualizarTotal() throws Exception {
-        Carrito carrito = carritoController.obtenerCarrito(1);
-        int total = 5023; //jarcode ^
-        carrito.setTotal(60);
-        carritoController.actualizarTotal(carrito);
-        assertEquals(total, carrito.getTotal() ); //double double wtf
-    }
-
-    @Test
-    public void testCargarItems() throws Exception {
-        Carrito carrito1 = carritoController.obtenerCarrito(1);
-        assertNotNull(carrito1);
-        if( carrito1 != null){
-            List<ItemReserva> items = carrito1.getItems();
-            assertNotNull(items);
-            if(items != null) {
-                carrito1.setItems(null);
-                carritoController.cargarItems(carrito1);
-                assertEquals(items, carrito1.getItems());
-            }
-        }
-    }
-
-    @Test
-    public void testObtenerCarrito() throws Exception {
-        /*carritoController = new CarritoController();
-        carritoService = ServiceFactory.getCarritoService();
+    public void setUp() throws Exception {
         carritoService.vaciar();
-        itemService = ServiceFactory.getItemReservaService();
-*/
-        //Carrito carrito1 = new Carrito();
-        /*carrito1.setId(1);
-        Cliente cliente1 = new Cliente();
-        carrito1.setCliente(cliente1);
-        ArrayList<ItemReserva> items = new ArrayList<>();
-        ArrayList<Integer> itemids =  new ArrayList<>();
-        ItemReserva item1 = new ItemReserva();
-        ItemReserva item2 = new ItemReserva();
-        item1.setId(1);
-        item2.setId(2);
-        item1.setSubTotal(4023);
-        item2.setSubTotal(1000);
-        items.add(item1);
-        items.add(item2);
-        itemids.add(1);
-        itemids.add(2);
-        itemService.agregar(1, item1);
-        itemService.agregar(2, item1);
-        carrito1.setItems(items);
-        carrito1.setIdItems(itemids);
-        carrito1.setTotal(5023);
-        carritoService.agregar( 1, carrito1);
-*/
-        Carrito carrito1 = carritoController.obtenerCarrito(1);
-        assertNotNull(carrito1);
     }
 
-    /*@Test
-    public void testListar() throws Exception {
-        List<Carrito> expected = new ArrayList<>();
+    @Test
+    public void obtenerCarrito() throws Exception {
+        Carrito carrito = new Carrito();
+        carrito.setId(carritoService.nextId());
+        carritoService.agregar(carrito.getId(), carrito);
 
-        expected.add(new Carrito(null, "Autos", null, null));
-        expected.add(new Carrito(null, "Vuelo", null, null));
+        assertEquals(carrito, carritoController.obtenerCarrito(carrito.getId()));
+    }
 
-        for (Carrito Carrito : expected) {
-            carritoController. (Carrito);
-        }
+    @Test
+    public void agregarItem() throws Exception {
+        Carrito carrito = new Carrito();
+        ItemReserva itemReserva = new ItemReserva();
 
-        System.out.println("Expected:");
-        for (Carrito Carrito : expected) {
-            System.out.println(Carrito.getId() + " - " + Carrito.getNombre());
-        }
+        carritoController.agregarItem(itemReserva, carrito);
 
-        List<Carrito> actual = carritoController.listar();
+        List<ItemReserva> items = carrito.getItems();
+        List<Integer> idItems = carrito.getIdItems();
 
-        System.out.println("Actual:");
-        for (Carrito Carrito : actual) {
-            System.out.println(Carrito.getId() + " - " + Carrito.getNombre());
-        }
+        assertTrue(items.contains(itemReserva) && idItems.contains(itemReserva.getId()));
+    }
 
-        assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
+    @Test
+    public void modificarItem() throws Exception {
+        Carrito carrito = new Carrito();
+        ItemReserva itemReservaOld = new ItemReserva();
 
-    }*/
+        carritoController.agregarItem(itemReservaOld, carrito);
+
+        List<ItemReserva> items = carrito.getItems();
+        List<Integer> idItems = carrito.getIdItems();
+
+        assertTrue(items.contains(itemReservaOld) && idItems.contains(itemReservaOld.getId()));
+
+        ItemReserva itemReservaNew = new ItemReserva();
+        itemReservaNew.setCarrito(itemReservaOld.getCarrito());
+        itemReservaNew.setId(itemReservaOld.getId());
+
+        carritoController.modificarItem(itemReservaNew);
+
+        assertTrue(items.contains(itemReservaNew) && !items.contains(itemReservaOld));
+    }
+
+    @Test
+    public void eliminarItem() throws Exception {
+        Carrito carrito = new Carrito();
+        ItemReserva itemReserva = new ItemReserva();
+
+        carritoController.agregarItem(itemReserva, carrito);
+
+        List<ItemReserva> items = carrito.getItems();
+        List<Integer> idItems = carrito.getIdItems();
+
+        assertTrue(items.contains(itemReserva) && idItems.contains(itemReserva.getId()));
+
+        carritoController.eliminarItem(itemReserva);
+
+        assertTrue(!items.contains(itemReserva) && !idItems.contains(itemReserva.getId()));
+    }
 
 }
