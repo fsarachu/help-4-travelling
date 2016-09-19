@@ -28,6 +28,7 @@ public class ReservaController {
         reserva.setCarrito(cliente.getCarrito());
         reserva.setFechaCreacion(new Date());
         reserva.setEstado(EstadoReserva.registrada);
+        this.reservaService.agregar(reserva.getId(), reserva);
 
         Carrito nuevoCarrito = new Carrito();
         nuevoCarrito.setId(this.carritoService.nextId());
