@@ -28,6 +28,7 @@ public class Cliente extends Usuario {
 
     @Override
     public String toString() {
-        return this.getId() + ": " + this.getNombre() + " " + this.getApellido() + ";";
+
+        return this.getId() + ": " + this.getNombre() + " " + this.getApellido();
     }
 }

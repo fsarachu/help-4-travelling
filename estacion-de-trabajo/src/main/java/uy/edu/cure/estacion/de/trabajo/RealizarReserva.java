@@ -97,7 +97,7 @@ public class RealizarReserva {
                     item.setProducto( producto );
                     item.setSubTotal( item.getCantidad() );//* producto.getPrecio() );
                     CarritoController carritofinal = new CarritoController();
-//                    carritofinal.agregarItem( item, carrito.getId());
+                    carritofinal.agregarItem( item, carrito);
                     mostrarListaReservas();
 
                 } catch (EmptyStackException e) {
