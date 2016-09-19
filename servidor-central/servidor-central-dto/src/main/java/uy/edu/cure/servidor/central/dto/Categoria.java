@@ -8,19 +8,19 @@ public class Categoria {
     private String nombre;
     private Categoria padre;
     private ArrayList<Categoria> hijos;
-    private EstadoCategoria estadoCategoria;
+    private EstadoCategoria estado;
 
     public Categoria() {
         this.hijos = new ArrayList<>();
-        this.estadoCategoria = EstadoCategoria.visible;
+        this.estado = EstadoCategoria.visible;
     }
 
-    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Categoria> hijos, EstadoCategoria estadoCategoria) {
+    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Categoria> hijos, EstadoCategoria estado) {
         this.id = id;
         this.nombre = nombre;
         this.padre = padre;
         this.hijos = hijos;
-        this.estadoCategoria = estadoCategoria;
+        this.estado = estado;
     }
 
     public Integer getId() {
@@ -55,12 +55,12 @@ public class Categoria {
         this.hijos = hijos;
     }
 
-    public EstadoCategoria getEstadoCategoria() {
-        return estadoCategoria;
+    public EstadoCategoria getEstado() {
+        return estado;
     }
 
-    public void setEstadoCategoria(EstadoCategoria estadoCategoria) {
-        this.estadoCategoria = estadoCategoria;
+    public void setEstado(EstadoCategoria estado) {
+        this.estado = estado;
     }
 
     @Override
