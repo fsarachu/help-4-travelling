@@ -27,4 +27,35 @@ public class ProveedorServiceImpl extends GenericServiceImpl<Proveedor> implemen
 
         return maxId + 1;
     }
+
+
+    @Override
+    public boolean nicknameExiste(String nickname) {
+        Proveedor proveedor;
+
+        for (Map.Entry<Integer, Proveedor> entry : coleccion.entrySet()) {
+            proveedor = entry.getValue();
+
+            if (proveedor.getNickname().equals(nickname)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean emailExiste(String email) {
+        Proveedor proveedor;
+
+        for (Map.Entry<Integer, Proveedor> entry : coleccion.entrySet()) {
+            proveedor = entry.getValue();
+
+            if (proveedor.getNickname().equals(email)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

@@ -26,7 +26,7 @@ public class ClienteServiceTest extends TestCase {
         cliente.setId(1);
         cliente.setNombre("pepe");
 
-        this.clienteService.agregar(cliente.getId(),cliente);
+        this.clienteService.agregar(cliente.getId(), cliente);
 
         assertEquals(cliente, this.clienteService.obtener(1));
 
@@ -50,8 +50,8 @@ public class ClienteServiceTest extends TestCase {
         cliente1.setId(101);
         cliente1.setNombre("pepito");
 
-        this.clienteService.agregar(cliente.getId(),cliente);
-        this.clienteService.modificar(cliente1.getId(),cliente1);
+        this.clienteService.agregar(cliente.getId(), cliente);
+        this.clienteService.modificar(cliente1.getId(), cliente1);
 
         assertEquals(cliente1, clienteService.obtener(101));
     }
@@ -61,7 +61,7 @@ public class ClienteServiceTest extends TestCase {
         cliente.setId(101);
         cliente.setNombre("pepe");
 
-        this.clienteService.agregar(101,cliente);
+        this.clienteService.agregar(101, cliente);
 
         assertEquals(cliente, clienteService.obtener(101));
 
@@ -77,13 +77,34 @@ public class ClienteServiceTest extends TestCase {
         cliente2.setNombre("pepito");
         expected.add(cliente1);
         expected.add(cliente2);
-        for (Cliente cliente : expected){
-            this.clienteService.agregar(cliente.getId(),cliente);
+        for (Cliente cliente : expected) {
+            this.clienteService.agregar(cliente.getId(), cliente);
         }
         ArrayList<Cliente> actual = clienteService.listar();
-        for (int n=0 ; n<2 ; n++) {
+        for (int n = 0; n < 2; n++) {
             assertEquals(expected.get(n), actual.get(n));
         }
+
+    }
+
+    public void testNicknameExiste() throws Exception {
+        Cliente cliente = new Cliente();
+        cliente.setId(this.clienteService.nextId());
+        cliente.setNickname("lala");
+
+        this.clienteService.agregar(cliente.getId(), cliente);
+
+        assertTrue(clienteService.nicknameExiste(cliente.getNickname()));
+    }
+
+    public void testEmailExiste() throws Exception {
+        Cliente cliente = new Cliente();
+        cliente.setId(this.clienteService.nextId());
+        cliente.setCorreo("lala@gmail.com");
+
+        this.clienteService.agregar(cliente.getId(), cliente);
+
+        assertTrue(clienteService.emailExiste(cliente.getCorreo()));
 
     }
 }
