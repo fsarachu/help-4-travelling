@@ -34,12 +34,12 @@ public class Hardcodeo {
         ciudadController.nueva(ciudad1);
 
         Ciudad ciudad2 = new Ciudad();
-        ciudad2.setNombre("Punta del este");
+        ciudad2.setNombre("Punta del Este");
         ciudad2.setPais(pais1);
         ciudadController.nueva(ciudad2);
 
         Pais pais2 = new Pais();
-        pais1.setNombre("Brasil");
+        pais2.setNombre("Brasil");
         paisController.agregar(pais2);
 
         Ciudad ciudad3 = new Ciudad();
@@ -174,7 +174,7 @@ public class Hardcodeo {
         Servicio servicio1 = new Servicio();
         servicio1.setNombre("Auto x 1 dia");
         servicio1.setProveedor(proveedorService.obtener(1));
-        servicio1.setOrigen(ciudadService.obtener(4));
+        servicio1.setOrigen(ciudadService.obtener(3));
         servicio1.setDestino(ciudadService.obtener(4));
         servicio1.setDescripcion("Un dia de auto");
         servicio1.setPrecio(100);
@@ -183,8 +183,8 @@ public class Hardcodeo {
         Servicio servicio2 = new Servicio();
         servicio2.setNombre("Auto x Fin de Semana");
         servicio2.setProveedor(proveedorService.obtener(2));
-        servicio2.setOrigen(ciudadService.obtener(3));
-        servicio2.setDestino(ciudadService.obtener(3));
+        servicio2.setOrigen(ciudadService.obtener(1));
+        servicio2.setDestino(ciudadService.obtener(2));
         servicio2.setDescripcion("Fin de Semana con auto");
         servicio2.setPrecio(300);
         productoController.agregar(servicio2);
@@ -192,7 +192,7 @@ public class Hardcodeo {
         Servicio servicio3 = new Servicio();
         servicio3.setNombre("Camioneta x Fin de Semana");
         servicio3.setProveedor(proveedorService.obtener(2));
-        servicio3.setOrigen(ciudadService.obtener(1));
+        servicio3.setOrigen(ciudadService.obtener(2));
         servicio3.setDestino(ciudadService.obtener(2));
         servicio3.setDescripcion("Fin de Semana en camioneta");
         servicio3.setPrecio(400);
@@ -201,8 +201,8 @@ public class Hardcodeo {
         Servicio servicio4 = new Servicio();
         servicio4.setNombre("Habitacion Simple");
         servicio4.setProveedor(proveedorService.obtener(3));
-        servicio4.setOrigen(ciudadService.obtener(2));
-        servicio4.setDestino(ciudadService.obtener(2));
+        servicio4.setOrigen(ciudadService.obtener(4));
+        servicio4.setDestino(ciudadService.obtener(1));
         servicio4.setDescripcion("Simple");
         servicio4.setPrecio(50);
         productoController.agregar(servicio4);
@@ -210,8 +210,8 @@ public class Hardcodeo {
         Servicio servicio5 = new Servicio();
         servicio5.setNombre("Habitacion Doble");
         servicio5.setProveedor(proveedorService.obtener(4));
-        servicio5.setOrigen(ciudadService.obtener(1));
-        servicio5.setDestino(ciudadService.obtener(1));
+        servicio5.setOrigen(ciudadService.obtener(4));
+        servicio5.setDestino(ciudadService.obtener(2));
         servicio5.setDescripcion("Doble");
         servicio5.setPrecio(80);
         productoController.agregar(servicio5);
