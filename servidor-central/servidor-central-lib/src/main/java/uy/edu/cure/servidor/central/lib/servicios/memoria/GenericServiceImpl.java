@@ -3,7 +3,6 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map.Entry;
-import java.util.Vector;
 
 public class GenericServiceImpl<T> {
     protected HashMap<Integer, T> coleccion;
@@ -24,7 +23,9 @@ public class GenericServiceImpl<T> {
         this.coleccion.put(id, value);
     }
 
-    public T obtener(Integer id) { return coleccion.get(id); }
+    public T obtener(Integer id) {
+        return coleccion.get(id);
+    }
 
     public ArrayList<T> listar() {
         ArrayList<T> list = new ArrayList<>();
