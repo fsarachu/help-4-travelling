@@ -2,6 +2,7 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.controllers.*;
+import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
 import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
@@ -171,7 +172,6 @@ public class Hardcodeo {
         ProductoController productoController = new ProductoController();
         ProveedorService proveedorService = ServiceFactory.getProveedorService();
         CiudadService ciudadService = ServiceFactory.getCiudadService();
-        //CategoriaController categoriaController = new CategoriaController();
 
         Servicio servicio1 = new Servicio();
         servicio1.setNombre("Auto x 1 dia");
@@ -180,11 +180,9 @@ public class Hardcodeo {
         servicio1.setDestino(ciudadService.obtener(4));
         servicio1.setDescripcion("Un dia de auto");
         servicio1.setPrecio(100);
-        Categoria cate1 = new Categoria();
-        cate1.setId(4);
-        ArrayList<Categoria> categorias1 = new ArrayList<>();
-        categorias1.set(0,cate1);
-        servicio1.setCategorias(categorias1);
+        CategoriaService categoriaService = ServiceFactory.getCategoriaService();
+        Categoria cate1 = categoriaService.obtener(4);
+        servicio1.getCategorias().add(cate1);
         productoController.agregar(servicio1);
 
         Servicio servicio2 = new Servicio();
