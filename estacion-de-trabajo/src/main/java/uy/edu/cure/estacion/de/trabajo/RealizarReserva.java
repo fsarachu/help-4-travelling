@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RealizarReserva {
-    private JLabel txtPrecioTotal;
+    private JTextField txtPrecioTotal;
     private JTextField txtCantidadServicio;
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
@@ -269,14 +269,6 @@ public class RealizarReserva {
 
     public void setPanelAltaReserva(JPanel panelAltaReserva) {
         PanelAltaReserva = panelAltaReserva;
-    }
-
-    public JComboBox getJcbCliente() {
-        return jcbCliente;
-    }
-
-    public void setJcbCliente(JComboBox jcbCliente) {
-        this.jcbCliente = jcbCliente;
     }
 
     public JRadioButton getServicioRadioButton() {
