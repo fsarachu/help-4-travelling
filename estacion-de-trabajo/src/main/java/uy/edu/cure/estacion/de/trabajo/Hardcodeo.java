@@ -6,6 +6,7 @@ import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
 import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -170,6 +171,7 @@ public class Hardcodeo {
         ProductoController productoController = new ProductoController();
         ProveedorService proveedorService = ServiceFactory.getProveedorService();
         CiudadService ciudadService = ServiceFactory.getCiudadService();
+        //CategoriaController categoriaController = new CategoriaController();
 
         Servicio servicio1 = new Servicio();
         servicio1.setNombre("Auto x 1 dia");
@@ -178,6 +180,11 @@ public class Hardcodeo {
         servicio1.setDestino(ciudadService.obtener(4));
         servicio1.setDescripcion("Un dia de auto");
         servicio1.setPrecio(100);
+        Categoria cate1 = new Categoria();
+        cate1.setId(4);
+        ArrayList<Categoria> categorias1 = new ArrayList<>();
+        categorias1.set(0,cate1);
+        servicio1.setCategorias(categorias1);
         productoController.agregar(servicio1);
 
         Servicio servicio2 = new Servicio();
@@ -187,6 +194,11 @@ public class Hardcodeo {
         servicio2.setDestino(ciudadService.obtener(2));
         servicio2.setDescripcion("Fin de Semana con auto");
         servicio2.setPrecio(300);
+        Categoria cate2 = new Categoria();
+        cate2.setId(5);
+        ArrayList<Categoria> categorias2 = new ArrayList<>();
+        categorias2.set(0,cate2);
+        servicio2.setCategorias(categorias2);
         productoController.agregar(servicio2);
 
         Servicio servicio3 = new Servicio();
@@ -196,6 +208,11 @@ public class Hardcodeo {
         servicio3.setDestino(ciudadService.obtener(2));
         servicio3.setDescripcion("Fin de Semana en camioneta");
         servicio3.setPrecio(400);
+        Categoria cate3 = new Categoria();
+        cate3.setId(5);
+        ArrayList<Categoria> categorias3 = new ArrayList<>();
+        categorias3.set(0,cate3);
+        servicio3.setCategorias(categorias3);
         productoController.agregar(servicio3);
 
         Servicio servicio4 = new Servicio();
@@ -205,6 +222,11 @@ public class Hardcodeo {
         servicio4.setDestino(ciudadService.obtener(1));
         servicio4.setDescripcion("Simple");
         servicio4.setPrecio(50);
+        Categoria cate4 = new Categoria();
+        cate4.setId(11);
+        ArrayList<Categoria> categorias4 = new ArrayList<>();
+        categorias4.set(0,cate4);
+        servicio4.setCategorias(categorias4);
         productoController.agregar(servicio4);
 
         Servicio servicio5 = new Servicio();
@@ -214,6 +236,11 @@ public class Hardcodeo {
         servicio5.setDestino(ciudadService.obtener(2));
         servicio5.setDescripcion("Doble");
         servicio5.setPrecio(80);
+        Categoria cate5 = new Categoria();
+        cate5.setId(13);
+        ArrayList<Categoria> categorias5 = new ArrayList<>();
+        categorias5.set(0,cate5);
+        servicio5.setCategorias(categorias5);
         productoController.agregar(servicio5);
     }
 
