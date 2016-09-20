@@ -103,7 +103,7 @@ public class RealizarReserva {
                     item.setFechaInicio(formatter.parse(getTxtFechaInicio().getText()));
                     item.setFechaFin(formatter.parse(getTxtFechaFin().getText()));
                     item.setProducto(producto);
-                    itemCantidad = (Double) item.getCantidad();
+                    itemCantidad = item.getCantidad();
                     itemPrecio =  item.getProducto().getPrecio();
                     item.setSubTotal(itemCantidad * itemPrecio);
                     CarritoController carritofinal = new CarritoController();
