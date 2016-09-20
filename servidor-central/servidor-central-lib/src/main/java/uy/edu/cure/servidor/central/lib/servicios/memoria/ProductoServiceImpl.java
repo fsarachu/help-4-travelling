@@ -30,13 +30,20 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
 
     public ArrayList<Servicio> listarServicios() {
         ArrayList<Servicio> servicios = new ArrayList<>();
-        Producto producto;
 
         for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
-            producto = entry.getValue();
+            Producto producto = entry.getValue();
 
             if (producto.getTipo() == TipoProducto.servicio) {
-                servicios.add((Servicio) producto);
+                Servicio servicio = (Servicio) producto;
+                ArrayList<Categoria> categorias = servicio.getCategorias();
+
+                for (Categoria categoria : categorias) {
+                    if (categoria.getEstado().equals(EstadoCategoria.visible)) {
+                        servicios.add(servicio);
+                        break; //TODO
+                    }
+                }
             }
         }
 
