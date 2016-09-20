@@ -1,13 +1,15 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.dto.EstadoCategoria;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.LlenarCombobox;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.*;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -18,18 +20,19 @@ public class AltaCategoria {
     private JTextField txtCategoria;
     private JButton btnAgregar;
     private JButton btnCancelar;
+    private JButton cmdOcultar;
     private DefaultMutableTreeNode node;
     private DefaultMutableTreeNode hijo;
     private DefaultMutableTreeNode raiz;
     private Categoria padre;
 
     public AltaCategoria() {
-        LlenarCombobox llenarCombobox = new LlenarCombobox();
+        final LlenarCombobox llenarCombobox = new LlenarCombobox();
         llenarCombobox.cargarTree(raiz, tree1);
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
-                node = ((DefaultMutableTreeNode )tree1.getLastSelectedPathComponent());
+                node = ((DefaultMutableTreeNode) tree1.getLastSelectedPathComponent());
 
                 if (node.getUserObject() instanceof Categoria) {
                     Categoria categoria = (Categoria) node.getUserObject();
@@ -62,6 +65,17 @@ public class AltaCategoria {
                 panelMain.setVisible(false);
             }
         });
+        cmdOcultar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                int dialogButton = JOptionPane.YES_NO_OPTION;
+                if (JOptionPane.showConfirmDialog(null, "Existen servicios con esta categoria !!!!", "Atencion",
+                        JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    CategoriaController categoriaController = new CategoriaController();
+                    categoriaController.ocultar(padre);
+                }
+            }
+        });
     }
 
 
@@ -72,7 +86,9 @@ public class AltaCategoria {
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
             hijo.setUserObject(categoria);
-            node.add(hijo);
+            if (categoria.getEstado().equals(EstadoCategoria.visible)) {
+                node.add(hijo);
+            }
         }
     }
 

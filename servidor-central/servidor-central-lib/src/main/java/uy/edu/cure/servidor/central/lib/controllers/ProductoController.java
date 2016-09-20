@@ -1,9 +1,6 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
-import uy.edu.cure.servidor.central.dto.Ciudad;
-import uy.edu.cure.servidor.central.dto.Producto;
-import uy.edu.cure.servidor.central.dto.Promocion;
-import uy.edu.cure.servidor.central.dto.Servicio;
+import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.servicios.ProductoService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
@@ -48,6 +45,14 @@ public class ProductoController {
 
     public ArrayList<Servicio> listarServiciosPorCiudad(Ciudad ciudad) {
         return this.productoService.listarServiciosPorCiudad(ciudad);
+    }
+
+    ArrayList<Servicio> listarServiciosPorCategoria(Categoria categoria) {
+        return this.productoService.listarServiciosPorCategoria(categoria);
+    }
+
+    ArrayList<Promocion> listarPromocionesPorCategoria(Categoria categoria) {
+        return this.productoService.listarPromocionesPorCategoria(categoria);
     }
 
 }

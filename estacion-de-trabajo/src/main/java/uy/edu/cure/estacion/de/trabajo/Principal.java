@@ -20,6 +20,7 @@ public class Principal extends JFrame {
     private JMenuItem item8;
     private JMenuItem item9;
     private JMenuItem item10;
+    private JMenuItem item11;
     //private JFrame frame;
     private JPanel panelMain;
 
@@ -81,6 +82,10 @@ public class Principal extends JFrame {
         item10 = new JMenuItem("Salir");
         item10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarReserva.jpeg")));
         menu4.add(item10);
+
+        item11 = new JMenuItem("Listado por Ciudad");
+        item11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ciudades.jpeg")));
+        menu1.add(item11);
 
         item1.addActionListener(new ActionListener() {
             @Override
@@ -153,6 +158,13 @@ public class Principal extends JFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 JOptionPane.showMessageDialog(null, "Gracias por utilizar el software", "Chau", JOptionPane.INFORMATION_MESSAGE);
                 System.exit(0);
+            }
+        });
+        item11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                setContentPane(new ListadoCiudad().getPanelPrincipal());
+                setVisible(true);
             }
         });
 

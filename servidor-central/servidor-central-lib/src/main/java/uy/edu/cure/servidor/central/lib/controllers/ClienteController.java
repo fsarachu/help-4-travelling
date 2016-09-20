@@ -1,6 +1,7 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.servicios.ClienteService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
@@ -40,5 +41,9 @@ public class ClienteController {
 
     public boolean emailExiste(String email) {
         return this.clienteService.emailExiste(email);
+    }
+
+    public ArrayList<Cliente> listarCompradoresServicio(Servicio servicio) {
+        return this.clienteService.listarCompradoresServicio(servicio);
     }
 }

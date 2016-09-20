@@ -66,6 +66,10 @@ public class Servicio extends Producto {
 
     @Override
     public String toString() {
-        return super.getNombre();
+        String mensaje  = super.getNombre() + " : " + super.getProveedor().getNombre();
+        if (this.getOrigen() != null &&  this.getDestino() != null ) {
+            mensaje += " Origen: " + this.getOrigen().getNombre() +"   Destino: " + this.getDestino().getNombre();
+        }
+        return mensaje;
     }
 }

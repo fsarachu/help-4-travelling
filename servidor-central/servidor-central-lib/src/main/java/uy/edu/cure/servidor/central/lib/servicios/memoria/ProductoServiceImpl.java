@@ -30,13 +30,38 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
 
     public ArrayList<Servicio> listarServicios() {
         ArrayList<Servicio> servicios = new ArrayList<>();
-        Producto producto;
 
         for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
-            producto = entry.getValue();
+            Producto producto = entry.getValue();
 
             if (producto.getTipo() == TipoProducto.servicio) {
-                servicios.add((Servicio) producto);
+                Servicio servicio = (Servicio) producto;
+                ArrayList<Categoria> categorias = servicio.getCategorias();
+
+                for (Categoria categoria : categorias) {
+                    if (categoria.getEstado().equals(EstadoCategoria.visible)) {
+                        servicios.add(servicio);
+                        break; //TODO
+                    }
+                }
+            }
+        }
+
+        return servicios;
+    }
+
+    @Override
+    public ArrayList<Servicio> listarServiciosPorCategoria(Categoria categoria) {
+        ArrayList<Servicio> servicios = new ArrayList<>();
+
+        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
+            Producto producto = entry.getValue();
+
+            if (producto.getTipo() == TipoProducto.servicio) {
+                Servicio servicio = (Servicio) producto;
+                if (servicio.getCategorias().contains(categoria)) {
+                    servicios.add(servicio);
+                }
             }
         }
 
@@ -45,13 +70,34 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
 
     public ArrayList<Promocion> listarPromociones() {
         ArrayList<Promocion> promociones = new ArrayList<>();
-        Producto producto;
 
         for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
-            producto = entry.getValue();
+            Producto producto = entry.getValue();
 
             if (producto.getTipo() == TipoProducto.promocion) {
                 promociones.add((Promocion) producto);
+            }
+        }
+
+        return promociones;
+    }
+
+    @Override
+    public ArrayList<Promocion> listarPromocionesPorCategoria(Categoria categoria) {
+        ArrayList<Promocion> promociones = new ArrayList<>();
+
+        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
+            Producto producto = entry.getValue();
+
+            if (producto.getTipo() == TipoProducto.promocion) {
+                Promocion promocion = (Promocion) producto;
+                ArrayList<Servicio> serviciosPromocion = promocion.getServicios();
+
+                for (Servicio servicio : serviciosPromocion) {
+                    if (servicio.getCategorias().contains(categoria)) {
+                        promociones.add(promocion);
+                    }
+                }
             }
         }
 
