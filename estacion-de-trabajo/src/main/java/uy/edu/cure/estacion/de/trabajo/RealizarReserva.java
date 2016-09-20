@@ -15,7 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RealizarReserva {
-    private JTextField txtPrecioTotal;
+    private JLabel txtPrecioTotal;
     private JTextField txtCantidadServicio;
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
@@ -34,6 +34,8 @@ public class RealizarReserva {
     private Carrito carrito;
     private Cliente cliente;
     private Producto producto;
+    private Double itemCantidad;
+    private Double itemPrecio;
 
     public RealizarReserva() {
         Date hoy = new Date();
@@ -101,10 +103,13 @@ public class RealizarReserva {
                     item.setFechaInicio(formatter.parse(getTxtFechaInicio().getText()));
                     item.setFechaFin(formatter.parse(getTxtFechaFin().getText()));
                     item.setProducto(producto);
-                    item.setSubTotal(item.getCantidad());
+                    itemCantidad = (Double) item.getCantidad();
+                    itemPrecio =  item.getProducto().getPrecio();
+                    item.setSubTotal(itemCantidad * itemPrecio);
                     CarritoController carritofinal = new CarritoController();
                     carritofinal.agregarItem(item, item.getCarrito());
                     mostrarListaReservas();
+                    txtPrecioTotal.setText( String.valueOf( carrito.getTotal() ) );
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
@@ -191,14 +196,6 @@ public class RealizarReserva {
         for (ItemReserva itemReserva : carritoItems) {
             mdllista.addElement(itemReserva);
         }
-    }
-
-    public JTextField getTxtPrecioTotal() {
-        return txtPrecioTotal;
-    }
-
-    public void setTxtPrecioTotal(JTextField txtPrecioTotal) {
-        this.txtPrecioTotal = txtPrecioTotal;
     }
 
 
