@@ -84,6 +84,7 @@ public class Principal extends JFrame {
         menu4.add(item10);
 
         item11 = new JMenuItem("Listado por Ciudad");
+        item11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/ciudades.jpeg")));
         menu1.add(item11);
 
         item1.addActionListener(new ActionListener() {
