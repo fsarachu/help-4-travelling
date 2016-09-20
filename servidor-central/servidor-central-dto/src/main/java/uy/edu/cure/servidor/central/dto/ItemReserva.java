@@ -9,7 +9,7 @@ public class ItemReserva {
     private double subTotal;
     private Date fechaInicio;
     private Date fechaFin;
-    private int cantidad;
+    private double cantidad;
 
     public ItemReserva() {
     }
@@ -72,7 +72,7 @@ public class ItemReserva {
         this.fechaFin = fechaFin;
     }
 
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
