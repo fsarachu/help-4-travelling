@@ -51,7 +51,9 @@ public class ListadoCiudad {
                     listClientes.setModel(mdllistaCliente);
                     ClienteController clienteController = new ClienteController();
                     ArrayList<Cliente> clientes = clienteController.listarCompradoresServicio((Servicio)list.getSelectedValue());
-                    mdllistaCliente.addElement(clientes);
+                    for (Cliente cliente : clientes) {
+                        mdllistaCliente.addElement(cliente);
+                    }
                 }
             }
         });
