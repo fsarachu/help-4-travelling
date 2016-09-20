@@ -15,6 +15,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class RealizarReserva {
+    private JLabel txtPrecioTotal;
     private JTextField txtCantidadServicio;
     private JTextField txtFechaInicio;
     private JTextField txtFechaFin;
@@ -28,12 +29,13 @@ public class RealizarReserva {
     private JRadioButton promocionRadioButton;
     private JList<ItemReserva> listReservas;
     private JButton btnAceptar;
-    private JTextField txtPrecioTotal;
     private DefaultListModel mdllista;
     private String mensaje;
     private Carrito carrito;
     private Cliente cliente;
     private Producto producto;
+    private Double itemCantidad;
+    private Double itemPrecio;
 
     public RealizarReserva() {
         Date hoy = new Date();
@@ -101,10 +103,13 @@ public class RealizarReserva {
                     item.setFechaInicio(formatter.parse(getTxtFechaInicio().getText()));
                     item.setFechaFin(formatter.parse(getTxtFechaFin().getText()));
                     item.setProducto(producto);
-                    item.setSubTotal(item.getCantidad());
+                    itemCantidad = (Double) item.getCantidad();
+                    itemPrecio =  item.getProducto().getPrecio();
+                    item.setSubTotal(itemCantidad * itemPrecio);
                     CarritoController carritofinal = new CarritoController();
                     carritofinal.agregarItem(item, item.getCarrito());
                     mostrarListaReservas();
+                    txtPrecioTotal.setText( String.valueOf( carrito.getTotal() ) );
 
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
@@ -193,13 +198,6 @@ public class RealizarReserva {
         }
     }
 
-    public JTextField getTxtPrecioTotal() {
-        return txtPrecioTotal;
-    }
-
-    public void setTxtPrecioTotal(JTextField txtPrecioTotal) {
-        this.txtPrecioTotal = txtPrecioTotal;
-    }
 
     public JTextField getTxtCantidadServicio() {
         return txtCantidadServicio;
@@ -255,6 +253,14 @@ public class RealizarReserva {
 
     public void setJcbPromoServicio(JComboBox jcbPromoServicio) {
         this.jcbPromoServicio = jcbPromoServicio;
+    }
+
+    public JComboBox getJcbCliente() {
+        return jcbCliente;
+    }
+
+    public void setJcbCliente(JComboBox jcbCliente) {
+        this.jcbCliente = jcbCliente;
     }
 
     public JPanel getPanelAltaReserva() {
