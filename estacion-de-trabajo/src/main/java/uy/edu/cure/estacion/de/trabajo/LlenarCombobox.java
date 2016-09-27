@@ -1,4 +1,4 @@
-package uy.edu.cure.servidor.central.lib.controlErroresInteface;
+package uy.edu.cure.estacion.de.trabajo;
 
 
 import uy.edu.cure.servidor.central.dto.*;

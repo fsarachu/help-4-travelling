@@ -2,7 +2,6 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.EstadoCategoria;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.LlenarCombobox;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 
 import javax.swing.*;

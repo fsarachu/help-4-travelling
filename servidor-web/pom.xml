@@ -8,6 +8,7 @@
 		<artifactId>programacion-applicaciones</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
+	<packaging>war</packaging>
 	<artifactId>servidor-web</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>servidor-web</name>
@@ -21,6 +22,21 @@
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
 			<scope>test</scope>
+		</dependency>
+        <dependency>
+            <groupId>com.sun.xml.ws</groupId>
+            <artifactId>jaxws-rt</artifactId>
+            <version>2.2.10</version>
+        </dependency>
+		<dependency>
+			<groupId>org.glassfish.jersey.containers</groupId>
+			<artifactId>jersey-container-servlet-core</artifactId>
+			<version>2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>uy.edu.cure</groupId>
+			<artifactId>servidor-central-webapp</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
