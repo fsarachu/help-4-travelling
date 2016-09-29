@@ -38,8 +38,4 @@ public class Ciudad {
         this.pais = pais;
     }
 
-    @Override
-    public String toString() {
-        return nombre;
-    }
 }

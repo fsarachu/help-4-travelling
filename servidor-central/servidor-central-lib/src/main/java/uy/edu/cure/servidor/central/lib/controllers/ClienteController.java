@@ -23,7 +23,7 @@ public class ClienteController {
         this.clienteService.eliminar(idCliente);
     }
 
-    Cliente obtener(Integer idCliente) {
+    public Cliente obtener(Integer idCliente) {
         return this.clienteService.obtener(idCliente);
     }
 

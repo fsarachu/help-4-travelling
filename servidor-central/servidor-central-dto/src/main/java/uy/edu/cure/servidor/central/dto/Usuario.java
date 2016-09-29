@@ -57,9 +57,7 @@ public abstract class Usuario {
         this.apellido = apellido;
     }
 
-    public String getCorreo() {
-        return correo;
-    }
+    public String getCorreo() { return correo; }
 
     public void setCorreo(String correo) {
         this.correo = correo;

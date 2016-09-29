@@ -84,8 +84,7 @@ public class ItemReserva {
         this.subTotal = this.producto.getPrecio() * this.cantidad;
     }
 
-    @Override
-    public String toString() {
+    public String datosReserva() {
         return ""+ id + " " + producto  ;
     }
 }

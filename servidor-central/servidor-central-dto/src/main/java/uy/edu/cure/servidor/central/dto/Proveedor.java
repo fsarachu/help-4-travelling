@@ -37,8 +37,4 @@ public class Proveedor extends Usuario {
         this.linkEmpresa = linkEmpresa;
     }
 
-    @Override
-    public String toString() {
-        return nombreEmpresa;
-    }
 }
