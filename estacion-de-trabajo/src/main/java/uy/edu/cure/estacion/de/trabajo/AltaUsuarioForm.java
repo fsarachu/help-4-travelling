@@ -3,6 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.CopioImagen;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.EmailValidator;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.FechaValidator;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.UsuarioExisteValidator;
@@ -16,6 +17,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -158,10 +160,17 @@ public class AltaUsuarioForm extends JFrame {
                         proveedorController.nuevo(provedor);
                         panelMain.setVisible(false);
                     }
+                    if (txtImagen1.toString() != null) {
+                        String destino = "/imagenes";
+                        CopioImagen copioImagen = new CopioImagen();
+                        copioImagen.copioArchivo(txtImagen1.toString() , destino );
+                    }
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
                     JOptionPane.showMessageDialog(null, "Verifique la fecha ingresada. " , "Datos inválidos", JOptionPane.ERROR_MESSAGE);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });

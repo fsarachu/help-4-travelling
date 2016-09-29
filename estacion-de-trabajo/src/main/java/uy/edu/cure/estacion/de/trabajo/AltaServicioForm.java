@@ -56,6 +56,9 @@ public class AltaServicioForm {
     private DefaultMutableTreeNode node;
 
     public AltaServicioForm() {
+        //txtPrecio = new javax.swing.JFormattedTextField();
+        txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
+
         final LlenarCombobox llenarCombobox = new LlenarCombobox();
         cmbCiudadOrigen.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadOrigen));
         cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));
@@ -322,5 +325,9 @@ public class AltaServicioForm {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    private void createUIComponents() {
+        // TODO: place custom component creation code here
     }
 }
