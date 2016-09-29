@@ -10,7 +10,7 @@
 <h:body>
     <h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
     <h:form>
-        <jsp:text>hola</jsp:text>
+        <h:inputText value="#{}"></h:inputText>
     </h:form>
 </h:body>
 </html>
