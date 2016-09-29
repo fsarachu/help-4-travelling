@@ -2,6 +2,7 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.EstadoCategoria;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.CategoriaValidator;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 
 import javax.swing.*;
@@ -45,17 +46,25 @@ public class AltaCategoriaForm {
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
-                if (nodo != null) {
-                    DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
-                    mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()), nodo, mdl.getChildCount(nodo));
+                try {
+                    CategoriaValidator categoriaValidator = new CategoriaValidator();
+                    if (!categoriaValidator.validator(txtCategoria.getText(), padre)) {
+                        throw new IllegalArgumentException("La categoria ya existe");
+                    }
+                    DefaultMutableTreeNode nodo = (DefaultMutableTreeNode) tree1.getLastSelectedPathComponent();
+                    if (nodo != null) {
+                        DefaultTreeModel mdl = (DefaultTreeModel) tree1.getModel();
+                        mdl.insertNodeInto(new DefaultMutableTreeNode(txtCategoria.getText()), nodo, mdl.getChildCount(nodo));
+                    }
+                    Categoria categoria = new Categoria();
+                    categoria.setPadre(padre);
+                    categoria.setNombre(txtCategoria.getText());
+                    categoria.setHijos(null);
+                    CategoriaController categoriaController = new CategoriaController();
+                    categoriaController.nueva(categoria);
+                } catch (IllegalArgumentException e){
+                    JOptionPane.showMessageDialog(null,"La categoria ya existe","Atencion",JOptionPane.ERROR_MESSAGE);
                 }
-                Categoria categoria = new Categoria();
-                categoria.setPadre(padre);
-                categoria.setNombre(txtCategoria.getText());
-                categoria.setHijos(null);
-                CategoriaController categoriaController = new CategoriaController();
-                categoriaController.nueva(categoria);
             }
         });
         btnCancelar.addActionListener(new ActionListener() {

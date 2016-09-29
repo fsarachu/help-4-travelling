@@ -10,6 +10,8 @@ import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.MaskFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -18,6 +20,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
@@ -25,7 +28,7 @@ public class AltaServicioForm {
     private JPanel panelServicio;
     private JTextField txtNombre;
     private JTextField txtDescripcion;
-    private JTextField txtPrecio;
+    private JFormattedTextField txtPrecio;
     private JComboBox cmbCiudadDestino;
     private JComboBox cmbProveedor;
     private JButton btnAceptar;
@@ -69,7 +72,6 @@ public class AltaServicioForm {
                     txtIdCategoria = categoria.getId();
                     padre = categoria;
                     cargarHijos(categoria);
-
                 }
 
             }
@@ -106,6 +108,11 @@ public class AltaServicioForm {
                         mensaje = "Proveedor no seleccionado";
                         throw new EmptyStackException();
                     }
+                    if (padre.getHijos().size() != 0) {
+                        mensaje = "No puede seleccionar categorias padre";
+                        throw new EmptyStackException();
+                    }
+
                     ProductoController productoController = new ProductoController();
                     Servicio servicio = new Servicio();
                     servicio.setNombre(txtNombre.getText());
@@ -237,11 +244,11 @@ public class AltaServicioForm {
         this.txtDescripcion = txtDescripcion;
     }
 
-    public JTextField getTxtPrecio() {
+    public JFormattedTextField getTxtPrecio() {
         return txtPrecio;
     }
 
-    public void setTxtPrecio(JTextField txtPrecio) {
+    public void setTxtPrecio(JFormattedTextField txtPrecio) {
         this.txtPrecio = txtPrecio;
     }
 
