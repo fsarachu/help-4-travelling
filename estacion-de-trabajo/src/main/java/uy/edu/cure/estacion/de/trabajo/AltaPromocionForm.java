@@ -1,14 +1,12 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Promocion;
+import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.Iterator;
@@ -28,6 +26,7 @@ public class AltaPromocionForm {
     private JList<Servicio> list;
     private JList<Servicio> listElegidos;
     private JLabel txtTotalPromo;
+    private JComboBox cmbProveedor;
     private JTextArea txtLista;
     private Promocion promocion;
     private JScrollPane scroolPanelPromo;
@@ -36,7 +35,8 @@ public class AltaPromocionForm {
     private String mensaje;
 
     public AltaPromocionForm() {
-        cargoServicios();
+        LlenarCombobox llenarCombobox = new LlenarCombobox();
+        cmbProveedor.setModel(llenarCombobox.cargarComboProveedores());
         final List<Servicio> servicios = new ArrayList<>();
         final DefaultListModel mdlservicios = new DefaultListModel();
         final List<Servicio> serviciosElegidos = new ArrayList<>();
@@ -112,6 +112,13 @@ public class AltaPromocionForm {
 
             }
         });
+        cmbProveedor.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent itemEvent) {
+                Proveedor proveedor = (Proveedor) cmbProveedor.getSelectedItem();
+                cargoServicios(proveedor.getId());
+            }
+        });
     }
 
     public void calculoTotal(List<Servicio> serviciosElegidos) {
@@ -131,13 +138,15 @@ public class AltaPromocionForm {
     }
 
 
-    private void cargoServicios() {
+    private void cargoServicios(Integer idProveedor) {
         mdllista = new DefaultListModel();
         list.setModel(mdllista);
         ProductoController productoController = new ProductoController();
         List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
         for (Servicio servicio : list1) {
-            mdllista.addElement(servicio);
+            if (servicio.getProveedor().getId() == idProveedor) {
+                mdllista.addElement(servicio);
+            }
         }
 
     }
