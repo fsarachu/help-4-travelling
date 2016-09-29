@@ -14,7 +14,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class RealizarReserva {
+public class RealizarReservaForm {
     private JTextField txtPrecioTotal;
     private JTextField txtCantidadServicio;
     private JTextField txtFechaInicio;
@@ -37,7 +37,7 @@ public class RealizarReserva {
     private Double itemCantidad;
     private Double itemPrecio;
 
-    public RealizarReserva() {
+    public RealizarReservaForm() {
         Date hoy = new Date();
 
         final SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");

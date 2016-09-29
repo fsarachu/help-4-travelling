@@ -3,7 +3,6 @@ package uy.edu.cure.estacion.de.trabajo;
 import java.awt.EventQueue;
 
 import javax.swing.JFrame;
-import javax.swing.SpringLayout;
 
 public class Main {
 
@@ -13,7 +12,7 @@ public class Main {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Principal window = new Principal();
+					PrincipalForm window = new PrincipalForm();
 					window.setBounds(20,20,700,700);
 					window.setVisible(true);
 				} catch (Exception e) {

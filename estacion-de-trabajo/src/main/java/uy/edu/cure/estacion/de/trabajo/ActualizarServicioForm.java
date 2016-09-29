@@ -10,7 +10,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
 
-public class ActualizarServicio extends JFrame {
+public class ActualizarServicioForm extends JFrame {
     private JComboBox cmbServicio;
     private JButton buttonAcept;
     private JButton buttonCancel;
@@ -44,7 +44,7 @@ public class ActualizarServicio extends JFrame {
     private JComboBox jcbInCategoria;
     private Integer txtIdServicio;
 
-    public ActualizarServicio() {
+    public ActualizarServicioForm() {
         final LlenarCombobox llenarCombobox = new LlenarCombobox();
         cmbServicio.setModel(llenarCombobox.cargarComboServicios());
         cmbCiudadOrigen.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadOrigen));

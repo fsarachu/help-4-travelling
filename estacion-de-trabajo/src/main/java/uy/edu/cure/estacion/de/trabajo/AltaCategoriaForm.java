@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
-public class AltaCategoria {
+public class AltaCategoriaForm {
     private JTree tree1;
     private JPanel panelMain;
     private JTextField txtCategoria;
@@ -25,7 +25,7 @@ public class AltaCategoria {
     private DefaultMutableTreeNode raiz;
     private Categoria padre;
 
-    public AltaCategoria() {
+    public AltaCategoriaForm() {
         final LlenarCombobox llenarCombobox = new LlenarCombobox();
         llenarCombobox.cargarTree(raiz, tree1);
         tree1.addTreeSelectionListener(new TreeSelectionListener() {

@@ -21,7 +21,7 @@ import java.awt.event.ItemListener;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
-public class AltaServicio {
+public class AltaServicioForm {
     private JPanel panelServicio;
     private JTextField txtNombre;
     private JTextField txtDescripcion;
@@ -52,7 +52,7 @@ public class AltaServicio {
     private DefaultMutableTreeNode raiz;
     private DefaultMutableTreeNode node;
 
-    public AltaServicio() {
+    public AltaServicioForm() {
         final LlenarCombobox llenarCombobox = new LlenarCombobox();
         cmbCiudadOrigen.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadOrigen));
         cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));

@@ -1,10 +1,11 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-//import javafx.stage.WindowEvent;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.EmailValidator;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.FechaValidator;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.UsuarioExisteValidator;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
 
@@ -17,9 +18,11 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
-public class AltaUsuario extends JFrame {
+public class AltaUsuarioForm extends JFrame {
     private JLabel lblNickname;
     private JRadioButton rbtnCliente;
     private JRadioButton rbtnProveedor;
@@ -40,7 +43,7 @@ public class AltaUsuario extends JFrame {
     private JFileChooser fileChooser;
     private String txtImagen1;
 
-    public AltaUsuario() {
+    public AltaUsuarioForm() {
         rbtnCliente.setSelected(true);
         txtEmpresa.setVisible(false);
         txtLink.setVisible(false);
@@ -106,7 +109,16 @@ public class AltaUsuario extends JFrame {
                         txtCorreo.requestFocus();
                         throw new IllegalArgumentException("Compruebe Correo");
                     }
+                    FechaValidator fechaValidator = new FechaValidator();
+                    if (!fechaValidator.validate(txtFechaNacimiento.getText())) {
+                        txtFechaNacimiento.requestFocus();
+                        throw new ParseException("Compruebe Fecha",1);
+                    }
 
+                    UsuarioExisteValidator usuarioExisteValidator = new UsuarioExisteValidator();
+                    if (!usuarioExisteValidator.validator(txtNickName.getText(), txtCorreo.getText())) {
+                        throw new IllegalArgumentException("Usuario Existente");
+                    }
 
                     if (rbtnCliente.isSelected() == true) {
 
@@ -149,7 +161,7 @@ public class AltaUsuario extends JFrame {
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(null, "Verifique la información ingresada. " + e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Verifique la fecha ingresada. " , "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

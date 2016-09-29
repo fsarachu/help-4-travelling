@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Principal extends JFrame {
+public class PrincipalForm extends JFrame {
     private JMenuBar menuBar;
     private JMenu menu1;
     private JMenu menu2;
@@ -24,7 +24,7 @@ public class Principal extends JFrame {
     //private JFrame frame;
     private JPanel panelMain;
 
-    public Principal() {
+    public PrincipalForm() {
         Hardcodeo hardcodeo = new Hardcodeo();
         setLayout(null);
         menuBar = new JMenuBar();
@@ -90,7 +90,7 @@ public class Principal extends JFrame {
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new AltaUsuario().getPanelMain());
+                setContentPane(new AltaUsuarioForm().getPanelMain());
                 setVisible(true);
 
             }
@@ -99,21 +99,21 @@ public class Principal extends JFrame {
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new AltaCategoria().getPanelMain());
+                setContentPane(new AltaCategoriaForm().getPanelMain());
                 setVisible(true);
             }
         });
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new AltaServicio().getPanelServicio());
+                setContentPane(new AltaServicioForm().getPanelServicio());
                 setVisible(true);
             }
         });
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new AltaPromocion().getPanelPromocion());
+                setContentPane(new AltaPromocionForm().getPanelPromocion());
                 setVisible(true);
 
             }
@@ -121,35 +121,35 @@ public class Principal extends JFrame {
         item5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new ActualizarServicio().getPanelActServicio());
+                setContentPane(new ActualizarServicioForm().getPanelActServicio());
                 setVisible(true);
             }
         });
         item6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new RealizarReserva().getPanelAltaReserva());
+                setContentPane(new RealizarReservaForm().getPanelAltaReserva());
                 setVisible(true);
             }
         });
         item7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new CancelarReserva().getPanelCancelarReserva());
+                setContentPane(new CancelarReservaForm().getPanelCancelarReserva());
                 setVisible(true);
             }
         });
         item8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new ActualizarEstadoReserva().getPanelActualizarEstado());
+                setContentPane(new ActualizarEstadoReservaForm().getPanelActualizarEstado());
                 setVisible(true);
             }
         });
         item9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new VerInfo().getPanelInfo());
+                setContentPane(new VerInfoForm().getPanelInfo());
                 setVisible(true);
             }
         });
@@ -163,7 +163,7 @@ public class Principal extends JFrame {
         item11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new ListadoCiudad().getPanelPrincipal());
+                setContentPane(new ListadoCiudadForm().getPanelPrincipal());
                 setVisible(true);
             }
         });

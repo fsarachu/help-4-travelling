@@ -8,12 +8,12 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
-public class VerInfo {
+public class VerInfoForm {
     private JComboBox cmbInfo;
     private JTextArea txtInfo;
     private JPanel panelInfo;
 
-    public VerInfo() {
+    public VerInfoForm() {
         cargarCombo();
         cmbInfo.addItemListener(new ItemListener() {
             @Override
@@ -23,40 +23,41 @@ public class VerInfo {
                     if (cmbInfo.getSelectedItem().equals("Clientes")) {
                         ClienteController clienteController = new ClienteController();
                         ArrayList<Cliente> clientes = clienteController.listar();
-                        for (Object obj : clientes) {
-                            txtInfo.append(obj.toString() + "\n");
+                        for (Cliente cliente : clientes) {
+                            txtInfo.append(cliente.getNombre() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Proveedores")) {
                         ProveedorController proveedorController = new ProveedorController();
                         ArrayList<Proveedor> proveedores = proveedorController.listar();
-                        for (Object obj : proveedores) {
-                            txtInfo.append(obj.toString() + "\n");
+                        for (Proveedor proveedor : proveedores) {
+                            txtInfo.append(proveedor.getNombreEmpresa() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Servicios")) {
                         ProductoController productoController = new ProductoController();
                         ArrayList<Servicio> servicios = productoController.listarServicios();
-                        for (Object obj : servicios) {
-                            txtInfo.append(obj.toString() + "\n");
+                        for (Servicio servicio : servicios) {
+                            txtInfo.append(servicio.getNombre() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Promociones")) {
                         ProductoController productoController = new ProductoController();
                         ArrayList<Promocion> promociones = productoController.listarPromociones();
-                        for (Object obj : promociones) {
-                            txtInfo.append(obj.toString() + "\n");
+                        for (Promocion promocion : promociones) {
+                            txtInfo.append(promocion.getNombre() +
+                                    "  - " + promocion.getDescripcion() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Reserva")) {
                         ReservaController reservaController = new ReservaController();
                         ArrayList<Reserva> reservas = reservaController.listar();
-                        for (Object obj : reservas) {
-                            txtInfo.append(obj.toString() + "\n");
+                        for (Reserva reserva : reservas) {
+                            txtInfo.append(reserva.getCliente().getNombre() + "  "
+                                    +reserva.getEstado() + "\n");
                         }
                     }
                 }
-
             }
         });
     }

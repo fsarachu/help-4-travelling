@@ -14,7 +14,7 @@ import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.List;
 
-public class AltaPromocion {
+public class AltaPromocionForm {
     private JTextField txtNombre;
     private JButton btnCalcularTotal;
     private JComboBox cmbServicios;
@@ -35,7 +35,7 @@ public class AltaPromocion {
     private DefaultListModel mdllista;
     private String mensaje;
 
-    public AltaPromocion() {
+    public AltaPromocionForm() {
         cargoServicios();
         final List<Servicio> servicios = new ArrayList<>();
         final DefaultListModel mdlservicios = new DefaultListModel();

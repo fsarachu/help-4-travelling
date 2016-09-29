@@ -13,19 +13,22 @@ import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.Vector;
 
-public class CancelarReserva {
-    private JComboBox jcbReservas;
-    private JButton cancelarButton;
-    private JButton aceptarButton;
+public class ActualizarEstadoReservaForm {
     private JComboBox jcbCliente;
-    private JPanel PanelCancelarReserva;
+    private JComboBox jcbReserva;
+    private JComboBox jcbEstado;
+    private JButton aceptarButton;
+    private JButton cancelarButton;
+    private JPanel panelActualizarEstado;
     private String mensaje;
     private Cliente cliente;
     private Reserva reserva;
+    private EstadoReserva estado;
 
-    public CancelarReserva() {
+    public ActualizarEstadoReservaForm(){
 
         cargaComboCliente();
+        cargarComboEstado();
 
         jcbCliente.addActionListener( new ActionListener() {
             @Override
@@ -51,28 +54,35 @@ public class CancelarReserva {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    if (jcbReservas.getSelectedItem().equals( "" )) {
-                        jcbReservas.requestFocus();
+                    if (jcbReserva.getSelectedItem().equals( "" )) {
+                        jcbReserva.requestFocus();
                         mensaje = "Reserva";
                     }
+                    if (jcbEstado.getSelectedItem().equals("")){
+                        jcbEstado.requestFocus();
+                        mensaje = "Estado";
+                    }
 
-                    reserva = (Reserva) jcbReservas.getSelectedItem();
+                    reserva = (Reserva) jcbReserva.getSelectedItem();
                     ReservaController reservaController = new ReservaController();
-                    reservaController.actualizarEstado( reserva.getId(), EstadoReserva.cancelada );
+                    estado = (EstadoReserva) jcbEstado.getSelectedItem();
+                    reservaController.actualizarEstado( reserva.getId(), estado);
 
                 } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos",JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
                 }
-                JOptionPane.showMessageDialog(null,"Reserva cancelada con exito","Atencion",JOptionPane.INFORMATION_MESSAGE);
-                PanelCancelarReserva.setVisible(false);
+                JOptionPane.showMessageDialog(null,"Reserva actualizada con exito","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                panelActualizarEstado.setVisible(false);
             }
         } );
+
         cancelarButton.addActionListener( new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                PanelCancelarReserva.setVisible( false );
+                panelActualizarEstado.setVisible( false );
             }
         } );
+
     }
 
     private void cargaComboCliente() {
@@ -85,46 +95,19 @@ public class CancelarReserva {
         ReservaController reservaController = new ReservaController();
         ArrayList<Reserva> reservas = reservaController.listarReservasCliente( cliente );
         ComboBoxModel<Reserva> mdlCombo = new DefaultComboBoxModel<>( new Vector<Reserva>(reservas) );
-        jcbReservas.setModel( mdlCombo );
+        jcbReserva.setModel( mdlCombo );
+    }
+    private void cargarComboEstado(){
+        ComboBoxModel<EstadoReserva> mdlCombo = new DefaultComboBoxModel<>( EstadoReserva.values() );
+        jcbEstado.setModel( mdlCombo );
+
     }
 
-    public JComboBox getJcbReservas() {
-        return jcbReservas;
+    public JPanel getPanelActualizarEstado() {
+        return panelActualizarEstado;
     }
 
-    public void setJcbReservas(JComboBox jcbReservas) {
-        this.jcbReservas = jcbReservas;
-    }
-
-    public JButton getCancelarButton() {
-        return cancelarButton;
-    }
-
-    public void setCancelarButton(JButton cancelarButton) {
-        this.cancelarButton = cancelarButton;
-    }
-
-    public JButton getAceptarButton() {
-        return aceptarButton;
-    }
-
-    public void setAceptarButton(JButton aceptarButton) {
-        this.aceptarButton = aceptarButton;
-    }
-
-    public JComboBox getJcbCliente() {
-        return jcbCliente;
-    }
-
-    public void setJcbCliente(JComboBox jcbCliente) {
-        this.jcbCliente = jcbCliente;
-    }
-
-    public JPanel getPanelCancelarReserva() {
-        return PanelCancelarReserva;
-    }
-
-    public void setPanelCancelarReserva(JPanel panelCancelarReserva) {
-        PanelCancelarReserva = panelCancelarReserva;
+    public void setPanelActualizarEstado(JPanel panelActualizarEstado) {
+        this.panelActualizarEstado = panelActualizarEstado;
     }
 }

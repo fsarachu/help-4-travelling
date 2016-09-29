@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ListadoCiudad {
+public class ListadoCiudadForm {
     private JComboBox cmbCiudades;
     private JPanel panelPrincipal;
     private JList<Servicio> list;
@@ -23,7 +23,7 @@ public class ListadoCiudad {
     private DefaultListModel mdllistaCliente;
     private DefaultListModel mdllista;
 
-    public ListadoCiudad() {
+    public ListadoCiudadForm() {
         LlenarCombobox llenarCombobox = new LlenarCombobox();
         cmbCiudades.setModel(llenarCombobox.cargarComboCiudad(cmbCiudades));
 

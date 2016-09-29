@@ -60,5 +60,5 @@ public class Reserva {
     public void setEstado(EstadoReserva estado) {
         this.estado = estado;
     }
-    
+
 }

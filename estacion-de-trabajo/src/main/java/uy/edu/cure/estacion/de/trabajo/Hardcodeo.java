@@ -232,6 +232,7 @@ public class Hardcodeo {
         cliente1.setNombre("Franco");
         cliente1.setApellido("Sarachu");
         cliente1.setNickname("Franco");
+        cliente1.setCorreo("franco@franco.com");
         Date nacimiento1 = new Date(2010, 01, 11);
         cliente1.setFechaNacimiento(nacimiento1);
         clienteController.nuevo(cliente1);
@@ -240,6 +241,7 @@ public class Hardcodeo {
         cliente2.setNombre("Nicolas");
         cliente2.setApellido("Pioli");
         cliente2.setNickname("Nicolas");
+        cliente2.setCorreo("nicolas@nicolas.com");
         Date nacimiento2 = new Date(2010, 01, 11);
         cliente2.setFechaNacimiento(nacimiento2);
         clienteController.nuevo(cliente2);
@@ -248,6 +250,7 @@ public class Hardcodeo {
         cliente3.setNombre("Santiago");
         cliente3.setApellido("Martinez");
         cliente3.setNickname("Santiago");
+        cliente3.setCorreo("santiago@santiago.com");
         Date nacimiento3 = new Date(2010, 01, 11);
         cliente3.setFechaNacimiento(nacimiento3);
         clienteController.nuevo(cliente3);
@@ -256,6 +259,7 @@ public class Hardcodeo {
         cliente4.setNombre("Victor");
         cliente4.setApellido("Torterola");
         cliente4.setNickname("Victor");
+        cliente4.setCorreo("victor@victor.com");
         Date nacimiento4 = new Date(2010, 01, 11);
         cliente4.setFechaNacimiento(nacimiento4);
         clienteController.nuevo(cliente4);
@@ -264,6 +268,7 @@ public class Hardcodeo {
         cliente5.setNombre("Viviana");
         cliente5.setApellido("Bruno");
         cliente5.setNickname("Viviana");
+        cliente5.setCorreo("viviana@viviana.com");
         Date nacimiento5 = new Date(2010, 01, 11);
         cliente5.setFechaNacimiento(nacimiento5);
         clienteController.nuevo(cliente5);
@@ -272,6 +277,7 @@ public class Hardcodeo {
         cliente6.setNombre("Marcos");
         cliente6.setApellido("Prat");
         cliente6.setNickname("Marcos");
+        cliente6.setCorreo("marcos@marcos.com");
         Date nacimiento6 = new Date(2010, 01, 11);
         cliente6.setFechaNacimiento(nacimiento6);
         clienteController.nuevo(cliente6);
