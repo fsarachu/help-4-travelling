@@ -1,7 +1,7 @@
 package uy.edu.cure.servidor.web;
 
+
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.dto.Usuario;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 
 import java.io.Serializable;
@@ -20,10 +20,29 @@ public class UsuarioBean implements Serializable{
     private String correo;
     private Date fechaNacimiento;
     private String imagen;
+    private String textoErrorNombre;
+    private boolean errorNombre;
 
-    public UsuarioBean() {
+    public String accion(){
         ClienteController clienteController = new ClienteController();
-        clienteController.obtener(1);
+        this.setErrorNombre(false);
+        this.setTextoErrorNombre("");
+        if(clienteController.nicknameExiste(this.getNickname())) {
+            this.setErrorNombre(true);
+            this.setTextoErrorNombre("El usuario ya existe");
+        }else  if(!this.getNickname().equals("")){
+            this.setErrorNombre(true);
+            this.setTextoErrorNombre("Debe ingresar un nombre");
+        }else{
+            return "welcome";
+        }
+        return "";
+    }
+
+    public boolean getErrorNombre() { return errorNombre; }
+
+    public void setErrorNombre(boolean errorNombre) {
+        this.errorNombre = errorNombre;
     }
 
     public Integer getId() {
@@ -80,5 +99,17 @@ public class UsuarioBean implements Serializable{
 
     public void setImagen(String imagen) {
         this.imagen = imagen;
+    }
+
+    public String getTextoErrorNombre() {
+        return textoErrorNombre;
+    }
+
+    public void setTextoErrorNombre(String textoErrorNombre) {
+        this.textoErrorNombre = textoErrorNombre;
+    }
+
+    public boolean isErrorNombre() {
+        return errorNombre;
     }
 }

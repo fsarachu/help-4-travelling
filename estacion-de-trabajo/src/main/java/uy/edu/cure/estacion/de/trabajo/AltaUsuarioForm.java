@@ -3,10 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.CopioImagen;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.EmailValidator;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.FechaValidator;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.UsuarioExisteValidator;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.*;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
 
@@ -42,6 +39,8 @@ public class AltaUsuarioForm extends JFrame {
     private JLabel lblLink;
     private JButton btnFoto;
     private JLabel lblFoto;
+    private JPasswordField txtContrasena;
+    private JPasswordField txtContrasenaConf;
     private JFileChooser fileChooser;
     private String txtImagen1;
 
@@ -120,6 +119,10 @@ public class AltaUsuarioForm extends JFrame {
                     UsuarioExisteValidator usuarioExisteValidator = new UsuarioExisteValidator();
                     if (!usuarioExisteValidator.validator(txtNickName.getText(), txtCorreo.getText())) {
                         throw new IllegalArgumentException("Usuario Existente");
+                    }
+                    ComparoContrasenaValidator comparoContrasenaValidator = new ComparoContrasenaValidator();
+                    if (!comparoContrasenaValidator.passwordCorrecto(txtContrasena.getPassword(),txtContrasenaConf.getPassword())) {
+                        throw new IllegalArgumentException("Las contrasenas no coinciden");
                     }
 
                     if (rbtnCliente.isSelected() == true) {

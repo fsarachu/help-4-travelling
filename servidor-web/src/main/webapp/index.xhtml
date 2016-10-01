@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>JSF 2.0 Hello World</title>
+
+    <style>
+        form label {
+            display: inline-table !important;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        form input[type="text"], form select {
+            width: 200px;
+        }
+
+        div {
+            padding: 5px 10px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h2>JSF 2.0 Hello World Example - hello.xhtml</h2>
+
+    <h:form>
+        <div>
+            <h:outputLabel>Nickname</h:outputLabel>
+            <h:inputText required="true" requiredMessage="El nickname es requerido"
+                         value="#{usuarioBean.nickname}">
+            </h:inputText>
+        </div>
+        <div>
+            <h:outputLabel>Nombre</h:outputLabel>
+            <h:inputText required="true" requiredMessage="El nombre es requerido"
+                         value="#{usuarioBean.nombre}">
+            </h:inputText>
+        </div>
+        <div>
+            <h:outputLabel>Numeros</h:outputLabel>
+            <h:inputText required="true"
+                         requiredMessage="El número es requerido"
+                         id="numeros" value="#{usuarioBean.id}">
+                <!--<f:convertNumber
+                        maxFractionDigits="0"
+                        groupingUsed="false"
+                        currencySymbol=""
+                        maxIntegerDigits="4"
+                        type="currency"/>-->
+            </h:inputText>
+        </div>
+        <div>
+            <h:outputLabel>Apellido</h:outputLabel>
+            <h:inputText required="true"
+                         requiredMessage="Debe ingresar el apellido"
+                         value="#{usuarioBean.apellido}">
+            </h:inputText>
+        </div>
+        <h:commandButton
+                value="Welcome Me" action="#{usuarioBean.accion}">
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>
