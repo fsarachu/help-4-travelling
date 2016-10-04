@@ -1,5 +1,7 @@
 package uy.edu.cure.servidor.central.dto;
 
+import sun.security.util.Password;
+
 import java.awt.image.BufferedImage;
 import java.util.Date;
 
@@ -11,11 +13,12 @@ public abstract class Usuario {
     private String correo;
     private Date fechaNacimiento;
     private String imagen;
+    private String contrasena;
 
     public Usuario() {
     }
 
-    public Usuario(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen) {
+    public Usuario(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, String contrasena) {
         this.id = id;
         this.nickname = nickname;
         this.nombre = nombre;
@@ -23,6 +26,7 @@ public abstract class Usuario {
         this.correo = correo;
         this.fechaNacimiento = fechaNacimiento;
         this.imagen = imagen;
+        this.contrasena = contrasena;
     }
 
     public Integer getId() {
@@ -78,4 +82,8 @@ public abstract class Usuario {
     public void setImagen(String imagen) {
         this.imagen = imagen;
     }
+
+    public String  getContrasena() { return contrasena; }
+
+    public void setContrasena(String contrasena) { this.contrasena = contrasena; }
 }

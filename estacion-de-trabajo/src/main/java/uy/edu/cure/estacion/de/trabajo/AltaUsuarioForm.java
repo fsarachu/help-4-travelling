@@ -134,6 +134,8 @@ public class AltaUsuarioForm extends JFrame {
                         cliente.setCorreo(txtCorreo.getText());
                         cliente.setFechaNacimiento(formatter.parse(txtFechaNacimiento.getText()));
                         cliente.setImagen(txtImagen1);
+                        String password = new String(txtContrasena.getPassword());
+                        cliente.setContrasena(password);
                         ClienteController clienteController = new ClienteController();
                         clienteController.nuevo(cliente);
                         panelMain.setVisible(false);

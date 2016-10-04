@@ -1,5 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
+import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

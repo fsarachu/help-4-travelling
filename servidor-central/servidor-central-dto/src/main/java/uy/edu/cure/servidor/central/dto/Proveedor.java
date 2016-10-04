@@ -15,12 +15,6 @@ public class Proveedor extends Usuario {
         this.linkEmpresa = linkEmpresa;
     }
 
-    public Proveedor(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, String nombreEmpresa, String linkEmpresa) {
-        super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
-        this.nombreEmpresa = nombreEmpresa;
-        this.linkEmpresa = linkEmpresa;
-    }
-
     public String getNombreEmpresa() {
         return nombreEmpresa;
     }

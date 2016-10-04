@@ -13,8 +13,8 @@ public class Cliente extends Usuario {
         this.carrito = carrito;
     }
 
-    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, Carrito carrito) {
-        super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen);
+    public Cliente(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, String contrasena, Carrito carrito) {
+        super(id, nickname, nombre, apellido, correo, fechaNacimiento, imagen, contrasena);
         this.carrito = carrito;
     }
 
