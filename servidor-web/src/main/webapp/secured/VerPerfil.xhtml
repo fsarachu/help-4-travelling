@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: victor
+  Date: 02/10/16
+  Time: 09:52 AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Help 4 Travelling</title>
+
+    <style>
+        form label {
+            display: inline-table !important;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        form input[type="text"] form select {
+            width: 200px;
+        }
+
+        div {
+            padding: 5px 10px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h2>Ver Perfil del Usuario</h2>
+
+    <h:form>
+        <div>
+            <h:outputLabel>Nickname </h:outputLabel>
+            <h:outputLabel>#{usuarioBean.nickname}</h:outputLabel>
+        </div>
+        <div>
+            <h:graphicImage value="/imagenes/imagen2.jpeg" />
+        </div>
+        <div>
+            <h:outputLabel>Nombre</h:outputLabel>
+            <h:inputText required="true" requiredMessage="El nombre es requerido"
+                         value="#{usuarioBean.nombre}">
+            </h:inputText>
+        </div>
+        <div>
+            <h:outputLabel>Apellido</h:outputLabel>
+            <h:inputText required="true"
+                         requiredMessage="Debe ingresar el apellido"
+                         value="#{usuarioBean.apellido}">
+            </h:inputText>
+        </div>
+        <div>
+            <h:outputLabel>Correo</h:outputLabel>
+            <h:inputText required="true"
+                         requiredMessage="Debe ingresar un correo"
+                         value="#{usuarioBean.correo}">
+            </h:inputText>
+        </div>
+        <div>
+            <h:outputLabel>Fecha Nacimiento</h:outputLabel>
+            <h:inputText value="#{usuarioBean.fechaNacimiento}" pattern="MM/dd/yyyy"/>
+        </div>
+        <div>
+            <label for="inputFile">Seleccione una imagen</label>
+            <input type="file" name="inputFile" id="inputFile" value="#{usuarioBean.imagen}"/>
+            <h:graphicImage value="/imagenes/#{usuarioBean.imagen}" />
+            <h:outputLabel>#{usuarioBean.imagen}</h:outputLabel>
+        </div>
+        <h:commandButton
+                value="Guardar" action="#{usuarioBean.accion}">
+        </h:commandButton>
+    </h:form>
+</h:body>
+</html>

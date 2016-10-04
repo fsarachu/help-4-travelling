@@ -1,4 +1,4 @@
-package uy.edu.cure.estacion.de.trabajo;
+package uy.edu.cure.servidor.central.lib.controllers;
 
 import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.controllers.*;
@@ -231,54 +231,60 @@ public class Hardcodeo {
         Cliente cliente1 = new Cliente();
         cliente1.setNombre("Franco");
         cliente1.setApellido("Sarachu");
-        cliente1.setNickname("Franco");
+        cliente1.setNickname("franco");
         cliente1.setCorreo("franco@franco.com");
         Date nacimiento1 = new Date(2010, 01, 11);
+        cliente1.setContrasena("1234");
         cliente1.setFechaNacimiento(nacimiento1);
         clienteController.nuevo(cliente1);
 
         Cliente cliente2 = new Cliente();
         cliente2.setNombre("Nicolas");
         cliente2.setApellido("Pioli");
-        cliente2.setNickname("Nicolas");
+        cliente2.setNickname("nicolas");
         cliente2.setCorreo("nicolas@nicolas.com");
         Date nacimiento2 = new Date(2010, 01, 11);
+        cliente2.setContrasena("1234");
         cliente2.setFechaNacimiento(nacimiento2);
         clienteController.nuevo(cliente2);
 
         Cliente cliente3 = new Cliente();
         cliente3.setNombre("Santiago");
         cliente3.setApellido("Martinez");
-        cliente3.setNickname("Santiago");
+        cliente3.setNickname("santiago");
         cliente3.setCorreo("santiago@santiago.com");
         Date nacimiento3 = new Date(2010, 01, 11);
+        cliente3.setContrasena("1234");
         cliente3.setFechaNacimiento(nacimiento3);
         clienteController.nuevo(cliente3);
 
         Cliente cliente4 = new Cliente();
         cliente4.setNombre("Victor");
         cliente4.setApellido("Torterola");
-        cliente4.setNickname("Victor");
+        cliente4.setNickname("victor");
         cliente4.setCorreo("victor@victor.com");
         Date nacimiento4 = new Date(2010, 01, 11);
+        cliente4.setContrasena("1234");
         cliente4.setFechaNacimiento(nacimiento4);
         clienteController.nuevo(cliente4);
 
         Cliente cliente5 = new Cliente();
         cliente5.setNombre("Viviana");
         cliente5.setApellido("Bruno");
-        cliente5.setNickname("Viviana");
+        cliente5.setNickname("viviana");
         cliente5.setCorreo("viviana@viviana.com");
         Date nacimiento5 = new Date(2010, 01, 11);
+        cliente5.setContrasena("1234");
         cliente5.setFechaNacimiento(nacimiento5);
         clienteController.nuevo(cliente5);
 
         Cliente cliente6 = new Cliente();
         cliente6.setNombre("Marcos");
         cliente6.setApellido("Prat");
-        cliente6.setNickname("Marcos");
+        cliente6.setNickname("marcos");
         cliente6.setCorreo("marcos@marcos.com");
         Date nacimiento6 = new Date(2010, 01, 11);
+        cliente6.setContrasena("1234");
         cliente6.setFechaNacimiento(nacimiento6);
         clienteController.nuevo(cliente6);
 

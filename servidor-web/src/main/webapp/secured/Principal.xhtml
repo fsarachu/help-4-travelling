@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Usuario Registrado</title>
+    <style type="text/css">
+        body {
+            background-color: silver;
+            background: url("../imagenes/fondo.jpg") no-repeat top right;
+        }
+        form label {
+            display: inline-table !important;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        form input[type="text"], form select {
+            width: 200px;
+        }
+
+        div {
+            padding: 5px 10px;
+        }
+    </style>
+</h:head>
+
+<h:body>
+    <h2>Usuario Registrado</h2>
+
+    <h:form>
+        <div>
+            <h:commandLink
+                    value="Ver Perfil" action="VerPerfil">
+            </h:commandLink>
+            <h:outputLabel>   </h:outputLabel>
+            <h:commandLink
+                    value="Ver carrito" action="welcome">
+            </h:commandLink>
+            <h:outputLabel>   </h:outputLabel>
+            <h:commandLink
+                    value="Confirmar carrito" action="welcome">
+            </h:commandLink>
+            <h:outputLabel>   </h:outputLabel>
+            <h:commandLink
+                    value="Cerrar sesion" action="index">
+            </h:commandLink>
+        </div>
+        <div>
+            <h:commandLink
+                    value="Ver Info del Proveedor" action="VerInfoProveedor">
+            </h:commandLink>
+        </div>
+        <div>
+            <h:commandLink
+                    value="Agregar Servicio" action="welcome"> <!--agrega servicios y promociones al carrito-->
+            </h:commandLink>
+        </div>
+        <div>
+            <h:commandLink
+                    value="Actualizar estado de reserva" action="welcome">
+            </h:commandLink>
+        </div>
+        <div>
+            <h:commandLink
+                    value="Ver informacion de Servicio" action="welcome">
+            </h:commandLink>
+        </div>
+        <div>
+            <h:commandLink
+                    value="Ver informacion de Promocion" action="welcome">
+            </h:commandLink>
+        </div>
+        <div>
+            <h:commandLink
+                    value="Ver informacion de Reserva" action="welcome">
+            </h:commandLink>
+        </div>
+    </h:form>
+
+</h:body>
+
+</html>

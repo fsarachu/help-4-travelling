@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <title>Help 4 Travelling</title>
+
+    <style type="text/css">
+        body {
+            background-color: silver;
+            background: url("imagenes/fondo.jpg") no-repeat top right;
+        }
+        form label {
+            display: inline-table !important;
+            width: 100px;
+            font-weight: bold;
+        }
+
+        form input[type="text"], form select {
+            width: 200px;
+        }
+
+        div {
+            padding: 5px 10px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h2>Login de usuario aqui</h2>
+
+    <h:form>
+        <div>
+            <h:outputLabel>Usuario: </h:outputLabel>
+            <h:inputText required="true" requiredMessage="Debe ingresar un usuario"
+                         value="#{usuarioBean.nickname}">
+            </h:inputText>
+        </div>
+        <div>
+            <h:outputLabel>Contrasena: </h:outputLabel>
+            <h:inputSecret required="true" requiredMessage="Debe ingresar la contrasena"
+                           value="#{usuarioBean.contrasena}">
+            </h:inputSecret>
+        </div>
+        <div>
+            <h:commandButton
+                    value="Continuar" action="#{usuarioBean.controloPassword}">
+            </h:commandButton>
+            <h:commandButton
+                    action="Principal" value="Menu Principal">
+                    <p>#{loginBean.loggedIn} || #{loginBean.username}</p>
+            </h:commandButton>
+        </div>
+    </h:form>
+</h:body>
+</html>

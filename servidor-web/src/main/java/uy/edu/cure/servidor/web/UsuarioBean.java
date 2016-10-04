@@ -2,7 +2,9 @@ package uy.edu.cure.servidor.web;
 
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
+import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -20,10 +22,17 @@ public class UsuarioBean implements Serializable{
     private String correo;
     private Date fechaNacimiento;
     private String imagen;
+    private String contrasena;
     private String textoErrorNombre;
     private boolean errorNombre;
 
-    public String accion(){
+    public UsuarioBean(){
+
+    }
+    public void cargarHardcodeo(){
+        Hardcodeo hardcodeo = new Hardcodeo();
+    }
+    public String usuarioExiste(){
         ClienteController clienteController = new ClienteController();
         this.setErrorNombre(false);
         this.setTextoErrorNombre("");
@@ -37,6 +46,29 @@ public class UsuarioBean implements Serializable{
             return "welcome";
         }
         return "";
+    }
+
+    public String controloPassword() {
+        ContrasenaValidator contrasenaValidator = new ContrasenaValidator();
+//        if (contrasenaValidator.validate(nickname, contrasena)) {
+        if (nickname.equals("victor") && contrasena.equals("1234")) {
+            return "principal";
+        } else {
+            return "nohome";
+        }
+    }
+
+    public UsuarioBean(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, String contrasena, String textoErrorNombre, boolean errorNombre) {
+        this.id = id;
+        this.nickname = nickname;
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.correo = correo;
+        this.fechaNacimiento = fechaNacimiento;
+        this.imagen = imagen;
+        this.contrasena = contrasena;
+        this.textoErrorNombre = textoErrorNombre;
+        this.errorNombre = errorNombre;
     }
 
     public boolean getErrorNombre() { return errorNombre; }
@@ -112,4 +144,8 @@ public class UsuarioBean implements Serializable{
     public boolean isErrorNombre() {
         return errorNombre;
     }
+
+    public String getContrasena() { return contrasena; }
+
+    public void setContrasena(String contrasena) { this.contrasena = contrasena; }
 }

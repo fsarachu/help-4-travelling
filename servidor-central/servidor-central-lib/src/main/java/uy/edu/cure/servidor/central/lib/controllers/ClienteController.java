@@ -46,4 +46,5 @@ public class ClienteController {
     public ArrayList<Cliente> listarCompradoresServicio(Servicio servicio) {
         return this.clienteService.listarCompradoresServicio(servicio);
     }
+
 }
