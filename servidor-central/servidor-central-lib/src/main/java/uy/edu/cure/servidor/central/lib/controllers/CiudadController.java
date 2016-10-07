@@ -22,7 +22,7 @@ public class CiudadController {
         this.ciudadService.eliminar(idCiudad);
     }
 
-    Ciudad obtener(Integer idCiudad) {
+    public Ciudad obtener(Integer idCiudad) {
         return this.ciudadService.obtener(idCiudad);
     }
 

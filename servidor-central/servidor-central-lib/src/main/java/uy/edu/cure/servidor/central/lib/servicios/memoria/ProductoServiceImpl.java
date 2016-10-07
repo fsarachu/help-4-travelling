@@ -28,6 +28,25 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
         return maxId + 1;
     }
 
+
+    @Override
+    public ArrayList<Servicio> listarServiciosPorCategoria(Categoria categoria) {
+        ArrayList<Servicio> servicios = new ArrayList<>();
+
+        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
+            Producto producto = entry.getValue();
+
+            if (producto.getTipo() == TipoProducto.servicio) {
+                Servicio servicio = (Servicio) producto;
+                if (servicio.getCategorias().contains(categoria)) {
+                    servicios.add(servicio);
+                }
+            }
+        }
+
+        return servicios;
+    }
+
     public ArrayList<Servicio> listarServicios() {
         ArrayList<Servicio> servicios = new ArrayList<>();
 
@@ -43,24 +62,6 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
                         servicios.add(servicio);
                         break; //TODO
                     }
-                }
-            }
-        }
-
-        return servicios;
-    }
-
-    @Override
-    public ArrayList<Servicio> listarServiciosPorCategoria(Categoria categoria) {
-        ArrayList<Servicio> servicios = new ArrayList<>();
-
-        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
-            Producto producto = entry.getValue();
-
-            if (producto.getTipo() == TipoProducto.servicio) {
-                Servicio servicio = (Servicio) producto;
-                if (servicio.getCategorias().contains(categoria)) {
-                    servicios.add(servicio);
                 }
             }
         }

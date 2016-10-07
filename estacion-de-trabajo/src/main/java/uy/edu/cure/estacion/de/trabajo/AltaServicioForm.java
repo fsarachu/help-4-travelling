@@ -5,7 +5,9 @@ import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
 import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 
 import javax.swing.*;
@@ -120,11 +122,13 @@ public class AltaServicioForm {
                     servicio.setDescripcion(txtDescripcion.getText());
                     double aDouble = Double.parseDouble(txtPrecio.getText());
                     servicio.setPrecio(aDouble);
-                    servicio.setOrigen((Ciudad) cmbCiudadOrigen.getSelectedItem());
-                    servicio.setDestino((Ciudad) cmbCiudadDestino.getSelectedItem());
+                    CiudadController ciudadController = new CiudadController();
+                    servicio.setOrigen(ciudadController.obtener(txtIdCiudadOrigen));
+                    servicio.setDestino(ciudadController.obtener(txtIdCiudadDestino));
                     CategoriaController categoriaController = new CategoriaController();
                     servicio.getCategorias().add(categoriaController.obtener(txtIdCategoria));
-                    servicio.setProveedor((Proveedor) cmbProveedor.getSelectedItem());
+                    ProveedorController proveedorController = new ProveedorController();
+                    servicio.setProveedor(proveedorController.obtener(txtIDProveedor));
                     ArrayList<String> imagenes = new ArrayList<String>();
                     imagenes.add(txtImagen1);
                     imagenes.add(txtImagen2);

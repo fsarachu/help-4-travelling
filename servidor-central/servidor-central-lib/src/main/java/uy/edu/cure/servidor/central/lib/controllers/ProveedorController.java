@@ -22,7 +22,7 @@ public class ProveedorController {
         this.proveedorService.eliminar(idProveedor);
     }
 
-    Proveedor obtener(Integer idProveedor) {
+    public Proveedor obtener(Integer idProveedor) {
         return this.proveedorService.obtener(idProveedor);
     }
 

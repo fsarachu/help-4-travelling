@@ -103,6 +103,7 @@ public class ProductoControllerTest {
 
         assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
+
 */
     @Test
     public void testListarPromociones() throws Exception {
