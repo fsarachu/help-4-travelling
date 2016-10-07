@@ -6,6 +6,7 @@ import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -28,7 +29,7 @@ public class AltaServicioForm {
     private JPanel panelServicio;
     private JTextField txtNombre;
     private JTextField txtDescripcion;
-    private JFormattedTextField txtPrecio;
+    private JTextField txtPrecio;
     private JComboBox cmbCiudadDestino;
     private JComboBox cmbProveedor;
     private JButton btnAceptar;
@@ -56,10 +57,7 @@ public class AltaServicioForm {
     private DefaultMutableTreeNode node;
 
     public AltaServicioForm() {
-        //txtPrecio = new javax.swing.JFormattedTextField();
-        txtPrecio.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#,###.00"))));
-
-        final LlenarCombobox llenarCombobox = new LlenarCombobox();
+        LlenarCombobox llenarCombobox = new LlenarCombobox();
         cmbCiudadOrigen.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadOrigen));
         cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));
         cmbProveedor.setModel(llenarCombobox.cargarComboProveedores());
@@ -122,13 +120,11 @@ public class AltaServicioForm {
                     servicio.setDescripcion(txtDescripcion.getText());
                     double aDouble = Double.parseDouble(txtPrecio.getText());
                     servicio.setPrecio(aDouble);
-                    Ciudad ciudad = new Ciudad();
-                    ciudad.setId(cmbCiudadOrigen.getSelectedIndex());
-                    servicio.setOrigen(ciudad);
-                    Ciudad ciudad1 = new Ciudad();
-                    ciudad1.setId(cmbCiudadDestino.getSelectedIndex());
-                    servicio.setDestino(ciudad1);
-                    servicio.setIdCategorias(txtIdCategoria);
+                    servicio.setOrigen((Ciudad) cmbCiudadOrigen.getSelectedItem());
+                    servicio.setDestino((Ciudad) cmbCiudadDestino.getSelectedItem());
+                    CategoriaController categoriaController = new CategoriaController();
+                    servicio.getCategorias().add(categoriaController.obtener(txtIdCategoria));
+                    servicio.setProveedor((Proveedor) cmbProveedor.getSelectedItem());
                     ArrayList<String> imagenes = new ArrayList<String>();
                     imagenes.add(txtImagen1);
                     imagenes.add(txtImagen2);
@@ -247,11 +243,11 @@ public class AltaServicioForm {
         this.txtDescripcion = txtDescripcion;
     }
 
-    public JFormattedTextField getTxtPrecio() {
+    public JTextField getTxtPrecio() {
         return txtPrecio;
     }
 
-    public void setTxtPrecio(JFormattedTextField txtPrecio) {
+    public void setTxtPrecio(JTextField txtPrecio) {
         this.txtPrecio = txtPrecio;
     }
 
@@ -303,6 +299,54 @@ public class AltaServicioForm {
         this.cmbCiudadOrigen = cmbCiudadOrigen;
     }
 
+    public JLabel getLblImagen1() {
+        return lblImagen1;
+    }
+
+    public void setLblImagen1(JLabel lblImagen1) {
+        this.lblImagen1 = lblImagen1;
+    }
+
+    public JLabel getLblImagen2() {
+        return lblImagen2;
+    }
+
+    public void setLblImagen2(JLabel lblImagen2) {
+        this.lblImagen2 = lblImagen2;
+    }
+
+    public JLabel getLblImagen3() {
+        return lblImagen3;
+    }
+
+    public void setLblImagen3(JLabel lblImagen3) {
+        this.lblImagen3 = lblImagen3;
+    }
+
+    public JButton getBtnImagen1() {
+        return btnImagen1;
+    }
+
+    public void setBtnImagen1(JButton btnImagen1) {
+        this.btnImagen1 = btnImagen1;
+    }
+
+    public JButton getBtnImagen2() {
+        return btnImagen2;
+    }
+
+    public void setBtnImagen2(JButton btnImagen2) {
+        this.btnImagen2 = btnImagen2;
+    }
+
+    public JButton getBtnImagen3() {
+        return btnImagen3;
+    }
+
+    public void setBtnImagen3(JButton btnImagen3) {
+        this.btnImagen3 = btnImagen3;
+    }
+
     public Integer getTxtIdCiudadOrigen() {
         return txtIdCiudadOrigen;
     }
@@ -325,6 +369,86 @@ public class AltaServicioForm {
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+    }
+
+    public Integer getTxtIDProveedor() {
+        return txtIDProveedor;
+    }
+
+    public void setTxtIDProveedor(Integer txtIDProveedor) {
+        this.txtIDProveedor = txtIDProveedor;
+    }
+
+    public DefaultMutableTreeNode getCategoriaSeleccionada() {
+        return categoriaSeleccionada;
+    }
+
+    public void setCategoriaSeleccionada(DefaultMutableTreeNode categoriaSeleccionada) {
+        this.categoriaSeleccionada = categoriaSeleccionada;
+    }
+
+    public JFileChooser getFileChooser() {
+        return fileChooser;
+    }
+
+    public void setFileChooser(JFileChooser fileChooser) {
+        this.fileChooser = fileChooser;
+    }
+
+    public String getTxtImagen1() {
+        return txtImagen1;
+    }
+
+    public void setTxtImagen1(String txtImagen1) {
+        this.txtImagen1 = txtImagen1;
+    }
+
+    public String getTxtImagen2() {
+        return txtImagen2;
+    }
+
+    public void setTxtImagen2(String txtImagen2) {
+        this.txtImagen2 = txtImagen2;
+    }
+
+    public String getTxtImagen3() {
+        return txtImagen3;
+    }
+
+    public void setTxtImagen3(String txtImagen3) {
+        this.txtImagen3 = txtImagen3;
+    }
+
+    public Integer getTxtIdCategoria() {
+        return txtIdCategoria;
+    }
+
+    public void setTxtIdCategoria(Integer txtIdCategoria) {
+        this.txtIdCategoria = txtIdCategoria;
+    }
+
+    public Categoria getPadre() {
+        return padre;
+    }
+
+    public void setPadre(Categoria padre) {
+        this.padre = padre;
+    }
+
+    public DefaultMutableTreeNode getRaiz() {
+        return raiz;
+    }
+
+    public void setRaiz(DefaultMutableTreeNode raiz) {
+        this.raiz = raiz;
+    }
+
+    public DefaultMutableTreeNode getNode() {
+        return node;
+    }
+
+    public void setNode(DefaultMutableTreeNode node) {
+        this.node = node;
     }
 
     private void createUIComponents() {

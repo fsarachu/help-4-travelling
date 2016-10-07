@@ -62,9 +62,8 @@ public class LoginBean {
 			Hardcodeo hardcodeo = new Hardcodeo();
 			primerlogin = false;
 		}
-		ContrasenaValidator contrasenaValidator = new ContrasenaValidator();
-        if (contrasenaValidator.validate(cliente)) {
-		//if (nickname.equals("victor") && contrasena.equals("1234")) {
+		ClienteController clienteController = new ClienteController();
+        if (clienteController.comprobarlogin(cliente.getNickname(),cliente.getContrasena())) {
 			loggedIn = true;
 			return null;
 		} else {

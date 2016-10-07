@@ -48,6 +48,22 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
         return false;
     }
 
+    public boolean comprobarlogin(String nickname, String contrasena) {
+        Cliente cliente;
+
+        for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
+            cliente = entry.getValue();
+
+            if (cliente.getNickname().equals(nickname) || cliente.getContrasena().equals(contrasena)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+
+
     @Override
     public boolean emailExiste(String email) {
         Cliente cliente;

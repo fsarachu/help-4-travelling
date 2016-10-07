@@ -43,7 +43,11 @@ public class ClienteController {
         return this.clienteService.emailExiste(email);
     }
 
-    public ArrayList<Cliente> listarCompradoresServicio(Servicio servicio) {
+    public boolean comprobarlogin(String nickname, String contrasena) {
+        return this.clienteService.comprobarlogin(nickname,contrasena);
+    }
+
+        public ArrayList<Cliente> listarCompradoresServicio(Servicio servicio) {
         return this.clienteService.listarCompradoresServicio(servicio);
     }
 

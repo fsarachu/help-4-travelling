@@ -12,6 +12,7 @@ import java.util.List;
 @ManagedBean
 @SessionScoped
 public class CategoriaBean implements Serializable {
+    private Categoria categoria;
     private Categoria padre;
 
 
@@ -39,5 +40,16 @@ public class CategoriaBean implements Serializable {
 
     public void setPadre(Categoria padre) {
         this.padre = padre;
+    }
+
+    public Categoria getCategoria() {
+        if (categoria == null) {
+            categoria = new Categoria();
+        }
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }

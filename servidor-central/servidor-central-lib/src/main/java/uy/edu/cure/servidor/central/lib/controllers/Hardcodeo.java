@@ -13,11 +13,11 @@ import java.util.Date;
 public class Hardcodeo {
 
     public Hardcodeo() {
-        harcodeoCategoria();
         hardcodeoCiudadPais();
+        harcodeoClientes();
+        harcodeoCategoria();
         harcodeoProveedor();
         harcodeoServicios();
-        harcodeoClientes();
     }
 
     private void hardcodeoCiudadPais() {
@@ -220,7 +220,7 @@ public class Hardcodeo {
         servicio5.setDestino(ciudadService.obtener(2));
         servicio5.setDescripcion("Doble");
         servicio5.setPrecio(80);
-        servicio3.getCategorias().add(categoriaService.obtener(13));
+        servicio5.getCategorias().add(categoriaService.obtener(13));
         productoController.agregar(servicio5);
     }
 
