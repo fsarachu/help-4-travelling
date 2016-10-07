@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
 <h:head>
     <title>Help 4 Travelling</title>
@@ -12,50 +13,29 @@
             background-color: silver;
             background: url("../imagenes/fondo.jpg") no-repeat top right;
         }
-
-        h2 {
-            background-color: transparent;
-            width: 300px;
-            margin: auto;
-        }
-
-        form label {
-            display: inline-table !important;
-            width: 100px;
-            font-weight: bold;
-        }
-
-        form input[type="text"], form select {
-            width: 200px;
-        }
-
-        div {
-            width: 200px;
-            padding: 5px 10px;
-            margin-right: 25px;
-            font: bold 15px Verdana;
-        }
     </style>
 </h:head>
 <h:body>
     <h2>Help 4 Travelling</h2>
 
     <h:form>
-        <div>
-            <h:commandLink
-                    value="login" action="Login">
-            </h:commandLink>
-        </div>
-        <div>
-            <h:commandLink
-                    value="Registrar cliente" action="AltaUsuarios">
-            </h:commandLink>
-        </div>
-        <div>
-            <h:commandLink
-                value="Cargar hardcodeo" action="#{usuarioBean.cargarHardcodeo}">
-            </h:commandLink>
-        </div>
+        <ol>
+            <li><p:commandLink>uno</p:commandLink></li>
+            <li><p:commandLink>dos</p:commandLink>
+                <ol>
+                    <li><p:commandLink>tres</p:commandLink></li>
+                    <li><p:commandLink>cuatro</p:commandLink>
+                        <ol>
+                            <li><p:commandLink>cinco</p:commandLink>
+                                <ol>
+                                    <li><p:commandLink>seis</p:commandLink></li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </li>
+        </ol>
     </h:form>
 </h:body>
 </html>

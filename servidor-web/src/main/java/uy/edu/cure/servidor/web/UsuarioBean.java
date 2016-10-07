@@ -1,7 +1,8 @@
-package uy.edu.cure.servidor.web;
+/*package uy.edu.cure.servidor.web;
 
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.dto.Usuario;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
@@ -15,6 +16,7 @@ import javax.faces.bean.SessionScoped;
 @ManagedBean
 @SessionScoped
 public class UsuarioBean implements Serializable{
+    private Usuario usuario;
     private Integer id;
     private String nickname;
     private String nombre;
@@ -27,36 +29,13 @@ public class UsuarioBean implements Serializable{
     private boolean errorNombre;
 
     public UsuarioBean(){
-
+        cargarHardcodeo();
     }
     public void cargarHardcodeo(){
         Hardcodeo hardcodeo = new Hardcodeo();
     }
-    public String usuarioExiste(){
-        ClienteController clienteController = new ClienteController();
-        this.setErrorNombre(false);
-        this.setTextoErrorNombre("");
-        if(clienteController.nicknameExiste(this.getNickname())) {
-            this.setErrorNombre(true);
-            this.setTextoErrorNombre("El usuario ya existe");
-        }else  if(!this.getNickname().equals("")){
-            this.setErrorNombre(true);
-            this.setTextoErrorNombre("Debe ingresar un nombre");
-        }else{
-            return "welcome";
-        }
-        return "";
-    }
 
-    public String controloPassword() {
-        ContrasenaValidator contrasenaValidator = new ContrasenaValidator();
-//        if (contrasenaValidator.validate(nickname, contrasena)) {
-        if (nickname.equals("victor") && contrasena.equals("1234")) {
-            return "principal";
-        } else {
-            return "nohome";
-        }
-    }
+
 
     public UsuarioBean(Integer id, String nickname, String nombre, String apellido, String correo, Date fechaNacimiento, String imagen, String contrasena, String textoErrorNombre, boolean errorNombre) {
         this.id = id;
@@ -148,4 +127,16 @@ public class UsuarioBean implements Serializable{
     public String getContrasena() { return contrasena; }
 
     public void setContrasena(String contrasena) { this.contrasena = contrasena; }
+
+    public Usuario getUsuario() {
+        if (usuario == null){
+            usuario =new Cliente();
+        }
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 }
+*/

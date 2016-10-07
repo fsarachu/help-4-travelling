@@ -18,8 +18,8 @@ public class AuthFilter implements Filter {
 		if (loginBean == null || !loginBean.isLoggedIn()) {
 			String contextPath = ((HttpServletRequest) request).getContextPath();
 			((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
-		}
-		chain.doFilter(request, response);
+		}else
+			chain.doFilter(request, response);
 	}
 
 	@Override
