@@ -27,6 +27,10 @@ public class ClienteController {
         return this.clienteService.obtener(idCliente);
     }
 
+    public Cliente obtenerXNombre(String nombre) {
+        return this.clienteService.obtenerXNombre(nombre);
+    }
+
     public void modificar(Cliente cliente) {
         this.clienteService.modificar(cliente.getId(), cliente);
     }

@@ -15,7 +15,7 @@
     <style type="text/css">
         body {
             background-color: silver;
-            background: url("imagenes/fondo.jpg") no-repeat top right;
+            background: url("resources/imagenes/fondo.jpg") no-repeat top right;
         }
     </style>
 </h:head>
@@ -38,6 +38,9 @@
         <div>
             <h:commandButton
                     value="Continuar" action="#{loginBean.controloPassword}">
+            </h:commandButton>
+            <h:commandButton
+                    value="Registrarse" action="/AltaUsuarios">
             </h:commandButton>
         </div>
         <div>

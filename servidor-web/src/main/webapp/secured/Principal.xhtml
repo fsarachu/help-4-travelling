@@ -11,7 +11,7 @@
     <style type="text/css">
         body {
             background-color: silver;
-            background: url("../imagenes/fondo.jpg") no-repeat top right;
+            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
         }
         form label {
             display: inline-table !important;
@@ -47,7 +47,7 @@
             </h:commandLink>
             <h:outputLabel>   </h:outputLabel>
             <h:commandLink
-                    value="Cerrar sesion" action="index">
+                    value="Cerrar sesion" action="#{loginBean.cerrarSesion}">
             </h:commandLink>
         </div>
         <div>

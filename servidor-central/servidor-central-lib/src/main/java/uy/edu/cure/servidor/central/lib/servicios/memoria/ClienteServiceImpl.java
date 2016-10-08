@@ -48,6 +48,20 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
         return false;
     }
 
+    public Cliente obtenerXNombre(String nickname) {
+        Cliente cliente;
+
+        for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
+            cliente = entry.getValue();
+
+            if (cliente.getNickname().equals(nickname)) {
+                return cliente;
+            }
+        }
+
+        return null;
+    }
+
     public boolean comprobarlogin(String nickname, String contrasena) {
         Cliente cliente;
 

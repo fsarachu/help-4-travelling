@@ -14,19 +14,10 @@
 <h:head>
     <title>Help 4 Travelling</title>
 
-    <style>
-        form label {
-            display: inline-table !important;
-            width: 100px;
-            font-weight: bold;
-        }
-
-        form input[type="text"] form select {
-            width: 200px;
-        }
-
-        div {
-            padding: 5px 10px;
+    <style type="text/css">
+        body {
+            background-color: silver;
+            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
         }
     </style>
 </h:head>
@@ -44,35 +35,35 @@
         <div>
             <h:outputLabel>Nombre</h:outputLabel>
             <h:inputText required="true" requiredMessage="El nombre es requerido"
-                         value="#{usuarioBean.nombre}">
+                         value="#{loginBean.cliente.nombre}">
             </h:inputText>
         </div>
         <div>
             <h:outputLabel>Apellido</h:outputLabel>
             <h:inputText required="true"
                          requiredMessage="Debe ingresar el apellido"
-                         value="#{usuarioBean.apellido}">
+                         value="#{loginBean.cliente.apellido}">
             </h:inputText>
         </div>
         <div>
             <h:outputLabel>Correo</h:outputLabel>
             <h:inputText required="true"
                          requiredMessage="Debe ingresar un correo"
-                         value="#{usuarioBean.correo}">
+                         value="#{loginBean.cliente.correo}">
             </h:inputText>
         </div>
         <div>
             <h:outputLabel>Fecha Nacimiento</h:outputLabel>
-            <h:inputText value="#{usuarioBean.fechaNacimiento}" pattern="MM/dd/yyyy"/>
+            <h:inputText value="#{loginBean.cliente.fechaNacimiento}" converter="myDateTimeConverter" />
         </div>
         <div>
             <label for="inputFile">Seleccione una imagen</label>
-            <input type="file" name="inputFile" id="inputFile" value="#{usuarioBean.imagen}"/>
-            <h:graphicImage value="/imagenes/#{usuarioBean.imagen}" />
-            <h:outputLabel>#{usuarioBean.imagen}</h:outputLabel>
+            <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
+            <h:graphicImage value="/imagenes/#{loginBean.cliente.imagen}" />
+            <h:outputLabel>#{loginBean.cliente.imagen}</h:outputLabel>
         </div>
         <h:commandButton
-                value="Guardar" action="#{usuarioBean.accion}">
+                value="Guardar" action="#{loginBean.modificar}">
         </h:commandButton>
     </h:form>
 </h:body>

@@ -64,11 +64,6 @@
 		</dependency>
 		<dependency>
 			<groupId>uy.edu.cure</groupId>
-			<artifactId>servidor-central-dto</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
-			<groupId>uy.edu.cure</groupId>
 			<artifactId>servidor-central-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>

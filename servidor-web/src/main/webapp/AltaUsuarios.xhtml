@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <title>Help 4 Travelling</title>
+
+    <style type="text/css">
+        body {
+            background-color: silver;
+            background: url("resources/imagenes/fondo.jpg") no-repeat top right;
+        }
+
+        form label {
+            display: inline-table !important;
+            width: 100px;
+            font-weight: bold;
+        }
+    </style>
+</h:head>
+<h:body>
+    <h2>Alta Clientes</h2>
+
+    <h:form>
+        <div class="form-group">
+            <label for="inputID" class="col-sm-1 control-label">Nickname:</label>
+            <div class="col-sm-2">
+                <h:inputText type="text" name="name" id="inputID" class="form-control"
+                             value="#{loginBean.cliente.nickname}" title="" required="true"
+                             requiredMessage="El nickname es requerido">
+                </h:inputText>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputID" class="col-sm-1 control-label">Correo:</label>
+            <div class="col-sm-2">
+                <h:inputText type="text" name="name" id="inputCORREO" class="form-control"
+                             value="#{loginBean.cliente.correo}" title="" required="true"
+                             requiredMessage="El correo es requerido">
+                </h:inputText>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputID" class="col-sm-1 control-label">Contrasena:</label>
+            <div class="col-sm-2">
+                <h:inputSecret type="text" name="name" id="inputCONTRASENA" class="form-control"
+                             value="#{loginBean.cliente.contrasena}" title="" required="true"
+                             requiredMessage="La contrasena es requerida">
+                </h:inputSecret>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputID" class="col-sm-1 control-label">Repita Contrasena:</label>
+            <div class="col-sm-2">
+                <h:inputSecret type="text" name="name" id="inputCONTRASENABIS" class="form-control"
+                               value="#{loginBean.contrasena}" title="" required="true"
+                               requiredMessage="La contrasena es requerida">
+                </h:inputSecret>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="inputID" class="col-sm-1 control-label">Nombre:</label>
+            <div class="col-sm-2">
+                <h:inputText type="text" name="name" id="inputNOMBRE" class="form-control"
+                             value="#{loginBean.cliente.nombre}" title="" required="true"
+                             requiredMessage="El nombre es requerido">
+                </h:inputText>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputID" class="col-sm-1 control-label">Apellido:</label>
+            <div class="col-sm-2">
+                <h:inputText type="text" name="name" id="inputAPELLIDO" class="form-control"
+                             value="#{loginBean.cliente.apellido}" title="" required="true"
+                             requiredMessage="El apellido es requerido">
+                </h:inputText>
+            </div>
+        </div>
+        <div>
+            <h:outputLabel>Fecha Nacimiento</h:outputLabel>
+            <h:inputText value="#{loginBean.cliente.fechaNacimiento}" converter="myDateTimeConverter"/>
+        </div>
+        <div>
+            <label for="inputFile">Seleccione una imagen</label>
+            <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
+        </div>
+        <div>
+            <h:commandButton
+                    value="Guardar" action="#{loginBean.nuevoUsuario}">
+            </h:commandButton>
+        </div>
+        <div>
+            <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
+        </div>
+    </h:form>
+</h:body>
+</html>
