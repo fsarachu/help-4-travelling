@@ -18,22 +18,33 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVICIOS<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="#">Alta</a></li>
-                            <li><a href="#">Listado</a></li>
+                            <li><a href="/AltaUsuarios.xhtml">Alta</a></li>
+                            <li><a href="#">Reserva</a></li>
+                            <li><a href="#">Servicios</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
                         <!-- En caso de no estar logueado -->
-                        <h:outputLink rendered="#{!loginBean.isLoggedIn()}" value="login.xhtml" >   Log In    </h:outputLink>
+                        <h:outputLink rendered="#{!loginBean.isLoggedIn()}" value="login.xhtml"> Log In </h:outputLink>
                         <!-- En caso de estarlo -->
                         <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">Bienvenid@ #{loginBean.getCliente().nombre}
+                            <a class="dropdown-toggle" data-toggle="dropdown"
+                               href="#">Bienvenid@ #{loginBean.getCliente().nombre}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                                 <li>
                                     <h:form rendered="#{loginBean.isLoggedIn()}">
-                                        <h:commandLink rendered="#{loginBean.isLoggedIn()}" action="#{loginBean.cerrarSesion() }" href="index.xhtml" value="Log Out"/>
+                                        <h:commandLink rendered="#{loginBean.isLoggedIn()}"
+                                                       action="#{loginBean.cerrarSesion() }" href="index.xhtml"
+                                                       value="Log Out"/>
+                                    </h:form>
+                                </li>
+                                <li>
+                                    <h:form>
+                                        <h:commandLink rendered="#{loginBean.isLoggedIn()}"
+                                                       action="VerPerfil.xhtml" value="Ver Perfil">
+                                        </h:commandLink>
                                     </h:form>
                                 </li>
                             </ul>

@@ -10,8 +10,18 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
 <h:head>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ></link>
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
     <title>Help 4 Travelling</title>
 
     <style type="text/css">
@@ -20,51 +30,49 @@
             background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
         }
     </style>
+
 </h:head>
 <h:body>
     <h2>Ver Perfil del Usuario</h2>
 
-    <h:form>
-        <div>
-            <h:outputLabel>Nickname </h:outputLabel>
-            <h:outputLabel>#{usuarioBean.nickname}</h:outputLabel>
+    <ui:insert name="navbar" >
+        <ui:include src="/WEB-INF/navbar.xhtml" />
+    </ui:insert>
+
+    <form action="">
+    	<div class="form-group">
+    		<label>Nickname #{loginBean.cliente.nickname}</label>
+    	</div>
+    </form>
+    <form action="">
+        <div class="form-group">
+            <h:graphicImage value="../resources/imagenes/imagen1.jpeg" />
         </div>
-        <div>
-            <h:graphicImage value="/imagenes/imagen2.jpeg" />
+    </form>
+    <form action="">
+        <div class="form-group">
+            <label>Nombre #{loginBean.cliente.nombre}</label>
         </div>
-        <div>
-            <h:outputLabel>Nombre</h:outputLabel>
-            <h:inputText required="true" requiredMessage="El nombre es requerido"
-                         value="#{loginBean.cliente.nombre}">
-            </h:inputText>
+    </form>
+    <form action="">
+        <div class="form-group">
+            <label>Apellido #{loginBean.cliente.apellido}</label>
         </div>
-        <div>
-            <h:outputLabel>Apellido</h:outputLabel>
-            <h:inputText required="true"
-                         requiredMessage="Debe ingresar el apellido"
-                         value="#{loginBean.cliente.apellido}">
-            </h:inputText>
+    </form>
+    <form action="">
+        <div class="form-group">
+            <label>Correo #{loginBean.cliente.correo}</label>
         </div>
-        <div>
-            <h:outputLabel>Correo</h:outputLabel>
-            <h:inputText required="true"
-                         requiredMessage="Debe ingresar un correo"
-                         value="#{loginBean.cliente.correo}">
-            </h:inputText>
+    </form>
+    <form action="">
+        <div class="form-group">
+            <label>Fecha de Nacimiento #{loginBean.cliente.fechaNacimiento}</label>
         </div>
-        <div>
-            <h:outputLabel>Fecha Nacimiento</h:outputLabel>
-            <h:inputText value="#{loginBean.cliente.fechaNacimiento}" converter="myDateTimeConverter" />
+    </form>
+    <form action="">
+        <div class="form-group">
+            <h:graphicImage value="../resource/imagenes/#{loginBean.cliente.imagen}" />
         </div>
-        <div>
-            <label for="inputFile">Seleccione una imagen</label>
-            <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
-            <h:graphicImage value="/imagenes/#{loginBean.cliente.imagen}" />
-            <h:outputLabel>#{loginBean.cliente.imagen}</h:outputLabel>
-        </div>
-        <h:commandButton
-                value="Guardar" action="#{loginBean.modificar}">
-        </h:commandButton>
-    </h:form>
+    </form>
 </h:body>
 </html>
