@@ -1,29 +1,41 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 <h:head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ></link>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" ></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ></link>
     <!-- Latest compiled and minified JavaScript -->
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <title>Help 4 Travelling</title>
 
     <style type="text/css">
         body {
             background-color: silver;
-            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
+            background: url("resources/imagenes/fondo.jpg") no-repeat top right;
+            padding-top: 70px;
         }
     </style>
 </h:head>
 <h:body>
-    <h2>Help 4 Travelling</h2>
 
+
+
+    <h1>Help 4 Travelling</h1>
+
+    <ui:insert name="navbar" >
+        <ui:include src="./WEB-INF/navbar.xhtml" />
+    </ui:insert>
+    <!--
     <h:form>
         <ol>
             <li><p:commandLink>uno</p:commandLink></li>
@@ -43,5 +55,6 @@
             </li>
         </ol>
     </h:form>
-</h:body>
+    -->
+    </h:body>
 </html>
