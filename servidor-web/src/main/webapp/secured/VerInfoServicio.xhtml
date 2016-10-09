@@ -26,8 +26,8 @@
 </h:head>
 <h:body>
     <h:form>
-        <h2>Ver Informacion del Proveedor</h2>
-        <h:dataTable value="#{proveedorBean.listProveedores}" var="proveedor" border="1">
+        <h2>Ver Informacion de Servicios</h2>
+        <h:dataTable value="#{servicioBean.listarServicio}" var="servicios" border="1">
             <h:column>
                 <f:facet name="header">
                     <h:outputText
@@ -35,8 +35,8 @@
                     </h:outputText>
                 </f:facet>
                 <!--<h:commandLink value="#{proveedor.nombreEmpresa}" actionListener="#{proveedoreBean}"></h:commandLink>-->
-                <h:commandLink action="#{servicioBean.cargarServicios(proveedor.id)}" immediate="true"
-                               value="#{proveedor.id}  #{proveedor.nombreEmpresa}">
+                <h:commandLink action="welcome" immediate="true"
+                               value="#{servicios.id}  #{servicios.descripcion}">
                 </h:commandLink>
             </h:column>
         </h:dataTable>

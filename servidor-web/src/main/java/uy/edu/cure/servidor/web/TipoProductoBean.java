@@ -2,7 +2,13 @@ package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.TipoProducto;
 
-public class TipoProductoBean {
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+
+@ManagedBean
+@SessionScoped
+public class TipoProductoBean implements Serializable{
     private TipoProducto tipoProducto;
 
 

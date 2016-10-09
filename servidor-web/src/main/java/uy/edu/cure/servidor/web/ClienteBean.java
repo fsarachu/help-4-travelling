@@ -2,7 +2,13 @@ package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 
-public class ClienteBean {
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+
+@ManagedBean
+@SessionScoped
+public class ClienteBean implements Serializable{
     private Cliente cliente;
 
     public ClienteBean() {

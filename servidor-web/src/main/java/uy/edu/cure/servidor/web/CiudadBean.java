@@ -2,7 +2,13 @@ package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Ciudad;
 
-public class CiudadBean {
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import java.io.Serializable;
+
+@ManagedBean
+@SessionScoped
+public class CiudadBean implements Serializable{
     private Ciudad ciudad;
 
     public CiudadBean() {
