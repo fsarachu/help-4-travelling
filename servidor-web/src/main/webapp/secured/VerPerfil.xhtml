@@ -11,13 +11,14 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
 
 <h:head>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -35,44 +36,62 @@
 <h:body>
     <h2>Ver Perfil del Usuario</h2>
 
-    <ui:insert name="navbar" >
-        <ui:include src="/WEB-INF/navbar.xhtml" />
+    <ui:insert name="navbar">
+        <ui:include src="/WEB-INF/navbar.xhtml"/>
     </ui:insert>
 
     <form action="">
-    	<div class="form-group">
-    		<label>Nickname #{loginBean.cliente.nickname}</label>
-    	</div>
-    </form>
-    <form action="">
         <div class="form-group">
-            <h:graphicImage value="../resources/imagenes/imagen1.jpeg" />
+            <label>Nickname #{loginBean.cliente.nickname}</label>
         </div>
     </form>
     <form action="">
         <div class="form-group">
-            <label>Nombre #{loginBean.cliente.nombre}</label>
+            <h:graphicImage value="#{loginBean.cliente.imagen}"/>
+            <label>Nickname #{loginBean.cliente.imagen}</label>
         </div>
     </form>
     <form action="">
-        <div class="form-group">
-            <label>Apellido #{loginBean.cliente.apellido}</label>
+        <div>
+            <h:outputLabel>Nombre</h:outputLabel>
+            <h:outputLabel>#{loginBean.cliente.nombre}</h:outputLabel>
         </div>
     </form>
     <form action="">
-        <div class="form-group">
-            <label>Correo #{loginBean.cliente.correo}</label>
+
+        <div>
+            <h:outputLabel>Apellido</h:outputLabel>
+            <h:outputLabel>#{loginBean.cliente.apellido}</h:outputLabel>
         </div>
     </form>
     <form action="">
-        <div class="form-group">
-            <label>Fecha de Nacimiento #{loginBean.cliente.fechaNacimiento}</label>
+
+        <div>
+            <h:outputLabel>Correo</h:outputLabel>
+            <h:outputLabel>#{loginBean.cliente.correo}</h:outputLabel>
         </div>
     </form>
     <form action="">
-        <div class="form-group">
-            <h:graphicImage value="../resource/imagenes/#{loginBean.cliente.imagen}" />
+
+        <div>
+            <h:outputLabel>Fecha Nacimiento</h:outputLabel>
+            <h:outputLabel converter="javax.faces.DateTime">#{loginBean.cliente.fechaNacimiento}</h:outputLabel>
         </div>
+    </form>
+    <form action="">
+        <h2>Reservas agregadas al carrito</h2>
+        <h:dataTable value="#{reservaBean.reservaList}" var="reservas" border="1">
+            <h:column>
+                <f:facet name="header">
+                    <h:outputText
+                            value="Reservas">
+                    </h:outputText>
+                </f:facet>
+                <h:outputLabel immediate="true"
+                               value="#{reservas.id}  #{reservas.carrito.id}">
+                </h:outputLabel>
+            </h:column>
+        </h:dataTable>
     </form>
 </h:body>
 </html>

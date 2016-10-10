@@ -236,6 +236,7 @@ public class Hardcodeo {
         Date nacimiento1 = new Date(2010, 01, 11);
         cliente1.setContrasena("1234");
         cliente1.setFechaNacimiento(nacimiento1);
+        cliente1.setImagen("/resources/imagenes/imagen1.jpeg");
         clienteController.nuevo(cliente1);
 
         Cliente cliente2 = new Cliente();

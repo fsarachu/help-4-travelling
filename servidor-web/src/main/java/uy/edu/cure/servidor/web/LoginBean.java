@@ -108,11 +108,6 @@ public class LoginBean implements Serializable {
 		}
 	}
 
-	public void modificar(){
-		ClienteController clienteController = new ClienteController();
-		clienteController.modificar(cliente);
-	}
-
 	public boolean comparoContrasenas(){
 		if(!contrasena.equals(cliente.getContrasena())) {
 			mensaje = "Las contrasenas no coinciden";
@@ -125,6 +120,13 @@ public class LoginBean implements Serializable {
 
 	public void cerrarSesion(){
 		loggedIn = false;
+		cliente = null;
+		System.out.println(cliente.getNombre());
+		System.out.println(cliente.getApellido());
+		System.out.println(cliente.getCorreo());
+		System.out.println(cliente.getNickname());
+
 	}
+
 
 }
