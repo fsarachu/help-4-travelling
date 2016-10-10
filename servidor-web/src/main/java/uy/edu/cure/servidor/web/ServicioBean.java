@@ -19,8 +19,6 @@ public class ServicioBean implements Serializable{
 
 
     public ServicioBean() {
-
-        cargarServicios(1); //cargar parametro ?????????
         cargarServiciosPromos();
     }
 
