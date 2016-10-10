@@ -1,6 +1,5 @@
 package uy.edu.cure.servidor.web;
 
-import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 
@@ -17,15 +16,13 @@ public class ServicioBean implements Serializable{
     private List<Servicio> listarServicio = new ArrayList<Servicio>();
 
     public ServicioBean() {
-
+        cargarServicios(1); //cargar parametro ?????????
     }
 
     public void cargarServicios(Integer id) {
-        servicio.setId(id);
         ProductoController productoController = new ProductoController();
-        List<Servicio> guarderService;
-        guarderService = productoController.listarServicios();
-        for (Servicio servicios : guarderService ) {
+        ArrayList<Servicio> guardarService = productoController.listarServicios();
+        for (Servicio servicios : guardarService ) {
             if (servicios.getProveedor().getId().equals(id)) {
                 listarServicio.add(servicios);
             }
