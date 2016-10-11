@@ -12,15 +12,52 @@
         <div class="container">
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
-                    <li>
-                        <a href="#">CLIENTES</a>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">CLIENTES<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><a href="/AltaUsuarios.xhtml">Registrar Cliente</a></li>
+                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
+                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href="/secured/VerPerfil.xhtml"
+                                               value="Ver Perfil"/>
+                            </h:form></li>
+                        </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">SERVICIOS<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="">PROVEEDORES<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="#">Alta</a></li>
-                            <li><a href="#">Reserva</a></li>
-                            <li><a href="#">Servicios</a></li>
+                            <li><a href="/VerInfoProveedor.xhtml">Ver Información de Proveedor</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">PRODUCTOS<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
+                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href="/secured/AgregarAlCarrito.xhtml"
+                                               value="Agregar Producto a Reserva Actual"/>
+                            </h:form></li>
+                            <li><a href="/VerInfoServicio.xhtml">Ver Información de Servicios</a></li>
+                            <li><a href="">Ver Información de Promociones</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">RESERVAS<span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
+                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
+                                               value="Ver Reserva Actual"/>
+                            </h:form></li>
+                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
+                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
+                                               value="Generar Reserva"/>
+                            </h:form></li>
+                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
+                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
+                                               value="Actualizar estado de Reserva"/>
+                            </h:form></li>
+                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
+                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
+                                               value="Ver Informacion de Reserva"/>
+                            </h:form></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -50,6 +87,7 @@
                             </ul>
                         </h:panelGroup>
                     </li>
+
                 </ul>
             </div><!--<div class="navbar-collapse collapse" id="navbar-main">-->
         </div><!--<div class="container">-->

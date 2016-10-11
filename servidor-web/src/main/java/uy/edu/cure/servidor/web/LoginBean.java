@@ -1,8 +1,8 @@
 package uy.edu.cure.servidor.web;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Part;
+//import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
+//import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 
