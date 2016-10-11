@@ -13,17 +13,14 @@
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="">CLIENTES<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">CLIENTES<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li><a href="/AltaUsuarios.xhtml">Registrar Cliente</a></li>
-                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
-                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href="/secured/VerPerfil.xhtml"
-                                               value="Ver Perfil"/>
-                            </h:form></li>
+
                         </ul>
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="">PROVEEDORES<span class="caret"></span></a>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">PROVEEDORES<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li><a href="/VerInfoProveedor.xhtml">Ver Información de Proveedor</a></li>
                         </ul>
@@ -31,10 +28,11 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">PRODUCTOS<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
-                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href="/secured/AgregarAlCarrito.xhtml"
-                                               value="Agregar Producto a Reserva Actual"/>
-                            </h:form></li>
+                            <li>
+                                <h:outputLink href="/secured/AgregarAlCarrito.xhtml" rendered="#{loginBean.isLoggedIn()}" >
+                                    <h:outputText value="Agregar Producto a Reserva Actual"/>
+                                </h:outputLink>
+                            </li>
                             <li><a href="/VerInfoServicio.xhtml">Ver Información de Servicios</a></li>
                             <li><a href="">Ver Información de Promociones</a></li>
                         </ul>
@@ -42,22 +40,26 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">RESERVAS<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
-                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
-                                               value="Ver Reserva Actual"/>
-                            </h:form></li>
-                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
-                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
-                                               value="Generar Reserva"/>
-                            </h:form></li>
-                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
-                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
-                                               value="Actualizar estado de Reserva"/>
-                            </h:form></li>
-                            <li><h:form rendered="#{loginBean.isLoggedIn()}">
-                                <h:commandLink rendered="#{loginBean.isLoggedIn()}" href=""
-                                               value="Ver Informacion de Reserva"/>
-                            </h:form></li>
+                            <li>
+                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}" >
+                                    <h:outputText value="Ver Reserva Actual"/>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}" >
+                                    <h:outputText value="Generar Reserva"/>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}" >
+                                    <h:outputText value="Actualizar estado de Reserva"/>
+                                </h:outputLink>
+                            </li>
+                            <li>
+                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}" >
+                                    <h:outputText value="Ver Informacion de Reserva"/>
+                                </h:outputLink>
+                            </li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -65,8 +67,8 @@
                         <h:outputLink rendered="#{!loginBean.isLoggedIn()}" value="login.xhtml"> Log In </h:outputLink>
                         <!-- En caso de estarlo -->
                         <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <a class="dropdown-toggle" data-toggle="dropdown"
-                               href="#">Bienvenid@ #{loginBean.getCliente().nombre}
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                Bienvenid@ #{loginBean.getCliente().nombre}
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -74,15 +76,14 @@
                                     <h:form rendered="#{loginBean.isLoggedIn()}">
                                         <h:commandLink rendered="#{loginBean.isLoggedIn()}"
                                                        action="#{loginBean.cerrarSesion() }" href="index.xhtml"
-                                                       value="Log Out"/>
+                                                       value="Log Out">
+                                        </h:commandLink>
                                     </h:form>
                                 </li>
                                 <li>
-                                    <h:form>
-                                        <h:commandLink rendered="#{loginBean.isLoggedIn()}"
-                                                       action="VerPerfil.xhtml" value="Ver Perfil">
-                                        </h:commandLink>
-                                    </h:form>
+                                    <h:outputLink value="/secured/VerPerfil.xhtml" rendered="#{loginBean.isLoggedIn()}" >
+                                        <h:outputText value="Ver Perfil"/>
+                                    </h:outputLink>
                                 </li>
                             </ul>
                         </h:panelGroup>
