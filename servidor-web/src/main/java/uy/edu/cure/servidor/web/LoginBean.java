@@ -1,8 +1,8 @@
 package uy.edu.cure.servidor.web;
 
-import com.sun.xml.internal.ws.wsdl.writer.document.Part;
+//import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
+//import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 
@@ -121,10 +121,10 @@ public class LoginBean implements Serializable {
 	public void cerrarSesion(){
 		loggedIn = false;
 		cliente = null;
-		System.out.println(cliente.getNombre());
+		/*System.out.println(cliente.getNombre());
 		System.out.println(cliente.getApellido());
 		System.out.println(cliente.getCorreo());
-		System.out.println(cliente.getNickname());
+		System.out.println(cliente.getNickname());*/
 
 	}
 
