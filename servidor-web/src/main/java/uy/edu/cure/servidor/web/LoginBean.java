@@ -68,7 +68,7 @@ public class LoginBean implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public void controloPassword() {
+	public String controloPassword() {
 		if (primerlogin) {
 			Hardcodeo hardcodeo = new Hardcodeo();
 			primerlogin = false;
@@ -78,8 +78,10 @@ public class LoginBean implements Serializable {
 			cliente = clienteController.obtenerXNombre(cliente.getNickname());
 			loggedIn = true;
 			mensaje = null;
+            return "secured/Principal?faces-redirect=true";
 		} else {
 			mensaje="Usuario incorrecto";
+            return null;
 		}
 	}
 
