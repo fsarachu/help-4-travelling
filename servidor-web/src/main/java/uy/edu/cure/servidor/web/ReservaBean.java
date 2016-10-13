@@ -52,4 +52,7 @@ public class ReservaBean implements Serializable{
         reservaList = reservaController.listarReservasCliente(cliente);
     }
 
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
 }
