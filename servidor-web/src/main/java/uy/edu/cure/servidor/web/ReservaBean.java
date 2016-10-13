@@ -67,8 +67,4 @@ public class ReservaBean implements Serializable{
         ReservaController reservaController = new ReservaController();
         reservaList = reservaController.listarReservasCliente(cliente);
     }
-
-    public LoginBean getLoginBean() {
-        return loginBean;
-    }
 }
