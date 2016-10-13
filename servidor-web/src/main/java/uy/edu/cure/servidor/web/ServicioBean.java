@@ -14,7 +14,7 @@ import java.util.List;
 @SessionScoped
 public class ServicioBean implements Serializable{
     private Servicio servicio;
-    private List<Servicio> listarServicio = new ArrayList<Servicio>();
+    private List<Producto> listarProductosServicio = new ArrayList<Producto>();
     private List<Producto> listarProducto = new ArrayList<Producto>();
 
 
@@ -22,28 +22,26 @@ public class ServicioBean implements Serializable{
         cargarServiciosPromos();
     }
 
-    public void cargarServicios(Integer id) {
-        ProductoController productoController = new ProductoController();
-        ArrayList<Servicio> guardarService = productoController.listarServicios();
-        for (Servicio servicios : guardarService ) {
-            if (servicios.getProveedor().getId().equals(id)) {
-                listarServicio.add(servicios);
+    public String cargarServicios(Integer id) {
+        for (Producto producto : listarProducto ) {
+            if (producto.getProveedor().getId().equals(id)) {
+                listarProductosServicio.add(producto);
             }
         }
+        return "AgregarServicioPromo?faces-redirect=true";
     }
 
-    public List<Servicio> getListarServicio() {
-        return listarServicio;
+    public List<Producto> getListarProductosServicio() {
+        return listarProductosServicio;
+    }
+
+    public void setListarProductosServicio(List<Producto> listarProductosServicio) {
+        this.listarProductosServicio = listarProductosServicio;
     }
 
     public void cargarServiciosPromos(){
         ProductoController productoController = new ProductoController();
         listarProducto = productoController.listarTodos();
-    }
-
-
-    public void setListarServicio(List<Servicio> listarServicio) {
-        this.listarServicio = listarServicio;
     }
 
     public Servicio getServicio() {

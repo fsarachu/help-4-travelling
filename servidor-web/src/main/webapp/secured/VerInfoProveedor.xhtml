@@ -46,8 +46,7 @@
                             value="Nombre">
                     </h:outputText>
                 </f:facet>
-                <!--<h:commandLink value="#{proveedor.nombreEmpresa}" actionListener="#{proveedoreBean}"></h:commandLink>-->
-                <h:commandLink action="VerInfoServicio" immediate="true"
+                <h:commandLink action="#{servicioBean.cargarServicios(proveedor.id)}" immediate="true"
                                value="#{proveedor.id}  #{proveedor.nombreEmpresa}">
                 </h:commandLink>
             </h:column>

@@ -120,14 +120,14 @@ public class LoginBean implements Serializable {
 
 	}
 
-	public void cerrarSesion(){
+	public String cerrarSesion(){
 		loggedIn = false;
 		cliente = null;
 		/*System.out.println(cliente.getNombre());
 		System.out.println(cliente.getApellido());
 		System.out.println(cliente.getCorreo());
 		System.out.println(cliente.getNickname());*/
-
+		return "index?faces-redirect=true";
 	}
 
 

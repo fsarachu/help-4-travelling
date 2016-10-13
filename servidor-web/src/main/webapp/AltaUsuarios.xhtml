@@ -3,7 +3,7 @@
 <!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://xmlns.jcp.org/jsf/core"
 >
 <h:head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
@@ -53,7 +53,14 @@
                 <h:inputText type="text" name="name" id="inputCORREO"
                              value="#{loginBean.cliente.correo}" title="" required="true"
                              requiredMessage="El correo es requerido">
+                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    <f:ajax
+                            event="keyup" render="@this inputMessage">
+                    </f:ajax>
                 </h:inputText>
+                <div>
+                    <h:message id="inputMessage" for="inputCORREO"></h:message>
+                </div>
         </div>
         <div>
                 <label>Contrasena:</label>

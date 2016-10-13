@@ -10,13 +10,14 @@
 
 <h:head>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
 
     <style type="text/css">
@@ -31,12 +32,12 @@
 
 </h:head>
 <h:body>
-    <ui:insert name="navbar" >
-        <ui:include src="WEB-INF/navbar.xhtml" />
+    <ui:insert name="navbar">
+        <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
     <h:form>
         <h2>Agregar Servicio o Promocion</h2>
-        <h:dataTable value="#{servicioBean.listarProducto}" var="serviciopromo" border="1">
+        <h:dataTable value="#{servicioBean.listarProductosServicio}" var="serviciopromo" border="1">
             <h:column>
                 <f:facet name="header">
                     <h:outputText
@@ -44,7 +45,7 @@
                     </h:outputText>
                 </f:facet>
                 <h:commandLink immediate="true"
-                               value="#{serviciopromo.id}  #{serviciopromo.nombre}">
+                               value="#{serviciopromo.id}  #{serviciopromo.descripcion}">
                 </h:commandLink>
             </h:column>
         </h:dataTable>
