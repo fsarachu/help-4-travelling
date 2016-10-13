@@ -24,8 +24,8 @@
             font-weight: bold;
         }
     </style>
-    <ui:insert name="navbar" >
-        <ui:include src="./WEB-INF/navbar.xhtml" />
+    <ui:insert name="navbar">
+        <ui:include src="./WEB-INF/navbar.xhtml"/>
     </ui:insert>
 
 </h:head>
@@ -33,60 +33,41 @@
     <h2>Alta Clientes</h2>
 
     <h:form>
-        <div class="form-group">
-            <label for="inputID" class="col-sm-1 control-label">Nickname:</label>
-            <div class="col-sm-2">
-                <h:inputText type="text" name="name" id="inputID" class="form-control"
+        <div>
+            <label>Nickname:</label>
+                <h:inputText type="text" name="name" id="inputID"
                              value="#{loginBean.cliente.nickname}" title="" required="true"
                              requiredMessage="El nickname es requerido">
                 </h:inputText>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputID" class="col-sm-1 control-label">Correo:</label>
-            <div class="col-sm-2">
-                <h:inputText type="text" name="name" id="inputCORREO" class="form-control"
+            <label >Correo:</label>
+                <h:inputText type="text" name="name" id="inputCORREO"
                              value="#{loginBean.cliente.correo}" title="" required="true"
                              requiredMessage="El correo es requerido">
                 </h:inputText>
-            </div>
         </div>
-        <div class="form-group">
-            <label for="inputID" class="col-sm-1 control-label">Contrasena:</label>
-            <div class="col-sm-2">
-                <h:inputSecret type="text" name="name" id="inputCONTRASENA" class="form-control"
-                             value="#{loginBean.cliente.contrasena}" title="" required="true"
-                             requiredMessage="La contrasena es requerida">
-                </h:inputSecret>
-            </div>
+        <div>
+                <label>Contrasena:</label>
+                    <h:inputSecret type="text" name="name" id="inputCONTRASENA"
+                                   value="#{loginBean.cliente.contrasena}" title="" required="true"
+                                   requiredMessage="La contrasena es requerida">
+                    </h:inputSecret>
+                <label>Repita Contrasena:</label>
+                    <h:inputSecret type="text" name="name" id="inputCONTRASENABIS"
+                                   value="#{loginBean.contrasena}" title="" required="true"
+                                   requiredMessage="La contrasena es requerida">
+                    </h:inputSecret>
         </div>
-        <div class="form-group">
-            <label for="inputID" class="col-sm-1 control-label">Repita Contrasena:</label>
-            <div class="col-sm-2">
-                <h:inputSecret type="text" name="name" id="inputCONTRASENABIS" class="form-control"
-                               value="#{loginBean.contrasena}" title="" required="true"
-                               requiredMessage="La contrasena es requerida">
-                </h:inputSecret>
-            </div>
-        </div>
-
-        <div class="form-group">
-            <label for="inputID" class="col-sm-1 control-label">Nombre:</label>
-            <div class="col-sm-2">
-                <h:inputText type="text" name="name" id="inputNOMBRE" class="form-control"
+        <div>
+            <label >Nombre:</label>
+                <h:inputText type="text" name="name" id="inputNOMBRE"
                              value="#{loginBean.cliente.nombre}" title="" required="true"
                              requiredMessage="El nombre es requerido">
                 </h:inputText>
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputID" class="col-sm-1 control-label">Apellido:</label>
-            <div class="col-sm-2">
-                <h:inputText type="text" name="name" id="inputAPELLIDO" class="form-control"
+            <label >Apellido:</label>
+                <h:inputText type="text" name="name" id="inputAPELLIDO"
                              value="#{loginBean.cliente.apellido}" title="" required="true"
                              requiredMessage="El apellido es requerido">
                 </h:inputText>
-            </div>
         </div>
         <div>
             <h:outputLabel>Fecha Nacimiento</h:outputLabel>
