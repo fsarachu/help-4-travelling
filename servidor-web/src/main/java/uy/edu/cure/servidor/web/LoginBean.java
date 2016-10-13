@@ -78,7 +78,7 @@ public class LoginBean implements Serializable {
 			cliente = clienteController.obtenerXNombre(cliente.getNickname());
 			loggedIn = true;
 			mensaje = null;
-            return "secured/Principal?faces-redirect=true";
+            return "secured/index?faces-redirect=true";
 		} else {
 			mensaje="Usuario incorrecto";
             return null;
