@@ -18,6 +18,8 @@ public class Hardcodeo {
         harcodeoCategoria();
         harcodeoProveedor();
         harcodeoServicios();
+        harcodeoReservas();
+
     }
 
     private void hardcodeoCiudadPais() {
@@ -289,6 +291,30 @@ public class Hardcodeo {
         cliente6.setFechaNacimiento(nacimiento6);
         clienteController.nuevo(cliente6);
 
+
+    }
+
+
+   private void harcodeoReservas(){
+
+        ReservaController reservactrl = new ReservaController();
+        ClienteController clientectrl = new ClienteController();
+
+        reservactrl.nueva(clientectrl.obtener(1));
+
+        reservactrl.nueva(clientectrl.obtener(2));
+        reservactrl.nueva(clientectrl.obtener(2));
+
+        reservactrl.nueva(clientectrl.obtener(3));
+
+        reservactrl.nueva(clientectrl.obtener(4));
+
+        reservactrl.nueva(clientectrl.obtener(5));
+        reservactrl.nueva(clientectrl.obtener(5));
+        reservactrl.nueva(clientectrl.obtener(5));
+
+        reservactrl.nueva(clientectrl.obtener(6));
+        reservactrl.nueva(clientectrl.obtener(6));
 
     }
 }
