@@ -80,7 +80,13 @@ public class LoginBean implements Serializable {
 			mensaje = null;
             return "secured/index?faces-redirect=true";
 		} else {
-			mensaje="Usuario incorrecto";
+			if(clienteController.nicknameExiste(this.cliente.getNickname())){
+				mensaje="Contraseña incorrecta";
+			}
+			else{
+				mensaje="Usuario no existe";
+			}
+
             return null;
 		}
 	}
