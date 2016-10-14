@@ -6,12 +6,13 @@ import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
-@SessionScoped
+@ViewScoped
 public class ServicioBean implements Serializable{
     private Servicio servicio;
     private List<Producto> listarProductosServicio = new ArrayList<Producto>();
