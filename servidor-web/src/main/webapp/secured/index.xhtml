@@ -26,33 +26,21 @@
         }
     </style>
 </h:head>
+<title>Help 4 Travelling</title>
+
 <h:body>
-
-    <title>Help 4 Travelling</title>
-
-    <ui:insert name="navbar" >
-        <ui:include src="../WEB-INF/navbar.xhtml" />
+    <ui:insert name="navbar">
+        <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
-    <!--
     <h:form>
-        <ol>
-            <li><p:commandLink>uno</p:commandLink></li>
-            <li><p:commandLink>dos</p:commandLink>
-                <ol>
-                    <li><p:commandLink>tres</p:commandLink></li>
-                    <li><p:commandLink>cuatro</p:commandLink>
-                        <ol>
-                            <li><p:commandLink>cinco</p:commandLink>
-                                <ol>
-                                    <li><p:commandLink>seis</p:commandLink></li>
-                                </ol>
-                            </li>
-                        </ol>
-                    </li>
-                </ol>
-            </li>
-        </ol>
+        <h2>Lista de categorias</h2>
+        <h:dataTable value="#{categoriaBean.listCategorias}" var="categorias" border="1">
+            <h:column>
+                <h:commandLink action="#{servicioBean.cargarServicios(categorias.id)}" immediate="true"
+                               value="#{categorias.id}  #{categorias.nombre}">
+                </h:commandLink>
+            </h:column>
+        </h:dataTable>
     </h:form>
-    -->
-    </h:body>
+</h:body>
 </html>
