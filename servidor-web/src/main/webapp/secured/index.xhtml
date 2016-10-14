@@ -2,21 +2,21 @@
 <!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 
 >
 <h:head>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <meta http-equiv="refresh" content="5"/>
 
     <style type="text/css">
         body {
@@ -32,15 +32,33 @@
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
-    <h:form>
-        <h2>Lista de categorias</h2>
-        <h:dataTable value="#{categoriaBean.listCategorias}" var="categorias" border="1">
-            <h:column>
-                <h:commandLink action="#{servicioBean.cargarServicios(categorias.id)}" immediate="true"
-                               value="#{categorias.id}  #{categorias.nombre}">
-                </h:commandLink>
-            </h:column>
-        </h:dataTable>
-    </h:form>
+    <div>
+        <h:form>
+            <h2>Lista de categorias</h2>
+            <h:dataTable value="#{categoriaBean.listCategorias}" var="categorias" border="1">
+                <h:column>
+                    <h:commandLink action="#{servicioBean.cargarServiciosXCategoria(categorias)}" immediate="true"
+                                   value="#{categorias.id}  #{categorias.nombre}">
+
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+        <h:form>
+            <h2>Servicios y Promociones</h2>
+            <h:dataTable value="#{servicioBean.listaServicios}" var="serviciopromo" border="1">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText
+                                value="Nombre">
+                        </h:outputText>
+                    </f:facet>
+                    <h:commandLink immediate="true"
+                                   value="#{serviciopromo.id}  #{serviciopromo.nombre}">
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </h:form>
+    </div>
 </h:body>
 </html>

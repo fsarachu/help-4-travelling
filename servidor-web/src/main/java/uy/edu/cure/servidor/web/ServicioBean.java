@@ -1,5 +1,6 @@
 package uy.edu.cure.servidor.web;
 
+import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
@@ -12,11 +13,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 @ManagedBean
-@ViewScoped
+@SessionScoped
 public class ServicioBean implements Serializable{
     private Servicio servicio;
     private List<Producto> listarProductosServicio = new ArrayList<Producto>();
     private List<Producto> listarProducto = new ArrayList<Producto>();
+    private List<Servicio> listaServicios = new ArrayList<Servicio>();
 
 
     public ServicioBean() {
@@ -24,12 +26,35 @@ public class ServicioBean implements Serializable{
     }
 
     public String cargarServicios(Integer id) {
+        listarProductosServicio = null;
         for (Producto producto : listarProducto ) {
             if (producto.getProveedor().getId().equals(id)) {
                 listarProductosServicio.add(producto);
             }
         }
         return "AgregarServicioPromo?faces-redirect=true";
+    }
+
+    public void cargarServiciosXCategoria(Categoria categoria) {
+        ProductoController productoController = new ProductoController();
+        listaServicios = productoController.listarServiciosPorCategoria(categoria);
+        // "AgregarServicioPromo?faces-redirect=true";
+    }
+
+    public boolean serviciosCargados(){
+        if (listarProductosServicio.size() != 0){
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public List<Servicio> getListaServicios() {
+        return listaServicios;
+    }
+
+    public void setListaServicios(List<Servicio> listaServicios) {
+        this.listaServicios = listaServicios;
     }
 
     public List<Producto> getListarProductosServicio() {

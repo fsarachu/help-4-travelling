@@ -47,11 +47,11 @@ public class ProductoController {
         return this.productoService.listarServiciosPorCiudad(ciudad);
     }
 
-    ArrayList<Servicio> listarServiciosPorCategoria(Categoria categoria) {
+    public ArrayList<Servicio> listarServiciosPorCategoria(Categoria categoria) {
         return this.productoService.listarServiciosPorCategoria(categoria);
     }
 
-    ArrayList<Promocion> listarPromocionesPorCategoria(Categoria categoria) {
+    public ArrayList<Promocion> listarPromocionesPorCategoria(Categoria categoria) {
         return this.productoService.listarPromocionesPorCategoria(categoria);
     }
 

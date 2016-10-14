@@ -14,26 +14,20 @@ import java.util.List;
 public class CategoriaBean implements Serializable {
     private Categoria categoria;
     private Categoria padre;
+    private List<Categoria> listCategorias = new ArrayList<Categoria>();
 
 
-    public ArrayList<Categoria> cargarCategorias() {
+    public CategoriaBean() { cargarCategorias(); }
+
+    private void cargarCategorias() {
         CategoriaController categoriaController = new CategoriaController();
-        ArrayList<Categoria> categorias = categoriaController.listar();
-        /*for (Categoria categoria : categorias) {
-            if (categoria.equals(padre)) {
-                cate = padre;
-            }
-        }*/
-        return categorias;
+        listCategorias = categoriaController.listar();
     }
 
-    public CategoriaBean() {
+    public String retornoCategorias(){
+        String item ="<li><a href=\"#\" title=\"Enlace a cerveza Pilsen\">Pilsen</a></li>";
+        return item;
     }
-
-    public CategoriaBean(Categoria padre) {
-        this.padre = padre;
-    }
-
     public Categoria getPadre() {
         return padre;
     }
@@ -52,4 +46,14 @@ public class CategoriaBean implements Serializable {
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
     }
+
+    public List<Categoria> getListCategorias() {
+        return listCategorias;
+    }
+
+    public void setListCategorias(List<Categoria> listCategorias) {
+        this.listCategorias = listCategorias;
+    }
+
 }
+

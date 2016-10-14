@@ -4,9 +4,9 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
-
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
 <h:head>
     <title>Usuario Registrado</title>
     <style type="text/css">
@@ -33,24 +33,41 @@
 <title>Help 4 Travelling</title>
 
 <h:body>
-    <ui:insert name="navbar">
-        <ui:include src="../WEB-INF/navbar.xhtml"/>
-    </ui:insert>
     <h:form>
         <h2>Ver Informacion del Proveedor</h2>
-        <h:dataTable value="#{proveedorBean.listProveedores}" var="proveedor" border="1">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText
-                            value="Nombre">
-                    </h:outputText>
-                </f:facet>
-                <h:commandLink action="#{servicioBean.cargarServicios(proveedor.id)}" immediate="true"
-                               value="#{proveedor.id}  #{proveedor.nombreEmpresa}">
-                </h:commandLink>
-            </h:column>
-        </h:dataTable>
+        <ul id="menu_arbol">
+            <li><a href="#" title="Ver las Cervezas">Cervezas</a>
+                <ul>
+                    <li><a href="#" title="Enlace a cerveza Pilsen">Pilsen</a></li>
+                    <li><a href="#" title="Enlace a cerveza Bock">Bock</a></li>
+                    <li><a href="#" title="Enlace a cerveza Lager">Lager</a></li>
+                    <li><a href="#" title="Enlace a cerveza Ale">Ale</a></li>
+                </ul>
+            </li>
+            <li><a href="#" title="Ver los Vinos">Vinos</a>
+                <ul>
+                    <li><a href="#" title="Enlace a Vino Merlot">Merlot</a></li>
+                    <li><a href="#" title="Enlace a Vino Sirah">Sirah</a></li>
+                </ul>
+            </li>
+            <li>
+                <a href="#" title="Ver los Licores">Licores</a>
+                <ul>
+                    <li><a href="#" title="Enlace Licor Ron">Ron</a></li>
+                    <li><a href="#" title="Enlace a Licor Vodka">Vodka</a></li>
+                </ul>
+            </li>
+        </ul>
+        <script type="javascript">
+            var primerElemento = document.createElement("li"),
+                    contenido = document.createTextNode("nuevo nodo");
+            primerElemento.appendChild(contenido);
+            var padre = document.getElementByTagName("li")[0].parentNode;
+            padre.replaceChild(primerElemento, document.getElementByTagName("li")[0])
+        </script>
+
     </h:form>
+
 </h:body>
 
 </html>
