@@ -137,7 +137,7 @@ public class Hardcodeo {
         Proveedor proveedor1 = new Proveedor();
         proveedor1.setNombre("Rentadora");
         proveedor1.setNickname("Rentadora");
-        Date nacimiento1 = new Date(2016, 02, 15);
+        Date nacimiento1 = new Date(116, 2, 15);
         proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Rentadora LTDA");
         proveedorController.nuevo(proveedor1);
@@ -145,7 +145,7 @@ public class Hardcodeo {
         Proveedor proveedor2 = new Proveedor();
         proveedor2.setNombre("Rentadora Dos");
         proveedor2.setNickname("Rentadora Dos");
-        Date nacimiento2 = new Date(2016, 02, 12);
+        Date nacimiento2 = new Date(116, 2, 12);
         proveedor2.setFechaNacimiento(nacimiento2);
         proveedor2.setNombreEmpresa("Rentadora Dos S.A.");
         proveedorController.nuevo(proveedor2);
@@ -153,7 +153,7 @@ public class Hardcodeo {
         Proveedor proveedor3 = new Proveedor();
         proveedor3.setNombre("El mejor Hotel");
         proveedor3.setNickname("El mejor Hotel");
-        Date nacimiento3 = new Date(2016, 02, 12);
+        Date nacimiento3 = new Date(116, 2, 12);
         proveedor3.setFechaNacimiento(nacimiento3);
         proveedor3.setNombreEmpresa("El mejor Hotel LTDA");
         proveedorController.nuevo(proveedor3);
@@ -161,7 +161,7 @@ public class Hardcodeo {
         Proveedor proveedor4 = new Proveedor();
         proveedor4.setNombre("Tu Hotel");
         proveedor4.setNickname("Tu Hotel");
-        Date nacimiento4 = new Date(2016, 02, 12);
+        Date nacimiento4 = new Date(116, 2, 12);
         proveedor4.setFechaNacimiento(nacimiento4);
         proveedor4.setNombreEmpresa("Tu Hotel S.A.");
         proveedorController.nuevo(proveedor4);
@@ -235,7 +235,7 @@ public class Hardcodeo {
         cliente1.setApellido("Sarachu");
         cliente1.setNickname("franco");
         cliente1.setCorreo("franco@franco.com");
-        Date nacimiento1 = new Date(2010, 01, 11);
+        Date nacimiento1 = new Date(85, 0, 11);
         cliente1.setContrasena("1234");
         cliente1.setFechaNacimiento(nacimiento1);
         cliente1.setImagen("/resources/imagenes/imagen1.jpeg");
@@ -246,7 +246,7 @@ public class Hardcodeo {
         cliente2.setApellido("Pioli");
         cliente2.setNickname("nicolas");
         cliente2.setCorreo("nicolas@nicolas.com");
-        Date nacimiento2 = new Date(2010, 01, 11);
+        Date nacimiento2 = new Date(85, 1, 11);
         cliente2.setContrasena("1234");
         cliente2.setFechaNacimiento(nacimiento2);
         clienteController.nuevo(cliente2);
@@ -256,7 +256,7 @@ public class Hardcodeo {
         cliente3.setApellido("Martinez");
         cliente3.setNickname("santiago");
         cliente3.setCorreo("santiago@santiago.com");
-        Date nacimiento3 = new Date(2010, 01, 11);
+        Date nacimiento3 = new Date(85, 2, 11);
         cliente3.setContrasena("1234");
         cliente3.setFechaNacimiento(nacimiento3);
         clienteController.nuevo(cliente3);
@@ -266,7 +266,7 @@ public class Hardcodeo {
         cliente4.setApellido("Torterola");
         cliente4.setNickname("victor");
         cliente4.setCorreo("victor@victor.com");
-        Date nacimiento4 = new Date(2010, 01, 11);
+        Date nacimiento4 = new Date(85, 3, 11);
         cliente4.setContrasena("1234");
         cliente4.setFechaNacimiento(nacimiento4);
         clienteController.nuevo(cliente4);
@@ -276,7 +276,7 @@ public class Hardcodeo {
         cliente5.setApellido("Bruno");
         cliente5.setNickname("viviana");
         cliente5.setCorreo("viviana@viviana.com");
-        Date nacimiento5 = new Date(2010, 01, 11);
+        Date nacimiento5 = new Date(85, 4, 11);
         cliente5.setContrasena("1234");
         cliente5.setFechaNacimiento(nacimiento5);
         clienteController.nuevo(cliente5);
@@ -286,7 +286,7 @@ public class Hardcodeo {
         cliente6.setApellido("Prat");
         cliente6.setNickname("marcos");
         cliente6.setCorreo("marcos@marcos.com");
-        Date nacimiento6 = new Date(2010, 01, 11);
+        Date nacimiento6 = new Date(85, 5, 11);
         cliente6.setContrasena("1234");
         cliente6.setFechaNacimiento(nacimiento6);
         clienteController.nuevo(cliente6);
