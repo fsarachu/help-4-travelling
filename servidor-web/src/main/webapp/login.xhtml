@@ -3,18 +3,18 @@
 <!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 <h:head>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" ></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" ></link>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link>
     <!-- Latest compiled and minified JavaScript -->
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <title>Help 4 Travelling</title>
 
@@ -39,34 +39,36 @@
 
                         <div align="center">
 
-                        <div align="right">
-                            <h:outputLabel>Usuario: </h:outputLabel>
-                            <h:inputText required="true" requiredMessage="Debe ingresar un usuario"
-                                         value="#{loginBean.cliente.nickname}">
-                            </h:inputText>
-                        </div>
-                        <div align="right">
-                            <h:outputLabel>Contrasena: </h:outputLabel>
-                            <h:inputSecret required="true" requiredMessage="Debe ingresar la contrasena"
-                                           value="#{loginBean.cliente.contrasena}">
-                            </h:inputSecret>
-                        </div>
+                            <div align="right">
+                                <h:outputLabel>Usuario: </h:outputLabel>
+                                <h:inputText required="true" requiredMessage="Debe ingresar un usuario"
+                                             value="#{loginBean.cliente.nickname}">
+                                </h:inputText>
+                            </div>
+                            <div align="right">
+                                <h:outputLabel>Contrasena: </h:outputLabel>
+                                <h:inputSecret required="true" requiredMessage="Debe ingresar la contrasena"
+                                               value="#{loginBean.cliente.contrasena}">
+                                </h:inputSecret>
+                            </div>
 
                         </div>
 
-<br></br>
-                        <div align="center" draggable="false" >
+                        <br></br>
+                        <div align="center" draggable="false">
                             <h:commandButton
                                     value="Continuar" action="#{loginBean.controloPassword}">
                             </h:commandButton>
-                            <h:commandButton
-                                    value="Registrarse" action="/AltaUsuarios">
-                            </h:commandButton>
                         </div>
                         <div>
-                            <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
+                            <h:outputLabel
+                                    rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
                         </div>
                     </h:form>
+                    <div align="center" draggable="false">
+                        <a href="AltaUsuarios.xhtml">Registro Usuario</a>
+                    </div>
+
                 </div>
 
             </div>
