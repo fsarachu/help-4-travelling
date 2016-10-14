@@ -25,34 +25,53 @@
             padding-top: 70px;
         }
     </style>
+    <link href="resources/css/login.css" rel="stylesheet"/>
+
 </h:head>
 <h:body>
-    <h2>Login de usuario aqui</h2>
 
-    <h:form>
-        <div>
-            <h:outputLabel>Usuario: </h:outputLabel>
-            <h:inputText required="true" requiredMessage="Debe ingresar un usuario"
-                         value="#{loginBean.cliente.nickname}">
-            </h:inputText>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6 col-md-4 col-md-offset-4">
+                <div class="account-wall">
+                    <img class="profile-img" src="resources/imagenes/login3.png"/>
+                    <h:form>
+
+                        <div align="center">
+
+                        <div align="right">
+                            <h:outputLabel>Usuario: </h:outputLabel>
+                            <h:inputText required="true" requiredMessage="Debe ingresar un usuario"
+                                         value="#{loginBean.cliente.nickname}">
+                            </h:inputText>
+                        </div>
+                        <div align="right">
+                            <h:outputLabel>Contrasena: </h:outputLabel>
+                            <h:inputSecret required="true" requiredMessage="Debe ingresar la contrasena"
+                                           value="#{loginBean.cliente.contrasena}">
+                            </h:inputSecret>
+                        </div>
+
+                        </div>
+
+<br></br>
+                        <div align="center" draggable="false" >
+                            <h:commandButton
+                                    value="Continuar" action="#{loginBean.controloPassword}">
+                            </h:commandButton>
+                            <h:commandButton
+                                    value="Registrarse" action="/AltaUsuarios">
+                            </h:commandButton>
+                        </div>
+                        <div>
+                            <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
+                        </div>
+                    </h:form>
+                </div>
+
+            </div>
         </div>
-        <div>
-            <h:outputLabel>Contrasena: </h:outputLabel>
-            <h:inputSecret required="true" requiredMessage="Debe ingresar la contrasena"
-                           value="#{loginBean.cliente.contrasena}">
-            </h:inputSecret>
-        </div>
-        <div>
-            <h:commandButton
-                    value="Continuar" action="#{loginBean.controloPassword}">
-            </h:commandButton>
-            <h:commandButton
-                    value="Registrarse" action="/AltaUsuarios">
-            </h:commandButton>
-        </div>
-        <div>
-            <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
-        </div>
-    </h:form>
+    </div>
+
 </h:body>
 </html>
