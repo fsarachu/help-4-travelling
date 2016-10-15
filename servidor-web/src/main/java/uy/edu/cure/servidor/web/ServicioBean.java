@@ -38,15 +38,12 @@ public class ServicioBean implements Serializable{
     public void cargarServiciosXCategoria(Categoria categoria) {
         ProductoController productoController = new ProductoController();
         listaServicios = productoController.listarServiciosPorCategoria(categoria);
-        // "AgregarServicioPromo?faces-redirect=true";
     }
 
-    public boolean serviciosCargados(){
-        if (listarProductosServicio.size() != 0){
-            return true;
-        } else {
-            return false;
-        }
+    public String buscarServicio(Integer id){
+        ProductoController productoController = new ProductoController();
+        servicio = (Servicio)productoController.obtener(id);
+        return "VerInfoServicio?faces-redirect=true";
     }
 
     public List<Servicio> getListaServicios() {

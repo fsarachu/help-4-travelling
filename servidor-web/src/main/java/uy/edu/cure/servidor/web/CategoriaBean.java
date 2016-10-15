@@ -24,9 +24,8 @@ public class CategoriaBean implements Serializable {
         listCategorias = categoriaController.listar();
     }
 
-    public String retornoCategorias(){
-        String item ="<li><a href=\"#\" title=\"Enlace a cerveza Pilsen\">Pilsen</a></li>";
-        return item;
+    public void retornoCategorias(Integer id){
+
     }
     public Categoria getPadre() {
         return padre;

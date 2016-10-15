@@ -41,11 +41,6 @@
         <h2>Ver Informacion del Proveedor</h2>
         <h:dataTable value="#{proveedorBean.listProveedores}" var="proveedor" border="1">
             <h:column>
-                <f:facet name="header">
-                    <h:outputText
-                            value="Nombre">
-                    </h:outputText>
-                </f:facet>
                 <h:commandLink action="#{servicioBean.cargarServicios(proveedor.id)}" immediate="true"
                                value="#{proveedor.id}  #{proveedor.nombreEmpresa}">
                 </h:commandLink>

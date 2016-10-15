@@ -2,7 +2,6 @@
 <!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 
 >
@@ -17,31 +16,34 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
     <meta http-equiv="refresh" content="5"/>
-
     <style type="text/css">
         body {
             background-color: silver;
             background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
             padding-top: 70px;
         }
+
         .box1, .box2 {
-            width:280px;
-            height:auto;
-            float:left;
-            margin-bottom:10px;
-            margin-top: 10%;
-            padding:10px;
-            border:1px solid #888;
-            background-color:  silver;
+            width: 280px;
+            height: auto;
+            float: left;
+            margin-bottom: 10px;
+            padding-top: 70px;
+            border: 1px solid #888;
+            background-color: silver;
         }
+
         .box1 {
-            clear:left;
-            margin-right:10px;
+            clear: left;
+            margin-right: 10px;
         }
+
         .clear {
-            clear:both;
+            clear: both;
         }
     </style>
+    <!--<link href="resources/css/index.css" rel="stylesheet"/>-->
+
 </h:head>
 <title>Help 4 Travelling</title>
 
@@ -58,7 +60,6 @@
                         <h:commandLink action="#{servicioBean.cargarServiciosXCategoria(categorias)}"
                                        immediate="true"
                                        value="#{categorias.id}  #{categorias.nombre}">
-
                         </h:commandLink>
                     </h:column>
                 </h:dataTable>
@@ -68,7 +69,7 @@
                 <h3>Servicios y Promociones</h3>
                 <h:dataTable value="#{servicioBean.listaServicios}" var="serviciopromo" border="1">
                     <h:column>
-                        <h:commandLink immediate="true"
+                        <h:commandLink action="#{servicioBean.buscarServicio(serviciopromo.id)}" immediate="true"
                                        value="#{serviciopromo.id}  #{serviciopromo.nombre}">
                         </h:commandLink>
                     </h:column>
