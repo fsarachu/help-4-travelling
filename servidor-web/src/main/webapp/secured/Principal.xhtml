@@ -1,73 +1,81 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
->
+      xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
-    <title>Usuario Registrado</title>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <meta http-equiv="refresh" content="5"/>
+
     <style type="text/css">
         body {
             background-color: silver;
             background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
-        }
-
-        form label {
-            display: inline-table !important;
-            width: 100px;
-            font-weight: bold;
-        }
-
-        form input[type="text"], form select {
-            width: 200px;
-        }
-
-        div {
-            padding: 5px 10px;
+            padding-top: 70px;
         }
     </style>
 </h:head>
 <title>Help 4 Travelling</title>
 
 <h:body>
-    <h:form>
-        <h2>Ver Informacion del Proveedor</h2>
-        <ul id="menu_arbol">
-            <li><a href="#" title="Ver las Cervezas">Cervezas</a>
-                <ul>
-                    <li><a href="#" title="Enlace a cerveza Pilsen">Pilsen</a></li>
-                    <li><a href="#" title="Enlace a cerveza Bock">Bock</a></li>
-                    <li><a href="#" title="Enlace a cerveza Lager">Lager</a></li>
-                    <li><a href="#" title="Enlace a cerveza Ale">Ale</a></li>
-                </ul>
-            </li>
-            <li><a href="#" title="Ver los Vinos">Vinos</a>
-                <ul>
-                    <li><a href="#" title="Enlace a Vino Merlot">Merlot</a></li>
-                    <li><a href="#" title="Enlace a Vino Sirah">Sirah</a></li>
-                </ul>
-            </li>
-            <li>
-                <a href="#" title="Ver los Licores">Licores</a>
-                <ul>
-                    <li><a href="#" title="Enlace Licor Ron">Ron</a></li>
-                    <li><a href="#" title="Enlace a Licor Vodka">Vodka</a></li>
-                </ul>
-            </li>
-        </ul>
-        <script type="javascript">
-            var primerElemento = document.createElement("li"),
-                    contenido = document.createTextNode("nuevo nodo");
-            primerElemento.appendChild(contenido);
-            var padre = document.getElementByTagName("li")[0].parentNode;
-            padre.replaceChild(primerElemento, document.getElementByTagName("li")[0])
-        </script>
+    <!--        <ul id="menu_arbol">
+                <li><a href="#" title="Ver las Cervezas">Cervezas</a>
+                    <ul>
+                        <li><a href="#" title="Enlace a cerveza Pilsen">Pilsen</a></li>
+                        <li><a href="#" title="Enlace a cerveza Bock">Bock</a></li>
+                        <li><a href="#" title="Enlace a cerveza Lager">Lager</a></li>
+                        <li><a href="#" title="Enlace a cerveza Ale">Ale</a></li>
+                    </ul>
+                </li>
+                <li><a href="#" title="Ver los Vinos">Vinos</a>
+                    <ul>
+                        <li><a href="#" title="Enlace a Vino Merlot">Merlot</a></li>
+                        <li><a href="#" title="Enlace a Vino Sirah">Sirah</a></li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="#" title="Ver los Licores">Licores</a>
+                    <ul>
+                        <li><a href="#" title="Enlace Licor Ron">Ron</a></li>
+                        <li><a href="#" title="Enlace a Licor Vodka">Vodka</a></li>
+                    </ul>
+                </li>
+            </ul>-->
+    <ol id="lista" >
+        <li id="primero">hola primero</li>
+        <li>Segunda linea</li>
+    </ol>
+    <script>
+        var cadenaLibros = [
+        {"Titulo": "El señor de los anillos", "Autor": "J.R.R. Tolkien"},
+        {"Titulo": "Cancion de hielo y fuego", "Autor": "George RR Martin"},
+        {"Titulo": "Los Pilares de la Tierra", "Autor": "Ken Follett"}
+        ];
 
-    </h:form>
+        var libros = JSON.parse(cadenaLibros);
 
+        for(var i = 0; i < libros.length; i++ ) {
+            alert('El libro: ' + libros[i].Titulo + ' es del autor: ' + libros[i].Autor);
+        }
+        var json = '[{"res":1,"msg":"Rooms available!"}]';
+        var response = JSON.parse(json);
+        console.log(response[0].res);
+        if (response[0].res==1){
+            console.log(response[x].id);
+            console.log(response[x].description);
+        }
+        var primerElemento = document.createElement("li"),
+                contenido = document.createTextNode(response[0].description);
+        primerElemento.appendChild(contenido);
+
+        var padre = document.getElementsByTagName("li")[0].parentNode;
+        padre.replaceChild(primerElemento, document.getElementsByTagName("li")[0])
+    </script>
 </h:body>
-
 </html>
