@@ -1,9 +1,11 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Carrito;
+import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
+import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -24,13 +26,15 @@ public class CarritoBean implements Serializable{
     private Double itemPrecio;
     @ManagedProperty("#{servicioBean}")
     private ServicioBean servicioBean;
-
+    @ManagedProperty("#{loginBean}")
+    private LoginBean loginBean;
 
     public CarritoBean() {
     }
 
     public void agregar() {
         ItemReserva item = new ItemReserva();
+        carrito = loginBean.getCliente().getCarrito();
         item.setCarrito(carrito);
         item.setCantidad(cantidad);
         item.setFechaInicio(fechaInicio);
@@ -41,13 +45,12 @@ public class CarritoBean implements Serializable{
         item.setSubTotal(itemCantidad * itemPrecio);
         CarritoController carritofinal = new CarritoController();
         carritofinal.agregarItem(item, item.getCarrito());
-        //txtPrecioTotal.setText( String.valueOf( carrito.getTotal() ) );
     }
 
     public Carrito getCarrito() {
-        if (carrito == null) {
+        //if (carrito == null) {
             carrito = new Carrito();
-        }
+       // }
         return carrito;
     }
 
@@ -109,6 +112,14 @@ public class CarritoBean implements Serializable{
 
     public void setServicioBean(ServicioBean servicioBean) {
         this.servicioBean = servicioBean;
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 }
 
