@@ -98,8 +98,33 @@
                     <h:outputLabel>#{servicioBean.servicio.descripcion}</h:outputLabel>
                 </div>
                 <div>
+                    <h:outputLabel>Fecha Inicio</h:outputLabel>
+                    <h:inputText style="height: 30px ; width: 100px"
+                                 required="true" requiredMessage="La fecha inicio es requerida"
+                                 value="#{carritoBean.fechaInicio}"
+                                 converter="myDateTimeConverter"/>
+                    </div>
+                <div>
+                    <h:outputLabel>Fecha Fin</h:outputLabel>
+                    <h:inputText style="height: 30px ; width: 100px"
+                                 required="true" requiredMessage="La fecha fin es requerida"
+                                 value="#{carritoBean.fechaFin}"
+                                 converter="myDateTimeConverter"/>
+                </div>
+
+                <div>
                     <h:outputLabel>Precio: </h:outputLabel>
                     <h:outputLabel style="font-size: large">#{servicioBean.servicio.precio}</h:outputLabel>
+                </div>
+                <div>
+                    <h:inputText
+                            value="#{carritoBean.cantidad}" style="width: 40px ; height: 30px"
+                            required="true" requiredMessage="La cantidad es requerida">
+                    </h:inputText>
+                    <h:commandButton
+                            id="agregar" value="Agregar"
+                            action="#{carritoBean.agregar}">
+                    </h:commandButton>
                 </div>
             </div>
             <div class="clear"></div>
@@ -121,9 +146,9 @@
             <div>
                 <div class="box1">
                     <h3>Categorias</h3>
-                    <h:dataTable value="#{categoriaBean.listCategorias}" var="categorias" border="1">
+                    <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias" border="1">
                         <h:column>
-                            <label>"#{categorias.id}  #{categorias.nombre}"</label>
+                            <label>"#{categorias.nombre}"</label>
                         </h:column>
                     </h:dataTable>
                 </div>

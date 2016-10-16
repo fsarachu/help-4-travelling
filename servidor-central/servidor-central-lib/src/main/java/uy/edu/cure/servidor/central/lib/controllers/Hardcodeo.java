@@ -183,6 +183,10 @@ public class Hardcodeo {
         servicio1.setDescripcion("Un dia de auto");
         servicio1.setPrecio(100);
         servicio1.getCategorias().add(categoriaService.obtener(6));
+        servicio1.getCategorias().add(categoriaService.obtener(5));
+        servicio1.getImagenes().add("/resources/imagenes/auto.jpeg");
+        servicio1.getImagenes().add("/resources/imagenes/auto1.jpeg");
+        servicio1.getImagenes().add("/resources/imagenes/auto2.jpeg");
         productoController.agregar(servicio1);
 
         Servicio servicio2 = new Servicio();
@@ -193,6 +197,7 @@ public class Hardcodeo {
         servicio2.setDescripcion("Fin de Semana con auto");
         servicio2.setPrecio(300);
         servicio2.getCategorias().add(categoriaService.obtener(7));
+        servicio2.getImagenes().add("/resources/imagenes/camioneta.jpeg");
         productoController.agregar(servicio2);
 
         Servicio servicio3 = new Servicio();
@@ -203,6 +208,7 @@ public class Hardcodeo {
         servicio3.setDescripcion("Fin de Semana en camioneta");
         servicio3.setPrecio(400);
         servicio3.getCategorias().add(categoriaService.obtener(6));
+        servicio3.getImagenes().add("/resources/imagenes/carga.jpeg");
         productoController.agregar(servicio3);
 
         Servicio servicio4 = new Servicio();
@@ -213,6 +219,7 @@ public class Hardcodeo {
         servicio4.setDescripcion("Simple");
         servicio4.setPrecio(50);
         servicio4.getCategorias().add(categoriaService.obtener(11));
+        servicio4.getImagenes().add("/resources/imagenes/habSimple.jpeg");
         productoController.agregar(servicio4);
 
         Servicio servicio5 = new Servicio();
@@ -223,6 +230,7 @@ public class Hardcodeo {
         servicio5.setDescripcion("Doble");
         servicio5.setPrecio(80);
         servicio5.getCategorias().add(categoriaService.obtener(13));
+        servicio5.getImagenes().add("/resources/imagenes/habDoble.jpeg");
         productoController.agregar(servicio5);
     }
 
