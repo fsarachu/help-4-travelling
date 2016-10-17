@@ -24,6 +24,11 @@ public class ProveedorBean implements Serializable{
         listProveedores = proveedorController.listar();
     }
 
+    public void seleccionarProveedor(Integer id) {
+        ProveedorController proveedorController = new ProveedorController();
+        proveedor = proveedorController.obtener(id);
+    }
+
     public List<Proveedor> getListProveedores() {
         return listProveedores;
     }
@@ -42,4 +47,5 @@ public class ProveedorBean implements Serializable{
     public void setProveedor(Proveedor proveedor) {
         this.proveedor = proveedor;
     }
+
 }

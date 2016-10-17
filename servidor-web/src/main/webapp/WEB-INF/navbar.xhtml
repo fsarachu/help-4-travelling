@@ -13,6 +13,13 @@
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown"
+                           href="/secured/index.xhtml">HOME <img
+                                src="/resources/imagenes/home.png"
+                                style="height: 50px ;width: 50px"/><span
+                                class="caret"></span></a>
+                    </li>
+                    <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">CLIENTES<span
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
@@ -30,15 +37,12 @@
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">PRODUCTOS<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li>
-                                <h:outputLink href="/secured/AgregarAlCarrito.xhtml"
-                                              rendered="#{loginBean.isLoggedIn()}">
-                                    <h:outputText value="Agregar Producto a Reserva Actual"/>
-                                </h:outputLink>
-                            </li>
-                            <li><a href="/secured/VerInfoServicio.xhtml">Ver Información de Servicios</a></li>
-                            <li><a href="">Ver Información de Promociones</a></li>
+                            <li><a href="/secured/VerInfoPromociones.xhtml">Ver Información de Promociones</a></li>
                         </ul>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li><a href="/secured/VerInfoPromociones.xhtml">Ver Información de Promociones</a></li>
+                        </ul>
+
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">RESERVAS<span
