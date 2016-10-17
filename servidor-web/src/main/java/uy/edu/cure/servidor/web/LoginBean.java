@@ -1,16 +1,16 @@
 package uy.edu.cure.servidor.web;
 
-//import com.sun.xml.internal.ws.wsdl.writer.document.Part;
 import uy.edu.cure.servidor.central.dto.Cliente;
 //import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 
-@ManagedBean
+@ManagedBean(name = "loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
 
@@ -20,6 +20,8 @@ public class LoginBean implements Serializable {
 	private String mensaje;
 	private Cliente cliente;
 	private String contrasena;
+    @ManagedProperty("#{reservaBean}")
+    private ReservaBean reservaBean;
 
 	public LoginBean(){
 		primerlogin = true;
@@ -68,7 +70,23 @@ public class LoginBean implements Serializable {
 		this.cliente = cliente;
 	}
 
-	public String controloPassword() {
+    public boolean isPrimerlogin() {
+        return primerlogin;
+    }
+
+    public void setPrimerlogin(boolean primerlogin) {
+        this.primerlogin = primerlogin;
+    }
+
+    public ReservaBean getReservaBean() {
+        return reservaBean;
+    }
+
+    public void setReservaBean(ReservaBean reservaBean) {
+        this.reservaBean = reservaBean;
+    }
+
+    public String controloPassword() {
 		if (primerlogin) {
 			Hardcodeo hardcodeo = new Hardcodeo();
 			primerlogin = false;
@@ -78,6 +96,7 @@ public class LoginBean implements Serializable {
 			cliente = clienteController.obtenerXNombre(cliente.getNickname());
 			loggedIn = true;
 			mensaje = null;
+            reservaBean.cantReservas(cliente.getId());
             return "secured/index?faces-redirect=true";
 		} else {
 			if(clienteController.nicknameExiste(this.cliente.getNickname())){

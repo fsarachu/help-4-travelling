@@ -43,7 +43,7 @@
     <h:form>
         <div>
             <label>Nickname:</label>
-                <h:inputText type="text" name="name" id="inputID"
+                <h:inputText type="text" name="name" id="inputID" onblur="validarusuario(this)"
                              value="#{loginBean.cliente.nickname}" title="" required="true"
                              requiredMessage="El nickname es requerido">
                 </h:inputText>
@@ -65,6 +65,7 @@
                     <h:inputSecret type="text" name="name" id="inputCONTRASENA"
                                    value="#{loginBean.cliente.contrasena}" title="" required="true"
                                    requiredMessage="La contrasena es requerida">
+                        <span id="comprobarusuario"></span>
                     </h:inputSecret>
                 <label>Repita Contrasena:</label>
                     <h:inputSecret type="text" name="name" id="inputCONTRASENABIS"
@@ -101,5 +102,10 @@
             <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
         </div>
     </h:form>
+    <script>
+        function validarusuario(usuario) {
+            alert('etoy aqui');
+        }
+    </script>
 </h:body>
 </html>

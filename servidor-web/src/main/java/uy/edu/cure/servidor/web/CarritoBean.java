@@ -40,7 +40,7 @@ public class CarritoBean implements Serializable{
         item.setFechaInicio(fechaInicio);
         item.setFechaFin(fechaFin);
         item.setProducto(servicioBean.getServicio());
-        itemCantidad = (Double) item.getCantidad();
+        itemCantidad = item.getCantidad();
         itemPrecio =  item.getProducto().getPrecio();
         item.setSubTotal(itemCantidad * itemPrecio);
         CarritoController carritofinal = new CarritoController();

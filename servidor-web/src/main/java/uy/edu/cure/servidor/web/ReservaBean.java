@@ -6,7 +6,9 @@ import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,28 +19,21 @@ public class ReservaBean implements Serializable {
     private Reserva reserva;
     private Integer cantidadReservas;
     private List<Reserva> reservaList = new ArrayList<>();
-    @ManagedProperty(value = "#{loginBean}")
-    private LoginBean loginBean;
+
 
     public ReservaBean() {
-
     }
 
-    public void cantidadReservas() {
+    public void cantReservas(Integer id) {
+        reservaList.clear();
         ReservaController reservaController = new ReservaController();
         ArrayList<Reserva> reservas = reservaController.listar();
         for (Reserva reserva : reservas) {
-            reservaList.add(reserva);
+            if (reserva.getCliente().getId().equals(id)){
+                reservaList.add(reserva);
+            }
         }
         cantidadReservas = reservaList.size();
-    }
-
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
-    }
-
-    public LoginBean getLoginBean() {
-        return this.loginBean;
     }
 
     public List<Reserva> getReservaList() {
@@ -72,4 +67,5 @@ public class ReservaBean implements Serializable {
     public void setCantidadReservas(Integer cantidadReservas) {
         this.cantidadReservas = cantidadReservas;
     }
+
 }

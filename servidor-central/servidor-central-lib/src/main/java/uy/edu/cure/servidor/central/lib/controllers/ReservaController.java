@@ -38,7 +38,7 @@ public class ReservaController {
         cliente.setCarrito(nuevoCarrito);
     }
 
-    Reserva obtener(Integer idReserva) {
+    public Reserva obtener(Integer idReserva) {
         return this.reservaService.obtener(idReserva);
     }
 
