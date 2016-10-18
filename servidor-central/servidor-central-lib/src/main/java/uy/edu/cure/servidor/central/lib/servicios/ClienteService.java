@@ -15,4 +15,8 @@ public interface ClienteService extends GenericService<Cliente> {
         ArrayList<Cliente> listarCompradoresServicio(Servicio servicio);
 
     Cliente obtenerXNombre(String nombre);
+
+    Cliente obtenerXMail(String mail);
+
+    boolean comprobarloginMail(String email, String contrasena);
 }
