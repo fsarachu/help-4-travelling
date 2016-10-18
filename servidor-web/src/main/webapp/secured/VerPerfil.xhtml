@@ -1,10 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Created by IntelliJ IDEA.
-  User: victor
-  Date: 02/10/16
-  Time: 09:52 AM
--->
+
 <!DOCTYPE html
         PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -32,55 +27,29 @@
             padding-top: 70px;
         }
     </style>
-
+    <link href="/resources/css/verPerfil.css" rel="stylesheet"/>
 </h:head>
 <h:body>
-    <h2>Ver Perfil del Usuario</h2>
+    <div class="login-title" align="center">VER PERFIL DE USUARIO</div>
 
     <ui:insert name="navbar">
         <ui:include src="/WEB-INF/navbar.xhtml"/>
     </ui:insert>
 
-    <form action="">
-        <div class="form-group">
-            <label>Nickname #{loginBean.cliente.nickname}</label>
-        </div>
-    </form>
-    <form action="">
-        <div class="form-group">
-            <h:graphicImage value="#{loginBean.cliente.imagen}"/>
-            <label>Nickname #{loginBean.cliente.imagen}</label>
-        </div>
-    </form>
-    <form action="">
-        <div>
-            <h:outputLabel>Nombre</h:outputLabel>
-            <h:outputLabel>#{loginBean.cliente.nombre}</h:outputLabel>
-        </div>
-    </form>
-    <form action="">
+    <div class="recuadro">
 
-        <div>
-            <h:outputLabel>Apellido</h:outputLabel>
-            <h:outputLabel>#{loginBean.cliente.apellido}</h:outputLabel>
-        </div>
-    </form>
-    <form action="">
+        <div class="foto"><h:graphicImage width="270px" value="#{loginBean.cliente.imagen}"/></div>
+        <div><h:outputLabel>Nickname: #{loginBean.cliente.nickname}</h:outputLabel></div>
+        <div><h:outputLabel>Nombre: #{loginBean.cliente.nombre}</h:outputLabel></div>
+        <div><h:outputLabel>Apellido: #{loginBean.cliente.apellido}</h:outputLabel></div>
+        <div><h:outputLabel>Correo: #{loginBean.cliente.correo}</h:outputLabel></div>
+        <div><h:outputLabel>Fecha Nacimiento: #{loginBean.cliente.fechaNacimiento}</h:outputLabel></div>
 
-        <div>
-            <h:outputLabel>Correo</h:outputLabel>
-            <h:outputLabel>#{loginBean.cliente.correo}</h:outputLabel>
-        </div>
-    </form>
-    <form action="">
+    </div>
 
-        <div>
-            <h:outputLabel>Fecha Nacimiento</h:outputLabel>
-            <h:outputLabel converter="javax.faces.DateTime">#{loginBean.cliente.fechaNacimiento}</h:outputLabel>
-        </div>
-    </form>
+    <div class="recuadro2">
     <form action="">
-        <h2>Reservas agregadas al carrito</h2>
+        <h4>LISTA DE RESERVAS</h4>
         <h:dataTable value="#{reservaBean.reservaList}" var="reservas" border="1">
             <h:column>
                 <f:facet name="header">
@@ -94,5 +63,6 @@
             </h:column>
         </h:dataTable>
     </form>
+    </div>
 </h:body>
 </html>
