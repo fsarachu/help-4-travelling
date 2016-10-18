@@ -62,6 +62,20 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
         return null;
     }
 
+    public Cliente obtenerXMail(String mail) {
+        Cliente cliente;
+
+        for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
+            cliente = entry.getValue();
+
+            if (cliente.getCorreo().equals(mail)) {
+                return cliente;
+            }
+        }
+
+        return null;
+    }
+
     public boolean comprobarlogin(String nickname, String contrasena) {
         Cliente cliente;
 
@@ -76,6 +90,19 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
         return false;
     }
 
+    public boolean comprobarloginMail(String mail, String contrasena) {
+        Cliente cliente;
+
+        for (Map.Entry<Integer, Cliente> entry : coleccion.entrySet()) {
+            cliente = entry.getValue();
+
+            if (cliente.getCorreo().equals(mail) && cliente.getContrasena().equals(contrasena)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
     @Override
