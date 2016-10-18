@@ -1,11 +1,14 @@
-<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> -->
 <!DOCTYPE html> <!--HTML5-->
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-
->
-<h:head>
+    >
+<head>
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <!-- Latest compiled and minified JavaScript -->
@@ -15,35 +18,20 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <!--<meta http-equiv="refresh" content="5"/>-->
+
+
     <style type="text/css">
         body {
             background-color: silver;
             background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
             padding-top: 70px;
         }
-
-        .box1, .box2 {
-            width: 280px;
-            height: auto;
-            float: left;
-        }
-
-        .box1 {
-            clear: left;
-            margin-right: 10px;
-        }
-
-        .clear {
-            clear: both;
-        }
     </style>
-    <!--<link href="resources/css/index.css" rel="stylesheet"/>-->
 
-</h:head>
-<title>Help 4 Travelling</title>
+    <title>Help 4 Travelling</title>
 
-<h:body>
+</head>
+<body>
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
@@ -61,9 +49,8 @@
                 </h:dataTable>
             </div>
             <div class="box2">
-                <h3></h3>
-                <h:dataTable rendered="#{!categoriaBean.categoria.id.equals(0)}" value="#{servicioBean.listaServicios}"
-                             var="serviciopromo" border="1">
+                <h3>     </h3>
+                <h:dataTable rendered="#{!categoriaBean.categoria.id.equals(0)}" value="#{servicioBean.listaServicios}" var="serviciopromo" border="1">
                     <h:column>
                         <h:commandLink action="#{servicioBean.buscarServicio(serviciopromo.id)}" immediate="true"
                                        value="#{serviciopromo.id}  #{serviciopromo.nombre}">
@@ -73,6 +60,38 @@
             </div>
             <div class="clear"></div>
         </h:form>
+        <form action="">
+            <div>
+                <h:outputLabel>Nombre</h:outputLabel>
+                <h:outputLabel>#{serviciopromo.nombre}</h:outputLabel>
+            </div>
+        </form>
+        <form action="">
+            <div>
+                <h:outputLabel>Descripcion</h:outputLabel>
+                <h:outputLabel>#{serviciopromo.descripcion}</h:outputLabel>
+            </div>
+        </form>
+        <div>
+             <h:outputLabel
+                rendered="#{not empty serviciopromo.origen}">#{serviciopromo.origen}</h:outputLabel>
+        </div>
+        <div>
+            <h:outputLabel
+                rendered="#{not empty serviciopromo.destino}">#{serviciopromo.origen}</h:outputLabel>
+        </div>
+        <form action="">
+            <div>
+                <h:outputLabel>Precio</h:outputLabel>
+                <h:outputLabel>#{serviciopromo.precio}</h:outputLabel>
+            </div>
+        </form>
+        <form action="">
+            <div class="form-group">
+                <h:graphicImage value="#{serviciopromo.imagenes}"/>
+                <label>Nombre #{serviciopromo.imagenes}</label>
+            </div>
+        </form>
     </div>
-</h:body>
+</body>
 </html>

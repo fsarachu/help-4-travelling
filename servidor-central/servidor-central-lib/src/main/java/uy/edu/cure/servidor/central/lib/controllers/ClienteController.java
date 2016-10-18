@@ -31,6 +31,8 @@ public class ClienteController {
         return this.clienteService.obtenerXNombre(nombre);
     }
 
+    public Cliente obtenerXMail(String mail) { return this.clienteService.obtenerXMail(mail); }
+
     public void modificar(Cliente cliente) {
         this.clienteService.modificar(cliente.getId(), cliente);
     }
@@ -51,6 +53,9 @@ public class ClienteController {
         return this.clienteService.comprobarlogin(nickname,contrasena);
     }
 
+    public boolean comprobarloginMail(String email, String contrasena) {
+        return this.clienteService.comprobarloginMail(email, contrasena);
+    }
         public ArrayList<Cliente> listarCompradoresServicio(Servicio servicio) {
         return this.clienteService.listarCompradoresServicio(servicio);
     }

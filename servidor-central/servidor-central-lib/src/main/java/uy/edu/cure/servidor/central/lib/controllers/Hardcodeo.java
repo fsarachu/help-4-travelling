@@ -2,11 +2,10 @@ package uy.edu.cure.servidor.central.lib.controllers;
 
 import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.controllers.*;
-import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
-import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
-import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
-import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
+import uy.edu.cure.servidor.central.lib.servicios.*;
+import uy.edu.cure.servidor.central.lib.servicios.memoria.ProveedorServiceImpl;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -19,6 +18,8 @@ public class Hardcodeo {
         harcodeoProveedor();
         harcodeoServicios();
         harcodeoReservas();
+
+        harcodeoPromociones();
 
     }
 
@@ -331,6 +332,53 @@ public class Hardcodeo {
 
         reservactrl.nueva(clientectrl.obtener(6));
         reservactrl.nueva(clientectrl.obtener(6));
+
+    }
+
+    private void harcodeoPromociones(){
+
+        ProductoController productoctrl = new ProductoController();
+        ProveedorController proveedorctrl = new ProveedorController();
+
+        ProveedorService proveedorService = ServiceFactory.getProveedorService();
+
+        ArrayList<Servicio> listaServicios = new ArrayList<Servicio>();
+        ArrayList<Integer> listaIdServicios = new ArrayList<Integer>();
+
+        listaServicios.add((Servicio)productoctrl.obtener(1));
+        listaIdServicios.add(1);
+
+        Promocion promocion1 = new Promocion();
+        promocion1.setDescuento(15);
+        promocion1.setServicios(listaServicios);
+        promocion1.setIdServicios(listaIdServicios);
+        promocion1.setNombre("Promocion 1");
+        promocion1.setDescripcion("Descripcion 1");
+        promocion1.calcularPrecioPromocion();
+        promocion1.setProveedor(proveedorService.obtener(1));
+
+        productoctrl.agregar(promocion1);
+
+
+
+        ArrayList<Servicio> listaServicios2 = new ArrayList<Servicio>();
+        ArrayList<Integer> listaIdServicios2 = new ArrayList<Integer>();
+
+        listaServicios2.add((Servicio)productoctrl.obtener(2));
+        listaIdServicios2.add(2);
+        listaServicios2.add((Servicio)productoctrl.obtener(3));
+        listaIdServicios2.add(3);
+
+        Promocion promocion2 = new Promocion();
+        promocion2.setDescuento(10);
+        promocion2.setServicios(listaServicios);
+        promocion2.setIdServicios(listaIdServicios);
+        promocion2.setNombre("Promocion 2");
+        promocion2.setDescripcion("Descripcion 2");
+        promocion2.calcularPrecioPromocion();
+        promocion2.setProveedor(proveedorctrl.obtener(2));
+
+        productoctrl.agregar(promocion2);
 
     }
 }

@@ -87,4 +87,10 @@ public class ItemReserva {
     public String datosReserva() {
         return ""+ id + " " + producto  ;
     }
+/*
+    @Override
+    public String toString(){
+        return datosReserva() + producto.getId();
+    }
+    */
 }
