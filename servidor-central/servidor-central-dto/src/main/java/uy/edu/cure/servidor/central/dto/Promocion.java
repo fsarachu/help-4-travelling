@@ -37,10 +37,23 @@ public class Promocion extends Producto {
         this.servicios = servicios;
     }
 
+    public void calcularPrecioPromocion(){
+        if(servicios!=null){
+            double suma = 0;
+            for(Servicio servicio : servicios){
+                suma = suma + servicio.getPrecio();
+            }
+
+            suma = suma - suma * (this.getDescuento() / 100);
+            this.setPrecio(suma);
+        }
+    }
+
     @Override
     public String toString() {
 
         return super.getNombre();
     }
+
 }
 
