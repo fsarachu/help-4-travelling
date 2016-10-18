@@ -28,6 +28,8 @@ public class CarritoBean implements Serializable{
     private ServicioBean servicioBean;
     @ManagedProperty("#{loginBean}")
     private LoginBean loginBean;
+    @ManagedProperty("#{reservaBean}")
+    private ReservaBean reservaBean;
 
     public CarritoBean() {
     }
@@ -45,12 +47,13 @@ public class CarritoBean implements Serializable{
         item.setSubTotal(itemCantidad * itemPrecio);
         CarritoController carritofinal = new CarritoController();
         carritofinal.agregarItem(item, item.getCarrito());
+        reservaBean.cantReservas(loginBean.getCliente().getId());
     }
 
     public Carrito getCarrito() {
-        //if (carrito == null) {
+        if (carrito == null) {
             carrito = new Carrito();
-       // }
+        }
         return carrito;
     }
 
@@ -120,6 +123,14 @@ public class CarritoBean implements Serializable{
 
     public void setLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
+    }
+
+    public ReservaBean getReservaBean() {
+        return reservaBean;
+    }
+
+    public void setReservaBean(ReservaBean reservaBean) {
+        this.reservaBean = reservaBean;
     }
 }
 

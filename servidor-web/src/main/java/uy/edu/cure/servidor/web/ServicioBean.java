@@ -25,15 +25,6 @@ public class ServicioBean implements Serializable{
         cargarServiciosPromos();
     }
 
-    public String cargarServicios(Integer id) {
-        listarProductosServicio = null;
-        for (Producto producto : listarProducto ) {
-            if (producto.getProveedor().getId().equals(id)) {
-                listarProductosServicio.add(producto);
-            }
-        }
-        return "AgregarServicioPromo?faces-redirect=true";
-    }
 
     public void cargarServiciosXCategoria(Categoria categoria) {
         ProductoController productoController = new ProductoController();
@@ -42,11 +33,16 @@ public class ServicioBean implements Serializable{
 
     public String buscarServicio(Integer id){
         ProductoController productoController = new ProductoController();
-        servicio = (Servicio)productoController.obtener(id);
-        for (Categoria categoria : servicio.getCategorias()) {
-            listaCategorias.add(categoria);
+        if (!id.equals(null)) {
+            servicio = (Servicio) productoController.obtener(id);
+            for (Categoria categoria : servicio.getCategorias()) {
+                listaCategorias.add(categoria);
+            }
+            return "VerInfoServicio?faces-redirect=true";
+        } else {
+            return null;
         }
-        return "VerInfoServicio?faces-redirect=true";
+
     }
 
     public List<Categoria> getListaCategorias() {

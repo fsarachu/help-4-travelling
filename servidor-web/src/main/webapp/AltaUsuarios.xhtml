@@ -3,7 +3,6 @@
 <!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:f="http://java.sun.com/jsf/core"
 >
 <h:head>
@@ -15,7 +14,8 @@
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
 
     <title>Help 4 Travelling</title>
 
@@ -32,26 +32,22 @@
             font-weight: bold;
         }
     </style>
-    <ui:insert name="navbar">
-        <ui:include src="./WEB-INF/navbar.xhtml"/>
-    </ui:insert>
-
 </h:head>
 <h:body>
     <h2>Alta Clientes</h2>
-
-    <h:form>
-        <div>
-            <label>Nickname:</label>
+    <div>
+        <h:form>
+            <div>
+                <label>Nickname:</label>
                 <h:inputText type="text" name="name" id="inputID" onblur="validarusuario(this)"
                              value="#{loginBean.cliente.nickname}" title="" required="true"
                              requiredMessage="El nickname es requerido">
                 </h:inputText>
-            <label >Correo:</label>
+                <label>Correo:</label>
                 <h:inputText type="text" name="name" id="inputCORREO"
                              value="#{loginBean.cliente.correo}" title="" required="true"
                              validatorMessage="Email invalido" requiredMessage="El correo es requerido">
-                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]" />
+                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                     <f:ajax
                             event="keyup" render="@this inputMessage">
                     </f:ajax>
@@ -59,49 +55,53 @@
                 <div>
                     <h:message id="inputMessage" for="inputCORREO"></h:message>
                 </div>
-        </div>
-        <div>
+            </div>
+            <div>
                 <label>Contrasena:</label>
-                    <h:inputSecret type="text" name="name" id="inputCONTRASENA"
-                                   value="#{loginBean.cliente.contrasena}" title="" required="true"
-                                   requiredMessage="La contrasena es requerida">
-                        <span id="comprobarusuario"></span>
-                    </h:inputSecret>
+                <h:inputSecret type="text" name="name" id="inputCONTRASENA"
+                               value="#{loginBean.cliente.contrasena}" title="" required="true"
+                               requiredMessage="La contrasena es requerida">
+                    <span id="comprobarusuario"></span>
+                </h:inputSecret>
                 <label>Repita Contrasena:</label>
-                    <h:inputSecret type="text" name="name" id="inputCONTRASENABIS"
-                                   value="#{loginBean.contrasena}" title="" required="true"
-                                   requiredMessage="La contrasena es requerida">
-                    </h:inputSecret>
-        </div>
-        <div>
-            <label >Nombre:</label>
+                <h:inputSecret type="text" name="name" id="inputCONTRASENABIS"
+                               value="#{loginBean.contrasena}" title="" required="true"
+                               requiredMessage="La contrasena es requerida">
+                </h:inputSecret>
+            </div>
+            <div>
+                <label>Nombre:</label>
                 <h:inputText type="text" name="name" id="inputNOMBRE"
                              value="#{loginBean.cliente.nombre}" title="" required="true"
                              requiredMessage="El nombre es requerido">
                 </h:inputText>
-            <label >Apellido:</label>
+                <label>Apellido:</label>
                 <h:inputText type="text" name="name" id="inputAPELLIDO"
                              value="#{loginBean.cliente.apellido}" title="" required="true"
                              requiredMessage="El apellido es requerido">
                 </h:inputText>
-        </div>
+            </div>
+            <div>
+                <h:outputLabel>Fecha Nacimiento</h:outputLabel>
+                <h:inputText value="#{loginBean.cliente.fechaNacimiento}" converter="myDateTimeConverter"/>
+            </div>
+            <div>
+                <label for="inputFile">Seleccione una imagen</label>
+                <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
+            </div>
+            <div>
+                <h:commandButton
+                        value="Guardar" action="#{loginBean.nuevoUsuario}">
+                </h:commandButton>
+            </div>
+            <div>
+                <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
+            </div>
+        </h:form>
         <div>
-            <h:outputLabel>Fecha Nacimiento</h:outputLabel>
-            <h:inputText value="#{loginBean.cliente.fechaNacimiento}" converter="myDateTimeConverter"/>
+            <a href="login.xhtml">Cancelar</a>
         </div>
-        <div>
-            <label for="inputFile">Seleccione una imagen</label>
-            <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
-        </div>
-        <div>
-            <h:commandButton
-                    value="Guardar" action="#{loginBean.nuevoUsuario}">
-            </h:commandButton>
-        </div>
-        <div>
-            <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
-        </div>
-    </h:form>
+    </div>
     <script>
         function validarusuario(usuario) {
             alert('etoy aqui');

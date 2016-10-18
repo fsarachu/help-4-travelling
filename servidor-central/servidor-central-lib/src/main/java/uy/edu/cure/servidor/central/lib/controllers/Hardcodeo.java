@@ -140,6 +140,8 @@ public class Hardcodeo {
         Date nacimiento1 = new Date(116, 2, 15);
         proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Rentadora LTDA");
+        proveedor1.setImagen("/resources/imagenes/alquilo1.jpeg");
+        proveedor1.setCorreo("tuautoya@llevatelo.com.ya");
         proveedorController.nuevo(proveedor1);
 
         Proveedor proveedor2 = new Proveedor();
@@ -148,6 +150,8 @@ public class Hardcodeo {
         Date nacimiento2 = new Date(116, 2, 12);
         proveedor2.setFechaNacimiento(nacimiento2);
         proveedor2.setNombreEmpresa("Rentadora Dos S.A.");
+        proveedor2.setImagen("/resources/imagenes/alquilo2.jpeg");
+        proveedor2.setCorreo("masbarato@empujame.com.uy");
         proveedorController.nuevo(proveedor2);
 
         Proveedor proveedor3 = new Proveedor();
@@ -156,6 +160,8 @@ public class Hardcodeo {
         Date nacimiento3 = new Date(116, 2, 12);
         proveedor3.setFechaNacimiento(nacimiento3);
         proveedor3.setNombreEmpresa("El mejor Hotel LTDA");
+        proveedor3.setImagen("/resources/imagenes/hotel1.jpeg");
+        proveedor3.setCorreo("pocilgalachola@ahinomas.com.isi");
         proveedorController.nuevo(proveedor3);
 
         Proveedor proveedor4 = new Proveedor();
@@ -164,6 +170,8 @@ public class Hardcodeo {
         Date nacimiento4 = new Date(116, 2, 12);
         proveedor4.setFechaNacimiento(nacimiento4);
         proveedor4.setNombreEmpresa("Tu Hotel S.A.");
+        proveedor4.setImagen("/resources/imagenes/hotel2.jpeg");
+        proveedor4.setCorreo("estesiestuhotel@reserva.com.ya");
         proveedorController.nuevo(proveedor4);
 
     }
