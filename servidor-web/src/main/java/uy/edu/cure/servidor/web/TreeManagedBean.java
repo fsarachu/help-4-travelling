@@ -1,9 +1,16 @@
 package uy.edu.cure.servidor.web;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import org.primefaces.event.NodeExpandEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
+import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+
+import javax.annotation.PostConstruct;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @ManagedBean
@@ -11,32 +18,31 @@ import org.primefaces.model.TreeNode;
 
 
 public class TreeManagedBean {
-
+    private List<Categoria> categorias = new ArrayList<>();
     private TreeNode root;
 
-    public TreeManagedBean(){
-
-        this.root = new DefaultTreeNode("Categorias", null);
-
-        TreeNode vehiculos = new DefaultTreeNode("Vehiculos", this.root);     vehiculos.setParent(this.root);
-        TreeNode autos = new DefaultTreeNode("Autos", vehiculos);             autos.setParent(vehiculos);
-        TreeNode camionetas = new DefaultTreeNode("Camionetas", vehiculos);   camionetas.setParent(vehiculos);
-
-
-        TreeNode hoteles = new DefaultTreeNode("Hoteles", this.root);         hoteles.setParent(this.root);
-        TreeNode cuatro = new DefaultTreeNode("4 Estrellas", hoteles);        cuatro.setParent(hoteles);
-        TreeNode hdl = new DefaultTreeNode("Hotel del Lago", cuatro);         hdl.setParent(cuatro);
-        TreeNode hdr = new DefaultTreeNode("Hotel del Rio", cuatro);          hdr.setParent(cuatro);
-
-        TreeNode cinco = new DefaultTreeNode("5 Estrellas", hoteles);         cinco.setParent(hoteles);
-        TreeNode conrad = new DefaultTreeNode("Conrad", cinco);               conrad.setParent(cinco);
-        TreeNode mantra = new DefaultTreeNode("Mantra", cinco);               mantra.setParent(cinco);
-
-        TreeNode vuelos = new DefaultTreeNode("Vuelos", this.root);           vuelos.setParent(this.root);
-        TreeNode nac = new DefaultTreeNode("Nacionales", vuelos);             nac.setParent(vuelos);
-        TreeNode inter = new DefaultTreeNode("Internacionales", vuelos);      inter.setParent(vuelos);
-
+    @PostConstruct
+    public void buildTree() {
+        root = new DefaultTreeNode("Root", null);
+        CategoriaController categoriaController = new CategoriaController();
+        ArrayList<Categoria> categorias = categoriaController.listar();
+        for (Categoria categoria : categorias) {
+            if (categoria.getPadre() == null) {
+                createNode(categoria, root);
+            }
+        }
     }
+
+    public TreeManagedBean() {
+    }
+
+
+    private void createNode(Object tag, TreeNode parent) {
+        TreeNode node = new DefaultTreeNode(tag, parent);
+        new DefaultTreeNode("hola", node);
+        new DefaultTreeNode("chau", node);
+    }
+
 
     public TreeNode getRoot() {
         return root;
@@ -45,4 +51,13 @@ public class TreeManagedBean {
     public void setRoot(TreeNode root) {
         this.root = root;
     }
+
+    public List<Categoria> getCategorias() {
+        return categorias;
+    }
+
+    public void setCategorias(List<Categoria> categorias) {
+        this.categorias = categorias;
+    }
+
 }

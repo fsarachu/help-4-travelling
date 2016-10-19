@@ -62,22 +62,11 @@
                         </h:commandLink>
                     </h:column>
                 </h:dataTable>
-
-                <!--
-                <h:form>
-                    <p:tree value="#{treeManagedBean.root}" var="node">
-                        <p:treeNode>
-                            <h:outputText value="#{node}"/>
-                        </p:treeNode>
-                    </p:tree>
-                </h:form>
-                -->
-
-
             </div>
             <div class="box2">
                 <h3></h3>
-                <h:dataTable rendered="#{!categoriaBean.categoria.id.equals(0)}" value="#{servicioBean.listaServicios}"
+                <h:dataTable rendered="#{!categoriaBean.categoria.id.equals(0)}"
+                             value="#{servicioBean.listaServicios}"
                              var="serviciopromo" border="1">
                     <h:column>
                         <h:commandLink action="#{servicioBean.buscarServicio(serviciopromo.id)}" immediate="true"

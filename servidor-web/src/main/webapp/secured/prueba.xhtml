@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Created by IntelliJ IDEA.
+  User: victor
+  Date: 19/10/16
+  Time: 08:17 AM
+-->
+<!DOCTYPE html
+        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>prueba arbol</title>
+</h:head>
+
+<h:body>
+    <h:form id="form">
+        <p:tree id="tree" value="#{treeManagedBean.root}" var="node" dynamic="true" cache="false">
+            <p:ajax event="expand"/>
+            <p:treeNode>
+                <h:commandLink
+                               value="#{node}">
+                </h:commandLink>
+            </p:treeNode>
+        </p:tree>
+    </h:form>
+
+</h:body>
+
+</html>
