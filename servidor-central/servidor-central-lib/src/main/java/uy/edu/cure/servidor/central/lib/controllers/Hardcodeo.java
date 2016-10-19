@@ -17,9 +17,9 @@ public class Hardcodeo {
         harcodeoCategoria();
         harcodeoProveedor();
         harcodeoServicios();
-        harcodeoReservas();
-
         harcodeoPromociones();
+        harcodeoCarritos();
+        harcodeoReservas();
 
     }
 
@@ -177,6 +177,76 @@ public class Hardcodeo {
 
     }
 
+    private void harcodeoClientes() {
+
+        ClienteController clienteController = new ClienteController();
+        ///////CarritoController carritoController = new CarritoController();
+
+        Cliente cliente1 = new Cliente();
+        cliente1.setNombre("Franco");
+        cliente1.setApellido("Sarachu");
+        cliente1.setNickname("franco");
+        cliente1.setCorreo("franco@franco.com");
+        Date nacimiento1 = new Date(85, 0, 11);
+        cliente1.setContrasena("1234");
+        cliente1.setFechaNacimiento(nacimiento1);
+        cliente1.setImagen("/resources/imagenes/imagen1.jpeg");
+        /////cliente1.setCarrito(carritoController.obtenerCarrito(1)); ///////
+        clienteController.nuevo(cliente1);
+
+        Cliente cliente2 = new Cliente();
+        cliente2.setNombre("Nicolas");
+        cliente2.setApellido("Pioli");
+        cliente2.setNickname("nicolas");
+        cliente2.setCorreo("nicolas@nicolas.com");
+        Date nacimiento2 = new Date(85, 1, 11);
+        cliente2.setContrasena("1234");
+        cliente2.setFechaNacimiento(nacimiento2);
+        clienteController.nuevo(cliente2);
+
+        Cliente cliente3 = new Cliente();
+        cliente3.setNombre("Santiago");
+        cliente3.setApellido("Martinez");
+        cliente3.setNickname("santiago");
+        cliente3.setCorreo("santiago@santiago.com");
+        Date nacimiento3 = new Date(85, 2, 11);
+        cliente3.setContrasena("1234");
+        cliente3.setFechaNacimiento(nacimiento3);
+        clienteController.nuevo(cliente3);
+
+        Cliente cliente4 = new Cliente();
+        cliente4.setNombre("Victor");
+        cliente4.setApellido("Torterola");
+        cliente4.setNickname("victor");
+        cliente4.setCorreo("victor@victor.com");
+        Date nacimiento4 = new Date(85, 3, 11);
+        cliente4.setContrasena("1234");
+        cliente4.setFechaNacimiento(nacimiento4);
+        clienteController.nuevo(cliente4);
+
+        Cliente cliente5 = new Cliente();
+        cliente5.setNombre("Viviana");
+        cliente5.setApellido("Bruno");
+        cliente5.setNickname("viviana");
+        cliente5.setCorreo("viviana@viviana.com");
+        Date nacimiento5 = new Date(85, 4, 11);
+        cliente5.setContrasena("1234");
+        cliente5.setFechaNacimiento(nacimiento5);
+        clienteController.nuevo(cliente5);
+
+        Cliente cliente6 = new Cliente();
+        cliente6.setNombre("Marcos");
+        cliente6.setApellido("Prat");
+        cliente6.setNickname("marcos");
+        cliente6.setCorreo("marcos@marcos.com");
+        Date nacimiento6 = new Date(85, 5, 11);
+        cliente6.setContrasena("1234");
+        cliente6.setFechaNacimiento(nacimiento6);
+        clienteController.nuevo(cliente6);
+
+
+    }
+
     private void harcodeoServicios() {
 
         ProductoController productoController = new ProductoController();
@@ -243,97 +313,6 @@ public class Hardcodeo {
         productoController.agregar(servicio5);
     }
 
-    private void harcodeoClientes() {
-
-        ClienteController clienteController = new ClienteController();
-
-        Cliente cliente1 = new Cliente();
-        cliente1.setNombre("Franco");
-        cliente1.setApellido("Sarachu");
-        cliente1.setNickname("franco");
-        cliente1.setCorreo("franco@franco.com");
-        Date nacimiento1 = new Date(85, 0, 11);
-        cliente1.setContrasena("1234");
-        cliente1.setFechaNacimiento(nacimiento1);
-        cliente1.setImagen("/resources/imagenes/imagen1.jpeg");
-        clienteController.nuevo(cliente1);
-
-        Cliente cliente2 = new Cliente();
-        cliente2.setNombre("Nicolas");
-        cliente2.setApellido("Pioli");
-        cliente2.setNickname("nicolas");
-        cliente2.setCorreo("nicolas@nicolas.com");
-        Date nacimiento2 = new Date(85, 1, 11);
-        cliente2.setContrasena("1234");
-        cliente2.setFechaNacimiento(nacimiento2);
-        clienteController.nuevo(cliente2);
-
-        Cliente cliente3 = new Cliente();
-        cliente3.setNombre("Santiago");
-        cliente3.setApellido("Martinez");
-        cliente3.setNickname("santiago");
-        cliente3.setCorreo("santiago@santiago.com");
-        Date nacimiento3 = new Date(85, 2, 11);
-        cliente3.setContrasena("1234");
-        cliente3.setFechaNacimiento(nacimiento3);
-        clienteController.nuevo(cliente3);
-
-        Cliente cliente4 = new Cliente();
-        cliente4.setNombre("Victor");
-        cliente4.setApellido("Torterola");
-        cliente4.setNickname("victor");
-        cliente4.setCorreo("victor@victor.com");
-        Date nacimiento4 = new Date(85, 3, 11);
-        cliente4.setContrasena("1234");
-        cliente4.setFechaNacimiento(nacimiento4);
-        clienteController.nuevo(cliente4);
-
-        Cliente cliente5 = new Cliente();
-        cliente5.setNombre("Viviana");
-        cliente5.setApellido("Bruno");
-        cliente5.setNickname("viviana");
-        cliente5.setCorreo("viviana@viviana.com");
-        Date nacimiento5 = new Date(85, 4, 11);
-        cliente5.setContrasena("1234");
-        cliente5.setFechaNacimiento(nacimiento5);
-        clienteController.nuevo(cliente5);
-
-        Cliente cliente6 = new Cliente();
-        cliente6.setNombre("Marcos");
-        cliente6.setApellido("Prat");
-        cliente6.setNickname("marcos");
-        cliente6.setCorreo("marcos@marcos.com");
-        Date nacimiento6 = new Date(85, 5, 11);
-        cliente6.setContrasena("1234");
-        cliente6.setFechaNacimiento(nacimiento6);
-        clienteController.nuevo(cliente6);
-
-
-    }
-
-
-   private void harcodeoReservas(){
-
-        ReservaController reservactrl = new ReservaController();
-        ClienteController clientectrl = new ClienteController();
-
-        reservactrl.nueva(clientectrl.obtener(1));
-
-        reservactrl.nueva(clientectrl.obtener(2));
-        reservactrl.nueva(clientectrl.obtener(2));
-
-        reservactrl.nueva(clientectrl.obtener(3));
-
-        reservactrl.nueva(clientectrl.obtener(4));
-
-        reservactrl.nueva(clientectrl.obtener(5));
-        reservactrl.nueva(clientectrl.obtener(5));
-        reservactrl.nueva(clientectrl.obtener(5));
-
-        reservactrl.nueva(clientectrl.obtener(6));
-        reservactrl.nueva(clientectrl.obtener(6));
-
-    }
 
     private void harcodeoPromociones(){
 
@@ -379,6 +358,131 @@ public class Hardcodeo {
         promocion2.setProveedor(proveedorctrl.obtener(2));
 
         productoctrl.agregar(promocion2);
+
+    }
+
+
+    private void harcodeoCarritos() {
+
+
+        CarritoController carritoController = new CarritoController();
+        ClienteController clienteController = new ClienteController();
+        ProductoController productoController = new ProductoController();
+
+
+        Cliente cliente1 = clienteController.obtener(1);
+        Carrito carrito1 = cliente1.getCarrito();
+
+        ItemReserva itemReserva1 = new ItemReserva();
+        itemReserva1.setProducto(productoController.obtener(1));
+        itemReserva1.setSubTotal(productoController.obtener(1).getPrecio());
+        Date fechaInicio1 = new Date(116, 9, 19);
+        itemReserva1.setFechaInicio(fechaInicio1);
+        Date fechaFin1 = new Date(116, 11, 21);
+        itemReserva1.setFechaFin(fechaFin1);
+        itemReserva1.setCantidad(2);
+
+        carritoController.agregarItem(itemReserva1,carrito1);
+
+
+        Cliente cliente2 = clienteController.obtener(2);
+        Carrito carrito2 = cliente2.getCarrito();
+
+        ItemReserva itemReserva2 = new ItemReserva();
+        itemReserva2.setProducto(productoController.obtener(2));
+        itemReserva2.setSubTotal(productoController.obtener(2).getPrecio());
+        Date fechaInicio2 = new Date(116, 9, 19);
+        itemReserva2.setFechaInicio(fechaInicio2);
+        Date fechaFin2 = new Date(116, 11, 21);
+        itemReserva2.setFechaFin(fechaFin2);
+        itemReserva2.setCantidad(3);
+
+        carritoController.agregarItem(itemReserva2,carrito2);
+
+
+        Cliente cliente3 = clienteController.obtener(3);
+        Carrito carrito3 = cliente3.getCarrito();
+
+        ItemReserva itemReserva3 = new ItemReserva();
+        itemReserva3.setProducto(productoController.obtener(3));
+        itemReserva3.setSubTotal(productoController.obtener(3).getPrecio());
+        Date fechaInicio3 = new Date(116, 9, 19);
+        itemReserva3.setFechaInicio(fechaInicio3);
+        Date fechaFin3 = new Date(116, 10, 24);
+        itemReserva3.setFechaFin(fechaFin3);
+        itemReserva3.setCantidad(1);
+
+        carritoController.agregarItem(itemReserva3,carrito3);
+
+
+        Cliente cliente4 = clienteController.obtener(4);
+        Carrito carrito4 = cliente4.getCarrito();
+
+        ItemReserva itemReserva4 = new ItemReserva();
+        itemReserva4.setProducto(productoController.obtener(4));
+        itemReserva4.setSubTotal(productoController.obtener(4).getPrecio());
+        Date fechaInicio4 = new Date(116, 9, 19);
+        itemReserva4.setFechaInicio(fechaInicio4);
+        Date fechaFin4 = new Date(116, 11, 13);
+        itemReserva4.setFechaFin(fechaFin4);
+        itemReserva4.setCantidad(4);
+
+        carritoController.agregarItem(itemReserva4,carrito4);
+
+
+        Cliente cliente5 = clienteController.obtener(5);
+        Carrito carrito5 = cliente5.getCarrito();
+
+        ItemReserva itemReserva5 = new ItemReserva();
+        itemReserva5.setProducto(productoController.obtener(5));
+        itemReserva5.setSubTotal(productoController.obtener(5).getPrecio());
+        Date fechaInicio5 = new Date(116, 9, 19);
+        itemReserva5.setFechaInicio(fechaInicio5);
+        Date fechaFin5 = new Date(116, 10, 2);
+        itemReserva5.setFechaFin(fechaFin5);
+        itemReserva5.setCantidad(4);
+
+        carritoController.agregarItem(itemReserva5,carrito5);
+
+
+        Cliente cliente6 = clienteController.obtener(6);
+        Carrito carrito6 = cliente6.getCarrito();
+
+        ItemReserva itemReserva6 = new ItemReserva();
+        itemReserva6.setProducto(productoController.obtener(6));
+        itemReserva6.setSubTotal(productoController.obtener(6).getPrecio());
+        Date fechaInicio6 = new Date(116, 9, 19);
+        itemReserva6.setFechaInicio(fechaInicio6);
+        Date fechaFin6 = new Date(116, 12, 22);
+        itemReserva6.setFechaFin(fechaFin6);
+        itemReserva6.setCantidad(3);
+
+        carritoController.agregarItem(itemReserva6,carrito6);
+
+
+    }
+
+
+    private void harcodeoReservas(){
+
+        ReservaController reservactrl = new ReservaController();
+        ClienteController clientectrl = new ClienteController();
+
+        reservactrl.nueva(clientectrl.obtener(1));
+
+        reservactrl.nueva(clientectrl.obtener(2));
+        reservactrl.nueva(clientectrl.obtener(2));
+
+        reservactrl.nueva(clientectrl.obtener(3));
+
+        reservactrl.nueva(clientectrl.obtener(4));
+
+        reservactrl.nueva(clientectrl.obtener(5));
+        reservactrl.nueva(clientectrl.obtener(5));
+        reservactrl.nueva(clientectrl.obtener(5));
+
+        reservactrl.nueva(clientectrl.obtener(6));
+        reservactrl.nueva(clientectrl.obtener(6));
 
     }
 }
