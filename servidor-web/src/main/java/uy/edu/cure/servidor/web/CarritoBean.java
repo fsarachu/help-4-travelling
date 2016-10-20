@@ -11,7 +11,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @ManagedBean
 @SessionScoped
@@ -24,6 +26,7 @@ public class CarritoBean implements Serializable{
     private String mensaje;
     private Double itemCantidad;
     private Double itemPrecio;
+    private List<ItemReserva> itemReservas = new ArrayList<ItemReserva>();
     @ManagedProperty("#{servicioBean}")
     private ServicioBean servicioBean;
     @ManagedProperty("#{loginBean}")
@@ -48,6 +51,12 @@ public class CarritoBean implements Serializable{
         CarritoController carritofinal = new CarritoController();
         carritofinal.agregarItem(item, item.getCarrito());
         reservaBean.cantReservas(loginBean.getCliente().getId());
+    }
+
+    public void mostrarCarrito() {
+        CarritoController carritoController = new CarritoController();
+        carrito = carritoController.obtenerCarrito(loginBean.getCliente().getCarrito().getId());
+        itemReservas = carrito.getItems();
     }
 
     public Carrito getCarrito() {
@@ -131,6 +140,14 @@ public class CarritoBean implements Serializable{
 
     public void setReservaBean(ReservaBean reservaBean) {
         this.reservaBean = reservaBean;
+    }
+
+    public List<ItemReserva> getItemReservas() {
+        return itemReservas;
+    }
+
+    public void setItemReservas(List<ItemReserva> itemReservas) {
+        this.itemReservas = itemReservas;
     }
 }
 
