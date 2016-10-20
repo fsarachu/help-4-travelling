@@ -102,7 +102,7 @@ public class LoginBean implements Serializable {
                 cliente = clienteController.obtenerXNombre(cliente.getNickname());
                 loggedIn = true;
                 mensaje = null;
-                reservaBean.cantReservas(cliente.getId());
+                reservaBean.cantReservas(cliente);
                 return "secured/index?faces-redirect=true";
             } else {
                 if (clienteController.nicknameExiste(this.cliente.getNickname())) {
@@ -118,7 +118,7 @@ public class LoginBean implements Serializable {
                 cliente = clienteController.obtenerXMail(cliente.getCorreo());
                 loggedIn = true;
                 mensaje = null;
-                reservaBean.cantReservas(cliente.getId());
+                reservaBean.cantReservas(cliente);
                 return "secured/index?faces-redirect=true";
             } else {
                 if (clienteController.emailExiste(this.cliente.getCorreo())) {
