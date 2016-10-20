@@ -26,6 +26,21 @@
             background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
             padding-top: 70px;
         }
+
+        .box1, .box2 , .box3{
+            width: 280px;
+            height: auto;
+            float: left;
+        }
+
+        .box1 {
+            clear: left;
+            margin-right: 10px;
+        }
+
+        .clear {
+            clear: both;
+        }
     </style>
 
     <title>Help 4 Travelling</title>
@@ -58,40 +73,18 @@
                     </h:column>
                 </h:dataTable>
             </div>
+            <div class="box3">
+                    <h3>Informacion de Servicio #{servicioBean.servicio.nombre}</h3>
+                        <h:outputText>Descripcion #{servicioBean.servicio.descripcion}</h:outputText>
+                        <img src="#{servicioBean.servicio.imagenes[0]}"/>
+                        <img src="#{servicioBean.servicio.imagenes[1]}"/>
+                        <img src="#{servicioBean.servicio.imagenes[2]}"/>
+                        <h:outputText>rendered="#{serviciopromo.origen.equals(not null)}">#{serviciopromo.origen}</h:outputText>
+                        <h:outputText> rendered="#{serviciopromo.destino.equals(not null)}">#{serviciopromo.origen}</h:outputText>
+                        <label>Precio $#{servicioBean.servicio.precio}</label>
+            </div>
             <div class="clear"></div>
         </h:form>
-        <form action="">
-            <div>
-                <h:outputLabel>Nombre</h:outputLabel>
-                <h:outputLabel>#{serviciopromo.nombre}</h:outputLabel>
-            </div>
-        </form>
-        <form action="">
-            <div>
-                <h:outputLabel>Descripcion</h:outputLabel>
-                <h:outputLabel>#{serviciopromo.descripcion}</h:outputLabel>
-            </div>
-        </form>
-        <div>
-             <h:outputLabel
-                rendered="#{not empty serviciopromo.origen}">#{serviciopromo.origen}</h:outputLabel>
         </div>
-        <div>
-            <h:outputLabel
-                rendered="#{not empty serviciopromo.destino}">#{serviciopromo.origen}</h:outputLabel>
-        </div>
-        <form action="">
-            <div>
-                <h:outputLabel>Precio</h:outputLabel>
-                <h:outputLabel>#{serviciopromo.precio}</h:outputLabel>
-            </div>
-        </form>
-        <form action="">
-            <div class="form-group">
-                <h:graphicImage value="#{serviciopromo.imagenes}"/>
-                <label>Nombre #{serviciopromo.imagenes}</label>
-            </div>
-        </form>
-    </div>
 </body>
 </html>
