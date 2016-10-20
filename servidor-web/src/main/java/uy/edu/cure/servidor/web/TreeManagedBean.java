@@ -42,10 +42,11 @@ public class TreeManagedBean {
     public TreeManagedBean() {
     }
 
+
     private void createNode(Object tag, TreeNode parent) {
         TreeNode node = new DefaultTreeNode(tag, parent);
-        new DefaultTreeNode("hola", node);
-        new DefaultTreeNode("chau", node);
+        //new DefaultTreeNode("hola", node);
+        //new DefaultTreeNode("chau", node);
     }
 
 
