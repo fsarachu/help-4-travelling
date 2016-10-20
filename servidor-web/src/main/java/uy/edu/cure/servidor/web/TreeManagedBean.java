@@ -15,8 +15,6 @@ import java.util.List;
 
 @ManagedBean
 @SessionScoped
-
-
 public class TreeManagedBean {
     private List<Categoria> categorias = new ArrayList<>();
     private TreeNode root;
@@ -24,18 +22,25 @@ public class TreeManagedBean {
     @PostConstruct
     public void buildTree() {
         root = new DefaultTreeNode("Root", null);
+
         CategoriaController categoriaController = new CategoriaController();
         ArrayList<Categoria> categorias = categoriaController.listar();
         for (Categoria categoria : categorias) {
             if (categoria.getPadre() == null) {
-                createNode(categoria, root);
+                recu(categoria, root);
             }
+        }
+    }
+    private void recu(Categoria categoria, TreeNode father){
+        TreeNode node = new DefaultTreeNode(categoria, father);
+        ArrayList<Categoria> categorias = categoria.getHijos();
+        for (Categoria categ : categorias) {
+            recu(categ, node);
         }
     }
 
     public TreeManagedBean() {
     }
-
 
     private void createNode(Object tag, TreeNode parent) {
         TreeNode node = new DefaultTreeNode(tag, parent);
