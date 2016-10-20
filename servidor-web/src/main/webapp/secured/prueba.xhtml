@@ -17,16 +17,19 @@
 </h:head>
 
 <h:body>
-    <h:form id="form">
-        <p:tree id="tree" value="#{treeManagedBean.root}" var="node" dynamic="true" cache="false">
-            <p:ajax event="expand"/>
-            <p:treeNode>
-                <h:commandLink
-                               value="#{node}">
-                </h:commandLink>
-            </p:treeNode>
-        </p:tree>
-    </h:form>
+    <div class="box1">
+        <h:form id="form">
+            <p:tree id="tree" value="#{treeManagedBean.root}" var="node" dynamic="true" cache="false">
+                <p:ajax event="expand"/>
+                <p:treeNode >
+                    <h:commandLink
+                            value="#{node}">
+                    </h:commandLink>
+                </p:treeNode>
+                <p:ajax event="select" listener="#{treeManagedBean.onNodeSelect}"></p:ajax>
+            </p:tree>
+        </h:form>
+    </div>
 
 </h:body>
 
