@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:a4j="http://richfaces.org/a4j">
+>
 <h:head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <!-- Optional theme -->
@@ -42,7 +42,6 @@
                 <h:inputText type="text" name="name" id="inputID" onblur="validarusuario(this)"
                              value="#{loginBean.cliente.nickname}" title="" required="true"
                              requiredMessage="El nickname es requerido">
-                    <a4j:ajax event="valueChange" render="second" execute="@this"/>
                 </h:inputText>
                 <label>Correo:</label>
                 <h:inputText type="text" name="name" id="inputCORREO"
