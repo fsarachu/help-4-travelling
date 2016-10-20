@@ -5,12 +5,12 @@ import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.swing.*;
+import java.io.IOException;
 import java.io.Serializable;
+import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @ManagedBean
@@ -21,17 +21,19 @@ public class ReservaBean implements Serializable {
     private List<Reserva> reservaList = new ArrayList<>();
 
 
-    public ReservaBean() {
+    public ReservaBean() throws IOException {
+        System.out.println("The current runtime classpath covers the following paths:");
+        for (URL url : Collections.list(Thread.currentThread().getContextClassLoader().getResources(""))) {
+            System.out.println(url);
+        }
     }
 
-    public void cantReservas(Integer id) {
+    public void cantReservas(Cliente cliente) {
         reservaList.clear();
         ReservaController reservaController = new ReservaController();
-        ArrayList<Reserva> reservas = reservaController.listar();
+        ArrayList<Reserva> reservas = reservaController.listarReservasCliente(cliente);
         for (Reserva reserva : reservas) {
-            if (reserva.getCliente().getId().equals(id)){
-                reservaList.add(reserva);
-            }
+            reservaList.add(reserva);
         }
         cantidadReservas = reservaList.size();
     }

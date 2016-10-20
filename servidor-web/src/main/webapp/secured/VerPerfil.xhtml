@@ -58,7 +58,7 @@
                     </h:outputText>
                 </f:facet>
                 <h:outputLabel immediate="true"
-                               value="#{reservas.id}  #{reservas.carrito.id}">
+                               value="#{reservas.id}  #{reservas.carrito.items[0].producto.descripcion}">
                 </h:outputLabel>
             </h:column>
         </h:dataTable>
