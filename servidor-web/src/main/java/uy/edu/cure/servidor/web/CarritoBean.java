@@ -10,6 +10,7 @@ import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -55,8 +56,13 @@ public class CarritoBean implements Serializable{
 
     public void mostrarCarrito() {
         CarritoController carritoController = new CarritoController();
-        carrito = carritoController.obtenerCarrito(loginBean.getCliente().getCarrito().getId());
-        itemReservas = carrito.getItems();
+        ClienteController clienteController = new ClienteController();
+
+        if (clienteController.obtener(loginBean.getCliente().getId()).getCarrito().getIdItems() != null) {
+            itemReservas = clienteController.obtener(loginBean.getCliente().getId()).getCarrito().getItems();
+        } else {
+            mensaje = "Carrito Vacio";
+        }
     }
 
     public Carrito getCarrito() {
@@ -143,6 +149,7 @@ public class CarritoBean implements Serializable{
     }
 
     public List<ItemReserva> getItemReservas() {
+        mostrarCarrito();
         return itemReservas;
     }
 

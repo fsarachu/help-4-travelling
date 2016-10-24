@@ -145,17 +145,19 @@ public class LoginBean implements Serializable {
         }
     }
 
-    public void nuevoUsuario() {
+    public String nuevoUsuario() {
         if (!usuarioExiste()) {
             if (comparoContrasenas()) {
                 ClienteController clienteController = new ClienteController();
                 clienteController.nuevo(cliente);
                 mensaje = "Cliente creado correctamente";
                 cliente = null;
+                return "login?faces-redirect=true";
             }
         } else {
             mensaje = "El usuario ya existe";
         }
+        return mensaje;
     }
 
     public boolean comparoContrasenas() {

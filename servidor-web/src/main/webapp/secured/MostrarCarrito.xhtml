@@ -49,8 +49,10 @@
         <h:form>
             <div class="box1">
                 <h3>Mostrar Carrito</h3>
+                <h:outputLabel
+                        rendered="!#{carritoBean.itemReservas.equals(null)}">#{carritoBean.mensaje}</h:outputLabel>
 
-                <h:dataTable value="#{carritoBean.itemReservas}" var="items" border="1">
+                <h:dataTable rendered="!#{carritoBean.itemReservas.equals(null)}" value="#{carritoBean.itemReservas}" var="items" border="1">
                     <h:column>
                         <h:commandLink
                                 value="#{items.producto.descripcion}  #{items.cantidad}">
