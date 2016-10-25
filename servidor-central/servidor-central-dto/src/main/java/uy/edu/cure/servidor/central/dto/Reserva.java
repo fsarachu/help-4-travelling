@@ -13,14 +13,6 @@ public class Reserva {
     public Reserva() {
     }
 
-    public Reserva(Integer id, Carrito carrito, Cliente cliente, Date fechaCreacion, EstadoReserva estado, Date fechaInicio, Date fechaFin) {
-        this.id = id;
-        this.carrito = carrito;
-        this.cliente = cliente;
-        this.fechaCreacion = fechaCreacion;
-        this.estado = estado;
-    }
-
     public Integer getId() {
         return id;
     }

@@ -50,13 +50,13 @@
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li>
-                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}">
-                                    <h:outputText value="Actualizar estado de Reserva"/>
+                                <h:outputLink value="EstadoReserva.xhtml"
+                                              rendered="#{loginBean.isLoggedIn()}">Actualizar estado de Reserva
                                 </h:outputLink>
                             </li>
                             <li>
-                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}">
-                                    <h:outputText value="Ver Informacion de Reserva"/>
+                                <h:outputLink value="#"
+                                              rendered="#{loginBean.isLoggedIn()}">Ver informacion de Reserva
                                 </h:outputLink>
                             </li>
                         </ul>
