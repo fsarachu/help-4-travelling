@@ -52,6 +52,7 @@ public class CarritoBean implements Serializable{
         CarritoController carritofinal = new CarritoController();
         carritofinal.agregarItem(item, item.getCarrito());
         reservaBean.cantReservas(loginBean.getCliente().getId());
+        loginBean.setCantidadItems(getCarrito().getItems().size());
     }
 
     public void mostrarCarrito() {

@@ -22,6 +22,7 @@ public class LoginBean implements Serializable {
     private String mensaje;
     private Cliente cliente;
     private String contrasena;
+    private Integer cantidadItems;
     @ManagedProperty("#{reservaBean}")
     private ReservaBean reservaBean;
 
@@ -102,7 +103,7 @@ public class LoginBean implements Serializable {
                 cliente = clienteController.obtenerXNombre(cliente.getNickname());
                 loggedIn = true;
                 mensaje = null;
-                reservaBean.cantReservas(cliente.getId());
+                cantidadItems = cliente.getCarrito().getItems().size();
                 return "secured/index?faces-redirect=true";
             } else {
                 if (clienteController.nicknameExiste(this.cliente.getNickname())) {
@@ -118,7 +119,7 @@ public class LoginBean implements Serializable {
                 cliente = clienteController.obtenerXMail(cliente.getCorreo());
                 loggedIn = true;
                 mensaje = null;
-                reservaBean.cantReservas(cliente.getId());
+                cantidadItems = cliente.getCarrito().getItems().size();
                 return "secured/index?faces-redirect=true";
             } else {
                 if (clienteController.emailExiste(this.cliente.getCorreo())) {
@@ -180,5 +181,11 @@ public class LoginBean implements Serializable {
         return "index?faces-redirect=true";
     }
 
+    public Integer getCantidadItems() {
+        return cantidadItems;
+    }
 
+    public void setCantidadItems(Integer cantidadItems) {
+        this.cantidadItems = cantidadItems;
+    }
 }

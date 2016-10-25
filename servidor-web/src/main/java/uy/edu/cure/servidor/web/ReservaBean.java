@@ -5,10 +5,7 @@ import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.RequestScoped;
 import javax.faces.bean.SessionScoped;
-import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +17,9 @@ public class ReservaBean implements Serializable {
     private Integer cantidadReservas;
     private List<Reserva> reservaList = new ArrayList<>();
 
-
     public ReservaBean() {
     }
+
 
     public void cantReservas(Integer id) {
         reservaList.clear();
@@ -35,6 +32,7 @@ public class ReservaBean implements Serializable {
         }
         cantidadReservas = reservaList.size();
     }
+
 
     public List<Reserva> getReservaList() {
         return reservaList;

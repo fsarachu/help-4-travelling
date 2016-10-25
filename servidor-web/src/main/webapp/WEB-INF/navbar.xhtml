@@ -90,7 +90,7 @@
                     <li class="dropdown">
                         <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
                             <h:outputLink value="MostrarCarrito.xhtml" rendered="#{loginBean.isLoggedIn()}">
-                                <h:outputText value="Carrito de Compras (#{reservaBean.cantidadReservas})"/>
+                                <h:outputText value="Carrito de Compras (#{loginBean.cantidadItems})"/>
                             </h:outputLink>
                         </h:panelGroup>
                     </li>
