@@ -4,6 +4,7 @@ import uy.edu.cure.servidor.central.dto.Carrito;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
+import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -52,6 +53,12 @@ public class CarritoBean implements Serializable{
         carritofinal.agregarItem(item, item.getCarrito());
         reservaBean.cantReservas(loginBean.getCliente().getId());
         loginBean.setCantidadItems(getCarrito().getItems().size());
+    }
+
+    public void confirmarCarrito() {
+        ReservaController reservaController = new ReservaController();
+        reservaController.nueva(loginBean.getCliente());
+        mensaje = "Reserva Realizada con exito";
     }
 
     public void mostrarCarrito() {
