@@ -52,8 +52,7 @@ public class ItemReserva {
         return subTotal;
     }
 
-    public void setSubTotal(double subTotal) {
-        this.subTotal = subTotal;
+    public void setSubTotal(double subTotal) { this.subTotal = subTotal;
     }
 
     public Date getFechaInicio() {

@@ -57,8 +57,14 @@
                         <h:commandLink
                                 value="#{items.producto.descripcion}  #{items.cantidad}">
                         </h:commandLink>
+                        <h:outputLabel>Precio: #{items.producto.precio}</h:outputLabel>
+                        <h:outputLabel>Tipo: #{items.producto.tipo}</h:outputLabel>
+                        <h:outputLabel>Sub-Total: #{items.subTotal}</h:outputLabel>
                     </h:column>
                 </h:dataTable>
+            </div>
+            <div>
+                <h:outputLabel>Total: #{clienteBean.cliente.carrito.total}</h:outputLabel>
             </div>
         </h:form>
     </div>

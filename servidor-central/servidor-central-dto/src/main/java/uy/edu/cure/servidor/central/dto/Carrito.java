@@ -66,6 +66,7 @@ public class Carrito {
     public void addItem(ItemReserva itemReserva) {
         this.idItems.add(itemReserva.getId());
         this.items.add(itemReserva);
+        this.setTotal(this.getTotal() + itemReserva.getSubTotal());
     }
 
     public void removeItem(ItemReserva itemReserva) {

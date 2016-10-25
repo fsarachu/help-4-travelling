@@ -1,16 +1,13 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Carrito;
-import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
-import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.swing.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -48,7 +45,9 @@ public class CarritoBean implements Serializable{
         item.setProducto(servicioBean.getServicio());
         itemCantidad = item.getCantidad();
         itemPrecio =  item.getProducto().getPrecio();
-        item.setSubTotal(itemCantidad * itemPrecio);
+        long diferenciaEn_ms = fechaFin.getTime() - fechaInicio.getTime();
+        long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
+        item.setSubTotal(itemCantidad * itemPrecio * dias);
         CarritoController carritofinal = new CarritoController();
         carritofinal.agregarItem(item, item.getCarrito());
         reservaBean.cantReservas(loginBean.getCliente().getId());
