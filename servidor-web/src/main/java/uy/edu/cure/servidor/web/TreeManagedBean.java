@@ -1,6 +1,5 @@
 package uy.edu.cure.servidor.web;
 
-import org.primefaces.event.NodeSelectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import uy.edu.cure.servidor.central.dto.Categoria;
@@ -8,7 +7,6 @@ import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,9 +16,7 @@ import java.util.List;
 
 
 public class TreeManagedBean {
-    private TreeNode singleSelectedTreeNode;
     private TreeNode onNodeSelect;
-    private List<Categoria> categorias = new ArrayList<>();
     private TreeNode root;
     private Integer contador = 1;
     private List<TreeNode> list = new ArrayList<TreeNode>();
@@ -69,61 +65,12 @@ public class TreeManagedBean {
         }
     }
 
-    /*public void buscoNodo(Categoria cate) {
-        Integer cuento = 0;
-        if (nodo != null) {
-            for (int i = 0; i < list.size(); i++) {
-                cuento++;
-                if (nodo == list.get(i)) {
-                    JOptionPane.showMessageDialog(null, cuento, "Atencion", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-        }
-    }*/
-    private void createNode(Object tag, TreeNode parent) {
-        TreeNode node = new DefaultTreeNode(tag, parent);
-    }
-
-
     public TreeNode getRoot() {
         return root;
     }
 
     public void setRoot(TreeNode root) {
         this.root = root;
-    }
-
-    public List<Categoria> getCategorias() {
-        return categorias;
-    }
-
-    public void setCategorias(List<Categoria> categorias) {
-        this.categorias = categorias;
-    }
-
-    public Integer getContador() {
-        return contador;
-    }
-
-    public void setContador(Integer contador) {
-        this.contador = contador;
-    }
-
-    public List<TreeNode> getList() {
-        return list;
-    }
-
-    public void setList(List<TreeNode> list) {
-        this.list = list;
-    }
-
-    public TreeNode getSingleSelectedTreeNode() {
-        return singleSelectedTreeNode;
-    }
-
-    public void setSingleSelectedTreeNode(TreeNode singleSelectedTreeNode) {
-        //buscoNodo(singleSelectedTreeNode);
-        this.singleSelectedTreeNode = singleSelectedTreeNode;
     }
 
     public TreeNode getOnNodeSelect() {
