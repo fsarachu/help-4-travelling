@@ -14,12 +14,11 @@
                 <ul class="nav navbar-nav">
 
 
-
                     <li class="dropdown">
-                            <a  href="/secured/index.xhtml">
-                                <img src="/resources/imagenes/home.png"
-                                     style="height: 30px ;width: 30px"/>
-                            </a>
+                        <a href="/secured/index.indexold.xhtml">
+                            <img src="/resources/imagenes/home.png"
+                                 style="height: 30px ;width: 30px"/>
+                        </a>
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">CLIENTES<span
@@ -50,13 +49,13 @@
                                 class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li>
-                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}">
-                                    <h:outputText value="Actualizar estado de Reserva"/>
+                                <h:outputLink value="EstadoReserva.xhtml"
+                                              rendered="#{loginBean.isLoggedIn()}">Actualizar estado de Reserva
                                 </h:outputLink>
                             </li>
                             <li>
-                                <h:outputLink href="" rendered="#{loginBean.isLoggedIn()}">
-                                    <h:outputText value="Ver Informacion de Reserva"/>
+                                <h:outputLink value="#"
+                                              rendered="#{loginBean.isLoggedIn()}">Ver informacion de Reserva
                                 </h:outputLink>
                             </li>
                         </ul>
@@ -93,6 +92,16 @@
                                 <h:outputText value="Carrito de Compras (#{loginBean.cantidadItems})"/>
                             </h:outputLink>
                         </h:panelGroup>
+                    </li>
+                    <li class="dropdown">
+                        <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
+                            <h:inputText>#{servicioBean.buscar}</h:inputText>
+                            <h:commandButton type="submit" value="Buscar" immediate="true"
+                                             action="#{servicioBean.buscarServicioPromo(servicioBean.buscar)}">
+                                <h:outputText value="Buscar"/>
+                            </h:commandButton>
+                        </h:panelGroup>
+
                     </li>
                 </ul>
             </div><!--<div class="navbar-collapse collapse" id="navbar-main">-->

@@ -13,13 +13,13 @@ import java.util.List;
 
 @ManagedBean
 @SessionScoped
-public class ServicioBean implements Serializable{
+public class ServicioBean implements Serializable {
     private Servicio servicio;
     private List<Producto> listarProductosServicio = new ArrayList<Producto>();
     private List<Producto> listarProducto = new ArrayList<Producto>();
     private List<Servicio> listaServicios = new ArrayList<Servicio>();
     private List<Categoria> listaCategorias = new ArrayList<Categoria>();
-
+    private String buscar;
 
     public ServicioBean() {
         cargarServiciosPromos();
@@ -31,7 +31,7 @@ public class ServicioBean implements Serializable{
         listaServicios = productoController.listarServiciosPorCategoria(categoria);
     }
 
-    public String buscarServicio(Integer id){
+    public String buscarServicio(Integer id) {
         ProductoController productoController = new ProductoController();
         if (!id.equals(null)) {
             servicio = (Servicio) productoController.obtener(id);
@@ -45,7 +45,7 @@ public class ServicioBean implements Serializable{
 
     }
 
-    public String cargaServiciosCarrito(Integer id){
+    public String cargaServiciosCarrito(Integer id) {
         ProductoController productoController = new ProductoController();
         if (!id.equals(null)) {
             servicio = (Servicio) productoController.obtener(id);
@@ -57,6 +57,30 @@ public class ServicioBean implements Serializable{
             return null;
         }
 
+    }
+
+    public String buscarServicioPromo(String busqueda) {
+        listarProducto.clear();
+        ProductoController productoController = new ProductoController();
+        listarProductosServicio = productoController.listarTodos();
+        for (Producto producto : listarProductosServicio) {
+            if (producto.getNombre().contains(busqueda) || producto.getDescripcion().contains(busqueda)) {
+                listarProducto.add(producto);
+            }
+        }
+        /*listaServicios = productoController.listarServicios();
+        CategoriaController categoriaController = new CategoriaController();
+        List<Categoria> categorias = categoriaController.listar();
+        for (Categoria categoria : categorias) {
+            if (!categoria.getNombre().contains(busqueda)) {
+                categorias.remove(categoria);
+            }
+        }
+        for (Servicio servicios: listaServicios){
+            for (int i=0 ; i<servicios.getCategorias().size() ; i++)
+                if (servicios.getCategorias().get(i).getNombre().contains(busqueda)
+        }*/
+        return "Buscar.xhtml?faces-redirect=true";
     }
 
     public List<Categoria> getListaCategorias() {
@@ -83,7 +107,7 @@ public class ServicioBean implements Serializable{
         this.listarProductosServicio = listarProductosServicio;
     }
 
-    public void cargarServiciosPromos(){
+    public void cargarServiciosPromos() {
         ProductoController productoController = new ProductoController();
         listarProducto = productoController.listarTodos();
     }
@@ -105,5 +129,13 @@ public class ServicioBean implements Serializable{
 
     public void setListarProducto(List<Producto> listarProducto) {
         this.listarProducto = listarProducto;
+    }
+
+    public String getBuscar() {
+        return buscar;
+    }
+
+    public void setBuscar(String buscar) {
+        this.buscar = buscar;
     }
 }
