@@ -7,6 +7,8 @@ import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,27 +62,23 @@ public class ServicioBean implements Serializable {
     }
 
     public String buscarServicioPromo(String busqueda) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        busqueda = request.getParameter("myForm:txtProperty");
         listarProducto.clear();
         ProductoController productoController = new ProductoController();
         listarProductosServicio = productoController.listarTodos();
         for (Producto producto : listarProductosServicio) {
-            if (producto.getNombre().contains(busqueda) || producto.getDescripcion().contains(busqueda)) {
-                listarProducto.add(producto);
+            if (busqueda != null) {
+                if (producto.getNombre().contains(busqueda) || producto.getDescripcion().contains(busqueda)) {
+                    listarProducto.add(producto);
+                }
             }
         }
-        /*listaServicios = productoController.listarServicios();
-        CategoriaController categoriaController = new CategoriaController();
-        List<Categoria> categorias = categoriaController.listar();
-        for (Categoria categoria : categorias) {
-            if (!categoria.getNombre().contains(busqueda)) {
-                categorias.remove(categoria);
-            }
+        if (listarProducto.size() != 0) {
+            return "Buscar.xhtml?faces-redirect=true";
+        } else {
+            return null;
         }
-        for (Servicio servicios: listaServicios){
-            for (int i=0 ; i<servicios.getCategorias().size() ; i++)
-                if (servicios.getCategorias().get(i).getNombre().contains(busqueda)
-        }*/
-        return "Buscar.xhtml?faces-redirect=true";
     }
 
     public List<Categoria> getListaCategorias() {

@@ -136,6 +136,19 @@ public class LoginBean implements Serializable {
 
     }
 
+    public boolean usuarioExisteA(String usuario) {
+        ClienteController clienteController = new ClienteController();
+        if (clienteController.nicknameExiste(usuario)) {
+            this.setMensaje("El usuario ya existe");
+            mensaje = "Bienvenido";
+            return true;
+        } else {
+            mensaje = "";
+            return false;
+        }
+    }
+
+
     public boolean usuarioExiste() {
         ClienteController clienteController = new ClienteController();
         if (clienteController.nicknameExiste(this.cliente.getNickname())) {

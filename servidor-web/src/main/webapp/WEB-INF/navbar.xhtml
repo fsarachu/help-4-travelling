@@ -12,8 +12,6 @@
         <div class="container">
             <div class="navbar-collapse collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
-
-
                     <li class="dropdown">
                         <a href="/secured/index.indexold.xhtml">
                             <img src="/resources/imagenes/home.png"
@@ -94,14 +92,12 @@
                         </h:panelGroup>
                     </li>
                     <li class="dropdown">
-                        <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <h:inputText>#{servicioBean.buscar}</h:inputText>
-                            <h:commandButton type="submit" value="Buscar" immediate="true"
-                                             action="#{servicioBean.buscarServicioPromo(servicioBean.buscar)}">
-                                <h:outputText value="Buscar"/>
-                            </h:commandButton>
-                        </h:panelGroup>
-
+                        <div id="search-box">
+                                <h:form id="myForm">
+                                    <h:inputText id="txtProperty" />
+                                    <h:commandButton value="Test" action="#{servicioBean.buscarServicioPromo(null)}"/>
+                                </h:form>
+                        </div>
                     </li>
                 </ul>
             </div><!--<div class="navbar-collapse collapse" id="navbar-main">-->
