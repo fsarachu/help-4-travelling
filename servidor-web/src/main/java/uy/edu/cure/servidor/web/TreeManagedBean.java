@@ -69,7 +69,7 @@ public class TreeManagedBean {
         }
     }
 
-    public void buscoNodo(TreeNode nodo) {
+    /*public void buscoNodo(Categoria cate) {
         Integer cuento = 0;
         if (nodo != null) {
             for (int i = 0; i < list.size(); i++) {
@@ -79,7 +79,7 @@ public class TreeManagedBean {
                 }
             }
         }
-    }
+    }*/
     private void createNode(Object tag, TreeNode parent) {
         TreeNode node = new DefaultTreeNode(tag, parent);
     }
@@ -122,7 +122,7 @@ public class TreeManagedBean {
     }
 
     public void setSingleSelectedTreeNode(TreeNode singleSelectedTreeNode) {
-        buscoNodo(singleSelectedTreeNode);
+        //buscoNodo(singleSelectedTreeNode);
         this.singleSelectedTreeNode = singleSelectedTreeNode;
     }
 
@@ -133,4 +133,5 @@ public class TreeManagedBean {
     public void setOnNodeSelect(TreeNode onNodeSelect) {
         this.onNodeSelect = onNodeSelect;
     }
+
 }

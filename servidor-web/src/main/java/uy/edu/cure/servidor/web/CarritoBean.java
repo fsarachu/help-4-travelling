@@ -51,13 +51,14 @@ public class CarritoBean implements Serializable{
         item.setSubTotal(itemCantidad * itemPrecio * dias);
         CarritoController carritofinal = new CarritoController();
         carritofinal.agregarItem(item, item.getCarrito());
-        reservaBean.cantReservas(loginBean.getCliente().getId());
         loginBean.setCantidadItems(getCarrito().getItems().size());
     }
 
     public void confirmarCarrito() {
         ReservaController reservaController = new ReservaController();
         reservaController.nueva(loginBean.getCliente());
+        loginBean.setCantidadItems(loginBean.getCliente().getCarrito().getItems().size());
+        reservaBean.cargarReservas(loginBean.getCliente());
         mensaje = "Reserva Realizada con exito";
     }
 

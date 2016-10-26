@@ -104,6 +104,7 @@ public class LoginBean implements Serializable {
                 loggedIn = true;
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
+                reservaBean.cargarReservas(cliente);
                 return "secured/index?faces-redirect=true";
             } else {
                 if (clienteController.nicknameExiste(this.cliente.getNickname())) {
@@ -120,6 +121,7 @@ public class LoginBean implements Serializable {
                 loggedIn = true;
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
+                reservaBean.cargarReservas(cliente);
                 return "secured/index?faces-redirect=true";
             } else {
                 if (clienteController.emailExiste(this.cliente.getCorreo())) {
@@ -174,10 +176,6 @@ public class LoginBean implements Serializable {
     public String cerrarSesion() {
         loggedIn = false;
         cliente = null;
-        /*System.out.println(cliente.getNombre());
-		System.out.println(cliente.getApellido());
-		System.out.println(cliente.getCorreo());
-		System.out.println(cliente.getNickname());*/
         return "index?faces-redirect=true";
     }
 
