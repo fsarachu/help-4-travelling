@@ -68,7 +68,7 @@ public class CategoriaControllerTest {
         List<Categoria> expected = new ArrayList<>();
 
         for (int i = 0; i < 3; i++) {
-            expected.add(new Categoria(null, null, null, null, null));
+            expected.add(new Categoria(null, null, null, null, null, null));
         }
 
         for (Categoria categoria : expected) {

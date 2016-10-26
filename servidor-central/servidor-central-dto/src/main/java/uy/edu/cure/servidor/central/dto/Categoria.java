@@ -9,18 +9,28 @@ public class Categoria {
     private Categoria padre;
     private ArrayList<Categoria> hijos;
     private EstadoCategoria estado;
+    private String imagen;
 
     public Categoria() {
         this.hijos = new ArrayList<>();
         this.estado = EstadoCategoria.visible;
     }
 
-    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Categoria> hijos, EstadoCategoria estado) {
+    public Categoria(Integer id, String nombre, Categoria padre, ArrayList<Categoria> hijos, EstadoCategoria estado, String imagen) {
         this.id = id;
         this.nombre = nombre;
         this.padre = padre;
         this.hijos = hijos;
         this.estado = estado;
+        this.imagen = imagen;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public Integer getId() {
