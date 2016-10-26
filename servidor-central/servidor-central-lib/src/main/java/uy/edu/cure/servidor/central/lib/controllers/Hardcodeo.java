@@ -78,16 +78,19 @@ public class Hardcodeo {
         Categoria autos3 = new Categoria();
         autos3.setPadre(autos1);
         autos3.setNombre("Rent a Car");
+        autos3.setImagen("/resources/imagenes/empresas/r1.jpg");
         categoriaController.nueva(autos3);
 
         Categoria autos4 = new Categoria();
         autos4.setPadre(autos1);
         autos4.setNombre("Car Rental");
+        autos4.setImagen("/resources/imagenes/empresas/r2.jpg");
         categoriaController.nueva(autos4);
 
         Categoria autos5 = new Categoria();
         autos5.setPadre(autos2);
         autos5.setNombre("Rent a Van");
+        autos5.setImagen("/resources/imagenes/empresas/r3.jpg");
         categoriaController.nueva(autos5);
 
         Categoria autos6 = new Categoria();
@@ -190,7 +193,7 @@ public class Hardcodeo {
         Date nacimiento1 = new Date(85, 0, 11);
         cliente1.setContrasena("1234");
         cliente1.setFechaNacimiento(nacimiento1);
-        cliente1.setImagen("/resources/imagenes/imagen1.jpeg");
+        cliente1.setImagen("/resources/imagenes/fcarne/fot1.jpg");
         /////cliente1.setCarrito(carritoController.obtenerCarrito(1)); ///////
         clienteController.nuevo(cliente1);
 
@@ -202,6 +205,7 @@ public class Hardcodeo {
         Date nacimiento2 = new Date(85, 1, 11);
         cliente2.setContrasena("1234");
         cliente2.setFechaNacimiento(nacimiento2);
+        cliente2.setImagen("/resources/imagenes/fcarne/fot2.jpg");
         clienteController.nuevo(cliente2);
 
         Cliente cliente3 = new Cliente();
@@ -212,6 +216,7 @@ public class Hardcodeo {
         Date nacimiento3 = new Date(85, 2, 11);
         cliente3.setContrasena("1234");
         cliente3.setFechaNacimiento(nacimiento3);
+        cliente3.setImagen("/resources/imagenes/fcarne/fot3.jpg");
         clienteController.nuevo(cliente3);
 
         Cliente cliente4 = new Cliente();
@@ -222,6 +227,7 @@ public class Hardcodeo {
         Date nacimiento4 = new Date(85, 3, 11);
         cliente4.setContrasena("1234");
         cliente4.setFechaNacimiento(nacimiento4);
+        cliente4.setImagen("/resources/imagenes/fcarne/fot4.jpg");
         clienteController.nuevo(cliente4);
 
         Cliente cliente5 = new Cliente();
@@ -232,6 +238,7 @@ public class Hardcodeo {
         Date nacimiento5 = new Date(85, 4, 11);
         cliente5.setContrasena("1234");
         cliente5.setFechaNacimiento(nacimiento5);
+        cliente5.setImagen("/resources/imagenes/fcarne/fot5.jpg");
         clienteController.nuevo(cliente5);
 
         Cliente cliente6 = new Cliente();
@@ -242,6 +249,7 @@ public class Hardcodeo {
         Date nacimiento6 = new Date(85, 5, 11);
         cliente6.setContrasena("1234");
         cliente6.setFechaNacimiento(nacimiento6);
+        cliente6.setImagen("/resources/imagenes/fcarne/fot6.jpg");
         clienteController.nuevo(cliente6);
 
 
