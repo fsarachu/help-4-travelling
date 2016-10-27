@@ -4,8 +4,11 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.dto.Producto;
+import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.servicios.ClienteService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
+import uy.edu.cure.servidor.central.lib.servicios.ProductoService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -103,4 +106,69 @@ public class ClienteControllerTest {
 
         assertTrue(clienteController.emailExiste(cliente.getCorreo()));
     }
+
+    @Test
+    public void testObtenerXNombre() {
+        String nome = "Ruvio Salvaje";
+
+        Cliente cliente = new Cliente();
+        cliente.setNickname(nome);
+        clienteController.nuevo(cliente);
+
+        Cliente clienteSalvaje = clienteController.obtenerXNombre(nome);
+
+        assertEquals(cliente, clienteSalvaje);
+    }
+
+    @Test
+    public void testObtenerXMail() {
+        String mail = "la_yiyaURSSDelCAP@latinmail.con";
+
+        Cliente cliente = new Cliente();
+        cliente.setCorreo(mail);
+        clienteController.nuevo(cliente);
+
+        Cliente clienteSalvaje = clienteController.obtenerXMail(mail);
+
+        assertEquals(cliente, clienteSalvaje);
+    }
+
+    @Test
+    public void testComprobarLogin() {
+        Hardcodeo jarc = new Hardcodeo();
+
+        String nick, pass;
+        nick = "franco";
+        pass = "1234";
+        Boolean fla1, fla2;
+        fla1 = this.clienteService.comprobarlogin(nick, pass);
+        fla2 = this.clienteService.comprobarlogin("fruta", "ensalada");
+        assertTrue(fla1);
+        assertTrue(!fla2);
+    }
+
+    @Test
+    public void testComprobarloginMail() {
+        Hardcodeo jarc = new Hardcodeo();
+
+        String mail, pass;
+        mail = "franco@franco.com";
+        pass = "1234";
+
+        boolean ok = this.clienteService.comprobarloginMail(mail, pass);
+
+        assertTrue(ok);
+    }
+
+    /*@Test
+    public void testListarCompradoresServicio() {
+        Hardcodeo jarc = new Hardcodeo();
+        int cant = 5;
+
+        ProductoController productoController = new ProductoController();
+        List<Servicio> listServicio = productoController.listarServicios();
+        Servicio serv = listServicio.get(2);
+        //assertTrue( cant == this.clienteService.listarCompradoresServicio(serv).size() );
+    }*/
+
 }

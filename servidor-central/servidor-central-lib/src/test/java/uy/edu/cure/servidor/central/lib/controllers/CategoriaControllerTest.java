@@ -8,11 +8,13 @@ import uy.edu.cure.servidor.central.dto.EstadoCategoria;
 import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
+import java.io.CharConversionException;
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 public class CategoriaControllerTest {
 
@@ -149,4 +151,29 @@ public class CategoriaControllerTest {
 
 
     }
+    @Test
+    public void testListarHijos() throws Exception {
+        // patch: no va para @BeforeClass para no tocar lo armado
+        Hardcodeo jarco = new Hardcodeo();
+
+        List<Categoria> todas = categoriaController.listar();
+        List<Categoria> hijas = null;
+        //aproach estadistico :D  "public void nueva(Categoria nuevaCategoria)" deberia retornar ID
+        int cant = 0;
+        for (Categoria categoria : todas) {
+            hijas = categoriaController.listarHijos(categoria);
+
+            for (Categoria categ : hijas ) {
+                cant += categoriaController.listarHijos(categ).size();
+            }
+        }
+        //cant = cant / todas.size();
+        boolean noFail = true;
+        if( cant < 1 ){
+            noFail = false;
+        }
+        assertTrue( noFail);
+
+    }
+
 }
