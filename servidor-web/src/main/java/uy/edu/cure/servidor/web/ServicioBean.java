@@ -11,6 +11,8 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 @ManagedBean
@@ -81,6 +83,32 @@ public class ServicioBean implements Serializable {
         }
     }
 
+    public String ordenarXNombre() {
+        if (buscar.equals("alfabetico")) {
+            Collections.sort(listarProducto, new Comparator<Producto>() {
+                @Override
+                public int compare(Producto producto, Producto t1) {
+                    return producto.getNombre().compareTo(t1.getNombre());
+                }
+            });
+        }
+        if (buscar.equals("precio")) {
+            Collections.sort(listarProducto, new Comparator<Producto>() {
+                @Override
+                public int compare(Producto producto, Producto t1) {
+                    if (producto.getPrecio() < t1.getPrecio()) {
+                        return -1;
+                    }
+                    if (producto.getPrecio() > t1.getPrecio()) {
+                        return 1;
+                    }
+                    return 0;
+                }
+            });
+        }
+        return "Buscar.xhtml?faces-redirect=true";
+    }
+
     public List<Categoria> getListaCategorias() {
         return listaCategorias;
     }
@@ -116,6 +144,7 @@ public class ServicioBean implements Serializable {
         }
         return servicio;
     }
+
 
     public void setServicio(Servicio servicio) {
         this.servicio = servicio;

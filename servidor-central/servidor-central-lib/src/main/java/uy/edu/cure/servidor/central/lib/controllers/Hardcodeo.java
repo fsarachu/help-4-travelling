@@ -263,12 +263,12 @@ public class Hardcodeo {
         CategoriaService categoriaService = ServiceFactory.getCategoriaService();
 
         Servicio servicio1 = new Servicio();
-        servicio1.setNombre("Auto x 1 dia");
+        servicio1.setNombre("Auto x Fin de Semana");
         servicio1.setProveedor(proveedorService.obtener(1));
         servicio1.setOrigen(ciudadService.obtener(3));
         servicio1.setDestino(ciudadService.obtener(4));
-        servicio1.setDescripcion("Un dia de auto");
-        servicio1.setPrecio(100);
+        servicio1.setDescripcion("Fin de semana con auto");
+        servicio1.setPrecio(300);
         servicio1.getCategorias().add(categoriaService.obtener(6));
         servicio1.getCategorias().add(categoriaService.obtener(5));
         servicio1.getImagenes().add("/resources/imagenes/auto.jpeg");
@@ -277,12 +277,12 @@ public class Hardcodeo {
         productoController.agregar(servicio1);
 
         Servicio servicio2 = new Servicio();
-        servicio2.setNombre("Auto x Fin de Semana");
+        servicio2.setNombre("Auto x 1 dia");
         servicio2.setProveedor(proveedorService.obtener(2));
         servicio2.setOrigen(ciudadService.obtener(1));
         servicio2.setDestino(ciudadService.obtener(2));
-        servicio2.setDescripcion("Fin de Semana con auto");
-        servicio2.setPrecio(300);
+        servicio2.setDescripcion("Un dia de auto");
+        servicio2.setPrecio(100);
         servicio2.getCategorias().add(categoriaService.obtener(7));
         servicio2.getImagenes().add("/resources/imagenes/camioneta.jpeg");
         productoController.agregar(servicio2);

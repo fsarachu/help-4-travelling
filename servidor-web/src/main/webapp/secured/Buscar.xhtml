@@ -1,43 +1,96 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!--
-  Created by IntelliJ IDEA.
-  User: victor
-  Date: 25/10/16
-  Time: 03:27 PM
--->
-<!DOCTYPE html
-        PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
+<!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
+<!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://java.sun.com/jsf/core">
+
 
 <h:head>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous">
+    </script>
+    <style type="text/css">
+        body {
+            background-color: silver;
+            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
+            padding-top: 70px;
+        }
+
+    </style>
     <title>Help 4 Travelling</title>
 </h:head>
 
+
 <h:body>
+    <ui:insert name="navbar">
+        <ui:include src="../WEB-INF/navbar.xhtml"/>
+    </ui:insert>
+
     <div>
-        <h3></h3>
-        <h:dataTable
-                value="#{servicioBean.listarProducto}"
-                var="serviciopromo" border="1">
-            <h:column>
-                <h:outputLabel immediate="true"
-                               value="#{serviciopromo.id}">
-                </h:outputLabel>
-            </h:column>
-            <h:column>
-                <h:outputLabel
-                        value="#{serviciopromo.nombre}">
-                </h:outputLabel>
-            </h:column>
-            <h:column>
-                <h:outputLabel
-                        value="#{serviciopromo.descripcion}">
-                </h:outputLabel>
-            </h:column>
-        </h:dataTable>
+        <h:form id="formBuscar">
+            <h3></h3>
+            <h:selectOneMenu value="#{servicioBean.buscar}" style="width:200px">
+                <f:selectItem itemLabel="Elija una opcion" itemValue="custom"/>
+                <f:selectItem id="alfabetico" itemLabel="Alfabeticamente (a-z)" itemValue="alfabetico"/>
+                <f:selectItem id="precio" itemLabel="Precio (ascendente)" itemValue="precio"/>
+                <f:ajax render="input"/>
+            </h:selectOneMenu>
+            <h:panelGroup id="input">
+                <h:inputText value="#{servicioBean.buscar}" rendered="#{servicioBean.buscar == 'custom'}"
+                             required="true"/>
+            </h:panelGroup>
+
+            <h:commandButton class="btn btn-primary" value="Registrar"
+                             action="#{servicioBean.ordenarXNombre}">
+            </h:commandButton>
+
+            <h:dataTable
+                    value="#{servicioBean.listarProducto}"
+                    var="serviciopromo" border="1">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Identificador"/>
+                    </f:facet>
+                    <h:outputLabel
+                            value="#{serviciopromo.id}">
+                    </h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Nombre"/>
+                    </f:facet>
+                    <h:outputLabel
+                            value="#{serviciopromo.nombre}">
+                    </h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Descripcion"/>
+                    </f:facet>
+                    <h:outputLabel
+                            value="#{serviciopromo.descripcion}">
+                    </h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Precio"/>
+                    </f:facet>
+                    <h:outputLabel
+                            value="#{serviciopromo.precio}">
+                    </h:outputLabel>
+                </h:column>
+
+            </h:dataTable>
+        </h:form>
     </div>
 
 </h:body>
