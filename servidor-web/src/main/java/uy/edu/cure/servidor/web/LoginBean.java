@@ -11,6 +11,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.swing.*;
 import java.io.Serializable;
+import java.util.Random;
 
 //import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
 
@@ -159,7 +160,8 @@ public class LoginBean implements Serializable {
             primerlogin = false;
         }
         if (usuarioExiste()) {
-            mensaje = "Usuario existe";
+            Random rnd = new Random();
+            mensaje = "Usuario existe.... Sugerido: " + usuario+(int)(rnd.nextDouble() *100);
             return true;
         }
         else {
