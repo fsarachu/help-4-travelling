@@ -92,6 +92,10 @@ public class LoginBean implements Serializable {
     }
 
     public String controloPassword() {
+        if (primerlogin) {
+            Hardcodeo hardcodeo = new Hardcodeo();
+            primerlogin = false;
+        }
         ClienteController clienteController = new ClienteController();
         String a = "@";
         String correo = cliente.getNickname();
@@ -129,9 +133,7 @@ public class LoginBean implements Serializable {
                 }
                 return null;
             }
-
         }
-
     }
 
     public boolean emailExiste(String email){
