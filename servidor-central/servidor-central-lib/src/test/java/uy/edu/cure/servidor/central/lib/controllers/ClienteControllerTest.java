@@ -160,15 +160,4 @@ public class ClienteControllerTest {
         assertTrue(ok);
     }
 
-    /*@Test
-    public void testListarCompradoresServicio() {
-        Hardcodeo jarc = new Hardcodeo();
-        int cant = 5;
-
-        ProductoController productoController = new ProductoController();
-        List<Servicio> listServicio = productoController.listarServicios();
-        Servicio serv = listServicio.get(2);
-        //assertTrue( cant == this.clienteService.listarCompradoresServicio(serv).size() );
-    }*/
-
 }

@@ -118,4 +118,16 @@ public class ClienteServiceTest {
         assertTrue(clienteService.emailExiste(cliente.getCorreo()));
 
     }
+
+    @Test
+    public void testNextId() throws Exception {
+        Cliente cliente = new Cliente();
+        cliente.setId(clienteService.nextId());
+        cliente.setNombre("prueba");
+
+        clienteService.agregar(cliente.getId(), cliente);
+
+        assertEquals(cliente, clienteService.obtener(cliente.getId()));
+
+    }
 }

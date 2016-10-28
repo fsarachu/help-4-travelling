@@ -3,6 +3,7 @@ package uy.edu.cure.servidor.central.lib.controllers;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
+import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Servicio;
@@ -87,24 +88,6 @@ public class ProductoControllerTest {
         assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
 
-/*    @Test
-    public void testListarServicios() throws Exception {
-        ArrayList<Producto> expected = new ArrayList<>();
-
-        for (int i = 0; i < 2; i++) {
-            expected.add(new Servicio());
-        }
-
-        for (Producto producto : expected) {
-            productoController.agregar(producto);
-        }
-
-        ArrayList<Servicio> actual = productoController.listarServicios();
-
-        assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
-    }
-
-*/
     @Test
     public void testListarPromociones() throws Exception {
         ArrayList<Producto> expected = new ArrayList<>();
@@ -122,5 +105,27 @@ public class ProductoControllerTest {
         assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
     }
 
+    @Test
+    public void testListarServiciosPorCiudad() throws Exception {
+        ArrayList<Servicio> expected = new ArrayList<>();
+        CiudadController ciudadController = new CiudadController();
+        Ciudad ciudad = ciudadController.obtener(1);
+        Servicio servicio1 = new Servicio();
+        Servicio servicio2 = new Servicio();
+        servicio1.setOrigen(ciudadController.obtener(1));
+        servicio2.setOrigen(ciudadController.obtener(1));
+        expected.add(servicio1);
+        expected.add(servicio2);
+
+
+        for (Producto producto : expected) {
+            productoController.agregar(producto);
+        }
+
+        ArrayList<Servicio> actual = productoController.listarServiciosPorCiudad(ciudad);
+
+        assertTrue(expected.containsAll(actual) && actual.containsAll(expected));
+
+    }
 
 }
