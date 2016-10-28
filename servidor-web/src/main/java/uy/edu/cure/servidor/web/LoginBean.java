@@ -7,6 +7,8 @@ import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.swing.*;
 import java.io.Serializable;
 
@@ -90,10 +92,6 @@ public class LoginBean implements Serializable {
     }
 
     public String controloPassword() {
-        if (primerlogin) {
-            Hardcodeo hardcodeo = new Hardcodeo();
-            primerlogin = false;
-        }
         ClienteController clienteController = new ClienteController();
         String a = "@";
         String correo = cliente.getNickname();
@@ -136,22 +134,41 @@ public class LoginBean implements Serializable {
 
     }
 
-    public boolean usuarioExisteA(String usuario) {
+    public boolean emailExiste(String email){
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        email = request.getParameter("form1:inputCORREO");
         ClienteController clienteController = new ClienteController();
-        if (clienteController.nicknameExiste(usuario)) {
-            this.setMensaje("El usuario ya existe");
-            mensaje = "Bienvenido";
+        if (clienteController.emailExiste(email)) {
+            mensaje = "Email existe";
             return true;
-        } else {
+        }
+        else {
             mensaje = "";
             return false;
         }
     }
 
+    public boolean altaUsuarioExiste(String usuario) {
+        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+        usuario = request.getParameter("form1:inputID");
+        cliente.setNickname(usuario);
+        if (primerlogin) {
+            Hardcodeo hardcodeo = new Hardcodeo();
+            primerlogin = false;
+        }
+        if (usuarioExiste()) {
+            mensaje = "Usuario existe";
+            return true;
+        }
+        else {
+            mensaje = "";
+            return false;
+        }
+    }
 
     public boolean usuarioExiste() {
         ClienteController clienteController = new ClienteController();
-        if (clienteController.nicknameExiste(this.cliente.getNickname())) {
+        if (clienteController.nicknameExiste(cliente.getNickname())) {
             this.setMensaje("El usuario ya existe");
             mensaje = "Bienvenido";
             return true;

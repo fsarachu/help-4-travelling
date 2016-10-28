@@ -36,12 +36,14 @@
 <h:body>
     <h2>Alta Clientes</h2>
     <div>
-        <h:form>
+        <h:form id="form1">
             <div>
                 <label>Nickname:</label>
-                <input type="text" name="name" id="inputID" onblur="validarusuario()"
-                             value="#{loginBean.cliente.nickname}" title="">
-                </input>
+                <h:inputText type="text" name="name" id="inputID"
+                       value="#{loginBean.cliente.nickname}" title="">
+                    <f:ajax event="keyup" render="mensaje-nombre" listener="#{loginBean.altaUsuarioExiste(null)}"/>
+                </h:inputText>
+                <h:outputText id="mensaje-nombre" class="mensaje-error" value="#{loginBean.mensaje}"/>
                 <label>Correo:</label>
                 <h:inputText type="text" name="name" id="inputCORREO"
                              value="#{loginBean.cliente.correo}" title="" required="true"
@@ -50,7 +52,9 @@
                     <f:ajax
                             event="keyup" render="@this inputMessage">
                     </f:ajax>
+                    <f:ajax event="keyup" render="mensaje-mail" listener="#{loginBean.emailExiste(null)}"/>
                 </h:inputText>
+                <h:outputText id="mensaje-mail" class="mensaje-error" value="#{loginBean.mensaje}"/>
                 <div>
                     <h:message id="inputMessage" for="inputCORREO"></h:message>
                 </div>
@@ -101,16 +105,5 @@
             <a href="login.xhtml">Cancelar</a>
         </div>
     </div>
-    <script>
-        function validarusuario() {
-            var porElementos = document.getElementById("inputID").value;
-            var decision = "#{loginBean.usuarioExisteA(porElementos)}";
-            if (decision == 'true') {
-                alert('Usuario existe');
-            }
-            alert('decision:' + decision);
-            alert(porElementos);
-        }
-    </script>
 </h:body>
 </html>
