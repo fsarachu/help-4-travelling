@@ -4,7 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
->
+      xmlns:p="http://primefaces.org/ui">
+
 <h:head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <!-- Optional theme -->
@@ -32,77 +33,92 @@
             font-weight: bold;
         }
     </style>
+    <link href="resources/css/login.css" rel="stylesheet"/>
 </h:head>
 <h:body>
-    <h2>Alta Clientes</h2>
-    <div>
-        <h:form id="form1">
-            <div>
-                <label>Nickname:</label>
-                <h:inputText type="text" name="name" id="inputID"
-                       value="#{loginBean.cliente.nickname}" title="">
-                    <f:ajax event="keyup" render="mensaje-nombre" listener="#{loginBean.altaUsuarioExiste(null)}"/>
-                </h:inputText>
-                <h:outputText id="mensaje-nombre" class="mensaje-error" value="#{loginBean.mensaje}"/>
-                <label>Correo:</label>
-                <h:inputText type="text" name="name" id="inputCORREO"
-                             value="#{loginBean.cliente.correo}" title="" required="true"
-                             validatorMessage="Email invalido" requiredMessage="El correo es requerido">
-                    <f:validateRegex pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
-                    <f:ajax
-                            event="keyup" render="@this inputMessage">
-                    </f:ajax>
-                    <f:ajax event="keyup" render="mensaje-mail" listener="#{loginBean.emailExiste(null)}"/>
-                </h:inputText>
-                <h:outputText id="mensaje-mail" class="mensaje-error" value="#{loginBean.mensaje}"/>
-                <div>
-                    <h:message id="inputMessage" for="inputCORREO"></h:message>
+    <div class="container" align="center">
+        <div class="recuadroGrande">
+            <h2>Alta Clientes</h2>
+            <h:form id="form1">
+                <div align="center">
+                    <div align="left">
+                        <label>Nickname:</label>
+                        <h:inputText type="text" name="name" id="inputID"
+                                     value="#{loginBean.cliente.nickname}" title="">
+                            <f:ajax event="keyup" render="mensaje-nombre"
+                                    listener="#{loginBean.altaUsuarioExiste(null)}"/>
+                        </h:inputText>
+                        <h:outputText id="mensaje-nombre" class="mensaje-error" value="#{loginBean.mensaje}"/>
+                    </div>
+                    <div align="left">
+                        <label>Correo:</label>
+                        <h:inputText type="text" name="name" id="inputCORREO"
+                                     value="#{loginBean.cliente.correo}" title="" required="true"
+                                     validatorMessage="Email invalido" requiredMessage="El correo es requerido">
+                            <f:validateRegex
+                                    pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
+                            <f:ajax
+                                    event="keyup" render="@this inputMessage">
+                            </f:ajax>
+                            <f:ajax event="keyup" render="mensaje-mail" listener="#{loginBean.emailExiste(null)}"/>
+                        </h:inputText>
+                        <h:message id="inputMessage" for="inputCORREO"/>
+                        <h:outputText id="mensaje-mail" class="mensaje-error" value="#{loginBean.mensaje}"/>
+                    </div>
+                    <div align="left">
+                    </div>
+                    <div align="left">
+                        <label>Contrasena:</label>
+                        <h:inputSecret type="text" name="name" id="inputCONTRASENA" style="width: 100px"
+                                       value="#{loginBean.cliente.contrasena}" title="" required="true"
+                                       requiredMessage="La contrasena es requerida">
+                            <span id="comprobarusuario"></span>
+                        </h:inputSecret>
+                        <label>Repita Contrasena:</label>
+                        <h:inputSecret type="text" name="name" id="inputCONTRASENABIS" style="width: 100px"
+                                       value="#{loginBean.contrasena}" title="" required="true"
+                                       requiredMessage="La contrasena es requerida">
+                        </h:inputSecret>
+                    </div>
+                    <div align="left">
+                        <label>Nombre:</label>
+                        <h:inputText type="text" name="name" id="inputNOMBRE"
+                                     value="#{loginBean.cliente.nombre}" title="" required="true"
+                                     requiredMessage="El nombre es requerido">
+                        </h:inputText>
+                    </div>
+                    <div align="left">
+                        <label>Apellido:</label>
+                        <h:inputText type="text" name="name" id="inputAPELLIDO"
+                                     value="#{loginBean.cliente.apellido}" title="" required="true"
+                                     requiredMessage="El apellido es requerido">
+                        </h:inputText>
+                    </div>
+                    <div align="left">
+                        <label>Fecha Nacimiento:</label>
+                        <p:calendar required="true" requiredMessage="La fecha de nacimiento es requerida"
+                                    value="#{loginBean.cliente.fechaNacimiento}" mask="99/99/9999">
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>
+                        </p:calendar>
+                    </div>
+                    <div align="left">
+                        <label for="inputFile">Seleccione una imagen</label>
+                        <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
+                    </div>
+                    <div align="center">
+                        <h:commandButton
+                                value="Guardar" action="#{loginBean.nuevoUsuario}" type="submit">
+                        </h:commandButton>
+                    </div>
+                    <div align="left">
+                        <h:outputLabel
+                                rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
+                    </div>
                 </div>
+            </h:form>
+            <div align="center">
+                <a href="login.xhtml">Cancelar</a>
             </div>
-            <div>
-                <label>Contrasena:</label>
-                <h:inputSecret type="text" name="name" id="inputCONTRASENA"
-                               value="#{loginBean.cliente.contrasena}" title="" required="true"
-                               requiredMessage="La contrasena es requerida">
-                    <span id="comprobarusuario"></span>
-                </h:inputSecret>
-                <label>Repita Contrasena:</label>
-                <h:inputSecret type="text" name="name" id="inputCONTRASENABIS"
-                               value="#{loginBean.contrasena}" title="" required="true"
-                               requiredMessage="La contrasena es requerida">
-                </h:inputSecret>
-            </div>
-            <div>
-                <label>Nombre:</label>
-                <h:inputText type="text" name="name" id="inputNOMBRE"
-                             value="#{loginBean.cliente.nombre}" title="" required="true"
-                             requiredMessage="El nombre es requerido">
-                </h:inputText>
-                <label>Apellido:</label>
-                <h:inputText type="text" name="name" id="inputAPELLIDO"
-                             value="#{loginBean.cliente.apellido}" title="" required="true"
-                             requiredMessage="El apellido es requerido">
-                </h:inputText>
-            </div>
-            <div>
-                <h:outputLabel>Fecha Nacimiento</h:outputLabel>
-                <h:inputText value="#{loginBean.cliente.fechaNacimiento}" converter="myDateTimeConverter"/>
-            </div>
-            <div>
-                <label for="inputFile">Seleccione una imagen</label>
-                <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
-            </div>
-            <div>
-                <h:commandButton
-                        value="Guardar" action="#{loginBean.nuevoUsuario}">
-                </h:commandButton>
-            </div>
-            <div>
-                <h:outputLabel rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
-            </div>
-        </h:form>
-        <div>
-            <a href="login.xhtml">Cancelar</a>
         </div>
     </div>
 </h:body>
