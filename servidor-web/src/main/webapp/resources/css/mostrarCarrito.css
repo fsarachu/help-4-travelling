@@ -1,0 +1,20 @@
+body {
+    background-color: silver;
+    background: url("/resources/imagenes/fondo.jpg") no-repeat top right;
+    padding-top: 70px;
+}
+
+.box1, .box2 {
+    width: 280px;
+    height: auto;
+    float: left;
+}
+
+.box1 {
+    clear: left;
+    margin-right: 10px;
+}
+
+.clear {
+    clear: both;
+}
