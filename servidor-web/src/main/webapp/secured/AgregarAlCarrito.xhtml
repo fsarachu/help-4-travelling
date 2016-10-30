@@ -80,16 +80,14 @@
                 <div>
                     <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel>
                 </div>
-                <div>
-                    <div>
-                        <h3>Categorias</h3>
-                        <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias" border="1">
+                    <div class="categoria">
+                        <h4>CATEGORIAS</h4>
+                        <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias">
                             <h:column>
-                                <label>"#{categorias.nombre}"</label>
+                                <h:outputLabel>"#{categorias.nombre}"</h:outputLabel>
                             </h:column>
                         </h:dataTable>
                     </div>
-                </div>
             </div>
 
             <div class="box3">
