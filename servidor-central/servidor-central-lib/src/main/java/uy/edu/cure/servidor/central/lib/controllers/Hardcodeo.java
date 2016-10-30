@@ -96,6 +96,7 @@ public class Hardcodeo {
         Categoria autos6 = new Categoria();
         autos6.setPadre(autos2);
         autos6.setNombre("Van Rental");
+        autos6.setImagen("/resources/imagenes/empresas/r4.jpg");
         categoriaController.nueva(autos6);
 
         Categoria hoteles = new Categoria();
@@ -116,21 +117,25 @@ public class Hardcodeo {
         Categoria hotel3 = new Categoria();
         hotel3.setPadre(hotel1);
         hotel3.setNombre("Conrad");
+        hotel3.setImagen("/resources/imagenes/empresas/h4.jpg");
         categoriaController.nueva(hotel3);
 
         Categoria hotel4 = new Categoria();
         hotel4.setPadre(hotel1);
         hotel4.setNombre("Mantra");
+        hotel4.setImagen("/resources/imagenes/empresas/h3.jpg");
         categoriaController.nueva(hotel4);
 
         Categoria hotel5 = new Categoria();
         hotel5.setPadre(hotel2);
         hotel5.setNombre("Hotel del Lago");
+        hotel5.setImagen("/resources/imagenes/empresas/h1.jpg");
         categoriaController.nueva(hotel5);
 
         Categoria hotel6 = new Categoria();
         hotel6.setPadre(hotel2);
         hotel6.setNombre("Hotel del Rio");
+        hotel3.setImagen("/resources/imagenes/empresas/h2.jpg");
         categoriaController.nueva(hotel6);
 
     }
@@ -139,8 +144,8 @@ public class Hardcodeo {
         ProveedorController proveedorController = new ProveedorController();
 
         Proveedor proveedor1 = new Proveedor();
-        proveedor1.setNombre("Rentadora");
-        proveedor1.setNickname("Rentadora");
+        proveedor1.setNombre("Rentadora Autos");
+        proveedor1.setNickname("Rentadora Autos");
         Date nacimiento1 = new Date(116, 2, 15);
         proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Rentadora LTDA");
@@ -149,11 +154,11 @@ public class Hardcodeo {
         proveedorController.nuevo(proveedor1);
 
         Proveedor proveedor2 = new Proveedor();
-        proveedor2.setNombre("Rentadora Dos");
-        proveedor2.setNickname("Rentadora Dos");
+        proveedor2.setNombre("Rentadora Utilitarios");
+        proveedor2.setNickname("Rentadora Utilitarios");
         Date nacimiento2 = new Date(116, 2, 12);
         proveedor2.setFechaNacimiento(nacimiento2);
-        proveedor2.setNombreEmpresa("Rentadora Dos S.A.");
+        proveedor2.setNombreEmpresa("Rentadora Utilitarios S.A.");
         proveedor2.setImagen("/resources/imagenes/alquilo2.jpeg");
         proveedor2.setCorreo("masbarato@empujame.com.uy");
         proveedorController.nuevo(proveedor2);
@@ -238,7 +243,7 @@ public class Hardcodeo {
         Date nacimiento5 = new Date(85, 4, 11);
         cliente5.setContrasena("1234");
         cliente5.setFechaNacimiento(nacimiento5);
-        cliente5.setImagen("/resources/imagenes/fcarne/fot5.jpg");
+        cliente5.setImagen("/resources/imagenes/fcarne/fot8.jpg");
         clienteController.nuevo(cliente5);
 
         Cliente cliente6 = new Cliente();
@@ -249,7 +254,7 @@ public class Hardcodeo {
         Date nacimiento6 = new Date(85, 5, 11);
         cliente6.setContrasena("1234");
         cliente6.setFechaNacimiento(nacimiento6);
-        cliente6.setImagen("/resources/imagenes/fcarne/fot6.jpg");
+        cliente6.setImagen("/resources/imagenes/fcarne/fot5.jpg");
         clienteController.nuevo(cliente6);
 
 
@@ -269,22 +274,23 @@ public class Hardcodeo {
         servicio1.setDestino(ciudadService.obtener(4));
         servicio1.setDescripcion("Fin de semana con auto");
         servicio1.setPrecio(300);
-        servicio1.getCategorias().add(categoriaService.obtener(6));
-        servicio1.getCategorias().add(categoriaService.obtener(5));
-        servicio1.getImagenes().add("/resources/imagenes/auto.jpeg");
-        servicio1.getImagenes().add("/resources/imagenes/auto1.jpeg");
-        servicio1.getImagenes().add("/resources/imagenes/auto2.jpeg");
+        servicio1.getCategorias().add(categoriaService.obtener(4));
+        servicio1.getImagenes().add("/resources/imagenes/car/a1.jpg");
+        servicio1.getImagenes().add("/resources/imagenes/car/a2.jpg");
+        servicio1.getImagenes().add("/resources/imagenes/car/a3.jpg");
         productoController.agregar(servicio1);
 
         Servicio servicio2 = new Servicio();
         servicio2.setNombre("Auto x 1 dia");
-        servicio2.setProveedor(proveedorService.obtener(2));
+        servicio2.setProveedor(proveedorService.obtener(1));
         servicio2.setOrigen(ciudadService.obtener(1));
         servicio2.setDestino(ciudadService.obtener(2));
         servicio2.setDescripcion("Un dia de auto");
         servicio2.setPrecio(100);
-        servicio2.getCategorias().add(categoriaService.obtener(7));
-        servicio2.getImagenes().add("/resources/imagenes/camioneta.jpeg");
+        servicio2.getCategorias().add(categoriaService.obtener(5));
+        servicio2.getImagenes().add("/resources/imagenes/car/a4.jpg");
+        servicio2.getImagenes().add("/resources/imagenes/car/a5.jpg");
+        servicio2.getImagenes().add("/resources/imagenes/car/a6.jpg");
         productoController.agregar(servicio2);
 
         Servicio servicio3 = new Servicio();
@@ -295,30 +301,119 @@ public class Hardcodeo {
         servicio3.setDescripcion("Fin de Semana en camioneta");
         servicio3.setPrecio(400);
         servicio3.getCategorias().add(categoriaService.obtener(6));
-        servicio3.getImagenes().add("/resources/imagenes/carga.jpeg");
+        servicio3.getImagenes().add("/resources/imagenes/car/v1.jpg");
+        servicio3.getImagenes().add("/resources/imagenes/car/v2.jpg");
+        servicio3.getImagenes().add("/resources/imagenes/car/v3.jpg");
         productoController.agregar(servicio3);
 
         Servicio servicio4 = new Servicio();
-        servicio4.setNombre("Habitacion Simple");
-        servicio4.setProveedor(proveedorService.obtener(3));
-        servicio4.setOrigen(ciudadService.obtener(4));
-        servicio4.setDestino(ciudadService.obtener(1));
-        servicio4.setDescripcion("Simple");
-        servicio4.setPrecio(50);
-        servicio4.getCategorias().add(categoriaService.obtener(11));
-        servicio4.getImagenes().add("/resources/imagenes/habSimple.jpeg");
+        servicio4.setNombre("Camioneta x 1 dia");
+        servicio4.setProveedor(proveedorService.obtener(2));
+        servicio4.setOrigen(ciudadService.obtener(2));
+        servicio4.setDestino(ciudadService.obtener(2));
+        servicio4.setDescripcion("Un dia de camioneta");
+        servicio4.setPrecio(400);
+        servicio4.getCategorias().add(categoriaService.obtener(7));
+        servicio4.getImagenes().add("/resources/imagenes/car/v4.jpg");
+        servicio4.getImagenes().add("/resources/imagenes/car/v5.jpg");
+        servicio4.getImagenes().add("/resources/imagenes/car/v6.jpg");
         productoController.agregar(servicio4);
 
         Servicio servicio5 = new Servicio();
-        servicio5.setNombre("Habitacion Doble");
-        servicio5.setProveedor(proveedorService.obtener(4));
-        servicio5.setOrigen(ciudadService.obtener(4));
-        servicio5.setDestino(ciudadService.obtener(2));
-        servicio5.setDescripcion("Doble");
-        servicio5.setPrecio(80);
+        servicio5.setNombre("Habitacion Simple");
+        servicio5.setProveedor(proveedorService.obtener(3));
+        servicio5.setOrigen(ciudadService.obtener(5));
+        servicio5.setDestino(ciudadService.obtener(1));
+        servicio5.setDescripcion("Simple");
+        servicio5.setPrecio(50);
+        servicio5.getCategorias().add(categoriaService.obtener(11));
+        servicio5.getCategorias().add(categoriaService.obtener(12));
         servicio5.getCategorias().add(categoriaService.obtener(13));
-        servicio5.getImagenes().add("/resources/imagenes/habDoble.jpeg");
+        servicio5.getCategorias().add(categoriaService.obtener(14));
+        servicio5.getImagenes().add("/resources/imagenes/habitaciones/s1.jpg");
+        servicio5.getImagenes().add("/resources/imagenes/habitaciones/s2.jpg");
+        servicio5.getImagenes().add("/resources/imagenes/habitaciones/s3.jpg");
         productoController.agregar(servicio5);
+
+        Servicio servicio6 = new Servicio();
+        servicio6.setNombre("Habitacion Doble");
+        servicio6.setProveedor(proveedorService.obtener(4));
+        servicio6.setOrigen(ciudadService.obtener(4));
+        servicio6.setDestino(ciudadService.obtener(2));
+        servicio6.setDescripcion("Doble");
+        servicio6.setPrecio(80);
+        servicio6.getCategorias().add(categoriaService.obtener(11));
+        servicio6.getCategorias().add(categoriaService.obtener(12));
+        servicio6.getImagenes().add("/resources/imagenes/habitaciones/d1.jpg");
+        servicio6.getImagenes().add("/resources/imagenes/habitaciones/d2.jpg");
+        servicio6.getImagenes().add("/resources/imagenes/habitaciones/d3.jpg");
+        productoController.agregar(servicio6);
+
+        Servicio servicio7 = new Servicio();
+        servicio7.setNombre("Habitacion Muy Simple");
+        servicio7.setProveedor(proveedorService.obtener(3));
+        servicio7.setOrigen(ciudadService.obtener(5));
+        servicio7.setDestino(ciudadService.obtener(1));
+        servicio7.setDescripcion("Muy Simple");
+        servicio7.setPrecio(70);
+        servicio7.getCategorias().add(categoriaService.obtener(13));
+        servicio7.getCategorias().add(categoriaService.obtener(14));
+        servicio7.getImagenes().add("/resources/imagenes/habitaciones/s1.jpg");
+        servicio7.getImagenes().add("/resources/imagenes/habitaciones/s2.jpg");
+        servicio7.getImagenes().add("/resources/imagenes/habitaciones/s3.jpg");
+        productoController.agregar(servicio7);
+
+        Servicio servicio8 = new Servicio();
+        servicio8.setNombre("Suite Lujo");
+        servicio8.setProveedor(proveedorService.obtener(3));
+        servicio8.setOrigen(ciudadService.obtener(5));
+        servicio8.setDestino(ciudadService.obtener(1));
+        servicio8.setDescripcion("Mucho Lujo");
+        servicio8.setPrecio(150);
+        servicio8.getCategorias().add(categoriaService.obtener(11));
+        servicio8.getImagenes().add("/resources/imagenes/habitaciones/t1.jpg");
+        servicio8.getImagenes().add("/resources/imagenes/habitaciones/t2.jpg");
+        servicio8.getImagenes().add("/resources/imagenes/habitaciones/t3.jpg");
+        productoController.agregar(servicio8);
+
+        Servicio servicio9 = new Servicio();
+        servicio9.setNombre("Suite Presidencial");
+        servicio9.setProveedor(proveedorService.obtener(3));
+        servicio9.setOrigen(ciudadService.obtener(5));
+        servicio9.setDestino(ciudadService.obtener(1));
+        servicio9.setDescripcion("Lujo del bueno");
+        servicio9.setPrecio(150);
+        servicio9.getCategorias().add(categoriaService.obtener(12));
+        servicio9.getImagenes().add("/resources/imagenes/habitaciones/p1.jpg");
+        servicio9.getImagenes().add("/resources/imagenes/habitaciones/p2.jpg");
+        servicio9.getImagenes().add("/resources/imagenes/habitaciones/p3.jpg");
+        productoController.agregar(servicio9);
+
+        Servicio serv1 = new Servicio();
+        serv1.setNombre("Cachilas");
+        serv1.setProveedor(proveedorService.obtener(2));
+        serv1.setOrigen(ciudadService.obtener(2));
+        serv1.setDestino(ciudadService.obtener(2));
+        serv1.setDescripcion("Aventura Retro");
+        serv1.setPrecio(200);
+        serv1.getCategorias().add(categoriaService.obtener(5));
+        serv1.getImagenes().add("/resources/imagenes/car/c1.jpg");
+        serv1.getImagenes().add("/resources/imagenes/car/c2.jpg");
+        serv1.getImagenes().add("/resources/imagenes/car/c3.jpg");
+        productoController.agregar(serv1);
+
+        Servicio serv2 = new Servicio();
+        serv2.setNombre("Ferrari");
+        serv2.setProveedor(proveedorService.obtener(2));
+        serv2.setOrigen(ciudadService.obtener(2));
+        serv2.setDestino(ciudadService.obtener(2));
+        serv2.setDescripcion("Ferrari de lujo");
+        serv2.setPrecio(110);
+        serv2.getCategorias().add(categoriaService.obtener(4));
+        serv2.getImagenes().add("/resources/imagenes/car/f1.jpg");
+        serv2.getImagenes().add("/resources/imagenes/car/f2.jpg");
+        serv2.getImagenes().add("/resources/imagenes/car/f3.jpg");
+        productoController.agregar(serv2);
     }
 
 

@@ -12,7 +12,7 @@ public class CategoriaValidator {
         CategoriaController categoriaController = new CategoriaController();
         List<Categoria> categorias = categoriaController.listar();
         for (Categoria cate : categorias) {
-            if (cate.getNombre() == nombre && cate.getPadre() == padre) {
+            if (cate.getNombre().equals(nombre) && cate.getPadre().equals(padre)) {
                 valido = false;
             }
         }

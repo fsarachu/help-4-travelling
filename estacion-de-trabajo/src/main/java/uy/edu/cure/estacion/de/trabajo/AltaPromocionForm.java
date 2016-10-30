@@ -106,9 +106,9 @@ public class AltaPromocionForm {
                     panelPromocion.setVisible(false);
                 } catch (EmptyStackException e){
                     JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
-                } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
-                }
+                } //catch (NumberFormatException e) {
+                    //JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
+                //}
 
             }
         });
@@ -144,7 +144,7 @@ public class AltaPromocionForm {
         ProductoController productoController = new ProductoController();
         List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
         for (Servicio servicio : list1) {
-            if (servicio.getProveedor().getId() == idProveedor) {
+            if (servicio.getProveedor().getId().equals(idProveedor)) {
                 mdllista.addElement(servicio);
             }
         }

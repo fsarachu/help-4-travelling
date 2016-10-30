@@ -1,0 +1,70 @@
+body {
+    background-color: silver;
+    background: url("/resources/imagenes/fondo.jpg") no-repeat top right;
+    padding-top: 70px;
+}
+
+.container {
+    display : block;
+    margin: 0 auto;
+    width: 80%;
+}
+
+
+.box1 {
+    float : left;
+    clear : none;
+    margin-inside: 3px;
+    padding : 20px;
+}
+
+.box2 {
+    float : left;
+    clear : none;
+    padding : 20px;
+
+}
+
+
+.box3 {
+    float : left;
+    clear : none;
+    margin-top: 80px;
+}
+
+
+
+.box1, .box2
+{
+    background-color : rgba(0247, 236, 255, 0.4);
+    margin-top: 80px;
+    text-align: center;
+    margin-right: 15px;
+    width : 280px;
+    min-height: 320px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    border: solid 1px rgba(0, 0, 0, 0.7);
+}
+
+.campos {
+    text-align: right;
+    margin-right: 18px;
+}
+
+.imgStyle {
+    width: 85px;
+    height: 85px;
+    background-color: #000;
+    border: solid 1px rgba(0, 0, 0, 0.7);
+    border-radius: 20%;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+.mainImage{
+    height: 230px;
+    width: 270px;
+    border: solid 1px rgba(0, 0, 0, 0.7);
+    border-radius: 25px;
+}
