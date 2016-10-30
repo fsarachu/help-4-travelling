@@ -17,7 +17,6 @@ public class PrincipalForm extends JFrame {
     private JMenuItem item3;
     private JMenuItem item4;
     private JMenuItem item5;
-    private JMenuItem item6;
     private JMenuItem item7;
     private JMenuItem item8;
     private JMenuItem item9;
@@ -58,10 +57,6 @@ public class PrincipalForm extends JFrame {
         item5 = new JMenuItem("Actualizar Servicio");
         item5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizarServicio.png")));
         menu2.add(item5);
-
-        item6 = new JMenuItem("Realizar Reserva");
-        item6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/reserva.png")));
-        menu2.add(item6);
 
         item7 = new JMenuItem("Cancelar Reserva");
         item7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/cancelarReserva.jpeg")));
@@ -124,13 +119,6 @@ public class PrincipalForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 setContentPane(new ActualizarServicioForm().getPanelActServicio());
-                setVisible(true);
-            }
-        });
-        item6.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                setContentPane(new RealizarReservaForm().getPanelAltaReserva());
                 setVisible(true);
             }
         });
