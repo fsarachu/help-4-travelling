@@ -24,7 +24,7 @@
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
- <!--   <img class="gigante" id="thumb" width="300" height="200" src=""/>-->
+    <!--   <img class="gigante" id="thumb" width="300" height="200" src=""/>-->
 
 
     <h:form>
@@ -68,56 +68,57 @@
                 </div>
             </div>
 
-        <div class="box2">
+            <div class="box2">
 
-            <div>
-                <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel>
-            </div>
-            <div>
-                <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel>
-
-            </div>
-            <div>
-                <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel>
-            </div>
-            <div>
                 <div>
-                    <h3>Categorias</h3>
-                    <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias" border="1">
-                        <h:column>
-                            <label>"#{categorias.nombre}"</label>
-                        </h:column>
-                    </h:dataTable>
+                    <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel>
+                </div>
+                <div>
+                    <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel>
+
+                </div>
+                <div>
+                    <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel>
+                </div>
+                <div>
+                    <div>
+                        <h3>Categorias</h3>
+                        <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias" border="1">
+                            <h:column>
+                                <label>"#{categorias.nombre}"</label>
+                            </h:column>
+                        </h:dataTable>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="box3">
-            <h:commandButton
-                    type="button" class="roundbutton" id="boton1"
-                    image="#{servicioBean.servicio.imagenes[0]}"
-                    onclick="zoom()">
-            </h:commandButton>
-            <h:commandButton
-                    type="button" class="roundbutton" id="boton2"
-                    image="#{servicioBean.servicio.imagenes[1]}"
-                    onclick="zoom()">
-            </h:commandButton>
-            <h:commandButton
-                    type="button" class="roundbutton" id="boton3"
-                    image="#{servicioBean.servicio.imagenes[2]}"
-                    onclick="zoom()">
-            </h:commandButton>
+            <div class="box3">
+
+
+                <img id="mainImage" class="mainImage" src="#{servicioBean.servicio.imagenes[0]}"/>
+                <div id="divId" onclick="changeImageOnClick(event)">
+                    <img class="imgStyle" src="#{servicioBean.servicio.imagenes[0]}"/>
+                    <img class="imgStyle" src="#{servicioBean.servicio.imagenes[1]}"/>
+                    <img class="imgStyle" src="#{servicioBean.servicio.imagenes[2]}"/>
+
+                </div>
+
+                <script type="text/javascript">
+                    var images = document.getElementById("divId").getElementsByTagName("img");
+
+                    function changeImageOnClick(event) {
+                        event = event || window.event;
+                        var targetElement = event.target || event.srcElement;
+                        if (targetElement.tagName == "IMG") {
+                            mainImage.src = targetElement.getAttribute("src");
+                        }
+                    }
+                </script>
+
+            </div>
         </div>
-    </div>
     </h:form>
-    <script>
-        var ubicacion = document.getElementById("thumb");
-        var zoom = function () {
-            var boton = document.getElementById("boton2");
-            ubicacion.setAttribute("src", "/resources/imagenes/auto2.jpeg");
-            /*alert(ubicacion.src);*/
-        }
-    </script>
+
+
 </h:body>
 </html>
