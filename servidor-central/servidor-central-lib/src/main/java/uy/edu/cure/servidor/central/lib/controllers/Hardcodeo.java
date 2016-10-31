@@ -484,7 +484,6 @@ public class Hardcodeo {
         Date fechaFin1 = new Date(116, 11, 21);
         itemReserva1.setFechaFin(fechaFin1);
         itemReserva1.setCantidad(2);
-        itemReserva1.setDiaz(2);
 
         carritoController.agregarItem(itemReserva1,carrito1);
 
@@ -500,7 +499,7 @@ public class Hardcodeo {
         Date fechaFin2 = new Date(116, 11, 21);
         itemReserva2.setFechaFin(fechaFin2);
         itemReserva2.setCantidad(3);
-        itemReserva2.setDiaz(2);
+
 
         carritoController.agregarItem(itemReserva2,carrito2);
 
@@ -516,7 +515,7 @@ public class Hardcodeo {
         Date fechaFin3 = new Date(116, 10, 24);
         itemReserva3.setFechaFin(fechaFin3);
         itemReserva3.setCantidad(1);
-        itemReserva3.setDiaz(2);
+
 
         carritoController.agregarItem(itemReserva3,carrito3);
 
@@ -532,7 +531,7 @@ public class Hardcodeo {
         Date fechaFin4 = new Date(116, 11, 13);
         itemReserva4.setFechaFin(fechaFin4);
         itemReserva4.setCantidad(4);
-        itemReserva4.setDiaz(2);
+
 
         carritoController.agregarItem(itemReserva4,carrito4);
 
@@ -548,7 +547,7 @@ public class Hardcodeo {
         Date fechaFin5 = new Date(116, 10, 2);
         itemReserva5.setFechaFin(fechaFin5);
         itemReserva5.setCantidad(4);
-        itemReserva5.setDiaz(2);
+
 
         carritoController.agregarItem(itemReserva5,carrito5);
 
@@ -564,7 +563,7 @@ public class Hardcodeo {
         Date fechaFin6 = new Date(116, 12, 22);
         itemReserva6.setFechaFin(fechaFin6);
         itemReserva6.setCantidad(3);
-        itemReserva6.setDiaz(2);
+
 
         carritoController.agregarItem(itemReserva6,carrito6);
 
