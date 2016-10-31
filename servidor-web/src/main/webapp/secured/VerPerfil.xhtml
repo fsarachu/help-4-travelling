@@ -20,25 +20,19 @@
 
     <title>Help 4 Travelling</title>
 
-    <style type="text/css">
-        body {
-            background-color: silver;
-            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
-            padding-top: 70px;
-        }
-    </style>
     <link href="/resources/css/verPerfil.css" rel="stylesheet"/>
 </h:head>
 <h:body>
-    <div class="login-title" align="center">VER PERFIL DE USUARIO</div>
+    <div class="container" align="center">
 
     <ui:insert name="navbar">
         <ui:include src="/WEB-INF/navbar.xhtml"/>
     </ui:insert>
+    <div class="titulo"><h4>VER PERFIL DE USUARIO</h4></div>
 
-    <div class="recuadro">
+    <div class="box1">
 
-        <div class="foto"><h:graphicImage width="270px" value="#{loginBean.cliente.imagen}"/></div>
+
         <div><h:outputLabel>Nickname: #{loginBean.cliente.nickname}</h:outputLabel></div>
         <div><h:outputLabel>Nombre: #{loginBean.cliente.nombre}</h:outputLabel></div>
         <div><h:outputLabel>Apellido: #{loginBean.cliente.apellido}</h:outputLabel></div>
@@ -47,22 +41,28 @@
 
     </div>
 
-    <div class="recuadro2">
-    <form action="">
-        <h4>LISTA DE RESERVAS</h4>
-        <h:dataTable value="#{reservaBean.reservaList}" var="reservas" border="1">
-            <h:column>
-                <f:facet name="header">
-                    <h:outputText
-                            value="Reservas">
-                    </h:outputText>
-                </f:facet>
-                <h:outputLabel immediate="true"
-                               value="#{reservas.id}  #{reservas.carrito.id}">
-                </h:outputLabel>
-            </h:column>
-        </h:dataTable>
-    </form>
+    <div class="box2">
+        <form action="">
+            <h4>LISTA DE RESERVAS</h4>
+            <h:dataTable value="#{reservaBean.reservaList}" var="reservas" border="1">
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText
+                                value="Reservas">
+                        </h:outputText>
+                    </f:facet>
+                    <h:outputLabel immediate="true"
+                                   value="#{reservas.id}  #{reservas.carrito.id}">
+                    </h:outputLabel>
+                </h:column>
+            </h:dataTable>
+        </form>
+    </div>
+
+    <div class="box3">
+        <img id="mainImage" class="mainImage" src="#{loginBean.cliente.imagen}"/>
+    </div>
+
     </div>
 </h:body>
 </html>

@@ -1,49 +1,57 @@
+body {
+    background-color: silver;
+    background: url("/resources/imagenes/fondo.jpg") no-repeat top right;
+    padding-top: 70px;
+}
 
-.recuadro
-{
-    margin-left: 500px;
-    text-align: left;
+.container {
+    display : block;
+    margin: 0 auto;
+    width: 70%;
+}
+
+
+.box3 {
     float: left;
-    max-width: 450px;
     margin-top: 20px;
-    padding: 40px 0px 20px 0px;
-    -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+
+
+.box1, .box2
+{
+    background-color : rgba(0247, 236, 255, 0.4);
+    margin-top: 20px;
+    text-align: center;
+    margin-right: 15px;
+    width : 280px;
+    min-height: 230px;
     box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     border-radius: 25px;
-    border-style: solid;
-    border-width: medium;
-    border-color: #D3D3D3;
+    border: solid 1px rgba(0, 0, 0, 0.7);
+    float: left;
+    padding : 20px;
+    margin-inside: 3px;
 }
 
-.recuadro2
-{
+.campos {
+    text-align: right;
+    margin-right: 18px;
+}
 
-    margin-left: 910px;
-    text-align: left;
-
-
-    max-width: 400px;
-    margin-top: 20px;
-    padding: 40px 0px 20px 0px;
-    -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+.mainImage{
+    height: 230px;
+    width: 270px;
+    border: solid 1px rgba(0, 0, 0, 0.7);
     border-radius: 25px;
-    border-style: solid;
-    border-width: medium;
-    border-color: #D3D3D3;
-}
-.login-title
-{
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
-    display: block;
 }
 
+.categoria{
 
-.foto {
-    display: block;
-    margin-left: auto;
-    margin-right: auto }
+    text-align: center;
+    color: rgba(0, 0, 68, 1);
+}
+
+.titulo{
+    margin-top: 60px;
+}
