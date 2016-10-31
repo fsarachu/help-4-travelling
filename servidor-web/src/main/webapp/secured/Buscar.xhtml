@@ -18,26 +18,32 @@
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous">
     </script>
-    <style type="text/css">
+   <!-- <style type="text/css">
         body {
             background-color: silver;
             background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
             padding-top: 70px;
         }
 
-    </style>
+    </style>-->
     <title>Help 4 Travelling</title>
+    <link href="../resources/css/mostrarCarrito.css" rel="stylesheet"/>
 </h:head>
 
 
 <h:body>
+    <div class="titulo"><h4>BUSCAR</h4></div>
+
+    <div class="container" align="center">
+
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
 
-    <div>
+
         <h:form id="formBuscar">
-            <h3></h3>
+            <div class="box1">
+    <div>
             <h:selectOneMenu value="#{servicioBean.buscar}" style="width:200px">
                 <f:selectItem itemLabel="Elija una opcion" itemValue="custom"/>
                 <f:selectItem id="alfabetico" itemLabel="Alfabeticamente (a-z)" itemValue="alfabetico"/>
@@ -48,17 +54,17 @@
                 <h:inputText value="#{servicioBean.buscar}" rendered="#{servicioBean.buscar == 'custom'}"
                              required="true"/>
             </h:panelGroup>
-
             <h:commandButton class="btn btn-primary" value="Actualizar"
                              action="#{servicioBean.ordenarXNombre}">
             </h:commandButton>
 
+    </div>
             <h:dataTable
                     value="#{servicioBean.listarProducto}"
-                    var="serviciopromo" border="1">
+                    var="serviciopromo" border="0">
                 <h:column>
                     <f:facet name="header">
-                        <h:outputText value="Identificador"/>
+                        <h:outputText value="Id"/>
                     </f:facet>
                     <h:outputLabel
                             value="#{serviciopromo.id}">
@@ -90,6 +96,7 @@
                 </h:column>
 
             </h:dataTable>
+            </div>
         </h:form>
     </div>
 

@@ -1,0 +1,68 @@
+body {
+    background-color: silver;
+    background: url("/resources/imagenes/fondo.jpg") no-repeat top right;
+    padding-top: 70px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-img
+{
+    width: 120px;
+    height: 100px;
+    margin: 0 auto 10px;
+    display: block;
+
+}
+
+
+.box1
+{
+    background-color : rgba(0247, 236, 255, 0.4);
+    max-width: 600px;
+    margin-top: 20px;
+    padding: 20px 0px 20px 0px;
+    -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    border-style: solid;
+    border-width: medium;
+    border-color: #D3D3D3;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+
+
+
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+
+.titulo{
+    margin-top: 60px;
+    text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #999999;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
