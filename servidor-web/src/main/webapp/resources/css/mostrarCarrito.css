@@ -4,17 +4,83 @@ body {
     padding-top: 70px;
 }
 
-.box1, .box2 {
-    width: 280px;
-    height: auto;
-    float: left;
+.container {
+    display : block;
+    margin: 0 auto;
+    width: 80%;
 }
 
-.box1 {
-    clear: left;
-    margin-right: 10px;
+.profile-img
+{
+    width: 120px;
+    height: 100px;
+    margin: 0 auto 10px;
+    display: block;
+
 }
 
-.clear {
-    clear: both;
+
+.recuadro
+{
+    max-width: 650px;
+    margin-top: 20px;
+    padding: 20px 0px 20px 0px;
+    -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    border-style: solid;
+    border-width: medium;
+    border-color: #D3D3D3;
+}
+.recuadroGrande
+{
+    max-width: 800px;
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    border-style: solid;
+    border-width: medium;
+    border-color: #D3D3D3;
+}
+
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+}
+
+table.people {
+    width: 95%;
+    border-collapse: collapse;
+    border-bottom: 1px solid #000;
+}
+
+table.people th,
+table.people td {
+    padding: 5px;
+    text-align: left;
+    font-family: Arial, Verdana, sans-serif;
+    border-bottom:0;
+
+    vertical-align:top;
+}
+
+
+table.people tr.odd {
+    background-color: #DCDCDC;
+}
+
+
+table.people tr.even {
+    background-color: #FBFBFB;
+}
+
+.titulo{
+    margin-top: 60px;
 }

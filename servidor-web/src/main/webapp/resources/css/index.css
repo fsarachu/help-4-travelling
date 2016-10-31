@@ -4,6 +4,12 @@ body {
     padding-top: 70px;
 }
 
+.container {
+    display : block;
+    margin: 0 auto;
+    width: 70%;
+}
+
 .box1, .box2 {
     width: 280px;
     height: auto;
