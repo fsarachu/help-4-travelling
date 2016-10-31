@@ -9,6 +9,8 @@ import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +27,7 @@ public class CarritoBean implements Serializable{
     private String mensaje;
     private Double itemCantidad;
     private Double itemPrecio;
+    private Long dias;
     private List<ItemReserva> itemReservas = new ArrayList<ItemReserva>();
     @ManagedProperty("#{servicioBean}")
     private ServicioBean servicioBean;
@@ -63,7 +66,6 @@ public class CarritoBean implements Serializable{
     }
 
     public void mostrarCarrito() {
-        CarritoController carritoController = new CarritoController();
         ClienteController clienteController = new ClienteController();
 
         if (clienteController.obtener(loginBean.getCliente().getId()).getCarrito().getIdItems() != null) {
@@ -71,6 +73,20 @@ public class CarritoBean implements Serializable{
         } else {
             mensaje = "Carrito Vacio";
         }
+    }
+
+    public String totalCarrito() {
+        if (carrito != null) {
+            CarritoController carritoController = new CarritoController();
+            carritoController.actualizarTotal(carrito);
+            carrito.setTotal(loginBean.getCliente().getCarrito().getTotal());
+        }
+        return mensaje = null;
+    }
+
+    public void calculoDias(Date fInicio, Date fFin) {
+        long diferenciaEn_ms = fFin.getTime() - fInicio.getTime();
+        dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
     }
 
     public Carrito getCarrito() {
@@ -163,6 +179,14 @@ public class CarritoBean implements Serializable{
 
     public void setItemReservas(List<ItemReserva> itemReservas) {
         this.itemReservas = itemReservas;
+    }
+
+    public Long getDias() {
+        return dias;
+    }
+
+    public void setDias(Long dias) {
+        this.dias = dias;
     }
 }
 

@@ -18,7 +18,7 @@ public class CarritoController {
         this.itemReservaService = ServiceFactory.getItemReservaService();
     }
 
-    private void actualizarTotal(Carrito carrito) {
+    public void actualizarTotal(Carrito carrito) {
         List<ItemReserva> items = carrito.getItems();
         double newTotal = 0.0;
 
