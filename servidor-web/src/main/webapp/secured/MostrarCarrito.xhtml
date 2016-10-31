@@ -41,10 +41,12 @@
                     </h:commandLink>
                     <h:outputLabel>Precio: #{items.producto.precio}</h:outputLabel>
                     <h:outputLabel>Tipo: #{items.producto.tipo}</h:outputLabel>
+                    <h:outputLabel value="#{carritoBean.calculoDias(items.fechaInicio,items.fechaFin)}">
+                        Dias: #{carritoBean.dias}</h:outputLabel>
                     <h:outputLabel>Sub-Total: #{items.subTotal}</h:outputLabel>
                 </h:column>
             </h:dataTable>
-            <h:outputLabel>Total: #{clienteBean.cliente.carrito.total}</h:outputLabel>
+            <h:outputLabel value="#{carritoBean.totalCarrito()}">Total: #{carritoBean.carrito.total}</h:outputLabel>
         </div>
         <div class="box1">
             <h:commandButton id="confirmar" value="Reserva"
