@@ -46,8 +46,8 @@ body {
 
 .profile-img
 {
-    width: 96px;
-    height: 96px;
+    width: 65px;
+    height: 65px;
     margin: 0 auto 10px;
     display: block;
 }
@@ -59,10 +59,10 @@ body {
 }
 
 tbody tr:nth-child(odd) {
-    background-color: #999999;
+    background-color: #828282;
 }
 
 th, td {
-    padding: 15px;
+    padding: 3px;
     text-align: left;
 }
