@@ -41,6 +41,7 @@ body {
     float: left;
     padding : 3px;
     margin-inside: 3px;
+
     display: flex;
     flex-direction: column;
     align-items: center;

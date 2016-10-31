@@ -33,6 +33,10 @@ body {
     float: left;
     padding : 20px;
     margin-inside: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .campos {
@@ -56,4 +60,22 @@ body {
 .titulo{
     margin-top: 60px;
     text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #828282;
+}
+
+th, td {
+    padding: 3px;
+    text-align: left;
+}
+
+a:link {
+    color: black;
+}
+
+
+a:hover {
+    color: red;
 }
