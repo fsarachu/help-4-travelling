@@ -37,7 +37,6 @@
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">PRODUCTOS<span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                             <li><a href="/secured/VerInfoPromociones.xhtml">Ver Información de Promociones</a></li>
-                            <li><a href="/secured/VerInfoResrvas.xhtml">Ver Información de Reservas</a></li>
                             <li><a href="/secured/VerInfoServicio.xhtml">Ver Información de Servicios</a></li>
                         </ul>
 
@@ -52,9 +51,7 @@
                                 </h:outputLink>
                             </li>
                             <li>
-                                <h:outputLink value="#"
-                                              rendered="#{loginBean.isLoggedIn()}">Ver informacion de Reserva
-                                </h:outputLink>
+                                <a href="/secured/VerInfoReserva.xhtml">Ver Información de Reservas</a>
                             </li>
                         </ul>
                     </li>

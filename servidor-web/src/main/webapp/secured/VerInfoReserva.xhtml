@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> <!--HTML5-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+<head>
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <!-- Latest compiled and minified JavaScript -->
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+
+    <style type="text/css">
+        body {
+            background-color: silver;
+            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
+            padding-top: 70px;
+        }
+
+        .box1, .box2 , .box3{
+            width: 280px;
+            height: auto;
+            float: left;
+        }
+
+        .box1 {
+            clear: left;
+            margin-right: 10px;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+
+    <title>Help 4 Travelling</title>
+</head>
+<body>
+    <ui:insert name="navbar" >
+        <ui:include src="../WEB-INF/navbar.xhtml" />
+    </ui:insert>
+    <div id="container">
+        <h:form>
+            <div class="box1">
+                <h3>Reservas</h3>
+                <h:dataTable value="#{reservaBean.reservaList}" var="reservas" border="1">
+                    <h:column>
+                        <h:commandLink action="#{reservaBean.cargarReservas(clienteBean.cliente)}"
+                                       immediate="true"
+                                       value="#{reservas.id}  #{reservas.fechaCreacion}">
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </div>
+            <div class="box2">
+                <h3>     </h3>
+                <h:dataTable rendered="#{!reservaBean.reserva.id.equals(0)}" value="#{servicioBean.listaServicios}" var="servicios" border="1">
+                    <h:column>
+                        <h:commandLink action="#{servicioBean.buscarServicio(servicios.id)}" immediate="true"
+                                       value="#{servicios.id}  #{servicios.nombre} #{servicios.descripcion}">
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+                <h:dataTable rendered="#{!reservaBean.reserva.id.equals(0)}" value="#{servicioBean.listaServicios}" var="promos" border="1">
+                    <h:column>
+                        <h:commandLink action="#{servicioBean.buscarServicio(serviciopromo.id)}" immediate="true"
+                                       value="#{serviciopromo.id}  #{serviciopromo.nombre}">
+                        </h:commandLink>
+                    </h:column>
+                </h:dataTable>
+            </div>
+
+        </h:form>
+    </div>
+</body>
+</html>
