@@ -37,7 +37,7 @@ public class ServicioBean implements Serializable {
 
     public String buscarServicio(Integer id) {
         ProductoController productoController = new ProductoController();
-        if (!id.equals(null)) {
+        if (id !=null) {
             servicio = (Servicio) productoController.obtener(id);
             for (Categoria categoria : servicio.getCategorias()) {
                 listaCategorias.add(categoria);
@@ -51,7 +51,7 @@ public class ServicioBean implements Serializable {
 
     public String cargaServiciosCarrito(Integer id) {
         ProductoController productoController = new ProductoController();
-        if (!id.equals(null)) {
+        if (id != null) {
             servicio = (Servicio) productoController.obtener(id);
             for (Categoria categoria : servicio.getCategorias()) {
                 listaCategorias.add(categoria);
