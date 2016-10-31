@@ -2,7 +2,7 @@
 <!DOCTYPE html> <!--HTML5-->
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:f="http://java.sun.com/jsf/core"
 >
 
 <h:head>
@@ -30,33 +30,60 @@
     <div id="container">
         <h:form>
         <div class="box1">
-            <h3>Mostrar Carrito</h3>
+            <img class="profile-img" src="../resources/imagenes/cart.png"/>
             <h:outputLabel
                     rendered="#{carritoBean.itemReservas.equals(null)}">#{carritoBean.mensaje}</h:outputLabel>
 
             <h:dataTable value="#{carritoBean.itemReservas}" var="items" border="1">
                 <h:column>
-                    <h:commandLink
-                            value="#{items.producto.descripcion}  #{items.cantidad}">
-                    </h:commandLink>
-                    <h:outputLabel>Precio: #{items.producto.precio}</h:outputLabel>
-                    <h:outputLabel>Tipo: #{items.producto.tipo}</h:outputLabel>
-                    <h:outputLabel value="#{carritoBean.calculoDias(items.fechaInicio,items.fechaFin)}">
-                        Dias: #{carritoBean.dias}</h:outputLabel>
-                    <h:outputLabel>Sub-Total: #{items.subTotal}</h:outputLabel>
+                    <f:facet name="header">
+                        <h:outputText value="Cantidad"/>
+                    </f:facet>
+                    <h:outputLabel>#{items.cantidad}</h:outputLabel>
                 </h:column>
-            </h:dataTable>
-            <h:outputLabel value="#{carritoBean.totalCarrito()}">Total: #{carritoBean.carrito.total}</h:outputLabel>
-        </div>
-        <div class="box1">
-            <h:commandButton id="confirmar" value="Reserva"
-                             action="#{carritoBean.confirmarCarrito}">
-            </h:commandButton>
-        </div>
-        <div>
-            <h:outputLabel rendered="#{!carritoBean.mensaje.equals(null)}">#{carritoBean.mensaje}</h:outputLabel>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Articulo"/>
+                    </f:facet>
+                    <h:outputLabel>#{items.producto.nombre}</h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Tipo"/>
+                    </f:facet>
+                    <h:outputLabel>#{items.producto.tipo}</h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Dias"/>
+                    </f:facet>
+                    <h:outputLabel value="#{carritoBean.calculoDias(items.fechaInicio,items.fechaFin)}">
+                    #{carritoBean.dias}</h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Precio"/>
+                    </f:facet>
+                    <h:outputLabel>#{items.producto.precio}</h:outputLabel>
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="Sub-Total"/>
+                    </f:facet>
+                    <h:outputLabel>#{items.subTotal}</h:outputLabel>
+                </h:column>
+        </h:dataTable>
+        <h:outputLabel value="#{carritoBean.totalCarrito()}">Total: #{carritoBean.carrito.total}</h:outputLabel>
+    </div>
+    <div class="box1">
+        <h:commandButton id="confirmar" value="Reserva"
+                         action="#{carritoBean.confirmarCarrito}">
+        </h:commandButton>
+    </div>
+    <div>
+        <h:outputLabel rendered="#{!carritoBean.mensaje.equals(null)}">#{carritoBean.mensaje}</h:outputLabel>
     </div>
 </h:form>
 </div>
-</h:body>
-</html>
+        </h:body>
+        </html>

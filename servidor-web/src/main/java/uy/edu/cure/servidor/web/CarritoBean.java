@@ -76,9 +76,11 @@ public class CarritoBean implements Serializable{
     }
 
     public String totalCarrito() {
-        CarritoController carritoController = new CarritoController();
-        carritoController.actualizarTotal(carrito);
-        carrito.setTotal(loginBean.getCliente().getCarrito().getTotal());
+        if (carrito != null) {
+            CarritoController carritoController = new CarritoController();
+            carritoController.actualizarTotal(carrito);
+            carrito.setTotal(loginBean.getCliente().getCarrito().getTotal());
+        }
         return mensaje = null;
     }
 
