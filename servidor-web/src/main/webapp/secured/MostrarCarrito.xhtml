@@ -37,7 +37,7 @@
             <h:outputLabel
                     rendered="#{carritoBean.itemReservas.equals(null)}">#{carritoBean.mensaje}</h:outputLabel>
 
-            <h:dataTable value="#{carritoBean.itemReservas}" var="items" border="1">
+            <h:dataTable value="#{carritoBean.itemReservas}" var="items" border="0">
                 <h:column>
                     <f:facet name="header">
                         <h:outputText value="Cantidad"/>

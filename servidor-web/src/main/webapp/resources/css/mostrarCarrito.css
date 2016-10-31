@@ -52,33 +52,17 @@ body {
     display: block;
 }
 
-table.people {
-    width: 95%;
-    border-collapse: collapse;
-    border-bottom: 1px solid #000;
-}
-
-table.people th,
-table.people td {
-    padding: 5px;
-    text-align: left;
-    font-family: Arial, Verdana, sans-serif;
-    border-bottom:0;
-
-    vertical-align:top;
-}
-
-
-table.people tr.odd {
-    background-color: #DCDCDC;
-}
-
-
-table.people tr.even {
-    background-color: #FBFBFB;
-}
 
 .titulo{
     margin-top: 60px;
     text-align: center;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #999999;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
 }
