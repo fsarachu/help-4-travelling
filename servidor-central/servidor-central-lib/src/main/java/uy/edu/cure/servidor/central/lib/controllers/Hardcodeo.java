@@ -149,7 +149,7 @@ public class Hardcodeo {
         Date nacimiento1 = new Date(116, 2, 15);
         proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Rentadora LTDA");
-        proveedor1.setImagen("/resources/imagenes/alquilo1.jpeg");
+        proveedor1.setImagen("/resources/imagenes/empresas/n2.jpg");
         proveedor1.setCorreo("tuautoya@llevatelo.com.ya");
         proveedorController.nuevo(proveedor1);
 
@@ -159,7 +159,7 @@ public class Hardcodeo {
         Date nacimiento2 = new Date(116, 2, 12);
         proveedor2.setFechaNacimiento(nacimiento2);
         proveedor2.setNombreEmpresa("Rentadora Utilitarios S.A.");
-        proveedor2.setImagen("/resources/imagenes/alquilo2.jpeg");
+        proveedor2.setImagen("/resources/imagenes/empresas/n1.jpg");
         proveedor2.setCorreo("masbarato@empujame.com.uy");
         proveedorController.nuevo(proveedor2);
 
@@ -169,7 +169,7 @@ public class Hardcodeo {
         Date nacimiento3 = new Date(116, 2, 12);
         proveedor3.setFechaNacimiento(nacimiento3);
         proveedor3.setNombreEmpresa("El mejor Hotel LTDA");
-        proveedor3.setImagen("/resources/imagenes/hotel1.jpeg");
+        proveedor3.setImagen("/resources/imagenes/empresas/n3.jpg");
         proveedor3.setCorreo("pocilgalachola@ahinomas.com.isi");
         proveedorController.nuevo(proveedor3);
 
@@ -179,7 +179,7 @@ public class Hardcodeo {
         Date nacimiento4 = new Date(116, 2, 12);
         proveedor4.setFechaNacimiento(nacimiento4);
         proveedor4.setNombreEmpresa("Tu Hotel S.A.");
-        proveedor4.setImagen("/resources/imagenes/hotel2.jpeg");
+        proveedor4.setImagen("/resources/imagenes/empresas/n4.jpg");
         proveedor4.setCorreo("estesiestuhotel@reserva.com.ya");
         proveedorController.nuevo(proveedor4);
 
@@ -294,11 +294,11 @@ public class Hardcodeo {
         productoController.agregar(servicio2);
 
         Servicio servicio3 = new Servicio();
-        servicio3.setNombre("Camioneta x Fin de Semana");
+        servicio3.setNombre("Camioneta 4x4");
         servicio3.setProveedor(proveedorService.obtener(2));
         servicio3.setOrigen(ciudadService.obtener(2));
         servicio3.setDestino(ciudadService.obtener(2));
-        servicio3.setDescripcion("Fin de Semana en camioneta");
+        servicio3.setDescripcion("Camioneta Todo Terreno");
         servicio3.setPrecio(400);
         servicio3.getCategorias().add(categoriaService.obtener(6));
         servicio3.getImagenes().add("/resources/imagenes/car/v1.jpg");
@@ -484,6 +484,7 @@ public class Hardcodeo {
         Date fechaFin1 = new Date(116, 11, 21);
         itemReserva1.setFechaFin(fechaFin1);
         itemReserva1.setCantidad(2);
+        itemReserva1.setDiaz(2);
 
         carritoController.agregarItem(itemReserva1,carrito1);
 
@@ -499,6 +500,7 @@ public class Hardcodeo {
         Date fechaFin2 = new Date(116, 11, 21);
         itemReserva2.setFechaFin(fechaFin2);
         itemReserva2.setCantidad(3);
+        itemReserva2.setDiaz(2);
 
         carritoController.agregarItem(itemReserva2,carrito2);
 
@@ -514,6 +516,7 @@ public class Hardcodeo {
         Date fechaFin3 = new Date(116, 10, 24);
         itemReserva3.setFechaFin(fechaFin3);
         itemReserva3.setCantidad(1);
+        itemReserva3.setDiaz(2);
 
         carritoController.agregarItem(itemReserva3,carrito3);
 
@@ -529,6 +532,7 @@ public class Hardcodeo {
         Date fechaFin4 = new Date(116, 11, 13);
         itemReserva4.setFechaFin(fechaFin4);
         itemReserva4.setCantidad(4);
+        itemReserva4.setDiaz(2);
 
         carritoController.agregarItem(itemReserva4,carrito4);
 
@@ -544,6 +548,7 @@ public class Hardcodeo {
         Date fechaFin5 = new Date(116, 10, 2);
         itemReserva5.setFechaFin(fechaFin5);
         itemReserva5.setCantidad(4);
+        itemReserva5.setDiaz(2);
 
         carritoController.agregarItem(itemReserva5,carrito5);
 
@@ -559,6 +564,7 @@ public class Hardcodeo {
         Date fechaFin6 = new Date(116, 12, 22);
         itemReserva6.setFechaFin(fechaFin6);
         itemReserva6.setCantidad(3);
+        itemReserva6.setDiaz(2);
 
         carritoController.agregarItem(itemReserva6,carrito6);
 
