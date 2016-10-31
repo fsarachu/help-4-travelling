@@ -23,12 +23,13 @@
     <link href="/resources/css/verPerfil.css" rel="stylesheet"/>
 </h:head>
 <h:body>
+    <div class="titulo"><h4>VER PERFIL DE USUARIO</h4></div>
     <div class="container" align="center">
 
     <ui:insert name="navbar">
         <ui:include src="/WEB-INF/navbar.xhtml"/>
     </ui:insert>
-    <div class="titulo"><h4>VER PERFIL DE USUARIO</h4></div>
+
 
     <div class="box1">
 
@@ -60,7 +61,7 @@
     </div>
 
     <div class="box3">
-        <img id="mainImage" class="mainImage" src="#{loginBean.cliente.imagen}"/>
+        <img id="mainImage" class="mainImage" src="#{loginBean.cliente.imagen}" alt="FOTO"/>
     </div>
 
     </div>

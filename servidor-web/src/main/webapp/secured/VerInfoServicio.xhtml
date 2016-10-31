@@ -20,37 +20,15 @@
             crossorigin="anonymous"></script>
 
 
-    <style type="text/css">
-        body {
-            background-color: silver;
-            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
-            padding-top: 70px;
-        }
-
-        .box1, .box2 , .box3{
-            width: 280px;
-            height: auto;
-            float: left;
-        }
-
-        .box1 {
-            clear: left;
-            margin-right: 10px;
-        }
-
-        .clear {
-            clear: both;
-        }
-    </style>
-
     <title>Help 4 Travelling</title>
-
+    <link href="../resources/css/verInfoServicio.css" rel="stylesheet"/>
 </head>
 <body>
-    <ui:insert name="navbar">
-        <ui:include src="../WEB-INF/navbar.xhtml"/>
-    </ui:insert>
+<div class="titulo"><h4>VER INFORMACION SERVICIOS</h4></div>
     <div id="container">
+        <ui:insert name="navbar">
+            <ui:include src="../WEB-INF/navbar.xhtml"/>
+        </ui:insert>
         <h:form>
             <div class="box1">
                 <h3>Categorias</h3>

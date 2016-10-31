@@ -20,23 +20,20 @@
             crossorigin="anonymous"></script>
 
 
-    <style type="text/css">
-        body {
-            background-color: silver;
-            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
-            padding-top: 70px;
-        }
-    </style>
-
     <title>Help 4 Travelling</title>
-
+    <link href="/resources/css/agregarServicioPromo.css" rel="stylesheet"/>
 </h:head>
 <h:body>
+    <div class="titulo"><h4>AGREGAR SERVICIO - PROMO</h4></div>
+    <div class="container" align="center">
+
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbar.xhtml"/>
+
+
+
     </ui:insert>
     <h:form>
-        <h2>Agregar Servicio o Promocion</h2>
         <h:dataTable value="#{servicioBean.listarProductosServicio}" var="serviciopromo" border="1">
             <h:column>
                 <f:facet name="header">
@@ -50,5 +47,6 @@
             </h:column>
         </h:dataTable>
     </h:form>
+    </div>
 </h:body>
 </html>

@@ -11,7 +11,20 @@ body {
     align-items: center;
 }
 
-.box1, .box2 {
+.titulo{
+    margin-top: 60px;
+    text-align: center;
+}
+
+/*
+<style type="text/css">
+body {
+    background-color: silver;
+    background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
+    padding-top: 70px;
+}
+
+.box1, .box2 , .box3{
     width: 280px;
     height: auto;
     float: left;
@@ -25,8 +38,4 @@ body {
 .clear {
     clear: both;
 }
-
-.titulo{
-    margin-top: 60px;
-    text-align: center;
-}
+</style>*/

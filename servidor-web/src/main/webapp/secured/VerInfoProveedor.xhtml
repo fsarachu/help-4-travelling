@@ -23,13 +23,12 @@
     <link href="/resources/css/infoProveedor.css" rel="stylesheet"/>
 </h:head>
 <h:body>
-    <h:form>
+    <div class="titulo"><h4>VER INFORMACION PROVEEDOR</h4></div>
     <div class="container" align="center">
-
+        <h:form>
         <ui:insert name="navbar">
             <ui:include src="/WEB-INF/navbar.xhtml"/>
         </ui:insert>
-        <div class="titulo"><h4>VER INFORMACION PROVEEDOR</h4></div>
 
         <div class="box1">
 
@@ -56,9 +55,9 @@
         <div class="box3">
             <img id="mainImage" class="mainImage" src="#{proveedorBean.proveedor.imagen}" alt="FOTO"/>
         </div>
-
+        </h:form>
     </div>
-    </h:form>
+
 </h:body>
 
 </html>

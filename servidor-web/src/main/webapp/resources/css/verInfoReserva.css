@@ -1,0 +1,42 @@
+body {
+    background-color: silver;
+    background: url("/resources/imagenes/fondo.jpg") no-repeat top right;
+    padding-top: 70px;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo{
+    margin-top: 60px;
+    text-align: center;
+}
+
+/*
+    <style type="text/css">
+        body {
+            background-color: silver;
+            background: url("../resources/imagenes/fondo.jpg") no-repeat top right;
+            padding-top: 70px;
+        }
+
+        .box1, .box2 , .box3{
+            width: 280px;
+            height: auto;
+            float: left;
+        }
+
+        .box1 {
+            clear: left;
+            margin-right: 10px;
+        }
+
+        .clear {
+            clear: both;
+        }
+    </style>
+*/
