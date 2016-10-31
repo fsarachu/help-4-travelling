@@ -25,7 +25,7 @@
 <h:body>
     <div class="titulo"><h4>VER INFORMACION PROVEEDOR</h4></div>
     <div class="container" align="center">
-        <h:form>
+        <h:form id="form">
         <ui:insert name="navbar">
             <ui:include src="/WEB-INF/navbar.xhtml"/>
         </ui:insert>
@@ -33,14 +33,22 @@
         <div class="box1">
 
             <h4>PROVEEDORES</h4>
-            <h:dataTable value="#{proveedorBean.listProveedores}" var="proveedor" border="1">
+            <h:dataTable value="#{proveedorBean.listProveedores}" var="proveedor" border="0">
                 <h:column>
+                    <f:facet name="header">
+
+
+                    </f:facet>
+                    <h:outputLabel>
                     <h:commandLink action="#{proveedorBean.seleccionarProveedor(proveedor.id)}"
                                    immediate="true"
-                                   value="#{proveedor.id}  #{proveedor.nombre}">
+                                   value="#{proveedor.nombre}">
                     </h:commandLink>
+                    </h:outputLabel>
                 </h:column>
             </h:dataTable>
+
+
 
         </div>
 
@@ -57,6 +65,7 @@
         </div>
         </h:form>
     </div>
+
 
 </h:body>
 
