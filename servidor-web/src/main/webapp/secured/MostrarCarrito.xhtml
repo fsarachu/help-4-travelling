@@ -24,10 +24,13 @@
 
 
 <h:body>
-    <ui:insert name="navbar">
-        <ui:include src="../WEB-INF/navbar.xhtml"/>
-    </ui:insert>
-    <div id="container">
+    <div class="titulo"><h4>CARRITO</h4></div>
+
+    <div class="container" align="center">
+        <ui:insert name="navbar">
+            <ui:include src="../WEB-INF/navbar.xhtml"/>
+        </ui:insert>
+
         <h:form>
         <div class="box1">
             <img class="profile-img" src="../resources/imagenes/cart.png"/>
@@ -74,11 +77,11 @@
                 </h:column>
         </h:dataTable>
         <h:outputLabel value="#{carritoBean.totalCarrito()}">Total: #{carritoBean.carrito.total}</h:outputLabel>
-    </div>
-    <div class="box1">
+        <div>
         <h:commandButton id="confirmar" value="Reserva"
                          action="#{carritoBean.confirmarCarrito}">
         </h:commandButton>
+        </div>
     </div>
     <div>
         <h:outputLabel rendered="#{!carritoBean.mensaje.equals(null)}">#{carritoBean.mensaje}</h:outputLabel>
