@@ -42,7 +42,7 @@ public class ServicioBean implements Serializable {
             for (Categoria categoria : servicio.getCategorias()) {
                 listaCategorias.add(categoria);
             }
-            return "VerInfoServicio?faces-redirect=true";
+            return "MostrarServicios?faces-redirect=true";
         } else {
             return null;
         }
