@@ -4,17 +4,14 @@ import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
-import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
-import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
+import uy.edu.cure.servidor.central.webapp.rest.api.CategoriaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.CiudadRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ProductoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ProveedorRestController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -23,7 +20,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
@@ -116,18 +112,18 @@ public class AltaServicioForm {
                         throw new EmptyStackException();
                     }
 
-                    ProductoController productoController = new ProductoController();
+                    ProductoRestController productoController = new ProductoRestController();
                     Servicio servicio = new Servicio();
                     servicio.setNombre(txtNombre.getText());
                     servicio.setDescripcion(txtDescripcion.getText());
                     double aDouble = Double.parseDouble(txtPrecio.getText());
                     servicio.setPrecio(aDouble);
-                    CiudadController ciudadController = new CiudadController();
+                    CiudadRestController ciudadController = new CiudadRestController();
                     servicio.setOrigen(ciudadController.obtener(txtIdCiudadOrigen));
                     servicio.setDestino(ciudadController.obtener(txtIdCiudadDestino));
-                    CategoriaController categoriaController = new CategoriaController();
+                    CategoriaRestController categoriaController = new CategoriaRestController();
                     servicio.getCategorias().add(categoriaController.obtener(txtIdCategoria));
-                    ProveedorController proveedorController = new ProveedorController();
+                    ProveedorRestController proveedorController = new ProveedorRestController();
                     servicio.setProveedor(proveedorController.obtener(txtIDProveedor));
                     ArrayList<String> imagenes = new ArrayList<String>();
                     imagenes.add(txtImagen1);
@@ -199,7 +195,7 @@ public class AltaServicioForm {
 
 
     private void cargarHijos(Categoria cate) {
-        CategoriaController categoriaController = new CategoriaController();
+        CategoriaRestController categoriaController = new CategoriaRestController();
 
         ArrayList<Categoria> categorias = categoriaController.listarHijos(cate);
         for (Categoria categoria : categorias) {
@@ -211,7 +207,7 @@ public class AltaServicioForm {
 
     private void cargarCategorias() {
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorias");
-        CategoriaController categoriaController = new CategoriaController();
+        CategoriaRestController categoriaController = new CategoriaRestController();
         ArrayList<Categoria> categorias = categoriaController.listar();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode cat = new DefaultMutableTreeNode();

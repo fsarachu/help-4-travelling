@@ -3,8 +3,8 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ProductoRestController;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -33,7 +33,7 @@ public class ListadoCiudadForm {
                 mdllista = new DefaultListModel();
                 list.setModel(mdllista);
                 Ciudad ciudad = (Ciudad) cmbCiudades.getSelectedItem();
-                ProductoController productoController = new ProductoController();
+                ProductoRestController productoController = new ProductoRestController();
                 List<Servicio> servicios = new ArrayList<>(productoController.listarServiciosPorCiudad(ciudad));
                 for (Servicio servicio : servicios) {
                     mdllista.addElement(servicio);
@@ -47,7 +47,7 @@ public class ListadoCiudadForm {
                 if (mouseEvent.getClickCount() == 1) {
                     mdllistaCliente = new DefaultListModel();
                     listClientes.setModel(mdllistaCliente);
-                    ClienteController clienteController = new ClienteController();
+                    ClienteRestController clienteController = new ClienteRestController();
                     ArrayList<Cliente> clientes = clienteController.listarCompradoresServicio((Servicio)list.getSelectedValue());
                     for (Cliente cliente : clientes) {
                         mdllistaCliente.addElement(cliente);

@@ -3,7 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.EstadoCategoria;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.CategoriaValidator;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.CategoriaRestController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -60,7 +60,7 @@ public class AltaCategoriaForm {
                     categoria.setPadre(padre);
                     categoria.setNombre(txtCategoria.getText());
                     categoria.setHijos(null);
-                    CategoriaController categoriaController = new CategoriaController();
+                    CategoriaRestController categoriaController = new CategoriaRestController();
                     categoriaController.nueva(categoria);
                 } catch (IllegalArgumentException e){
                     JOptionPane.showMessageDialog(null,"La categoria ya existe","Atencion",JOptionPane.ERROR_MESSAGE);
@@ -79,7 +79,7 @@ public class AltaCategoriaForm {
                 int dialogButton = JOptionPane.YES_NO_OPTION;
                 if (JOptionPane.showConfirmDialog(null, "Existen servicios con esta categoria !!!!", "Atencion",
                         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    CategoriaController categoriaController = new CategoriaController();
+                    CategoriaRestController categoriaController = new CategoriaRestController();
                     categoriaController.ocultar(padre);
                 }
             }
@@ -88,7 +88,7 @@ public class AltaCategoriaForm {
 
 
     private void cargarHijos(Categoria cate) {
-        CategoriaController categoriaController = new CategoriaController();
+        CategoriaRestController categoriaController = new CategoriaRestController();
 
         ArrayList<Categoria> categorias = categoriaController.listarHijos(cate);
         for (Categoria categoria : categorias) {

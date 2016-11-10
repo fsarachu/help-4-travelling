@@ -3,7 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ProductoRestController;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -92,7 +92,7 @@ public class AltaPromocionForm {
                         throw new NumberFormatException();
                     }*/
 
-                    ProductoController productoController = new ProductoController();
+                    ProductoRestController productoController = new ProductoRestController();
                     promocion = new Promocion();
                     promocion.setNombre(txtNombre.getText());
                     Double precio = new Double(txtPrecio.getText());
@@ -127,7 +127,7 @@ public class AltaPromocionForm {
         double descuento = 0;
         Iterator<Servicio> iterator = serviciosElegidos.listIterator();
         for (int x = 0; x < serviciosElegidos.size(); x++) {
-            ProductoController productoController = new ProductoController();
+            ProductoRestController productoController = new ProductoRestController();
             Servicio servicio = (Servicio)productoController.obtener(serviciosElegidos.get(x).getId());
             precio = precio + servicio.getPrecio();
             txtPrecio.setText(Double.toString(precio));
@@ -141,7 +141,7 @@ public class AltaPromocionForm {
     private void cargoServicios(Integer idProveedor) {
         mdllista = new DefaultListModel();
         list.setModel(mdllista);
-        ProductoController productoController = new ProductoController();
+        ProductoRestController productoController = new ProductoRestController();
         List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
         for (Servicio servicio : list1) {
             if (servicio.getProveedor().getId().equals(idProveedor)) {

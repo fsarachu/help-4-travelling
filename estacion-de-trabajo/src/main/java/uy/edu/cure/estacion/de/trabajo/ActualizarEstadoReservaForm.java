@@ -3,8 +3,8 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ReservaRestController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -64,7 +64,7 @@ public class ActualizarEstadoReservaForm {
                     }
 
                     reserva = (Reserva) jcbReserva.getSelectedItem();
-                    ReservaController reservaController = new ReservaController();
+                    ReservaRestController reservaController = new ReservaRestController();
                     estado = (EstadoReserva) jcbEstado.getSelectedItem();
                     reservaController.actualizarEstado( reserva.getId(), estado);
 
@@ -86,13 +86,13 @@ public class ActualizarEstadoReservaForm {
     }
 
     private void cargaComboCliente() {
-        ClienteController clientecontroller = new ClienteController();
+        ClienteRestController clientecontroller = new ClienteRestController();
         ArrayList<Cliente> clientes = clientecontroller.listar();
         ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes));
         jcbCliente.setModel(mdlCombo);
     }
     private void cargarComboReserva(Cliente cliente){
-        ReservaController reservaController = new ReservaController();
+        ReservaRestController reservaController = new ReservaRestController();
         ArrayList<Reserva> reservas = reservaController.listarReservasCliente( cliente );
         ComboBoxModel<Reserva> mdlCombo = new DefaultComboBoxModel<>( new Vector<Reserva>(reservas) );
         jcbReserva.setModel( mdlCombo );

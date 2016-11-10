@@ -26,7 +26,12 @@
 			<artifactId>servidor-central-lib</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>uy.edu.cure</groupId>
+            <artifactId>servidor-central-webapp</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 	<build>
 		<plugins>
 			<plugin>

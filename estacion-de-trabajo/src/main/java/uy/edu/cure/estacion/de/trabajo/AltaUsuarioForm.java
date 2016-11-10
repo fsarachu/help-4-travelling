@@ -4,8 +4,8 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.*;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ProveedorRestController;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -17,9 +17,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class AltaUsuarioForm extends JFrame {
     private JLabel lblNickname;
@@ -136,7 +134,7 @@ public class AltaUsuarioForm extends JFrame {
                         cliente.setImagen(txtImagen1);
                         String password = new String(txtContrasena.getPassword());
                         cliente.setContrasena(password);
-                        ClienteController clienteController = new ClienteController();
+                        ClienteRestController clienteController = new ClienteRestController();
                         clienteController.nuevo(cliente);
                         panelMain.setVisible(false);
 
@@ -161,7 +159,7 @@ public class AltaUsuarioForm extends JFrame {
                         provedor.setNombreEmpresa(txtEmpresa.getText());
                         provedor.setLinkEmpresa(txtLink.getText());
                         provedor.setImagen(txtImagen1);
-                        ProveedorController proveedorController = new ProveedorController();
+                        ProveedorRestController proveedorController = new ProveedorRestController();
                         proveedorController.nuevo(provedor);
                         panelMain.setVisible(false);
                     }

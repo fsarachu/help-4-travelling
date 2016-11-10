@@ -1,7 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.*;
+import uy.edu.cure.servidor.central.webapp.rest.api.*;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -21,28 +21,28 @@ public class VerInfoForm {
                 txtInfo.setText(null);
                 if (itemEvent.getStateChange() == 1) {
                     if (cmbInfo.getSelectedItem().equals("Clientes")) {
-                        ClienteController clienteController = new ClienteController();
+                        ClienteRestController clienteController = new ClienteRestController();
                         ArrayList<Cliente> clientes = clienteController.listar();
                         for (Cliente cliente : clientes) {
                             txtInfo.append(cliente.getNombre() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Proveedores")) {
-                        ProveedorController proveedorController = new ProveedorController();
+                        ProveedorRestController proveedorController = new ProveedorRestController();
                         ArrayList<Proveedor> proveedores = proveedorController.listar();
                         for (Proveedor proveedor : proveedores) {
                             txtInfo.append(proveedor.getNombreEmpresa() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Servicios")) {
-                        ProductoController productoController = new ProductoController();
+                        ProductoRestController productoController = new ProductoRestController();
                         ArrayList<Servicio> servicios = productoController.listarServicios();
                         for (Servicio servicio : servicios) {
                             txtInfo.append(servicio.getNombre() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Promociones")) {
-                        ProductoController productoController = new ProductoController();
+                        ProductoRestController productoController = new ProductoRestController();
                         ArrayList<Promocion> promociones = productoController.listarPromociones();
                         for (Promocion promocion : promociones) {
                             txtInfo.append(promocion.getNombre() +
@@ -50,7 +50,7 @@ public class VerInfoForm {
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Reserva")) {
-                        ReservaController reservaController = new ReservaController();
+                        ReservaRestController reservaController = new ReservaRestController();
                         ArrayList<Reserva> reservas = reservaController.listar();
                         for (Reserva reserva : reservas) {
                             txtInfo.append(reserva.getCliente().getNombre() + "  "
