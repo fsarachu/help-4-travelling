@@ -12,4 +12,5 @@ public interface HelloWS {
     public String sayHello(String name);
     //public void agregar(String usuario);
 
+    @WebMethod public String sayGoodbye(String name);
 }
