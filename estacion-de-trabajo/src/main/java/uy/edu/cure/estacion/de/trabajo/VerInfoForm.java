@@ -1,7 +1,10 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.*;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;

@@ -1,7 +1,7 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,12 +20,12 @@ public class ProveedorBean implements Serializable{
     }
 
     private void cargarLista(){
-        ProveedorController proveedorController = new ProveedorController();
+        ProveedorRestController proveedorController = new ProveedorRestController();
         listProveedores = proveedorController.listar();
     }
 
     public void seleccionarProveedor(Integer id) {
-        ProveedorController proveedorController = new ProveedorController();
+        ProveedorRestController proveedorController = new ProveedorRestController();
         proveedor = proveedorController.obtener(id);
     }
 

@@ -1,7 +1,7 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -20,7 +20,7 @@ public class CategoriaBean implements Serializable {
     public CategoriaBean() { cargarCategorias(); }
 
     private void cargarCategorias() {
-        CategoriaController categoriaController = new CategoriaController();
+        CategoriaRestController categoriaController = new CategoriaRestController();
         listCategorias = categoriaController.listar();
     }
 

@@ -4,7 +4,6 @@ import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Promocion;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;

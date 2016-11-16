@@ -3,7 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.webapp.rest.api.ProductoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
 
 import javax.swing.*;
 import java.awt.event.*;

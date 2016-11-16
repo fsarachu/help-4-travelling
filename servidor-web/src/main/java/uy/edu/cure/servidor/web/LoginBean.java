@@ -1,19 +1,17 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
 import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
-import javax.swing.*;
 import java.io.Serializable;
 import java.util.Random;
 
-//import uy.edu.cure.servidor.central.lib.controlErroresInteface.ContrasenaValidator;
 
 @ManagedBean(name = "loginBean")
 @SessionScoped
@@ -97,7 +95,7 @@ public class LoginBean implements Serializable {
             Hardcodeo hardcodeo = new Hardcodeo();
             primerlogin = false;
         }
-        ClienteController clienteController = new ClienteController();
+        ClienteRestController clienteController = new ClienteRestController();
         String a = "@";
         String correo = cliente.getNickname();
         int intIndex = correo.indexOf(a);
@@ -137,15 +135,14 @@ public class LoginBean implements Serializable {
         }
     }
 
-    public boolean emailExiste(String email){
+    public boolean emailExiste(String email) {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         email = request.getParameter("form1:inputCORREO");
-        ClienteController clienteController = new ClienteController();
+        ClienteRestController clienteController = new ClienteRestController();
         if (clienteController.emailExiste(email)) {
             mensaje = "Email existe";
             return true;
-        }
-        else {
+        } else {
             mensaje = "";
             return false;
         }
@@ -161,17 +158,16 @@ public class LoginBean implements Serializable {
         }
         if (usuarioExiste()) {
             Random rnd = new Random();
-            mensaje = "Usuario existe.... Sugerido: " + usuario+(int)(rnd.nextDouble() *100);
+            mensaje = "Usuario existe.... Sugerido: " + usuario + (int) (rnd.nextDouble() * 100);
             return true;
-        }
-        else {
+        } else {
             mensaje = "";
             return false;
         }
     }
 
     public boolean usuarioExiste() {
-        ClienteController clienteController = new ClienteController();
+        ClienteRestController clienteController = new ClienteRestController();
         if (clienteController.nicknameExiste(cliente.getNickname())) {
             this.setMensaje("El usuario ya existe");
             mensaje = "Bienvenido";
@@ -185,7 +181,7 @@ public class LoginBean implements Serializable {
     public String nuevoUsuario() {
         if (!usuarioExiste()) {
             if (comparoContrasenas()) {
-                ClienteController clienteController = new ClienteController();
+                ClienteRestController clienteController = new ClienteRestController();
                 clienteController.nuevo(cliente);
                 mensaje = "Cliente creado correctamente";
                 cliente = null;

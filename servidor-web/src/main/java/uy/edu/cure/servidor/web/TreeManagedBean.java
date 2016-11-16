@@ -3,7 +3,7 @@ package uy.edu.cure.servidor.web;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import uy.edu.cure.servidor.central.dto.Categoria;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,7 +25,7 @@ public class TreeManagedBean {
 
     public TreeManagedBean() {
         root = new DefaultTreeNode("Root", null);
-        CategoriaController categoriacontroller = new CategoriaController();
+        CategoriaRestController categoriacontroller = new CategoriaRestController();
         Categoria categoria = new Categoria();
         categoria.setId(1);
         for (int i = 1; i <= categoriacontroller.listar().size(); i++) {
@@ -36,7 +36,7 @@ public class TreeManagedBean {
     }
 
     public void construirArbol(Categoria cate, TreeNode arbol) {
-        CategoriaController categoriaController = new CategoriaController();
+        CategoriaRestController categoriaController = new CategoriaRestController();
         Categoria categoria = categoriaController.obtener(contador);
         if (contador <= categoriaController.listar().size() && categoria != null) {
             contador++;

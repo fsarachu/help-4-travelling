@@ -2,15 +2,13 @@ package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Carrito;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
-import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CarritoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,13 +50,13 @@ public class CarritoBean implements Serializable{
         long diferenciaEn_ms = fechaFin.getTime() - fechaInicio.getTime();
         long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
         item.setSubTotal(itemCantidad * itemPrecio * dias);
-        CarritoController carritofinal = new CarritoController();
+        CarritoRestController carritofinal = new CarritoRestController();
         carritofinal.agregarItem(item, item.getCarrito());
         loginBean.setCantidadItems(getCarrito().getItems().size());
     }
 
     public void confirmarCarrito() {
-        ReservaController reservaController = new ReservaController();
+        ReservaRestController reservaController = new ReservaRestController();
         reservaController.nueva(loginBean.getCliente());
         loginBean.setCantidadItems(loginBean.getCliente().getCarrito().getItems().size());
         reservaBean.cargarReservas(loginBean.getCliente());
@@ -66,7 +64,7 @@ public class CarritoBean implements Serializable{
     }
 
     public void mostrarCarrito() {
-        ClienteController clienteController = new ClienteController();
+        ClienteRestController clienteController = new ClienteRestController();
 
         if (clienteController.obtener(loginBean.getCliente().getId()).getCarrito().getIdItems() != null) {
             itemReservas = clienteController.obtener(loginBean.getCliente().getId()).getCarrito().getItems();
@@ -77,7 +75,7 @@ public class CarritoBean implements Serializable{
 
     public String totalCarrito() {
         if (carrito != null) {
-            CarritoController carritoController = new CarritoController();
+            CarritoRestController carritoController = new CarritoRestController();
             carritoController.actualizarTotal(carrito);
             carrito.setTotal(loginBean.getCliente().getCarrito().getTotal());
         }

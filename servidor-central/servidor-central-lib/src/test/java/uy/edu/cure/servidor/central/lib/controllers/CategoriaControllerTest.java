@@ -8,7 +8,6 @@ import uy.edu.cure.servidor.central.dto.EstadoCategoria;
 import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
-import java.io.CharConversionException;
 import java.util.ArrayList;
 import java.util.List;
 

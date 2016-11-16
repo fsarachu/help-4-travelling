@@ -3,7 +3,7 @@ package uy.edu.cure.servidor.web;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -31,12 +31,12 @@ public class ServicioBean implements Serializable {
 
 
     public void cargarServiciosXCategoria(Categoria categoria) {
-        ProductoController productoController = new ProductoController();
+        ProductoRestController productoController = new ProductoRestController();
         listaServicios = productoController.listarServiciosPorCategoria(categoria);
     }
 
     public String buscarServicio(Integer id) {
-        ProductoController productoController = new ProductoController();
+        ProductoRestController productoController = new ProductoRestController();
         if (id !=null) {
             servicio = (Servicio) productoController.obtener(id);
             for (Categoria categoria : servicio.getCategorias()) {
@@ -50,7 +50,7 @@ public class ServicioBean implements Serializable {
     }
 
     public String cargaServiciosCarrito(Integer id) {
-        ProductoController productoController = new ProductoController();
+        ProductoRestController productoController = new ProductoRestController();
         if (id != null) {
             servicio = (Servicio) productoController.obtener(id);
             for (Categoria categoria : servicio.getCategorias()) {
@@ -67,7 +67,7 @@ public class ServicioBean implements Serializable {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         busqueda = request.getParameter("myForm:txtProperty");
         listarProducto.clear();
-        ProductoController productoController = new ProductoController();
+        ProductoRestController productoController = new ProductoRestController();
         listarProductosServicio = productoController.listarTodos();
         for (Producto producto : listarProductosServicio) {
             if (busqueda != null) {
@@ -134,7 +134,7 @@ public class ServicioBean implements Serializable {
     }
 
     public void cargarServiciosPromos() {
-        ProductoController productoController = new ProductoController();
+        ProductoRestController productoController = new ProductoRestController();
         listarProducto = productoController.listarTodos();
     }
 

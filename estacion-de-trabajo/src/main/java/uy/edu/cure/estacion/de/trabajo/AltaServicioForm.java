@@ -4,10 +4,10 @@ import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.webapp.rest.api.CategoriaRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.CiudadRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.ProductoRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.ProveedorRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CiudadRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;

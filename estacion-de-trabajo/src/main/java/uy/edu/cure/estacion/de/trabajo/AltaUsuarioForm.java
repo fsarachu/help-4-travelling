@@ -3,9 +3,9 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.ClienteRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.ProveedorRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.*;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -102,23 +102,23 @@ public class AltaUsuarioForm extends JFrame {
                         throw new IllegalArgumentException("Ingrese Apellido");
                     }
 
-                    EmailValidator emailValidator = new EmailValidator();
+                    EmailValidatorRest emailValidator = new EmailValidatorRest();
 
                     if (!emailValidator.validate(txtCorreo.getText().trim())) {
                         txtCorreo.requestFocus();
                         throw new IllegalArgumentException("Compruebe Correo");
                     }
-                    FechaValidator fechaValidator = new FechaValidator();
+                    FechaValidatorRest fechaValidator = new FechaValidatorRest();
                     if (!fechaValidator.validate(txtFechaNacimiento.getText())) {
                         txtFechaNacimiento.requestFocus();
                         throw new ParseException("Compruebe Fecha",1);
                     }
 
-                    UsuarioExisteValidator usuarioExisteValidator = new UsuarioExisteValidator();
+                    UsuarioExisteValidatorRest usuarioExisteValidator = new UsuarioExisteValidatorRest();
                     if (!usuarioExisteValidator.validator(txtNickName.getText(), txtCorreo.getText())) {
                         throw new IllegalArgumentException("Usuario Existente");
                     }
-                    ComparoContrasenaValidator comparoContrasenaValidator = new ComparoContrasenaValidator();
+                    ComparoContrasenaValidatorRest comparoContrasenaValidator = new ComparoContrasenaValidatorRest();
                     if (!comparoContrasenaValidator.passwordCorrecto(txtContrasena.getPassword(),txtContrasenaConf.getPassword())) {
                         throw new IllegalArgumentException("Las contrasenas no coinciden");
                     }
@@ -165,7 +165,7 @@ public class AltaUsuarioForm extends JFrame {
                     }
                     if (txtImagen1.toString() != null) {
                         String destino = "/imagenes";
-                        CopioImagen copioImagen = new CopioImagen();
+                        CopioImagenRest copioImagen = new CopioImagenRest();
                         copioImagen.copioArchivo(txtImagen1.toString() , destino );
                     }
                 } catch (IllegalArgumentException e) {

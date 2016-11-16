@@ -4,7 +4,7 @@ import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,13 +21,12 @@ public class ReservaBean implements Serializable {
     private List<Reserva> reservaList = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
 
-
     public ReservaBean() {
     }
 
     public String modificarEstado(Integer id) {
         EstadoReserva estadoReserva;
-        ReservaController reservaController = new ReservaController();
+        ReservaRestController reservaController = new ReservaRestController();
         if (reservaController.obtener(id).getEstado().equals(EstadoReserva.registrada)) {
             estadoReserva = EstadoReserva.cancelada;
         } else {
@@ -38,7 +37,7 @@ public class ReservaBean implements Serializable {
     }
 
     public void cargarReservas(Cliente cliente) {
-        ReservaController reservaController = new ReservaController();
+        ReservaRestController reservaController = new ReservaRestController();
         reservaList = reservaController.listarReservasCliente(cliente);
     }
 

@@ -2,10 +2,10 @@ package uy.edu.cure.estacion.de.trabajo;
 
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
-import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CiudadRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -20,14 +20,14 @@ import java.util.Vector;
 public class LlenarCombobox {
 
     public ComboBoxModel cargarComboCiudad(JComboBox cmb) {
-        CiudadController ciudadController = new CiudadController();
+        CiudadRestController ciudadController = new CiudadRestController();
         List<Ciudad> ciudades = ciudadController.listar();
         ComboBoxModel<Ciudad> mdlCombo = new DefaultComboBoxModel<>(new Vector<Ciudad>(ciudades));
         return mdlCombo;
     }
 
     public ComboBoxModel cargarComboProveedores() {
-        ProveedorController proveedorController = new ProveedorController();
+        ProveedorRestController proveedorController = new ProveedorRestController();
         List<Proveedor> proveedores = proveedorController.listar();
         ComboBoxModel<Proveedor> mdlCombo = new DefaultComboBoxModel<>(new Vector<Proveedor>(proveedores));
         return mdlCombo;
@@ -35,7 +35,7 @@ public class LlenarCombobox {
 
     public void cargarTree(DefaultMutableTreeNode root, JTree tree1) {
         root = new DefaultMutableTreeNode("Categorias");
-        CategoriaController categoriaController = new CategoriaController();
+        CategoriaRestController categoriaController = new CategoriaRestController();
         ArrayList<Categoria> categorias = categoriaController.listar();
         for (Categoria categoria : categorias) {
             if (categoria.getPadre() == null) {
@@ -51,7 +51,7 @@ public class LlenarCombobox {
         tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
     }
     public ComboBoxModel cargarComboServicios() {
-        ProductoController productoController = new ProductoController();
+        ProductoRestController productoController = new ProductoRestController();
         java.util.List<Servicio> servicios = productoController.listarServicios();
         ComboBoxModel<Servicio> mdlCombo = new DefaultComboBoxModel<>(new Vector<Servicio>(servicios));
         return mdlCombo;

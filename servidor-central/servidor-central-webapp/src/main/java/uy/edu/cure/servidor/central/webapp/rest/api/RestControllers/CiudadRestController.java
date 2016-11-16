@@ -1,4 +1,4 @@
-package uy.edu.cure.servidor.central.webapp.rest.api;
+package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.lib.controllers.CiudadController;

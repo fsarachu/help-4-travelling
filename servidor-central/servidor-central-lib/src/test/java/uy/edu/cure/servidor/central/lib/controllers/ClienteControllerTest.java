@@ -4,12 +4,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.dto.Producto;
-import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.servicios.ClienteService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
-import uy.edu.cure.servidor.central.lib.servicios.ProductoService;
-
 import java.util.ArrayList;
 import java.util.List;
 

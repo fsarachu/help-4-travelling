@@ -1,9 +1,7 @@
 package uy.edu.cure.servidor.central.lib.controllers;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.*;
 import uy.edu.cure.servidor.central.lib.servicios.*;
-import uy.edu.cure.servidor.central.lib.servicios.memoria.ProveedorServiceImpl;
 
 import java.util.ArrayList;
 import java.util.Date;

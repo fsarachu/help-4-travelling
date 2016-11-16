@@ -1,15 +1,17 @@
-package uy.edu.cure.servidor.central.webapp.rest.api;
+package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
+import uy.edu.cure.servidor.central.lib.servicios.conexion;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import java.sql.Connection;
 import java.util.ArrayList;
 
 

@@ -2,8 +2,8 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.EstadoCategoria;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.CategoriaValidator;
-import uy.edu.cure.servidor.central.webapp.rest.api.CategoriaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.CategoriaValidatorRest;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -47,7 +47,7 @@ public class AltaCategoriaForm {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    CategoriaValidator categoriaValidator = new CategoriaValidator();
+                    CategoriaValidatorRest categoriaValidator = new CategoriaValidatorRest();
                     if (!categoriaValidator.validator(txtCategoria.getText(), padre)) {
                         throw new IllegalArgumentException("La categoria ya existe");
                     }
