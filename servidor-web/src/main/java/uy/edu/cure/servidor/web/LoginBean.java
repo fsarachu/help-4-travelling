@@ -3,6 +3,7 @@ package uy.edu.cure.servidor.web;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -95,37 +96,31 @@ public class LoginBean implements Serializable {
             Hardcodeo hardcodeo = new Hardcodeo();
             primerlogin = false;
         }
-        ClienteRestController clienteController = new ClienteRestController();
         String a = "@";
         String correo = cliente.getNickname();
         int intIndex = correo.indexOf(a);
         if (intIndex == -1) {
-            if (clienteController.comprobarlogin(cliente.getNickname(), cliente.getContrasena())) {
-                cliente = clienteController.obtenerXNombre(cliente.getNickname());
+            if (loginRest(cliente.getNickname(), cliente.getContrasena())) {
+                cliente = obtenerXNombreRest(cliente.getNickname());
                 loggedIn = true;
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
-                reservaBean.cargarReservas(cliente);
-                return "secured/index?faces-redirect=true";
+                mensaje = "Contraseña incorrecta";
             } else {
-                if (clienteController.nicknameExiste(this.cliente.getNickname())) {
-                    mensaje = "Contraseña incorrecta";
-                } else {
-                    mensaje = "Usuario no existe";
-                }
-                return null;
+                mensaje = "Usuario no existe";
             }
+            return null;
         } else {
             cliente.setCorreo(cliente.getNickname());
-            if (clienteController.comprobarloginMail(cliente.getCorreo(), cliente.getContrasena())) {
-                cliente = clienteController.obtenerXMail(cliente.getCorreo());
+            if (comprobarloginMailRest(cliente.getCorreo(), cliente.getContrasena())) {
+                cliente = obtenerXMailRest(cliente.getCorreo());
                 loggedIn = true;
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
                 reservaBean.cargarReservas(cliente);
                 return "secured/index?faces-redirect=true";
             } else {
-                if (clienteController.emailExiste(this.cliente.getCorreo())) {
+                if (existeMailRest(cliente.getCorreo())) {
                     mensaje = "Contraseña incorrecta";
                 } else {
                     mensaje = "Usuario no existe";
@@ -135,11 +130,67 @@ public class LoginBean implements Serializable {
         }
     }
 
+
+    public boolean loginRest(String nickname, String password) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/login/" + nickname + "/" + password;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        System.out.print(u);
+        return true;
+    }
+
+    public Cliente obtenerRest(Integer cliente) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtener/"+cliente;
+        RestController rest = new RestController();
+        Cliente u = rest.doGET(url, Cliente.class);
+        System.out.println("USER ID: " + u.getId());
+        return u;
+    }
+
+    public boolean comprobarloginMailRest(String correo, String contrasena) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/comprobarloginMail/"+correo+"/"+contrasena;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        return u;
+    }
+
+
+    public Cliente obtenerXNombreRest(String cliente) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXNombre/"+cliente;
+        RestController rest = new RestController();
+        Cliente u = rest.doGET(url, Cliente.class);
+        System.out.println("USER ID: " + u.getId());
+        return u;
+    }
+
+    public boolean existeMailRest(String correo) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/emailExiste/"+correo;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        return u;
+    }
+
+    public Cliente obtenerXMailRest(String mail) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXMail/"+mail;
+        RestController rest = new RestController();
+        Cliente u = rest.doGET(url, Cliente.class);
+        System.out.println("USER ID: " + u.getId());
+        return u;
+    }
+
+
+    public boolean nicknameExisteRest(String nickname){
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nicknameExiste/"+nickname;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        return u;
+    }
+
     public boolean emailExiste(String email) {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         email = request.getParameter("form1:inputCORREO");
         ClienteRestController clienteController = new ClienteRestController();
-        if (clienteController.emailExiste(email)) {
+        if (existeMailRest(email)) {
             mensaje = "Email existe";
             return true;
         } else {
@@ -167,8 +218,7 @@ public class LoginBean implements Serializable {
     }
 
     public boolean usuarioExiste() {
-        ClienteRestController clienteController = new ClienteRestController();
-        if (clienteController.nicknameExiste(cliente.getNickname())) {
+        if (nicknameExisteRest(cliente.getNickname())) {
             this.setMensaje("El usuario ya existe");
             mensaje = "Bienvenido";
             return true;
@@ -181,8 +231,9 @@ public class LoginBean implements Serializable {
     public String nuevoUsuario() {
         if (!usuarioExiste()) {
             if (comparoContrasenas()) {
-                ClienteRestController clienteController = new ClienteRestController();
-                clienteController.nuevo(cliente);
+                String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nuevo/";
+                RestController rest = new RestController();
+                Cliente u = rest.doPUT(url, cliente, Cliente.class);
                 mensaje = "Cliente creado correctamente";
                 cliente = null;
                 return "login?faces-redirect=true";

@@ -2,58 +2,83 @@ package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaProveedores;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
+import java.util.concurrent.ForkJoinPool;
 
 /**
  * Created by victor on 09/11/16.
  */
+@Path("/proveedor")
 public class ProveedorRestController {
 
     ProveedorController proveedorController = new ProveedorController();
 
-    @GET
-    @Produces
-    public void nuevo(Proveedor proveedor) {
+
+    @PUT
+    @Produces("text/plain")
+    @Path("nuevo")
+    public Response nuevo(Proveedor proveedor) {
         proveedorController.nuevo(proveedor);
+        return null;
     }
 
     @GET
-    @Produces
-    public void eliminar(Integer idProveedor) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("eliminar/{idproveedor}")
+    public Response eliminar(@PathParam("idproveedor") Integer idProveedor) {
         proveedorController.eliminar(idProveedor);
+        return null;
     }
 
-    @GET
-    @Produces
-    public Proveedor obtener(Integer idProveedor) {
-        return proveedorController.obtener(idProveedor);
-    }
 
     @GET
-    @Produces
-    public void modificar(Proveedor proveedor) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("obtener/{idproveedor}")
+    public Response obtener(@PathParam("idproveedor") Integer idProveedor) {
+        Proveedor log = proveedorController.obtener(idProveedor);
+        return Response.status(Response.Status.OK).entity(log).build();
+    }
+
+
+    @GET
+    @Produces("text/plain")
+    @Path("modificar")
+    public Response modificar(Proveedor proveedor) {
         proveedorController.modificar(proveedor);
+        return null;
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listar")
+    public Response listar() {
+        ListaProveedores log = new ListaProveedores();
+        log.setProveedorArrayList(proveedorController.listar());
+        return Response.status(Response.Status.OK).entity(log).build();
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("nicknameexiste/{nickname}")
+    public Response nicknameExiste(@PathParam("nickname") String nickname) {
+        boolean log = proveedorController.nicknameExiste(nickname);
+        return Response.status(Response.Status.OK).entity(log).build();
     }
 
     @GET
-    @Produces
-    public ArrayList<Proveedor> listar() {
-        return proveedorController.listar();
-    }
-
-    @GET
-    @Produces
-    public boolean nicknameExiste(String nickname) {
-        return proveedorController.nicknameExiste(nickname);
-    }
-
-    @GET
-    @Produces
-    public boolean emailExiste(String email) {
-        return proveedorController.emailExiste(email);
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("emailexiste/{email}")
+    public Response emailExiste(@PathParam("email") String email) {
+        boolean log = proveedorController.emailExiste(email);
+        return Response.status(Response.Status.OK).entity(log).build();
     }
 
 }

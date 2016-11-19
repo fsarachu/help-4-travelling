@@ -2,56 +2,71 @@ package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
 import java.util.ArrayList;
 
-/**
- * Created by victor on 09/11/16.
- */
+@Path("/categoria")
 public class CategoriaRestController {
 
-    @GET
-    @Produces
-    public void nueva(Categoria nuevaCategoria) {
+
+    @PUT
+    @Path("nueva")
+    @Produces("text/plain")
+    public Response nuevo( Categoria categoria) {
         CategoriaController categoriaController = new CategoriaController();
-        categoriaController.nueva(nuevaCategoria);
+        categoriaController.nueva(categoria);
+        return null; ///Que retorno aquiiiii
     }
 
-    @GET
-    @Produces
-    public Categoria obtener(Integer idCategoria) {
-        CategoriaController categoriaController = new CategoriaController();
-        return categoriaController.obtener(idCategoria);
-    }
 
     @GET
-    @Produces
-    public void modificar(Categoria categoria) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("obtener/{idcategoria}")
+    public Response obtener(@PathParam("idcategoria") String idcategoria) {
+        CategoriaController categoriaController = new CategoriaController();
+        Categoria log = categoriaController.obtener(Integer.parseInt(idcategoria));
+        return Response.status(Response.Status.OK).entity(log).build();
+    }
+
+    @PUT
+    @Produces("text/plain")
+    @Path("modificar/")
+    public Response modificar(Categoria categoria) {
         CategoriaController categoriaController = new CategoriaController();
         categoriaController.modificar(categoria);
+        return null;  ///que retorno
     }
 
     @GET
-    @Produces
-    public ArrayList<Categoria> listar() {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listar")
+    public Response listar() {
         CategoriaController categoriaController = new CategoriaController();
-        return categoriaController.listar();
+        ListaCategorias log = new ListaCategorias();
+        log.setCategoriaArrayList(categoriaController.listar());
+        return Response.status(Response.Status.OK).entity(log).build();
     }
 
+    //// revisar esta
     @GET
-    @Produces
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("listarhijos")
     public ArrayList<Categoria> listarHijos(Categoria padre) {
         CategoriaController categoriaController = new CategoriaController();
         return categoriaController.listarHijos(padre);
     }
 
-    @GET
-    @Produces
-    public void ocultar(Categoria categoria) {
+    @PUT
+    @Produces("text/plain")
+    @Path("ocultar/")
+    public Response ocultar(Categoria categoria) {
         CategoriaController categoriaController = new CategoriaController();
         categoriaController.ocultar(categoria);
+        return null;
     }
-
 }

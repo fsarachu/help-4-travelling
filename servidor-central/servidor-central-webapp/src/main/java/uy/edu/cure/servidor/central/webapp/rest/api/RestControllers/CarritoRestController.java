@@ -4,33 +4,43 @@ import uy.edu.cure.servidor.central.dto.Carrito;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 /**
  * Created by victor on 09/11/16.
  */
+@Path("/carrito")
 public class CarritoRestController {
 
-    @GET
-    @Produces
-    public void actualizarTotal(Carrito carrito) {
-        CarritoController carritoController = new CarritoController();
+    CarritoController carritoController = new CarritoController();
+
+    @PUT
+    @Produces("text/plain")
+    @Path("actualizarTotal")
+    public Response actualizarTotal(Carrito carrito) {
         carritoController.actualizarTotal(carrito);
+        return null;
     }
 
     @GET
-    @Produces
-    public Carrito obtenerCarrito(Integer idCarrito) {
-        CarritoController carritoController = new CarritoController();
-        return carritoController.obtenerCarrito(idCarrito);
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("obtenercarrito/{idcarrito}")
+    public Response obtenerCarrito(@PathParam("idcarrito") Integer idCarrito) {
+        Carrito log = carritoController.obtenerCarrito(idCarrito);
+        return Response.status(Response.Status.OK).entity(log).build();
     }
 
-    @GET
-    @Produces
-    public void agregarItem(ItemReserva itemReserva, Carrito carrito) {
+
+    ////////como le paso dos parametros
+    @PUT
+    @Produces("text/plain")
+    @Path("agregaritem")
+    public Response agregarItem(ItemReserva itemReserva, Carrito carrito) {
         CarritoController carritoController = new CarritoController();
         carritoController.agregarItem(itemReserva, carrito);
+        return null;
     }
 
 }

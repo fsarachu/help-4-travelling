@@ -1,6 +1,7 @@
 package uy.edu.cure.servidor.central.lib.controlErroresInteface;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
+import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
 
 import java.util.List;
