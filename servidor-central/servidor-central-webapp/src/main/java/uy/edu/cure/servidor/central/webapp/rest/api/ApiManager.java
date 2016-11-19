@@ -1,8 +1,7 @@
 package uy.edu.cure.servidor.central.webapp.rest.api;
 
 
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.*;
 
 import javax.ws.rs.core.Application;
 import java.util.HashSet;
@@ -16,6 +15,12 @@ public class ApiManager extends Application {
         singleton.add(new TestRestController());
         singleton.add(new ClienteRestController());
         singleton.add(new CategoriaRestController());
+        singleton.add(new CarritoRestController());
+        singleton.add(new CiudadRestController());
+        singleton.add(new PaisRestController());
+        singleton.add(new ProductoRestController());
+        singleton.add(new ProveedorRestController());
+        singleton.add(new ReservaRestController());
     }
 
     @Override

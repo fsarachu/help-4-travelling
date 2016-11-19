@@ -1,7 +1,11 @@
-package uy.edu.cure.servidor.central.lib.controllers;
+package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.servicios.*;
+import uy.edu.cure.servidor.central.lib.controllers.*;
+import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
+import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
+import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
+import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,14 +14,14 @@ import java.util.Date;
 public class Hardcodeo {
 
     public Hardcodeo() {
-        //hardcodeoCiudadPais();
+        hardcodeoCiudadPais();
         harcodeoClientes();
-        //harcodeoCategoria();
-        //harcodeoProveedor();
-        //harcodeoServicios();
-        //harcodeoPromociones();
-        //harcodeoCarritos();
-        //harcodeoReservas();
+        harcodeoCategoria();
+        harcodeoProveedor();
+        harcodeoServicios();
+        harcodeoPromociones();
+        harcodeoCarritos();
+        harcodeoReservas();
 
     }
 
@@ -415,7 +419,7 @@ public class Hardcodeo {
     }
 
 
-    private void harcodeoPromociones(){
+    private void harcodeoPromociones() {
 
         ProductoController productoctrl = new ProductoController();
         ProveedorController proveedorctrl = new ProveedorController();
@@ -425,7 +429,7 @@ public class Hardcodeo {
         ArrayList<Servicio> listaServicios = new ArrayList<Servicio>();
         ArrayList<Integer> listaIdServicios = new ArrayList<Integer>();
 
-        listaServicios.add((Servicio)productoctrl.obtener(1));
+        listaServicios.add((Servicio) productoctrl.obtener(1));
         listaIdServicios.add(1);
 
         Promocion promocion1 = new Promocion();
@@ -440,13 +444,12 @@ public class Hardcodeo {
         productoctrl.agregar(promocion1);
 
 
-
         ArrayList<Servicio> listaServicios2 = new ArrayList<Servicio>();
         ArrayList<Integer> listaIdServicios2 = new ArrayList<Integer>();
 
-        listaServicios2.add((Servicio)productoctrl.obtener(2));
+        listaServicios2.add((Servicio) productoctrl.obtener(2));
         listaIdServicios2.add(2);
-        listaServicios2.add((Servicio)productoctrl.obtener(3));
+        listaServicios2.add((Servicio) productoctrl.obtener(3));
         listaIdServicios2.add(3);
 
         Promocion promocion2 = new Promocion();
@@ -483,7 +486,7 @@ public class Hardcodeo {
         itemReserva1.setFechaFin(fechaFin1);
         itemReserva1.setCantidad(2);
 
-        carritoController.agregarItem(itemReserva1,carrito1);
+        carritoController.agregarItem(itemReserva1, carrito1);
 
 
         Cliente cliente2 = clienteController.obtener(2);
@@ -499,7 +502,7 @@ public class Hardcodeo {
         itemReserva2.setCantidad(3);
 
 
-        carritoController.agregarItem(itemReserva2,carrito2);
+        carritoController.agregarItem(itemReserva2, carrito2);
 
 
         Cliente cliente3 = clienteController.obtener(3);
@@ -515,7 +518,7 @@ public class Hardcodeo {
         itemReserva3.setCantidad(1);
 
 
-        carritoController.agregarItem(itemReserva3,carrito3);
+        carritoController.agregarItem(itemReserva3, carrito3);
 
 
         Cliente cliente4 = clienteController.obtener(4);
@@ -531,7 +534,7 @@ public class Hardcodeo {
         itemReserva4.setCantidad(4);
 
 
-        carritoController.agregarItem(itemReserva4,carrito4);
+        carritoController.agregarItem(itemReserva4, carrito4);
 
 
         Cliente cliente5 = clienteController.obtener(5);
@@ -547,7 +550,7 @@ public class Hardcodeo {
         itemReserva5.setCantidad(4);
 
 
-        carritoController.agregarItem(itemReserva5,carrito5);
+        carritoController.agregarItem(itemReserva5, carrito5);
 
 
         Cliente cliente6 = clienteController.obtener(6);
@@ -563,13 +566,13 @@ public class Hardcodeo {
         itemReserva6.setCantidad(3);
 
 
-        carritoController.agregarItem(itemReserva6,carrito6);
+        carritoController.agregarItem(itemReserva6, carrito6);
 
 
     }
 
 
-    private void harcodeoReservas(){
+    private void harcodeoReservas() {
 
         ReservaController reservactrl = new ReservaController();
         ClienteController clientectrl = new ClienteController();

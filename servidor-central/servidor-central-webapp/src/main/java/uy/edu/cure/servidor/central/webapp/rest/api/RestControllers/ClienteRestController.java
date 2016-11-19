@@ -3,12 +3,10 @@ package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import javax.ws.rs.ext.ReaderInterceptorContext;
 import java.util.ArrayList;
 
 
@@ -54,7 +52,7 @@ import java.util.ArrayList;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("obtenerXMail/{mail}")
+    @Path("emailExiste/{mail}")
     public Response emailExiste(@PathParam("mail") String mail) {
         ClienteController clienteController = new ClienteController();
         boolean log = clienteController.emailExiste(mail);
@@ -67,7 +65,7 @@ import java.util.ArrayList;
     @Path("obtenerXMail/{mail}")
     public Response obtenerXMail(@PathParam("mail") String mail) {
         ClienteController clienteController = new ClienteController();
-        boolean log = clienteController.emailExiste(mail);
+        Cliente log = clienteController.obtenerXMail(mail);
         return Response.status(Response.Status.OK).entity(log).build();
     }
 

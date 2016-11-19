@@ -153,7 +153,7 @@ public class CategoriaControllerTest {
     @Test
     public void testListarHijos() throws Exception {
         // patch: no va para @BeforeClass para no tocar lo armado
-        Hardcodeo jarco = new Hardcodeo();
+        //Hardcodeo jarco = new Hardcodeo();
 
         List<Categoria> todas = categoriaController.listar();
         List<Categoria> hijas = null;
