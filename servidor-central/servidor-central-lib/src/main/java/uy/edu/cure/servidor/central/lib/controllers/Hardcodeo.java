@@ -10,14 +10,14 @@ import java.util.Date;
 public class Hardcodeo {
 
     public Hardcodeo() {
-        hardcodeoCiudadPais();
+        //hardcodeoCiudadPais();
         harcodeoClientes();
-        harcodeoCategoria();
-        harcodeoProveedor();
-        harcodeoServicios();
-        harcodeoPromociones();
-        harcodeoCarritos();
-        harcodeoReservas();
+        //harcodeoCategoria();
+        //harcodeoProveedor();
+        //harcodeoServicios();
+        //harcodeoPromociones();
+        //harcodeoCarritos();
+        //harcodeoReservas();
 
     }
 

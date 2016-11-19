@@ -93,7 +93,7 @@ public class LoginBean implements Serializable {
 
     public String controloPassword() {
         if (primerlogin) {
-            Hardcodeo hardcodeo = new Hardcodeo();
+//            hardcodeoRest();
             primerlogin = false;
         }
         String a = "@";
@@ -105,7 +105,7 @@ public class LoginBean implements Serializable {
                 loggedIn = true;
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
-                mensaje = "Contraseña incorrecta";
+                return "secured/index?faces-redirect=true";
             } else {
                 mensaje = "Usuario no existe";
             }
@@ -130,6 +130,12 @@ public class LoginBean implements Serializable {
         }
     }
 
+    public void hardcodeoRest() {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/hardcodeo/";
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        System.out.print(u);
+    }
 
     public boolean loginRest(String nickname, String password) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/login/" + nickname + "/" + password;
@@ -204,7 +210,7 @@ public class LoginBean implements Serializable {
         usuario = request.getParameter("form1:inputID");
         cliente.setNickname(usuario);
         if (primerlogin) {
-            Hardcodeo hardcodeo = new Hardcodeo();
+  //          Hardcodeo hardcodeo = new Hardcodeo();
             primerlogin = false;
         }
         if (usuarioExiste()) {

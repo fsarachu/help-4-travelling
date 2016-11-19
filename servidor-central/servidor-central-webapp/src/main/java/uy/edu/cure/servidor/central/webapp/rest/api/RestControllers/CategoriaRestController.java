@@ -27,9 +27,9 @@ public class CategoriaRestController {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("obtener/{idcategoria}")
-    public Response obtener(@PathParam("idcategoria") String idcategoria) {
+    public Response obtener(@PathParam("idcategoria") Integer idcategoria) {
         CategoriaController categoriaController = new CategoriaController();
-        Categoria log = categoriaController.obtener(Integer.parseInt(idcategoria));
+        Categoria log = categoriaController.obtener(idcategoria);
         return Response.status(Response.Status.OK).entity(log).build();
     }
 
@@ -53,8 +53,9 @@ public class CategoriaRestController {
     }
 
     //// revisar esta
-    @GET
+    @PUT
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("listarhijos")
     public ArrayList<Categoria> listarHijos(Categoria padre) {
         CategoriaController categoriaController = new CategoriaController();

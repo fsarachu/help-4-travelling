@@ -3,10 +3,12 @@ package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
+import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.ext.ReaderInterceptorContext;
 import java.util.ArrayList;
 
 
@@ -15,11 +17,12 @@ import java.util.ArrayList;
 
     @PUT
     @Path("nuevo")
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response nuevo( Cliente cliente) {
         ClienteController clienteController = new ClienteController();
         clienteController.nuevo(cliente);
-        return null; ///Que retorno aquiiiii
+        return Response.status(Response.Status.OK).entity(cliente).build(); ///Que retorno aquiiiii
     }
 
     @GET
@@ -86,7 +89,13 @@ import java.util.ArrayList;
         return Response.status(Response.Status.OK).entity(log).build();
     }
 
-
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("hardcodeo")
+    public Response hardcodeo(){
+        Hardcodeo hardcodeo = new Hardcodeo();
+        return null;
+    }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
@@ -107,8 +116,9 @@ import java.util.ArrayList;
     }
 
 
-    @GET
+    @PUT
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("listarcompradoresServicio")
     public ArrayList<Cliente> listarCompradoresServicio(Servicio servicio) {
         ClienteController clienteController = new ClienteController();
         return clienteController.listarCompradoresServicio(servicio);

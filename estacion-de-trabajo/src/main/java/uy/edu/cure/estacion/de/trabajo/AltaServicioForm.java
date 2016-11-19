@@ -1,13 +1,9 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.dto.Categoria;
-import uy.edu.cure.servidor.central.dto.Ciudad;
-import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CiudadRestController;
+import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -64,7 +60,7 @@ public class AltaServicioForm {
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
-                node = ((DefaultMutableTreeNode )tree1.getLastSelectedPathComponent());
+                node = ((DefaultMutableTreeNode) tree1.getLastSelectedPathComponent());
 
                 if (node.getUserObject() instanceof Categoria) {
                     Categoria categoria = (Categoria) node.getUserObject();
@@ -118,24 +114,35 @@ public class AltaServicioForm {
                     servicio.setDescripcion(txtDescripcion.getText());
                     double aDouble = Double.parseDouble(txtPrecio.getText());
                     servicio.setPrecio(aDouble);
-                    CiudadRestController ciudadController = new CiudadRestController();
-                    servicio.setOrigen(ciudadController.obtener(txtIdCiudadOrigen));
-                    servicio.setDestino(ciudadController.obtener(txtIdCiudadDestino));
-                    CategoriaRestController categoriaController = new CategoriaRestController();
-                    servicio.getCategorias().add(categoriaController.obtener(txtIdCategoria));
-                    ProveedorRestController proveedorController = new ProveedorRestController();
-                    servicio.setProveedor(proveedorController.obtener(txtIDProveedor));
+                    String url = "http://localhost:8080/servidor-central-webapp/rest/api/ciudad/obtener/" + txtIdCiudadOrigen;
+                    RestController rest = new RestController();
+                    Ciudad u = rest.doGET(url, Ciudad.class);
+                    servicio.setOrigen(u);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/ciudad/obtener/" + txtIdCiudadDestino;
+                    rest = new RestController();
+                    u = rest.doGET(url, Ciudad.class);
+                    servicio.setDestino(u);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/obtener/" + txtIdCategoria;
+                    rest = new RestController();
+                    Categoria categoria = rest.doGET(url, Categoria.class);
+                    servicio.getCategorias().add(categoria);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/obtener/" + txtIDProveedor;
+                    rest = new RestController();
+                    Proveedor proveedor = rest.doGET(url, Proveedor.class);
+                    servicio.setProveedor(proveedor);
                     ArrayList<String> imagenes = new ArrayList<String>();
                     imagenes.add(txtImagen1);
                     imagenes.add(txtImagen2);
                     imagenes.add(txtImagen3);
                     servicio.setImagenes(imagenes);
-                    productoController.agregar(servicio);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/agregar";
+                    rest = new RestController();
+                    Producto producto = rest.doPUT(url, servicio , Producto.class);
                     panelServicio.setVisible(false);
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null,"El precio es incorrecto","Atencion",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El precio es incorrecto", "Atencion", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -195,9 +202,10 @@ public class AltaServicioForm {
 
 
     private void cargarHijos(Categoria cate) {
-        CategoriaRestController categoriaController = new CategoriaRestController();
-
-        ArrayList<Categoria> categorias = categoriaController.listarHijos(cate);
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listarhijos/";
+        RestController rest = new RestController();
+        ListaCategorias categorialista = rest.doPUT(url, cate , ListaCategorias.class);
+        ArrayList<Categoria> categorias = categorialista.getCategoriaArrayList();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
             hijo.setUserObject(categoria);
@@ -207,8 +215,10 @@ public class AltaServicioForm {
 
     private void cargarCategorias() {
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorias");
-        CategoriaRestController categoriaController = new CategoriaRestController();
-        ArrayList<Categoria> categorias = categoriaController.listar();
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listar";
+        RestController rest = new RestController();
+        ListaCategorias categorialista = rest.doGET(url, ListaCategorias.class);
+        ArrayList<Categoria> categorias = categorialista.getCategoriaArrayList();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
             cat.setUserObject(categoria.getNombre());
@@ -451,7 +461,4 @@ public class AltaServicioForm {
         this.node = node;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }
