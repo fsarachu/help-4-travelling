@@ -12,10 +12,20 @@
   <message name="sayHelloResponse">
     <part name="parameters" element="tns:sayHelloResponse"/>
   </message>
+  <message name="sayGoodbye">
+    <part name="parameters" element="tns:sayGoodbye"/>
+  </message>
+  <message name="sayGoodbyeResponse">
+    <part name="parameters" element="tns:sayGoodbyeResponse"/>
+  </message>
   <portType name="HelloWS">
     <operation name="sayHello">
       <input ns1:Action="http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayHelloRequest" message="tns:sayHello" xmlns:ns1="http://www.w3.org/2007/05/addressing/metadata"/>
       <output ns2:Action="http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayHelloResponse" message="tns:sayHelloResponse" xmlns:ns2="http://www.w3.org/2007/05/addressing/metadata"/>
+    </operation>
+    <operation name="sayGoodbye">
+      <input ns3:Action="http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayGoodbyeRequest" message="tns:sayGoodbye" xmlns:ns3="http://www.w3.org/2007/05/addressing/metadata"/>
+      <output ns4:Action="http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayGoodbyeResponse" message="tns:sayGoodbyeResponse" xmlns:ns4="http://www.w3.org/2007/05/addressing/metadata"/>
     </operation>
   </portType>
 </definitions>

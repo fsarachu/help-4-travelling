@@ -1,5 +1,5 @@
 
-package uy.edu.cure.servidor.web.javafromwdsl;
+package uy.edu.cure.servidor.central.soap.client;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;
@@ -10,7 +10,7 @@ import javax.xml.namespace.QName;
 /**
  * This object contains factory methods for each 
  * Java content interface and Java element interface 
- * generated in the uy.edu.cure.servidor.web.javafromwdsl package. 
+ * generated in the uy.edu.cure.servidor.central.soap.client package. 
  * <p>An ObjectFactory allows you to programatically 
  * construct new instances of the Java representation 
  * for XML content. The Java representation of XML 
@@ -30,7 +30,7 @@ public class ObjectFactory {
     private final static QName _SayHello_QNAME = new QName("http://server.soap.webapp.central.servidor.cure.edu.uy/", "sayHello");
 
     /**
-     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: uy.edu.cure.servidor.web.javafromwdsl
+     * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: uy.edu.cure.servidor.central.soap.client
      * 
      */
     public ObjectFactory() {

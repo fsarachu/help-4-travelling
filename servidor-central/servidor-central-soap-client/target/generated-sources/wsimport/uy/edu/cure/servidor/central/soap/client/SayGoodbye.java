@@ -1,5 +1,5 @@
 
-package uy.edu.cure.servidor.web.javafromwdsl;
+package uy.edu.cure.servidor.central.soap.client;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -7,12 +7,12 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Clase Java para sayHello complex type.
+ * <p>Java class for sayGoodbye complex type.
  * 
- * <p>El siguiente fragmento de esquema especifica el contenido que se espera que haya en esta clase.
+ * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="sayHello">
+ * &lt;complexType name="sayGoodbye">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
@@ -26,15 +26,15 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "sayHello", propOrder = {
+@XmlType(name = "sayGoodbye", propOrder = {
     "arg0"
 })
-public class SayHello {
+public class SayGoodbye {
 
     protected String arg0;
 
     /**
-     * Obtiene el valor de la propiedad arg0.
+     * Gets the value of the arg0 property.
      * 
      * @return
      *     possible object is
@@ -46,7 +46,7 @@ public class SayHello {
     }
 
     /**
-     * Define el valor de la propiedad arg0.
+     * Sets the value of the arg0 property.
      * 
      * @param value
      *     allowed object is

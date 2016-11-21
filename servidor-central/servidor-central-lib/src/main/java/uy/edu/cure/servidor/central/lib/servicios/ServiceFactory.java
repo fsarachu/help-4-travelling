@@ -36,4 +36,6 @@ public class ServiceFactory {
     public static ReservaService getReservaService() {
         return ReservaServiceImpl.getInstance();
     }
+
+    public static FacturaService getFacturaService() { return FacturaServiceImpl.getInstance(); }
 }

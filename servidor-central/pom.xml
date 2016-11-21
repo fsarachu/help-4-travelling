@@ -18,5 +18,6 @@
         <module>servidor-central-lib</module>
         <module>servidor-central-webapp</module>
         <module>servidor-central-dto</module>
+        <module>servidor-central-soap-client</module>
     </modules>
 </project>

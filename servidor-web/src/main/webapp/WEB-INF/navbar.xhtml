@@ -47,6 +47,11 @@
                             <li>
                                 <a href="/secured/VerInfoReserva.xhtml">Ver Información de Reservas</a>
                             </li>
+                            <li>
+                                <h:outputLink value="ComprarReserva.xhtml"
+                                              rendered="#{loginBean.isLoggedIn()}">Comprar Reserva
+                                </h:outputLink>
+                            </li>
                         </ul>
                     </li>
                     <li class="dropdown">

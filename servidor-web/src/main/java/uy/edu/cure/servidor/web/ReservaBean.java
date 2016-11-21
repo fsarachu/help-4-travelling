@@ -6,8 +6,10 @@ import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaReservas;
+import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -21,6 +23,9 @@ public class ReservaBean implements Serializable {
     private Integer cantidadReservas;
     private List<Reserva> reservaList = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
+
+    //@ManagedProperty("#{loginBean}")
+    //private LoginBean loginBean;
 
     public ReservaBean() {
     }
@@ -65,6 +70,12 @@ public class ReservaBean implements Serializable {
                 }
             }
         }
+    }
+
+    public void comprarReserva(Integer idReserva){
+        //FacturaController facturaController = new FacturaController();
+        //facturaController.nueva(this);
+        //mensaje = "Reserva Facturada con exito (Y)";
     }
 
     public List<Reserva> getReservaList() {

@@ -13,6 +13,15 @@
         <soap:body use="literal"/>
       </output>
     </operation>
+    <operation name="sayGoodbye">
+      <soap:operation soapAction=""/>
+      <input>
+        <soap:body use="literal"/>
+      </input>
+      <output>
+        <soap:body use="literal"/>
+      </output>
+    </operation>
   </binding>
   <service name="HelloWSImpl">
     <port name="HelloWSImpl" binding="tns:HelloWSImplBinding">
