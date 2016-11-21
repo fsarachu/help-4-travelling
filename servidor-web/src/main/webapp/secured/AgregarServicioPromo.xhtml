@@ -2,37 +2,50 @@
 <!--<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">-->
 <!DOCTYPE html> <!--HTML5-->
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html class="full"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 
-<h:head>
-    <!-- Optional theme -->
+<!--<h:head>
+    &lt;!&ndash; Optional theme &ndash;&gt;
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-    <!-- Latest compiled and minified JavaScript -->
+    &lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-
-
     <title>Help 4 Travelling</title>
     <link href="/resources/css/agregarServicioPromo.css" rel="stylesheet"/>
-</h:head>
+</h:head>-->
+
+<!-- head -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+<link href="../resources/css/full.css" rel="stylesheet"/>
+<link href="../resources/css/agregarServicioPromo.css" rel="stylesheet"/>
+<!-- /head -->
+
+
+
 <h:body>
-    <div class="titulo"><h4>AGREGAR SERVICIO - PROMO</h4></div>
-    <div class="container" align="center">
+    <div class="login-title" align="center">AGREGAR SERVICIO - PROMO</div>
 
-    <ui:insert name="navbar">
-        <ui:include src="../WEB-INF/navbar.xhtml"/>
+    <div id="container">
 
+        <ui:insert name="navbar">
+            <ui:include src="../WEB-INF/navbar.xhtml"/>
+        </ui:insert>
 
-
-    </ui:insert>
     <h:form>
         <h:dataTable value="#{servicioBean.listarProductosServicio}" var="serviciopromo" border="1">
             <h:column>

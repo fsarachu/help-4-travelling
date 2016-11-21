@@ -87,6 +87,7 @@
             <scope>test</scope>
         </dependency>
         <!-- https://mvnrepository.com/artifact/com.github.hazendaz/javabean-tester -->
+
         <dependency>
             <groupId>com.github.hazendaz</groupId>
             <artifactId>javabean-tester</artifactId>

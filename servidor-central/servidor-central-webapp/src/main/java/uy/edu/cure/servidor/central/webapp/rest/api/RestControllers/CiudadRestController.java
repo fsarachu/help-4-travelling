@@ -28,10 +28,12 @@ public class CiudadRestController {
     }
 
     @GET
-    @Produces
-    public Ciudad obtener(Integer idCiudad) {
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("obtener/{idciudad}")
+    public Response obtener(@PathParam("idciudad") Integer idCiudad) {
         CiudadController ciudadController = new CiudadController();
-        return ciudadController.obtener(idCiudad);
+        Ciudad log = ciudadController.obtener(idCiudad);
+        return Response.status(Response.Status.OK).entity(log).build();
     }
 
     @GET

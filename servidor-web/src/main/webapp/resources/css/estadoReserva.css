@@ -1,23 +1,10 @@
-body {
-    background-color: silver;
-    background: url("/resources/imagenes/fondo.jpg") no-repeat top right;
-    padding-top: 70px;
-}
 
 .container {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
+
 }
-
-
-.box3 {
-    float: left;
-    margin-top: 20px;
-}
-
-
 
 .box1, .box2
 {
@@ -33,6 +20,10 @@ body {
     float: left;
     padding : 20px;
     margin-inside: 3px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .campos {
@@ -58,21 +49,20 @@ body {
     text-align: center;
 }
 
-/*
+tbody tr:nth-child(odd) {
+    background-color: #828282;
+}
+
+th, td {
+    padding: 3px;
+    text-align: left;
+}
+
+a:link {
+    color: black;
+}
 
 
-        .box1, .box2 {
-            width: 280px;
-            height: auto;
-            float: left;
-        }
-
-        .box1 {
-            clear: left;
-            margin-right: 10px;
-        }
-
-        .clear {
-            clear: both;
-        }
-    </style>*/
+a:hover {
+    color: red;
+}

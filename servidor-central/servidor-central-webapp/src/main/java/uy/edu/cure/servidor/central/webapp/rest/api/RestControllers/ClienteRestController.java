@@ -20,7 +20,7 @@ import java.util.ArrayList;
     public Response nuevo( Cliente cliente) {
         ClienteController clienteController = new ClienteController();
         clienteController.nuevo(cliente);
-        return Response.status(Response.Status.OK).entity(cliente).build(); ///Que retorno aquiiiii
+        return Response.status(Response.Status.OK).entity(cliente).build();
     }
 
     @GET
@@ -91,7 +91,7 @@ import java.util.ArrayList;
     @Produces(MediaType.APPLICATION_JSON)
     @Path("hardcodeo")
     public Response hardcodeo(){
-        Hardcodeo hardcodeo = new Hardcodeo();
+        HardcodeoRestController hardcodeoRestController = new HardcodeoRestController();
         return null;
     }
 
@@ -106,7 +106,7 @@ import java.util.ArrayList;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("login/{e}/{p}")
+    @Path("comprobarloginmail/{e}/{p}")
     public Response comprobarloginMail(@PathParam("e") String email, @PathParam("p") String contrasena) {
         ClienteController clienteController = new ClienteController();
         boolean log = clienteController.comprobarloginMail(email, contrasena);

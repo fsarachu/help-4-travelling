@@ -1,7 +1,6 @@
 package uy.edu.cure.servidor.web;
 
-import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.lib.controllers.Hardcodeo;
+import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 
@@ -93,7 +92,7 @@ public class LoginBean implements Serializable {
 
     public String controloPassword() {
         if (primerlogin) {
-//            hardcodeoRest();
+            HardcodeoBean hardcodeoBean = new HardcodeoBean();
             primerlogin = false;
         }
         String a = "@";
@@ -104,7 +103,7 @@ public class LoginBean implements Serializable {
                 cliente = obtenerXNombreRest(cliente.getNickname());
                 loggedIn = true;
                 mensaje = null;
-                cantidadItems = cliente.getCarrito().getItems().size();
+                //cantidadItems = cliente.getCarrito().getItems().size();
                 return "secured/index?faces-redirect=true";
             } else {
                 mensaje = "Usuario no existe";
@@ -130,31 +129,26 @@ public class LoginBean implements Serializable {
         }
     }
 
-    public void hardcodeoRest() {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/hardcodeo/";
-        RestController rest = new RestController();
-        boolean u = rest.doGET(url, boolean.class);
-        System.out.print(u);
-    }
-
     public boolean loginRest(String nickname, String password) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/login/" + nickname + "/" + password;
         RestController rest = new RestController();
         boolean u = rest.doGET(url, boolean.class);
         System.out.print(u);
-        return true;
+        return u;
     }
 
     public Cliente obtenerRest(Integer cliente) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtener/"+cliente;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtener/" + cliente;
         RestController rest = new RestController();
         Cliente u = rest.doGET(url, Cliente.class);
         System.out.println("USER ID: " + u.getId());
         return u;
     }
 
+
+
     public boolean comprobarloginMailRest(String correo, String contrasena) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/comprobarloginMail/"+correo+"/"+contrasena;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/comprobarloginmail/" + correo + "/" + contrasena;
         RestController rest = new RestController();
         boolean u = rest.doGET(url, boolean.class);
         return u;
@@ -162,22 +156,21 @@ public class LoginBean implements Serializable {
 
 
     public Cliente obtenerXNombreRest(String cliente) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXNombre/"+cliente;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXNombre/" + cliente;
         RestController rest = new RestController();
         Cliente u = rest.doGET(url, Cliente.class);
-        System.out.println("USER ID: " + u.getId());
         return u;
     }
 
     public boolean existeMailRest(String correo) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/emailExiste/"+correo;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/emailExiste/" + correo;
         RestController rest = new RestController();
         boolean u = rest.doGET(url, boolean.class);
         return u;
     }
 
     public Cliente obtenerXMailRest(String mail) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXMail/"+mail;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXMail/" + mail;
         RestController rest = new RestController();
         Cliente u = rest.doGET(url, Cliente.class);
         System.out.println("USER ID: " + u.getId());
@@ -185,8 +178,8 @@ public class LoginBean implements Serializable {
     }
 
 
-    public boolean nicknameExisteRest(String nickname){
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nicknameExiste/"+nickname;
+    public boolean nicknameExisteRest(String nickname) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nicknameExiste/" + nickname;
         RestController rest = new RestController();
         boolean u = rest.doGET(url, boolean.class);
         return u;
@@ -210,7 +203,7 @@ public class LoginBean implements Serializable {
         usuario = request.getParameter("form1:inputID");
         cliente.setNickname(usuario);
         if (primerlogin) {
-  //          Hardcodeo hardcodeo = new Hardcodeo();
+            //HardcodeoRestController hardcodeo = new HardcodeoRestController();
             primerlogin = false;
         }
         if (usuarioExiste()) {

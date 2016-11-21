@@ -1,7 +1,5 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.Hardcodeo;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,7 +24,7 @@ public class PrincipalForm extends JFrame {
     private JPanel panelMain;
 
     public PrincipalForm() {
-        //Hardcodeo hardcodeo = new Hardcodeo();
+        //HardcodeoRestController hardcodeo = new HardcodeoRestController();
         setLayout(null);
         menuBar = new JMenuBar();
         setJMenuBar(menuBar);

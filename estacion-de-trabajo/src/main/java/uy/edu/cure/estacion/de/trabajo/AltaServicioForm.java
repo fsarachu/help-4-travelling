@@ -1,7 +1,6 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
 
@@ -53,8 +52,8 @@ public class AltaServicioForm {
     public AltaServicioForm() {
         LlenarCombobox llenarCombobox = new LlenarCombobox();
         cmbCiudadOrigen.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadOrigen));
-        cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));
-        cmbProveedor.setModel(llenarCombobox.cargarComboProveedores());
+        /*cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));
+        cmbProveedor.setModel(llenarCombobox.cargarComboProveedores());*/
         cargarCategorias();
         llenarCombobox.cargarTree(raiz, tree1);
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
@@ -107,8 +106,6 @@ public class AltaServicioForm {
                         mensaje = "No puede seleccionar categorias padre";
                         throw new EmptyStackException();
                     }
-
-                    ProductoRestController productoController = new ProductoRestController();
                     Servicio servicio = new Servicio();
                     servicio.setNombre(txtNombre.getText());
                     servicio.setDescripcion(txtDescripcion.getText());

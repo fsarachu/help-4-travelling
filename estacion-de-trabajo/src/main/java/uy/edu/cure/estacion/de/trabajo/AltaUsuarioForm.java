@@ -3,9 +3,10 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.CopioImagenRest;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.EmailValidatorRest;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.FechaValidatorRest;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -111,15 +112,12 @@ public class AltaUsuarioForm extends JFrame {
                     FechaValidatorRest fechaValidator = new FechaValidatorRest();
                     if (!fechaValidator.validate(txtFechaNacimiento.getText())) {
                         txtFechaNacimiento.requestFocus();
-                        throw new ParseException("Compruebe Fecha",1);
+                        throw new ParseException("Compruebe Fecha", 1);
                     }
-
-                    UsuarioExisteValidatorRest usuarioExisteValidator = new UsuarioExisteValidatorRest();
-                    if (!usuarioExisteValidator.validator(txtNickName.getText(), txtCorreo.getText())) {
+                    if (nicknameExisteRest(txtNickName.getText()) || existeMailRest(txtCorreo.getText())) {
                         throw new IllegalArgumentException("Usuario Existente");
                     }
-                    ComparoContrasenaValidatorRest comparoContrasenaValidator = new ComparoContrasenaValidatorRest();
-                    if (!comparoContrasenaValidator.passwordCorrecto(txtContrasena.getPassword(),txtContrasenaConf.getPassword())) {
+                    if (!txtContrasena.getText().equals(txtContrasenaConf.getText())) {
                         throw new IllegalArgumentException("Las contrasenas no coinciden");
                     }
 
@@ -134,8 +132,7 @@ public class AltaUsuarioForm extends JFrame {
                         cliente.setImagen(txtImagen1);
                         String password = new String(txtContrasena.getPassword());
                         cliente.setContrasena(password);
-                        ClienteRestController clienteController = new ClienteRestController();
-                        clienteController.nuevo(cliente);
+                        altaUsuarioRest(cliente);
                         panelMain.setVisible(false);
 
                     } else if (rbtnProveedor.isSelected() == true) {
@@ -159,19 +156,18 @@ public class AltaUsuarioForm extends JFrame {
                         provedor.setNombreEmpresa(txtEmpresa.getText());
                         provedor.setLinkEmpresa(txtLink.getText());
                         provedor.setImagen(txtImagen1);
-                        ProveedorRestController proveedorController = new ProveedorRestController();
-                        proveedorController.nuevo(provedor);
+                        nuevoProveedorRest(provedor);
                         panelMain.setVisible(false);
                     }
                     if (txtImagen1.toString() != null) {
                         String destino = "/imagenes";
                         CopioImagenRest copioImagen = new CopioImagenRest();
-                        copioImagen.copioArchivo(txtImagen1.toString() , destino );
+                        copioImagen.copioArchivo(txtImagen1.toString(), destino);
                     }
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(null, "Verifique la fecha ingresada. " , "Datos inválidos", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Verifique la fecha ingresada. ", "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -184,6 +180,31 @@ public class AltaUsuarioForm extends JFrame {
                 panelMain.setVisible(false);
             }
         });
+    }
+
+    public void altaUsuarioRest(Cliente cliente) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nuevo/";
+        RestController rest = new RestController();
+        Cliente u = rest.doPUT(url, cliente, Cliente.class);
+    }
+    public void nuevoProveedorRest(Proveedor proveedor) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/nuevo/";
+        RestController rest = new RestController();
+        Proveedor u = rest.doPUT(url, proveedor, Proveedor.class);
+    }
+
+    public boolean nicknameExisteRest(String nickname) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nicknameExiste/" + nickname;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        return u;
+    }
+
+    public boolean existeMailRest(String correo) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/emailExiste/" + correo;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        return u;
     }
 
     public JLabel getLblNickname() {
