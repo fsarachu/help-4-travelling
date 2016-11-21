@@ -1,10 +1,13 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.xml.ws.Response;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +23,14 @@ public class CategoriaBean implements Serializable {
     public CategoriaBean() { cargarCategorias(); }
 
     private void cargarCategorias() {
-        CategoriaController categoriaController = new CategoriaController();
-        listCategorias = categoriaController.listar();
+        listCategorias = listarRest();
+    }
+
+    public ArrayList<Categoria> listarRest(){
+            String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listar/";
+            RestController rest = new RestController();
+            ListaCategorias u = rest.doGET(url, ListaCategorias.class);
+            return u.getCategoriaArrayList();
     }
 
     public void retornoCategorias(Integer id){

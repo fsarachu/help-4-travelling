@@ -3,13 +3,15 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaClientes;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaReservas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.util.EmptyStackException;
 import java.util.Vector;
 
@@ -27,11 +29,11 @@ public class CancelarReservaForm {
 
         cargaComboCliente();
 
-        jcbCliente.addActionListener( new ActionListener() {
+        jcbCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    if (jcbCliente.getSelectedItem().equals( "" )) {
+                    if (jcbCliente.getSelectedItem().equals("")) {
                         jcbCliente.requestFocus();
                         mensaje = "Cliente";
                     }
@@ -39,53 +41,56 @@ public class CancelarReservaForm {
                     if (cliente == null) {
                         throw new EmptyStackException();
                     }
-                    cargarComboReserva( cliente );
+                    cargarComboReserva(cliente);
                 } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
 
                 }
             }
         });
 
-        aceptarButton.addActionListener( new ActionListener() {
+        aceptarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 try {
-                    if (jcbReservas.getSelectedItem().equals( "" )) {
+                    if (jcbReservas.getSelectedItem().equals("")) {
                         jcbReservas.requestFocus();
                         mensaje = "Reserva";
                     }
-
                     reserva = (Reserva) jcbReservas.getSelectedItem();
-                    ReservaController reservaController = new ReservaController();
-                    reservaController.actualizarEstado( reserva.getId(), EstadoReserva.cancelada );
-
+                    String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/estadoreserva/"
+                            + reserva.getId() + "/" + EstadoReserva.cancelada;
+                    RestController rest = new RestController();
+                    Reserva u = rest.doGET(url, Reserva.class);
                 } catch (EmptyStackException e) {
-                    JOptionPane.showMessageDialog( null, "Ingrese " + mensaje, "Datos inválidos",JOptionPane.ERROR_MESSAGE );
+                    JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 }
-                JOptionPane.showMessageDialog(null,"Reserva cancelada con exito","Atencion",JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Reserva cancelada con exito", "Atencion", JOptionPane.INFORMATION_MESSAGE);
                 PanelCancelarReserva.setVisible(false);
             }
-        } );
-        cancelarButton.addActionListener( new ActionListener() {
+        });
+        cancelarButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
-                PanelCancelarReserva.setVisible( false );
+                PanelCancelarReserva.setVisible(false);
             }
-        } );
+        });
     }
 
     private void cargaComboCliente() {
-        ClienteController clientecontroller = new ClienteController();
-        ArrayList<Cliente> clientes = clientecontroller.listar();
-        ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes));
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/listar";
+        RestController rest = new RestController();
+        ListaClientes clientesLista = rest.doGET(url, ListaClientes.class);
+        ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientesLista.getClientes()));
         jcbCliente.setModel(mdlCombo);
     }
-    private void cargarComboReserva(Cliente cliente){
-        ReservaController reservaController = new ReservaController();
-        ArrayList<Reserva> reservas = reservaController.listarReservasCliente( cliente );
-        ComboBoxModel<Reserva> mdlCombo = new DefaultComboBoxModel<>( new Vector<Reserva>(reservas) );
-        jcbReservas.setModel( mdlCombo );
+
+    private void cargarComboReserva(Cliente cliente) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXCliente";
+        RestController rest = new RestController();
+        ListaReservas reservasLista = rest.doPUT(url, cliente, ListaReservas.class);
+        ComboBoxModel<Reserva> mdlCombo = new DefaultComboBoxModel<>(new Vector<Reserva>(reservasLista.getReservaArrayList()));
+        jcbReservas.setModel(mdlCombo);
     }
 
     public JComboBox getJcbReservas() {

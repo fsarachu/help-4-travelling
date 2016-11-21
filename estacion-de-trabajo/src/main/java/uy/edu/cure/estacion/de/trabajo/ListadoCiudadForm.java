@@ -3,8 +3,9 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaClientes;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaServicios;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -33,8 +34,10 @@ public class ListadoCiudadForm {
                 mdllista = new DefaultListModel();
                 list.setModel(mdllista);
                 Ciudad ciudad = (Ciudad) cmbCiudades.getSelectedItem();
-                ProductoController productoController = new ProductoController();
-                List<Servicio> servicios = new ArrayList<>(productoController.listarServiciosPorCiudad(ciudad));
+                String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listarServicioXCiudad/";
+                RestController rest = new RestController();
+                ListaServicios serviciosLista = rest.doPUT(url, ciudad, ListaServicios.class);
+                List<Servicio> servicios = new ArrayList<>(serviciosLista.getServicioArrayList());
                 for (Servicio servicio : servicios) {
                     mdllista.addElement(servicio);
                 }
@@ -47,8 +50,10 @@ public class ListadoCiudadForm {
                 if (mouseEvent.getClickCount() == 1) {
                     mdllistaCliente = new DefaultListModel();
                     listClientes.setModel(mdllistaCliente);
-                    ClienteController clienteController = new ClienteController();
-                    ArrayList<Cliente> clientes = clienteController.listarCompradoresServicio((Servicio)list.getSelectedValue());
+                    String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/listarcompradoresServicio";
+                    RestController rest = new RestController();
+                    ListaClientes clientesLista = rest.doPUT(url, (Servicio)list.getSelectedValue() , ListaClientes.class);
+                    ArrayList<Cliente> clientes = clientesLista.getClientes();
                     for (Cliente cliente : clientes) {
                         mdllistaCliente.addElement(cliente);
                     }

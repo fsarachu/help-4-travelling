@@ -1,16 +1,17 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Carrito;
+import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
-import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.dto.Reserva;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CarritoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -52,24 +53,34 @@ public class CarritoBean implements Serializable{
         long diferenciaEn_ms = fechaFin.getTime() - fechaInicio.getTime();
         long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
         item.setSubTotal(itemCantidad * itemPrecio * dias);
-        CarritoController carritofinal = new CarritoController();
-        carritofinal.agregarItem(item, item.getCarrito());
+        agregarItemRest(item, item.getCarrito());
         loginBean.setCantidadItems(getCarrito().getItems().size());
     }
 
+
+    public void agregarItemRest(ItemReserva item, Carrito itemCarrito) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/carrito/agregarItem/"+item+"/"+itemCarrito;
+        RestController rest = new RestController();
+        ItemReserva u = rest.doPUT(url, item , ItemReserva.class);
+    }
+
     public void confirmarCarrito() {
-        ReservaController reservaController = new ReservaController();
-        reservaController.nueva(loginBean.getCliente());
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/nueva/";
+        RestController rest = new RestController();
+        Reserva u = rest.doPUT(url, loginBean.getCliente() , Reserva.class);
         loginBean.setCantidadItems(loginBean.getCliente().getCarrito().getItems().size());
         reservaBean.cargarReservas(loginBean.getCliente());
         mensaje = "Reserva Realizada con exito";
     }
 
-    public void mostrarCarrito() {
-        ClienteController clienteController = new ClienteController();
 
-        if (clienteController.obtener(loginBean.getCliente().getId()).getCarrito().getIdItems() != null) {
-            itemReservas = clienteController.obtener(loginBean.getCliente().getId()).getCarrito().getItems();
+    public void mostrarCarrito() {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtener/";
+        RestController rest = new RestController();
+        Cliente u = rest.doPUT(url, loginBean.getCliente().getId(), Cliente.class);
+        System.out.println("USER ID: " + u.getId());
+        if (u.getCarrito().getIdItems() != null) {
+            itemReservas = u.getCarrito().getItems();
         } else {
             mensaje = "Carrito Vacio";
         }
@@ -77,8 +88,9 @@ public class CarritoBean implements Serializable{
 
     public String totalCarrito() {
         if (carrito != null) {
-            CarritoController carritoController = new CarritoController();
-            carritoController.actualizarTotal(carrito);
+            String url = "http://localhost:8080/servidor-central-webapp/rest/api/carrito/actualizarTotal";
+            RestController rest = new RestController();
+            Carrito u = rest.doPUT(url, carrito , Carrito.class);
             carrito.setTotal(loginBean.getCliente().getCarrito().getTotal());
         }
         return mensaje = null;

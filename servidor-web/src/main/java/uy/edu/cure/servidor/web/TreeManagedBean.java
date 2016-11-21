@@ -3,7 +3,10 @@ package uy.edu.cure.servidor.web;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import uy.edu.cure.servidor.central.dto.Categoria;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
+import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -25,20 +28,34 @@ public class TreeManagedBean {
 
     public TreeManagedBean() {
         root = new DefaultTreeNode("Root", null);
-        CategoriaController categoriacontroller = new CategoriaController();
         Categoria categoria = new Categoria();
         categoria.setId(1);
-        for (int i = 1; i <= categoriacontroller.listar().size(); i++) {
+        for (int i = 1; i <= listarRest().size(); i++) {
             TreeNode nodo = new DefaultTreeNode();
             list.add(nodo);
         }
         construirArbol(categoria, root);
     }
 
+    public ArrayList<Categoria> listarRest(){
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listar/";
+        RestController rest = new RestController();
+        ListaCategorias u = rest.doGET(url, ListaCategorias.class);
+        return u.getCategoriaArrayList();
+    }
+
+    public Categoria obtenerRest(Integer categoria) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/obtener/"+categoria;
+        RestController rest = new RestController();
+        Categoria u = rest.doGET(url, Categoria.class);
+        return u;
+    }
+
+
+
     public void construirArbol(Categoria cate, TreeNode arbol) {
-        CategoriaController categoriaController = new CategoriaController();
-        Categoria categoria = categoriaController.obtener(contador);
-        if (contador <= categoriaController.listar().size() && categoria != null) {
+        Categoria categoria = obtenerRest(contador);
+        if (contador <= listarRest().size() && categoria != null) {
             contador++;
             if (categoria.getPadre() == null) {
                 TreeNode rama = new DefaultTreeNode(categoria, root);

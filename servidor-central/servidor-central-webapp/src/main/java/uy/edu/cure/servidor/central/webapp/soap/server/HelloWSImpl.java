@@ -11,4 +11,13 @@ public class HelloWSImpl implements HelloWS {
     public String sayHello(String name) {
         return message + name + ".";
     }
+
+    @Override
+    public String sayGoodbye(String name) {
+        return message + name + ".";
+    }
+    /*public void agregar(String usuario) {
+        System.out.println(usuario);
+    }*/
+
 }

@@ -3,8 +3,11 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaClientes;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaReservas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -64,7 +67,7 @@ public class ActualizarEstadoReservaForm {
                     }
 
                     reserva = (Reserva) jcbReserva.getSelectedItem();
-                    ReservaController reservaController = new ReservaController();
+                    ReservaRestController reservaController = new ReservaRestController();
                     estado = (EstadoReserva) jcbEstado.getSelectedItem();
                     reservaController.actualizarEstado( reserva.getId(), estado);
 
@@ -86,15 +89,17 @@ public class ActualizarEstadoReservaForm {
     }
 
     private void cargaComboCliente() {
-        ClienteController clientecontroller = new ClienteController();
-        ArrayList<Cliente> clientes = clientecontroller.listar();
-        ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes));
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/listarCliente";
+        RestController rest = new RestController();
+        ListaClientes clientes = rest.doGET(url, ListaClientes.class);
+        ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientes.getClientes()));
         jcbCliente.setModel(mdlCombo);
     }
     private void cargarComboReserva(Cliente cliente){
-        ReservaController reservaController = new ReservaController();
-        ArrayList<Reserva> reservas = reservaController.listarReservasCliente( cliente );
-        ComboBoxModel<Reserva> mdlCombo = new DefaultComboBoxModel<>( new Vector<Reserva>(reservas) );
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXCliente/"+cliente;
+        RestController rest = new RestController();
+        ListaReservas reservas = rest.doPUT(url, cliente , ListaReservas.class);
+        ComboBoxModel<Reserva> mdlCombo = new DefaultComboBoxModel<>( new Vector<Reserva>(reservas.getReservaArrayList()) );
         jcbReserva.setModel( mdlCombo );
     }
     private void cargarComboEstado(){

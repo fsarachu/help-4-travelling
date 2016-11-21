@@ -58,7 +58,6 @@ public class ClienteServiceImpl extends GenericServiceImpl<Cliente> implements C
                 return cliente;
             }
         }
-
         return null;
     }
 

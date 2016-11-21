@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html> <!--HTML5-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<h:head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <!--<meta http-equiv="refresh" content="5"/>-->
+
+    <title>Help 4 Travelling</title>
+    <link href="../resources/css/agregarAlCarrito.css" rel="stylesheet"/>
+</h:head>
+<h:body>
+
+    <h:form>
+        <div class="titulo"><h4></h4></div>
+        <div class="container">
+
+            <ui:insert name="navbar">
+                <ui:include src="../WEB-INF/navbar.xhtml"/>
+            </ui:insert>
+
+            <div class="box1">
+                <div>
+                    <h:outputLabel>#{servicioBean.servicio.nombre}</h:outputLabel>
+                </div>
+                <div>
+                    <h:outputLabel>#{servicioBean.servicio.descripcion}</h:outputLabel>
+                </div>
+                <div>
+                    <h:outputLabel>Precio: </h:outputLabel>
+                    <h:outputLabel style="font-size: large">#{servicioBean.servicio.precio}</h:outputLabel>
+                </div>
+            </div>
+
+            <div class="box2">
+
+                <div>
+                    <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel>
+                </div>
+                <div>
+                    <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel>
+
+                </div>
+                <div>
+                    <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel>
+                </div>
+                <div class="categoria">
+                    <h4>CATEGORIAS</h4>
+                    <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias">
+                        <h:column>
+                            <h:outputLabel>"#{categorias.nombre}"</h:outputLabel>
+                        </h:column>
+                    </h:dataTable>
+                </div>
+            </div>
+
+            <div class="box3">
+
+
+                <img id="mainImage" class="mainImage" src="#{servicioBean.servicio.imagenes[0]}"/>
+                <div id="divId" onclick="changeImageOnClick(event)">
+                    <img class="imgStyle" src="#{servicioBean.servicio.imagenes[0]}"/>
+                    <img class="imgStyle" src="#{servicioBean.servicio.imagenes[1]}"/>
+                    <img class="imgStyle" src="#{servicioBean.servicio.imagenes[2]}"/>
+
+                </div>
+
+                <script type="text/javascript">
+                    var images = document.getElementById("divId").getElementsByTagName("img");
+
+                    function changeImageOnClick(event) {
+                        event = event || window.event;
+                        var targetElement = event.target || event.srcElement;
+                        if (targetElement.tagName == "IMG") {
+                            mainImage.src = targetElement.getAttribute("src");
+                        }
+                    }
+                </script>
+
+            </div>
+        </div>
+    </h:form>
+
+
+</h:body>
+</html>

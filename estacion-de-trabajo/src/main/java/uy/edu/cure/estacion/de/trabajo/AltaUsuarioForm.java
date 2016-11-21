@@ -3,9 +3,10 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.lib.controlErroresInteface.*;
-import uy.edu.cure.servidor.central.lib.controllers.ClienteController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.CopioImagenRest;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.EmailValidatorRest;
+import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.FechaValidatorRest;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -17,9 +18,7 @@ import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 public class AltaUsuarioForm extends JFrame {
     private JLabel lblNickname;
@@ -104,24 +103,21 @@ public class AltaUsuarioForm extends JFrame {
                         throw new IllegalArgumentException("Ingrese Apellido");
                     }
 
-                    EmailValidator emailValidator = new EmailValidator();
+                    EmailValidatorRest emailValidator = new EmailValidatorRest();
 
                     if (!emailValidator.validate(txtCorreo.getText().trim())) {
                         txtCorreo.requestFocus();
                         throw new IllegalArgumentException("Compruebe Correo");
                     }
-                    FechaValidator fechaValidator = new FechaValidator();
+                    FechaValidatorRest fechaValidator = new FechaValidatorRest();
                     if (!fechaValidator.validate(txtFechaNacimiento.getText())) {
                         txtFechaNacimiento.requestFocus();
-                        throw new ParseException("Compruebe Fecha",1);
+                        throw new ParseException("Compruebe Fecha", 1);
                     }
-
-                    UsuarioExisteValidator usuarioExisteValidator = new UsuarioExisteValidator();
-                    if (!usuarioExisteValidator.validator(txtNickName.getText(), txtCorreo.getText())) {
+                    if (nicknameExisteRest(txtNickName.getText()) || existeMailRest(txtCorreo.getText())) {
                         throw new IllegalArgumentException("Usuario Existente");
                     }
-                    ComparoContrasenaValidator comparoContrasenaValidator = new ComparoContrasenaValidator();
-                    if (!comparoContrasenaValidator.passwordCorrecto(txtContrasena.getPassword(),txtContrasenaConf.getPassword())) {
+                    if (!txtContrasena.getText().equals(txtContrasenaConf.getText())) {
                         throw new IllegalArgumentException("Las contrasenas no coinciden");
                     }
 
@@ -136,8 +132,7 @@ public class AltaUsuarioForm extends JFrame {
                         cliente.setImagen(txtImagen1);
                         String password = new String(txtContrasena.getPassword());
                         cliente.setContrasena(password);
-                        ClienteController clienteController = new ClienteController();
-                        clienteController.nuevo(cliente);
+                        altaUsuarioRest(cliente);
                         panelMain.setVisible(false);
 
                     } else if (rbtnProveedor.isSelected() == true) {
@@ -161,19 +156,18 @@ public class AltaUsuarioForm extends JFrame {
                         provedor.setNombreEmpresa(txtEmpresa.getText());
                         provedor.setLinkEmpresa(txtLink.getText());
                         provedor.setImagen(txtImagen1);
-                        ProveedorController proveedorController = new ProveedorController();
-                        proveedorController.nuevo(provedor);
+                        nuevoProveedorRest(provedor);
                         panelMain.setVisible(false);
                     }
                     if (txtImagen1.toString() != null) {
                         String destino = "/imagenes";
-                        CopioImagen copioImagen = new CopioImagen();
-                        copioImagen.copioArchivo(txtImagen1.toString() , destino );
+                        CopioImagenRest copioImagen = new CopioImagenRest();
+                        copioImagen.copioArchivo(txtImagen1.toString(), destino);
                     }
                 } catch (IllegalArgumentException e) {
                     JOptionPane.showMessageDialog(null, e.getMessage(), "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (ParseException e) {
-                    JOptionPane.showMessageDialog(null, "Verifique la fecha ingresada. " , "Datos inválidos", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Verifique la fecha ingresada. ", "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -186,6 +180,31 @@ public class AltaUsuarioForm extends JFrame {
                 panelMain.setVisible(false);
             }
         });
+    }
+
+    public void altaUsuarioRest(Cliente cliente) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nuevo/";
+        RestController rest = new RestController();
+        Cliente u = rest.doPUT(url, cliente, Cliente.class);
+    }
+    public void nuevoProveedorRest(Proveedor proveedor) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/nuevo/";
+        RestController rest = new RestController();
+        Proveedor u = rest.doPUT(url, proveedor, Proveedor.class);
+    }
+
+    public boolean nicknameExisteRest(String nickname) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nicknameExiste/" + nickname;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        return u;
+    }
+
+    public boolean existeMailRest(String correo) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/emailExiste/" + correo;
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+        return u;
     }
 
     public JLabel getLblNickname() {

@@ -1,20 +1,12 @@
 package uy.edu.cure.estacion.de.trabajo;
 
-import uy.edu.cure.servidor.central.dto.Categoria;
-import uy.edu.cure.servidor.central.dto.Ciudad;
-import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
-import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
-import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
+import uy.edu.cure.servidor.central.dto.*;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
-import javax.swing.text.DefaultFormatterFactory;
-import javax.swing.text.MaskFormatter;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
@@ -23,7 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.EmptyStackException;
 
@@ -61,14 +52,14 @@ public class AltaServicioForm {
     public AltaServicioForm() {
         LlenarCombobox llenarCombobox = new LlenarCombobox();
         cmbCiudadOrigen.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadOrigen));
-        cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));
-        cmbProveedor.setModel(llenarCombobox.cargarComboProveedores());
+        /*cmbCiudadDestino.setModel(llenarCombobox.cargarComboCiudad(cmbCiudadDestino));
+        cmbProveedor.setModel(llenarCombobox.cargarComboProveedores());*/
         cargarCategorias();
         llenarCombobox.cargarTree(raiz, tree1);
         tree1.addTreeSelectionListener(new TreeSelectionListener() {
             @Override
             public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
-                node = ((DefaultMutableTreeNode )tree1.getLastSelectedPathComponent());
+                node = ((DefaultMutableTreeNode) tree1.getLastSelectedPathComponent());
 
                 if (node.getUserObject() instanceof Categoria) {
                     Categoria categoria = (Categoria) node.getUserObject();
@@ -115,31 +106,40 @@ public class AltaServicioForm {
                         mensaje = "No puede seleccionar categorias padre";
                         throw new EmptyStackException();
                     }
-
-                    ProductoController productoController = new ProductoController();
                     Servicio servicio = new Servicio();
                     servicio.setNombre(txtNombre.getText());
                     servicio.setDescripcion(txtDescripcion.getText());
                     double aDouble = Double.parseDouble(txtPrecio.getText());
                     servicio.setPrecio(aDouble);
-                    CiudadController ciudadController = new CiudadController();
-                    servicio.setOrigen(ciudadController.obtener(txtIdCiudadOrigen));
-                    servicio.setDestino(ciudadController.obtener(txtIdCiudadDestino));
-                    CategoriaController categoriaController = new CategoriaController();
-                    servicio.getCategorias().add(categoriaController.obtener(txtIdCategoria));
-                    ProveedorController proveedorController = new ProveedorController();
-                    servicio.setProveedor(proveedorController.obtener(txtIDProveedor));
+                    String url = "http://localhost:8080/servidor-central-webapp/rest/api/ciudad/obtener/" + txtIdCiudadOrigen;
+                    RestController rest = new RestController();
+                    Ciudad u = rest.doGET(url, Ciudad.class);
+                    servicio.setOrigen(u);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/ciudad/obtener/" + txtIdCiudadDestino;
+                    rest = new RestController();
+                    u = rest.doGET(url, Ciudad.class);
+                    servicio.setDestino(u);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/obtener/" + txtIdCategoria;
+                    rest = new RestController();
+                    Categoria categoria = rest.doGET(url, Categoria.class);
+                    servicio.getCategorias().add(categoria);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/obtener/" + txtIDProveedor;
+                    rest = new RestController();
+                    Proveedor proveedor = rest.doGET(url, Proveedor.class);
+                    servicio.setProveedor(proveedor);
                     ArrayList<String> imagenes = new ArrayList<String>();
                     imagenes.add(txtImagen1);
                     imagenes.add(txtImagen2);
                     imagenes.add(txtImagen3);
                     servicio.setImagenes(imagenes);
-                    productoController.agregar(servicio);
+                    url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/agregar";
+                    rest = new RestController();
+                    Producto producto = rest.doPUT(url, servicio , Producto.class);
                     panelServicio.setVisible(false);
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, "Ingrese " + mensaje, "Datos inválidos", JOptionPane.ERROR_MESSAGE);
                 } catch (NumberFormatException e) {
-                    JOptionPane.showMessageDialog(null,"El precio es incorrecto","Atencion",JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El precio es incorrecto", "Atencion", JOptionPane.ERROR_MESSAGE);
                 }
             }
         });
@@ -199,9 +199,10 @@ public class AltaServicioForm {
 
 
     private void cargarHijos(Categoria cate) {
-        CategoriaController categoriaController = new CategoriaController();
-
-        ArrayList<Categoria> categorias = categoriaController.listarHijos(cate);
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listarhijos/";
+        RestController rest = new RestController();
+        ListaCategorias categorialista = rest.doPUT(url, cate , ListaCategorias.class);
+        ArrayList<Categoria> categorias = categorialista.getCategoriaArrayList();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
             hijo.setUserObject(categoria);
@@ -211,8 +212,10 @@ public class AltaServicioForm {
 
     private void cargarCategorias() {
         DefaultMutableTreeNode raiz = new DefaultMutableTreeNode("Categorias");
-        CategoriaController categoriaController = new CategoriaController();
-        ArrayList<Categoria> categorias = categoriaController.listar();
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listar";
+        RestController rest = new RestController();
+        ListaCategorias categorialista = rest.doGET(url, ListaCategorias.class);
+        ArrayList<Categoria> categorias = categorialista.getCategoriaArrayList();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
             cat.setUserObject(categoria.getNombre());
@@ -455,7 +458,4 @@ public class AltaServicioForm {
         this.node = node;
     }
 
-    private void createUIComponents() {
-        // TODO: place custom component creation code here
-    }
 }

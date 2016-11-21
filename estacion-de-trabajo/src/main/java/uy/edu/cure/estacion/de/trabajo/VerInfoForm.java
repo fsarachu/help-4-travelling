@@ -1,7 +1,8 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.*;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.*;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.*;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -21,37 +22,47 @@ public class VerInfoForm {
                 txtInfo.setText(null);
                 if (itemEvent.getStateChange() == 1) {
                     if (cmbInfo.getSelectedItem().equals("Clientes")) {
-                        ClienteController clienteController = new ClienteController();
-                        ArrayList<Cliente> clientes = clienteController.listar();
+                        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/listar";
+                        RestController rest = new RestController();
+                        ListaClientes clientesLista = rest.doGET(url, ListaClientes.class);
+                        ArrayList<Cliente> clientes = clientesLista.getClientes();
                         for (Cliente cliente : clientes) {
                             txtInfo.append(cliente.getNombre() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Proveedores")) {
-                        ProveedorController proveedorController = new ProveedorController();
-                        ArrayList<Proveedor> proveedores = proveedorController.listar();
+                        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/listar";
+                        RestController rest = new RestController();
+                        ListaProveedores proveedoresLista = rest.doGET(url, ListaProveedores.class);
+                        ArrayList<Proveedor> proveedores = proveedoresLista.getProveedorArrayList();
                         for (Proveedor proveedor : proveedores) {
                             txtInfo.append(proveedor.getNombreEmpresa() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Servicios")) {
-                        ProductoController productoController = new ProductoController();
-                        ArrayList<Servicio> servicios = productoController.listarServicios();
+                        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listarservicios";
+                        RestController rest = new RestController();
+                        ListaServicios serviciosLista = rest.doGET(url, ListaServicios.class);
+                        ArrayList<Servicio> servicios = serviciosLista.getServicioArrayList();
                         for (Servicio servicio : servicios) {
                             txtInfo.append(servicio.getNombre() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Promociones")) {
-                        ProductoController productoController = new ProductoController();
-                        ArrayList<Promocion> promociones = productoController.listarPromociones();
+                        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listarpromociones";
+                        RestController rest = new RestController();
+                        ListaPromociones promocionesLista = rest.doGET(url, ListaPromociones.class);
+                        ArrayList<Promocion> promociones = promocionesLista.getPromocionArrayList();
                         for (Promocion promocion : promociones) {
                             txtInfo.append(promocion.getNombre() +
                                     "  - " + promocion.getDescripcion() + "\n");
                         }
                     }
                     if (cmbInfo.getSelectedItem().equals("Reserva")) {
-                        ReservaController reservaController = new ReservaController();
-                        ArrayList<Reserva> reservas = reservaController.listar();
+                        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listar";
+                        RestController rest = new RestController();
+                        ListaReservas reservasLista = rest.doGET(url, ListaReservas.class);
+                        ArrayList<Reserva> reservas = reservasLista.getReservaArrayList();
                         for (Reserva reserva : reservas) {
                             txtInfo.append(reserva.getCliente().getNombre() + "  "
                                     +reserva.getEstado() + "\n");

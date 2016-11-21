@@ -4,7 +4,8 @@ import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaReservas;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -21,25 +22,38 @@ public class ReservaBean implements Serializable {
     private List<Reserva> reservaList = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
 
-
     public ReservaBean() {
     }
 
     public String modificarEstado(Integer id) {
         EstadoReserva estadoReserva;
-        ReservaController reservaController = new ReservaController();
-        if (reservaController.obtener(id).getEstado().equals(EstadoReserva.registrada)) {
+        if (obtenerRest(id).getEstado().equals(EstadoReserva.registrada)) {
             estadoReserva = EstadoReserva.cancelada;
         } else {
             estadoReserva = EstadoReserva.registrada;
         }
-        reservaController.actualizarEstado(id, estadoReserva);
+        actualizarEstadoRest(id, estadoReserva);
         return "index?faces-redirect=true";
     }
 
+    public Reserva obtenerRest(Integer reserva) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/obtener/"+reserva;
+        RestController rest = new RestController();
+        Reserva u = rest.doGET(url, Reserva.class);
+        return u;
+    }
+
+    public void actualizarEstadoRest(Integer reserva, EstadoReserva estadoReserva) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/actualizarestado/"+reserva+"/"+estadoReserva;
+        RestController rest = new RestController();
+        Reserva u = rest.doGET(url, Reserva.class);
+    }
+
+
     public void cargarReservas(Cliente cliente) {
-        ReservaController reservaController = new ReservaController();
-        reservaList = reservaController.listarReservasCliente(cliente);
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXCliente";
+        RestController rest = new RestController();
+        reservaList = rest.doPUT(url, cliente , ListaReservas.class).getReservaArrayList();
     }
 
     public void cargarItemsReserva(Integer idReserva) {

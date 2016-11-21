@@ -2,42 +2,42 @@ package uy.edu.cure.estacion.de.trabajo;
 
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
-import uy.edu.cure.servidor.central.lib.controllers.CiudadController;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
-import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.*;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
+import java.awt.List;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Vector;
+import java.util.*;
 
 public class LlenarCombobox {
 
     public ComboBoxModel cargarComboCiudad(JComboBox cmb) {
-        CiudadController ciudadController = new CiudadController();
-        List<Ciudad> ciudades = ciudadController.listar();
-        ComboBoxModel<Ciudad> mdlCombo = new DefaultComboBoxModel<>(new Vector<Ciudad>(ciudades));
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/ciudad/listar";
+        RestController rest = new RestController();
+        ListaCiudades u = rest.doGET(url, ListaCiudades.class);
+        ComboBoxModel<Ciudad> mdlCombo = new DefaultComboBoxModel<>(new Vector<Ciudad>(u.getCiudadArrayList()));
         return mdlCombo;
     }
 
     public ComboBoxModel cargarComboProveedores() {
-        ProveedorController proveedorController = new ProveedorController();
-        List<Proveedor> proveedores = proveedorController.listar();
-        ComboBoxModel<Proveedor> mdlCombo = new DefaultComboBoxModel<>(new Vector<Proveedor>(proveedores));
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/listar";
+        RestController rest = new RestController();
+        ListaProveedores u = rest.doGET(url, ListaProveedores.class);
+        ComboBoxModel<Proveedor> mdlCombo = new DefaultComboBoxModel<>(new Vector<Proveedor>(u.getProveedorArrayList()));
         return mdlCombo;
     }
 
     public void cargarTree(DefaultMutableTreeNode root, JTree tree1) {
         root = new DefaultMutableTreeNode("Categorias");
-        CategoriaController categoriaController = new CategoriaController();
-        ArrayList<Categoria> categorias = categoriaController.listar();
-        for (Categoria categoria : categorias) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listar";
+        RestController rest = new RestController();
+        ListaCategorias categorias = rest.doGET(url, ListaCategorias.class);
+        for (Categoria categoria : categorias.getCategoriaArrayList()) {
             if (categoria.getPadre() == null) {
                 DefaultMutableTreeNode cat = new DefaultMutableTreeNode();
                 cat.setUserObject(categoria);
@@ -50,14 +50,16 @@ public class LlenarCombobox {
         tree1.setModel(modelo);
         tree1.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
     }
+
     public ComboBoxModel cargarComboServicios() {
-        ProductoController productoController = new ProductoController();
-        java.util.List<Servicio> servicios = productoController.listarServicios();
-        ComboBoxModel<Servicio> mdlCombo = new DefaultComboBoxModel<>(new Vector<Servicio>(servicios));
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listarservicios";
+        RestController rest = new RestController();
+        ListaServicios servicios = rest.doGET(url, ListaServicios.class);
+        ComboBoxModel<Servicio> mdlCombo = new DefaultComboBoxModel<>(new Vector<Servicio>(servicios.getServicioArrayList()));
         return mdlCombo;
     }
 
-    public String seleccionarImagen(JLabel lbl,String txtImagen) {
+    public String seleccionarImagen(JLabel lbl, String txtImagen) {
         JFileChooser fileChooser = new JFileChooser();
         if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             File archivoElegido = fileChooser.getSelectedFile();

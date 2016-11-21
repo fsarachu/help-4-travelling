@@ -3,7 +3,10 @@ package uy.edu.cure.servidor.web;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaProductos;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaServicios;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -31,28 +34,36 @@ public class ServicioBean implements Serializable {
 
 
     public void cargarServiciosXCategoria(Categoria categoria) {
-        ProductoController productoController = new ProductoController();
-        listaServicios = productoController.listarServiciosPorCategoria(categoria);
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listarServiciosXCategoria/";
+        RestController rest = new RestController();
+        listaServicios = rest.doPUT(url, categoria , ListaServicios.class).getServicioArrayList();
     }
 
     public String buscarServicio(Integer id) {
-        ProductoController productoController = new ProductoController();
-        if (!id.equals(null)) {
-            servicio = (Servicio) productoController.obtener(id);
+        if (id !=null) {
+            servicio = obtenerRest(id);
             for (Categoria categoria : servicio.getCategorias()) {
                 listaCategorias.add(categoria);
             }
-            return "VerInfoServicio?faces-redirect=true";
+            return "MostrarServicios?faces-redirect=true";
         } else {
             return null;
         }
 
     }
 
+    public Servicio obtenerRest(Integer producto) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/obtener/"+producto;
+        RestController rest = new RestController();
+        Servicio u = rest.doGET(url, Servicio.class);
+        System.out.println("USER ID: " + u.getId());
+        return u;
+    }
+
+
     public String cargaServiciosCarrito(Integer id) {
-        ProductoController productoController = new ProductoController();
-        if (!id.equals(null)) {
-            servicio = (Servicio) productoController.obtener(id);
+        if (id != null) {
+            servicio = obtenerRest(id);
             for (Categoria categoria : servicio.getCategorias()) {
                 listaCategorias.add(categoria);
             }
@@ -67,8 +78,7 @@ public class ServicioBean implements Serializable {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         busqueda = request.getParameter("myForm:txtProperty");
         listarProducto.clear();
-        ProductoController productoController = new ProductoController();
-        listarProductosServicio = productoController.listarTodos();
+        listarProductosServicio = listarTodosRest();
         for (Producto producto : listarProductosServicio) {
             if (busqueda != null) {
                 if (producto.getNombre().contains(busqueda) || producto.getDescripcion().contains(busqueda)) {
@@ -82,6 +92,14 @@ public class ServicioBean implements Serializable {
             return null;
         }
     }
+
+    private ArrayList<Producto> listarTodosRest(){
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listar";
+        RestController rest = new RestController();
+        ListaProductos u = rest.doGET(url, ListaProductos.class);
+        return u.getProductoArrayList();
+    }
+
 
     public String ordenarXNombre() {
         if (buscar.equals("alfabetico")) {
@@ -134,8 +152,8 @@ public class ServicioBean implements Serializable {
     }
 
     public void cargarServiciosPromos() {
-        ProductoController productoController = new ProductoController();
-        listarProducto = productoController.listarTodos();
+        ProductoRestController productoController = new ProductoRestController();
+        listarProducto = listarTodosRest();
     }
 
     public Servicio getServicio() {

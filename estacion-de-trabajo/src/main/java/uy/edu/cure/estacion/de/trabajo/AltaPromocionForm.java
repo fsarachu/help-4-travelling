@@ -3,7 +3,9 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaServicios;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -92,7 +94,7 @@ public class AltaPromocionForm {
                         throw new NumberFormatException();
                     }*/
 
-                    ProductoController productoController = new ProductoController();
+                    ProductoRestController productoController = new ProductoRestController();
                     promocion = new Promocion();
                     promocion.setNombre(txtNombre.getText());
                     Double precio = new Double(txtPrecio.getText());
@@ -104,10 +106,10 @@ public class AltaPromocionForm {
                     promocion.setServicios(ArrServicios);
                     productoController.agregar(promocion);
                     panelPromocion.setVisible(false);
-                } catch (EmptyStackException e){
-                    JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
+                } catch (EmptyStackException e) {
+                    JOptionPane.showMessageDialog(null, mensaje, "Atencion", JOptionPane.ERROR_MESSAGE);
                 } //catch (NumberFormatException e) {
-                    //JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
+                //JOptionPane.showMessageDialog(null, mensaje ,"Atencion",JOptionPane.ERROR_MESSAGE);
                 //}
 
             }
@@ -127,12 +129,14 @@ public class AltaPromocionForm {
         double descuento = 0;
         Iterator<Servicio> iterator = serviciosElegidos.listIterator();
         for (int x = 0; x < serviciosElegidos.size(); x++) {
-            ProductoController productoController = new ProductoController();
-            Servicio servicio = (Servicio)productoController.obtener(serviciosElegidos.get(x).getId());
+            String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/obtener/" +
+                    serviciosElegidos.get(x).getId();
+            RestController rest = new RestController();
+            Servicio servicio = rest.doGET(url, Servicio.class);
             precio = precio + servicio.getPrecio();
             txtPrecio.setText(Double.toString(precio));
             descuento = Double.parseDouble(txtDescuento.getText());
-            descuento = 1-(descuento/100);
+            descuento = 1 - (descuento / 100);
             txtTotalPromo.setText(Double.toString(precio * descuento));
         }
     }
@@ -141,8 +145,10 @@ public class AltaPromocionForm {
     private void cargoServicios(Integer idProveedor) {
         mdllista = new DefaultListModel();
         list.setModel(mdllista);
-        ProductoController productoController = new ProductoController();
-        List<Servicio> list1 = new ArrayList<>(productoController.listarServicios());
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listarservicios";
+        RestController rest = new RestController();
+        ListaServicios servicios = rest.doGET(url, ListaServicios.class);
+        List<Servicio> list1 = new ArrayList<>(servicios.getServicioArrayList());
         for (Servicio servicio : list1) {
             if (servicio.getProveedor().getId().equals(idProveedor)) {
                 mdllista.addElement(servicio);
