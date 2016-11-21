@@ -29,11 +29,13 @@ public class ProductoRestController {
     }
 
     @PUT
-    @Produces("text/plain")
     @Path("agregar")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     public Response agregar(Producto producto) {
-        productoController.agregar(producto);
-        return null;
+        ProductoController productoController1 = new ProductoController();
+        productoController1.agregar(producto);
+        return Response.status(Response.Status.OK).entity(producto).build();
     }
 
     @PUT

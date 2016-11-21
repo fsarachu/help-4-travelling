@@ -21,6 +21,7 @@ public class ApiManager extends Application {
         singleton.add(new ProductoRestController());
         singleton.add(new ProveedorRestController());
         singleton.add(new ReservaRestController());
+        singleton.add(new HardcodeoRestController());
     }
 
     @Override

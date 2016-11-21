@@ -22,7 +22,7 @@ public class PaisController {
         this.paisService.eliminar(idPais);
     }
 
-    Pais obtener(Integer idPais) {
+    public Pais obtener(Integer idPais) {
         return this.paisService.obtener(idPais);
     }
 

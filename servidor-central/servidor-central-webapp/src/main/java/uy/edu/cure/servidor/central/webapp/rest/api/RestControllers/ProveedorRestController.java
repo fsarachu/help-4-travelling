@@ -21,11 +21,12 @@ public class ProveedorRestController {
 
 
     @PUT
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("nuevo")
     public Response nuevo(Proveedor proveedor) {
         proveedorController.nuevo(proveedor);
-        return null;
+        return Response.status(Response.Status.OK).entity(proveedor).build();
     }
 
     @GET

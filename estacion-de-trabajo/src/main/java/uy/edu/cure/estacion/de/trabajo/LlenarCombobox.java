@@ -10,8 +10,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
+import java.awt.List;
 import java.io.File;
-import java.util.Vector;
+import java.util.*;
 
 public class LlenarCombobox {
 
