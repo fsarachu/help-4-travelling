@@ -101,7 +101,7 @@ public class LoginBean implements Serializable {
                 cliente = obtenerXNombreRest(cliente.getNickname());
                 loggedIn = true;
                 mensaje = null;
-                //cantidadItems = cliente.getCarrito().getItems().size();
+                cantidadItems = cliente.getCarrito().getItems().size();
                 return "secured/index?faces-redirect=true";
             } else {
                 mensaje = "Usuario no existe";

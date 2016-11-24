@@ -42,10 +42,10 @@ import javax.ws.rs.core.Response;
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("obtenernom/{nombre}")
+    @Path("obtenerXNombre/{nombre}")
     public Response obtenerXNombre(@PathParam("nombre") String nombre) {
         Cliente cliente = clienteController.obtenerXNombre(nombre);
-        System.out.println(cliente);
+        //System.out.println(cliente);
         return Response.status(Response.Status.OK).entity(cliente).build();
     }
 

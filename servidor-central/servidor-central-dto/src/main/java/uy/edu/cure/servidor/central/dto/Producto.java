@@ -1,5 +1,15 @@
 package uy.edu.cure.servidor.central.dto;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "tipo")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Servicio.class, name = "servicio"),
+        @JsonSubTypes.Type(value = Promocion.class, name = "promocion")})
 public abstract class Producto {
     private Integer id;
     private String nombre;

@@ -1,8 +1,12 @@
 package uy.edu.cure.servidor.central.dto;
 
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Categoria {
     private Integer id;
     private String nombre;
@@ -10,7 +14,7 @@ public class Categoria {
     private ArrayList<Categoria> hijos;
     private EstadoCategoria estado;
     private String imagen;
-
+    @JsonCreator
     public Categoria() {
         this.hijos = new ArrayList<>();
         this.estado = EstadoCategoria.visible;

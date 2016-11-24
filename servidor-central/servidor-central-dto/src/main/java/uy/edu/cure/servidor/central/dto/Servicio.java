@@ -1,14 +1,18 @@
 package uy.edu.cure.servidor.central.dto;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Servicio extends Producto {
     private ArrayList<String> imagenes;
     private Integer idCategorias;
     private ArrayList<Categoria> categorias;
     private Ciudad origen;
     private Ciudad destino;
-
+    @JsonCreator
     public Servicio() {
         this.setTipo(TipoProducto.servicio);
         this.imagenes = new ArrayList<>();

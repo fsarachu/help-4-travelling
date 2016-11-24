@@ -1,7 +1,11 @@
 package uy.edu.cure.servidor.central.dto;
 
-import java.util.Date;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.Date;
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class ItemReserva {
     private Integer id;
     private Carrito carrito;
@@ -10,7 +14,7 @@ public class ItemReserva {
     private Date fechaInicio;
     private Date fechaFin;
     private double cantidad;
-
+    @JsonCreator
     public ItemReserva() {
     }
 

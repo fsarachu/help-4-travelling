@@ -1,14 +1,18 @@
 package uy.edu.cure.servidor.central.dto;
 
-import java.util.ArrayList;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+import java.util.ArrayList;
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Carrito {
     private Integer id;
     private ArrayList<Integer> idItems;
     private ArrayList<ItemReserva> items;
     private Cliente cliente;
     private double total;
-
+    @JsonCreator
     public Carrito() {
         this.idItems = new ArrayList<>();
         this.items = new ArrayList<>();

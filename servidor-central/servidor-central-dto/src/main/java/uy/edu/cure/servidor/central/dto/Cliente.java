@@ -1,10 +1,15 @@
 package uy.edu.cure.servidor.central.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import java.util.Date;
-
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Cliente extends Usuario {
-    private Carrito carrito;
 
+    private Carrito carrito;
+    @JsonCreator
     public Cliente() {
         this.carrito = new Carrito();
     }
