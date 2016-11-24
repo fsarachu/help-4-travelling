@@ -12,96 +12,158 @@
 
 <body>
 <ui:composition>
-    <div class="navbar navbar-default navbar-fixed-top" style="width: 100%">
-        <div class="container">
-                <ul class="nav navbar-nav">
-                    <li class="dropdown">
-                        <a href="/secured/index.xhtml">
-                            <img src="/resources/imagenes/home.png" style="height: 35px ;width: 35px"/>
-                        </a>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">CLIENTES<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="/secured/VerPerfil.xhtml">Ver Perfil</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">PROVEEDORES<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="/secured/VerInfoProveedor.xhtml">Ver Información de Proveedor</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">PRODUCTOS<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li><a href="/secured/VerInfoPromociones.xhtml">Ver Información de Promociones</a></li>
-                            <li><a href="/secured/VerInfoServicio.xhtml">Ver Información de Servicios</a></li>
-                        </ul>
 
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">RESERVAS<span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                            <li>
-                                <h:outputLink value="EstadoReserva.xhtml"
-                                              rendered="#{loginBean.isLoggedIn()}">Actualizar estado de Reserva
-                                </h:outputLink>
-                            </li>
-                            <li>
-                                <a href="/secured/VerInfoReserva.xhtml">Ver Información de Reservas</a>
-                            </li>
-                            <li>
-                                <h:outputLink value="ComprarReserva.xhtml"
-                                              rendered="#{loginBean.isLoggedIn()}">Comprar Reserva
-                                </h:outputLink>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <!-- En caso de no estar logueado -->
-                        <h:outputLink rendered="#{!loginBean.isLoggedIn()}" value="login.xhtml"> Log In </h:outputLink>
-                        <!-- En caso de estarlo -->
-                        <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                                Bienvenid@ #{loginBean.getCliente().nombre}
-                                <span class="caret"></span>
-                            </a>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                                <li>
-                                    <h:form rendered="#{loginBean.isLoggedIn()}">
-                                        <h:commandLink rendered="#{loginBean.isLoggedIn()}"
-                                                       action="#{loginBean.cerrarSesion() }" href="login.xhtml"
-                                                       value="Log Out">
-                                        </h:commandLink>
-                                    </h:form>
-                                </li>
-                            </ul>
-                        </h:panelGroup>
-                    </li>
-                    <li class="dropdown">
-                        <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <img src="#{loginBean.cliente.imagen}" style="width: 35px ; height:35px"/>
-                        </h:panelGroup>
-                    </li>
-                    <li class="dropdown">
-                        <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <h:outputLink value="MostrarCarrito.xhtml" rendered="#{loginBean.isLoggedIn()}">
-                                <h:outputText value="Carrito de Compras (#{loginBean.cantidadItems})"/>
-                            </h:outputLink>
-                        </h:panelGroup>
-                    </li>
-                    <li class="dropdown">
-                        <div id="search-box">
-                                <h:form id="myForm">
-                                    <h:inputText id="txtProperty" />
-                                    <h:commandButton value="Buscar" action="#{servicioBean.buscarServicioPromo(null)}"/>
-                                </h:form>
-                        </div>
-                    </li>
-                </ul>
-        </div><!--<div class="container">-->
-    </div>
+
+
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"/>
+                <span class="icon-bar"/>
+                <span class="icon-bar"/>
+            </button>
+
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="../secured/index.xhtml"><span class="glyphicon glyphicon-home"/> HOME</a></li>
+            </ul>
+
+        </div>
+
+
+
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+            <ul class="nav navbar-nav">
+                <li class="active"></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PERFIL <span class="caret"/></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../secured/VerPerfil.xhtml">CLIENTES</a></li>
+                        <li><a href="../secured/VerInfoProveedor.xhtml">PROVEEDORES</a></li>
+
+
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="active"></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">PRODUCTOS <span class="caret"/></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="../secured/VerInfoPromociones.xhtml">PROMOCIONES</a></li>
+                        <li><a href="../secured/VerInfoServicio.xhtml">SERVICIOS</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <ul class="nav navbar-nav">
+                <li class="active"></li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">RESERVAS <span class="caret"/></a>
+                    <ul class="dropdown-menu">
+                        <li><h:outputLink value="EstadoReserva.xhtml"
+                                          rendered="#{loginBean.isLoggedIn()}">ACTUALIZAR ESTADO
+                        </h:outputLink>
+                        </li>
+                        <li>
+                            <a href="../secured/VerInfoReserva.xhtml">INFORMACION</a>
+                        </li>
+
+                        <li><h:outputLink value="ComprarReserva.xhtml"
+                                          rendered="#{loginBean.isLoggedIn()}">COMPRAR
+                        </h:outputLink>
+                        </li>
+
+
+                    </ul>
+                </li>
+            </ul>
+
+
+            <!-- En caso de no estar logueado -->
+            <h:outputLink rendered="#{!loginBean.isLoggedIn()}" value="login.xhtml"> Log In </h:outputLink>
+            <!-- En caso de estarlo -->
+            <!--<h:panelGroup rendered="#{loginBean.isLoggedIn()}"></h:panelGroup>
+            <a href="#">Bienvenid@ #{loginBean.getCliente().nombre}</a>-->
+
+
+
+            <form class="navbar-form navbar-left">
+                <div class="form-group">
+
+
+
+
+
+                    <h:form id="myForm">
+                        <h:inputText id="txtProperty" />
+                        <h:commandButton value="Buscar" action="#{servicioBean.buscarServicioPromo(null)}"></h:commandButton>
+                    </h:form>
+                </div>
+                <!--<button type="submit" class="btn btn-default">Submit</button>-->
+            </form>
+
+            <ul class="nav navbar-nav">
+
+
+                <li>
+                    <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
+                        <h:outputLink value="MostrarCarrito.xhtml" rendered="#{loginBean.isLoggedIn()}">
+                            <span class="glyphicon glyphicon-shopping-cart"/>
+                            <h:outputText value=" CARRITO DE COMPRAS (#{loginBean.cantidadItems})"/>
+                        </h:outputLink>
+                    </h:panelGroup>
+                </li>
+
+</ul>
+
+
+            <ul class="nav navbar-right">
+
+                <li class="active">
+
+                    <h:form rendered="#{loginBean.isLoggedIn()}">
+                        <h:panelGroup rendered="#{loginBean.isLoggedIn()}"></h:panelGroup>
+                        <label>Bienvenid@ #{loginBean.getCliente().nombre}</label>
+                    </h:form>
+
+                    <h:form rendered="#{loginBean.isLoggedIn()}">
+                        <span class="glyphicon glyphicon-log-out"/>
+                        <h:commandLink rendered="#{loginBean.isLoggedIn()}"
+                                       action="#{loginBean.cerrarSesion() }" href="login.xhtml"
+                                       value="Log Out">
+                        </h:commandLink>
+                    </h:form>
+                </li>
+
+            </ul>
+            <ul class="nav navbar-right">
+                <li>
+                    <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
+                        <img src="#{loginBean.cliente.imagen}" style="width: 50px ; height:50px"/>
+                    </h:panelGroup>
+
+                </li>
+
+            </ul>
+
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+
+
 </ui:composition>
 </body>
 </html>
