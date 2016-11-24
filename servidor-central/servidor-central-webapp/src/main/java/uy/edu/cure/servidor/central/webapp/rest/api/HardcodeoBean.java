@@ -137,7 +137,7 @@ public class HardcodeoBean implements Serializable{
 
 
         Categoria autos2 = new Categoria();
-        autos2.setPadre(autos1);
+        autos2.setPadre(vehiculos);
         autos2.setNombre("Camionetas");
         categoriaController.nueva(autos2);
 
@@ -149,7 +149,7 @@ public class HardcodeoBean implements Serializable{
         categoriaController.nueva(autos3);
 
         Categoria autos4 = new Categoria();
-        autos4.setPadre(autos2);
+        autos4.setPadre(autos1);
         autos4.setNombre("Car Rental");
         autos4.setImagen("/resources/imagenes/empresas/r2.jpg");
         categoriaController.nueva(autos4);
@@ -382,7 +382,7 @@ public class HardcodeoBean implements Serializable{
         serv1.setDestino(ciudadService.obtener(2));
         serv1.setDescripcion("Aventura Retro");
         serv1.setPrecio(200);
-        serv1.getCategorias().add(categoriaService.obtener(5));
+        serv1.getCategorias().add(categoriaService.obtener(4));
         serv1.getImagenes().add("/resources/imagenes/car/c1.jpg");
         serv1.getImagenes().add("/resources/imagenes/car/c2.jpg");
         serv1.getImagenes().add("/resources/imagenes/car/c3.jpg");
