@@ -54,7 +54,7 @@ public class ReservaRestController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("listarreservas")
+    @Path("listar")
     public Response listar() {
         ListaReservas log = new ListaReservas();
         log.setReservaArrayList(reservaController.listar());

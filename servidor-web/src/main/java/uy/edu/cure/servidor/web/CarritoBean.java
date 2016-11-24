@@ -71,10 +71,9 @@ public class CarritoBean implements Serializable{
 
 
     public void mostrarCarrito() {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtener/";
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtener/"+loginBean.getCliente().getId();
         RestController rest = new RestController();
-        Cliente u = rest.doPUT(url, loginBean.getCliente().getId(), Cliente.class);
-        System.out.println("USER ID: " + u.getId());
+        Cliente u = rest.doGET(url, Cliente.class);
         if (u.getCarrito().getIdItems() != null) {
             itemReservas = u.getCarrito().getItems();
         } else {

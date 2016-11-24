@@ -35,8 +35,9 @@ public class CarritoRestController {
 
     ////////como le paso dos parametros
     @PUT
-    @Produces("text/plain")
-    @Path("agregaritem")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("agregaritem/{item}")
     public Response agregarItem(ItemReserva itemReserva, Carrito carrito) {
         CarritoController carritoController = new CarritoController();
         carritoController.agregarItem(itemReserva, carrito);
