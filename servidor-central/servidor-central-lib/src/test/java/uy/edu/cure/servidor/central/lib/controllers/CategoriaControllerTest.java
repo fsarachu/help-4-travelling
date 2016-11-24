@@ -150,7 +150,7 @@ public class CategoriaControllerTest {
 
 
     }
-    @Test
+  /*  @Test
     public void testListarHijos() throws Exception {
         // patch: no va para @BeforeClass para no tocar lo armado
         //Hardcodeo jarco = new Hardcodeo();
@@ -174,5 +174,5 @@ public class CategoriaControllerTest {
         assertTrue( noFail);
 
     }
-
+*/
 }

@@ -1,9 +1,8 @@
-uy\edu\cure\servidor\central\soap\client\HelloWS.class
-uy\edu\cure\servidor\central\soap\client\HelloWSImplService.class
-uy\edu\cure\servidor\central\soap\client\App.class
-uy\edu\cure\servidor\central\soap\client\package-info.class
-uy\edu\cure\servidor\central\soap\client\ObjectFactory.class
-uy\edu\cure\servidor\central\soap\client\SayHello.class
-uy\edu\cure\servidor\central\soap\client\SayGoodbye.class
-uy\edu\cure\servidor\central\soap\client\SayGoodbyeResponse.class
-uy\edu\cure\servidor\central\soap\client\SayHelloResponse.class
+uy/edu/cure/servidor/central/soap/client/package-info.class
+uy/edu/cure/servidor/central/soap/client/HelloWS.class
+uy/edu/cure/servidor/central/soap/client/ObjectFactory.class
+uy/edu/cure/servidor/central/soap/client/SayHello.class
+uy/edu/cure/servidor/central/soap/client/SayHelloResponse.class
+uy/edu/cure/servidor/central/soap/client/HelloWSImplService.class
+uy/edu/cure/servidor/central/soap/client/SayGoodbye.class
+uy/edu/cure/servidor/central/soap/client/SayGoodbyeResponse.class

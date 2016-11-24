@@ -16,7 +16,7 @@ import javax.xml.ws.WebServiceFeature;
  * Generated source version: 2.2
  * 
  */
-@WebServiceClient(name = "HelloWSImplService", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", wsdlLocation = "jar:file:/C:/Users/Viviana/Desktop/help-4-travelling2/servidor-central/servidor-central-webapp/target/servidor-central-webapp-0.0.1-SNAPSHOT.war!/WEB-INF/wsdl/HelloWSImplService.wsdl")
+@WebServiceClient(name = "HelloWSImplService", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", wsdlLocation = "jar:file:/home/victor/Escritorio/ProgramaciondeAplicaciones/help-4-travelling/servidor-central/servidor-central-webapp/target/servidor-central-webapp-0.0.1-SNAPSHOT.war!/WEB-INF/wsdl/HelloWSImplService.wsdl")
 public class HelloWSImplService
     extends Service
 {
@@ -26,10 +26,10 @@ public class HelloWSImplService
     private final static QName HELLOWSIMPLSERVICE_QNAME = new QName("http://server.soap.webapp.central.servidor.cure.edu.uy/", "HelloWSImplService");
 
     static {
-        HELLOWSIMPLSERVICE_WSDL_LOCATION = uy.edu.cure.servidor.central.soap.client.HelloWSImplService.class.getResource("jar:file:/C:/Users/Viviana/Desktop/help-4-travelling2/servidor-central/servidor-central-webapp/target/servidor-central-webapp-0.0.1-SNAPSHOT.war!/WEB-INF/wsdl/HelloWSImplService.wsdl");
+        HELLOWSIMPLSERVICE_WSDL_LOCATION = uy.edu.cure.servidor.central.soap.client.HelloWSImplService.class.getResource("jar:file:/home/victor/Escritorio/ProgramaciondeAplicaciones/help-4-travelling/servidor-central/servidor-central-webapp/target/servidor-central-webapp-0.0.1-SNAPSHOT.war!/WEB-INF/wsdl/HelloWSImplService.wsdl");
         WebServiceException e = null;
         if (HELLOWSIMPLSERVICE_WSDL_LOCATION == null) {
-            e = new WebServiceException("Cannot find 'jar:file:/C:/Users/Viviana/Desktop/help-4-travelling2/servidor-central/servidor-central-webapp/target/servidor-central-webapp-0.0.1-SNAPSHOT.war!/WEB-INF/wsdl/HelloWSImplService.wsdl' wsdl. Place the resource correctly in the classpath.");
+            e = new WebServiceException("Cannot find 'jar:file:/home/victor/Escritorio/ProgramaciondeAplicaciones/help-4-travelling/servidor-central/servidor-central-webapp/target/servidor-central-webapp-0.0.1-SNAPSHOT.war!/WEB-INF/wsdl/HelloWSImplService.wsdl' wsdl. Place the resource correctly in the classpath.");
         }
         HELLOWSIMPLSERVICE_EXCEPTION = e;
     }
