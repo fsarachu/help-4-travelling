@@ -9,6 +9,7 @@ import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.util.ArrayList;
 
 /**
  * Created by victor on 09/11/16.
@@ -89,11 +90,14 @@ public class ProductoRestController {
     }
 
     @PUT
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("listarServiciosXCategoria/")
     public Response listarServiciosPorCategoria(Categoria categoria) {
-        return Response.status(Response.Status.OK).entity(productoController.
-                listarServiciosPorCategoria(categoria)).build();
+        ListaServicios listaServicios = new ListaServicios();
+        ArrayList<Servicio> tm = productoController.listarServiciosPorCategoria(categoria);
+        listaServicios.setServicioArrayList(tm);
+        return Response.status(Response.Status.OK).entity(listaServicios).build();
     }
 
     @PUT

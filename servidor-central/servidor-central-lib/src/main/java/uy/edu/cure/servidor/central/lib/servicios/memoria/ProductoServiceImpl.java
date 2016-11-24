@@ -38,9 +38,13 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
 
             if (producto.getTipo() == TipoProducto.servicio) {
                 Servicio servicio = (Servicio) producto;
-                if (servicio.getCategorias().contains(categoria)) {
-                    servicios.add(servicio);
+                for (int i = 0; i < servicio.getCategorias().size(); i++) {
+
+                    if (servicio.getCategorias().get(i).getId().equals(categoria.getId())) {
+                        servicios.add(servicio);
+                    }
                 }
+
             }
         }
 
