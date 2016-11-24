@@ -5,6 +5,7 @@ import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
+import uy.edu.cure.servidor.central.lib.controllers.FacturaController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -70,8 +71,8 @@ public class ReservaBean implements Serializable {
     }
 
     public void comprarReserva(Integer idReserva){
-        //FacturaController facturaController = new FacturaController();
-        //facturaController.nueva(this);
+        FacturaController facturaController = new FacturaController();
+        facturaController.nueva(this.reserva);
         //mensaje = "Reserva Facturada con exito (Y)";
     }
 

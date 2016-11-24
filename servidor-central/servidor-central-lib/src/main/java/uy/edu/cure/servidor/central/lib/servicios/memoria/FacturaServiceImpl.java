@@ -6,6 +6,7 @@ import uy.edu.cure.servidor.central.lib.servicios.FacturaService;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.validation.OverridesAttribute;
 
 public class FacturaServiceImpl extends GenericServiceImpl<Factura> implements FacturaService{
     private static FacturaServiceImpl ourInstance = new FacturaServiceImpl();
@@ -18,7 +19,8 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura> implements F
         super();
     }
 
-    public void agregar(Factura factura){
+    @Override
+    public void agregar(Integer id, Factura factura){
         EntityManagerFactory emf =
                 Persistence.createEntityManagerFactory("UnidadFactura");
         EntityManager em = emf.createEntityManager();
@@ -31,6 +33,7 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura> implements F
         }finally {
             em.close();
         }
+
     }
 
     @Override

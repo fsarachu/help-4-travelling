@@ -24,8 +24,7 @@ public class FacturaController {
         factura.setId(this.facturaService.nextId());
         factura.setFecha(new Date());
         factura.setEstado(EstadoReserva.facturada);
-        factura.setReserva(reserva);
-
+        //factura.setReserva(reserva);
         this.facturaService.agregar(factura.getId(), factura);
     }
 
