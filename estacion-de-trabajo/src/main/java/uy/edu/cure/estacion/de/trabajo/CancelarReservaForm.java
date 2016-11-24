@@ -3,11 +3,8 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaClientes;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaReservas;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaClientes;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -81,7 +78,7 @@ public class CancelarReservaForm {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/listar";
         RestController rest = new RestController();
         ListaClientes clientesLista = rest.doGET(url, ListaClientes.class);
-        ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientesLista.getClientes()));
+        ComboBoxModel<Cliente> mdlCombo = new DefaultComboBoxModel<>(new Vector<Cliente>(clientesLista.getClienteArrayList()));
         jcbCliente.setModel(mdlCombo);
     }
 

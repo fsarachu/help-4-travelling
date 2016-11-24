@@ -1,4 +1,4 @@
-package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas;
+package uy.edu.cure.servidor.central.dto.TiposListas;
 
 import uy.edu.cure.servidor.central.dto.Proveedor;
 

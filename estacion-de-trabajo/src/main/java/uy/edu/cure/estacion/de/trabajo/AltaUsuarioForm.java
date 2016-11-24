@@ -3,10 +3,9 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.CopioImagenRest;
-import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.EmailValidatorRest;
-import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.FechaValidatorRest;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.CopioImagen;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.EmailValidator;
+import uy.edu.cure.servidor.central.lib.controlErroresInteface.FechaValidator;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -103,13 +102,13 @@ public class AltaUsuarioForm extends JFrame {
                         throw new IllegalArgumentException("Ingrese Apellido");
                     }
 
-                    EmailValidatorRest emailValidator = new EmailValidatorRest();
+                    EmailValidator emailValidator = new EmailValidator();
 
                     if (!emailValidator.validate(txtCorreo.getText().trim())) {
                         txtCorreo.requestFocus();
                         throw new IllegalArgumentException("Compruebe Correo");
                     }
-                    FechaValidatorRest fechaValidator = new FechaValidatorRest();
+                    FechaValidator fechaValidator = new FechaValidator();
                     if (!fechaValidator.validate(txtFechaNacimiento.getText())) {
                         txtFechaNacimiento.requestFocus();
                         throw new ParseException("Compruebe Fecha", 1);
@@ -161,7 +160,7 @@ public class AltaUsuarioForm extends JFrame {
                     }
                     if (txtImagen1.toString() != null) {
                         String destino = "/imagenes";
-                        CopioImagenRest copioImagen = new CopioImagenRest();
+                        CopioImagen copioImagen = new CopioImagen();
                         copioImagen.copioArchivo(txtImagen1.toString(), destino);
                     }
                 } catch (IllegalArgumentException e) {

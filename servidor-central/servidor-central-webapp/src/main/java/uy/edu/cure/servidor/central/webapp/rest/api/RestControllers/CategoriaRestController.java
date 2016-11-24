@@ -2,7 +2,7 @@ package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.lib.controllers.CategoriaController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaCategorias;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -20,7 +20,7 @@ public class CategoriaRestController {
     public Response nuevo( Categoria categoria) {
         CategoriaController categoriaController = new CategoriaController();
         categoriaController.nueva(categoria);
-        return null; ///Que retorno aquiiiii
+        return Response.status(Response.Status.OK).entity(categoria).build();
     }
 
 
@@ -39,7 +39,7 @@ public class CategoriaRestController {
     public Response modificar(Categoria categoria) {
         CategoriaController categoriaController = new CategoriaController();
         categoriaController.modificar(categoria);
-        return null;  ///que retorno
+        return Response.status(Response.Status.OK).entity(categoria).build();
     }
 
     @GET
@@ -63,11 +63,11 @@ public class CategoriaRestController {
     }
 
     @PUT
-    @Produces("text/plain")
-    @Path("ocultar/")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("ocultar")
     public Response ocultar(Categoria categoria) {
         CategoriaController categoriaController = new CategoriaController();
         categoriaController.ocultar(categoria);
-        return null;
+        return Response.status(Response.Status.OK).entity(null).build();
     }
 }

@@ -3,9 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaServicios;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
 
 import javax.swing.*;
 import java.awt.event.*;
@@ -94,7 +92,6 @@ public class AltaPromocionForm {
                         throw new NumberFormatException();
                     }*/
 
-                    ProductoRestController productoController = new ProductoRestController();
                     promocion = new Promocion();
                     promocion.setNombre(txtNombre.getText());
                     Double precio = new Double(txtPrecio.getText());
@@ -104,7 +101,9 @@ public class AltaPromocionForm {
                     promocion.setDescuento(dto);
                     ArrayList<Servicio> ArrServicios = new ArrayList<Servicio>(serviciosElegidos);
                     promocion.setServicios(ArrServicios);
-                    productoController.agregar(promocion);
+                    String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/agregar";
+                    RestController rest = new RestController();
+                    Promocion promo = rest.doPUT(url, promocion , Promocion.class);
                     panelPromocion.setVisible(false);
                 } catch (EmptyStackException e) {
                     JOptionPane.showMessageDialog(null, mensaje, "Atencion", JOptionPane.ERROR_MESSAGE);

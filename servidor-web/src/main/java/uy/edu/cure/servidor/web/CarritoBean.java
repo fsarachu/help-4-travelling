@@ -4,10 +4,6 @@ import uy.edu.cure.servidor.central.dto.Carrito;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CarritoRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ClienteRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ReservaRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;

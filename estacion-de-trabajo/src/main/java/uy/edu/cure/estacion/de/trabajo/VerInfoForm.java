@@ -1,8 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.*;
+import uy.edu.cure.servidor.central.dto.TiposListas.*;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -25,7 +24,7 @@ public class VerInfoForm {
                         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/listar";
                         RestController rest = new RestController();
                         ListaClientes clientesLista = rest.doGET(url, ListaClientes.class);
-                        ArrayList<Cliente> clientes = clientesLista.getClientes();
+                        ArrayList<Cliente> clientes = clientesLista.getClienteArrayList();
                         for (Cliente cliente : clientes) {
                             txtInfo.append(cliente.getNombre() + "\n");
                         }

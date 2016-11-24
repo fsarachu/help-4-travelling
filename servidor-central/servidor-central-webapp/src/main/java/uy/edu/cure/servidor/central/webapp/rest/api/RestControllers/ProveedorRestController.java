@@ -2,14 +2,11 @@ package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controllers.ProveedorController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaProveedores;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaProveedores;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.lang.reflect.Modifier;
-import java.util.ArrayList;
-import java.util.concurrent.ForkJoinPool;
 
 /**
  * Created by victor on 09/11/16.

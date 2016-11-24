@@ -1,4 +1,4 @@
-package uy.edu.cure.servidor.web;
+package uy.edu.cure.servidor.central.webapp.rest.api;
 
 import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.lib.controllers.*;
@@ -6,11 +6,12 @@ import uy.edu.cure.servidor.central.lib.servicios.CategoriaService;
 import uy.edu.cure.servidor.central.lib.servicios.CiudadService;
 import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
 
-import javax.annotation.ManagedBean;
+import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.ws.rs.Path;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -18,29 +19,32 @@ import java.util.Date;
  */
 @ManagedBean
 @SessionScoped
-public class HardcodeoBean implements Serializable {
-
+public class HardcodeoBean implements Serializable{
     public HardcodeoBean() {
+
+        PaisController paisController = new PaisController();
+
         Pais pais1 = new Pais();
         pais1.setNombre("Uruguay");
-        cargarHardcodeoPaisRest(pais1);
+        paisController.agregar(pais1);
 
         Pais pais2 = new Pais();
         pais2.setNombre("Brasil");
-        cargarHardcodeoPaisRest(pais2);
+        paisController.agregar(pais2);
 
+        ClienteController clienteController = new ClienteController();
 
         Cliente cliente1 = new Cliente();
         cliente1.setNombre("Franco");
         cliente1.setApellido("Sarachu");
         cliente1.setNickname("franco");
         cliente1.setCorreo("franco@franco.com");
-        Date nacimiento1 = new Date(85, 0, 11);
+        Date nacimiento1 = new Date(85, 1, 11);
         cliente1.setContrasena("1234");
         cliente1.setFechaNacimiento(nacimiento1);
         cliente1.setImagen("/resources/imagenes/fcarne/fot1.jpg");
         /////cliente1.setCarrito(carritoController.obtenerCarrito(1)); ///////
-        cargarHardcodeoClientesRest(cliente1);
+        clienteController.nuevo(cliente1);
 
         Cliente cliente2 = new Cliente();
         cliente2.setNombre("Nicolas");
@@ -51,7 +55,7 @@ public class HardcodeoBean implements Serializable {
         cliente2.setContrasena("1234");
         cliente2.setFechaNacimiento(nacimiento2);
         cliente2.setImagen("/resources/imagenes/fcarne/fot2.jpg");
-        cargarHardcodeoClientesRest(cliente2);
+        clienteController.nuevo(cliente2);
 
         Cliente cliente3 = new Cliente();
         cliente3.setNombre("Santiago");
@@ -62,7 +66,7 @@ public class HardcodeoBean implements Serializable {
         cliente3.setContrasena("1234");
         cliente3.setFechaNacimiento(nacimiento3);
         cliente3.setImagen("/resources/imagenes/fcarne/fot3.jpg");
-        cargarHardcodeoClientesRest(cliente3);
+        clienteController.nuevo(cliente3);
 
         Cliente cliente4 = new Cliente();
         cliente4.setNombre("Victor");
@@ -73,7 +77,7 @@ public class HardcodeoBean implements Serializable {
         cliente4.setContrasena("1234");
         cliente4.setFechaNacimiento(nacimiento4);
         cliente4.setImagen("/resources/imagenes/fcarne/fot4.jpg");
-        cargarHardcodeoClientesRest(cliente4);
+        clienteController.nuevo(cliente4);
 
         Cliente cliente5 = new Cliente();
         cliente5.setNombre("Viviana");
@@ -84,7 +88,7 @@ public class HardcodeoBean implements Serializable {
         cliente5.setContrasena("1234");
         cliente5.setFechaNacimiento(nacimiento5);
         cliente5.setImagen("/resources/imagenes/fcarne/fot8.jpg");
-        cargarHardcodeoClientesRest(cliente5);
+        clienteController.nuevo(cliente5);
 
         Cliente cliente6 = new Cliente();
         cliente6.setNombre("Marcos");
@@ -95,110 +99,114 @@ public class HardcodeoBean implements Serializable {
         cliente6.setContrasena("1234");
         cliente6.setFechaNacimiento(nacimiento6);
         cliente6.setImagen("/resources/imagenes/fcarne/fot5.jpg");
-        cargarHardcodeoClientesRest(cliente6);
+        clienteController.nuevo(cliente6);
 
-        PaisController paisController = new PaisController();
+        CiudadController ciudadController = new CiudadController();
+
         Ciudad ciudad1 = new Ciudad();
         ciudad1.setNombre("Maldonado");
-        ciudad1.setPais(paisController.obtener(1));
-        cargarHardcodeoCiudadRest(ciudad1);
+        ciudad1.setPais(pais1);
+        ciudadController.nueva(ciudad1);
 
         Ciudad ciudad2 = new Ciudad();
         ciudad2.setNombre("Punta del Este");
-        ciudad2.setPais(paisController.obtener(1));
-        cargarHardcodeoCiudadRest(ciudad2);
+        ciudad2.setPais(pais1);
+        ciudadController.nueva(ciudad2);
 
         Ciudad ciudad3 = new Ciudad();
         ciudad3.setNombre("Floripa");
-        ciudad3.setPais(paisController.obtener(2));
-        cargarHardcodeoCiudadRest(ciudad3);
+        ciudad3.setPais(pais2);
+        ciudadController.nueva(ciudad3);
 
         Ciudad ciudad4 = new Ciudad();
         ciudad4.setNombre("Camboriu");
-        ciudad4.setPais(paisController.obtener(2));
-        cargarHardcodeoCiudadRest(ciudad4);
+        ciudad4.setPais(pais2);
+        ciudadController.nueva(ciudad4);
 
-        CategoriaController cateController = new CategoriaController();
+        CategoriaController categoriaController = new CategoriaController();
 
         Categoria vehiculos = new Categoria();
         vehiculos.setPadre(null);
         vehiculos.setNombre("Vehiculos");
-        cargarHardcodeoCategoriasRest(vehiculos);
-/*
-        Categoria autos1 = new Categoria();
-        autos1.setPadre(obtenerCategoriaRest(1));
-        autos1.setNombre("Autos");
-        cargarHardcodeoCategoriasRest(autos1);
+        categoriaController.nueva(vehiculos);
 
-/*        Categoria autos2 = new Categoria();
-        autos2.setPadre(vehiculos);
+        Categoria autos1 = new Categoria();
+        autos1.setPadre(vehiculos);
+        autos1.setNombre("Autos");
+        categoriaController.nueva(autos1);
+
+
+        Categoria autos2 = new Categoria();
+        autos2.setPadre(autos1);
         autos2.setNombre("Camionetas");
-        cargarHardcodeoCategoriasRest(autos2);
+        categoriaController.nueva(autos2);
+
 
         Categoria autos3 = new Categoria();
         autos3.setPadre(autos1);
         autos3.setNombre("Rent a Car");
         autos3.setImagen("/resources/imagenes/empresas/r1.jpg");
-        cargarHardcodeoCategoriasRest(autos3);
+        categoriaController.nueva(autos3);
 
         Categoria autos4 = new Categoria();
-        autos4.setPadre(autos1);
+        autos4.setPadre(autos2);
         autos4.setNombre("Car Rental");
         autos4.setImagen("/resources/imagenes/empresas/r2.jpg");
-        cargarHardcodeoCategoriasRest(autos4);
+        categoriaController.nueva(autos4);
 
         Categoria autos5 = new Categoria();
         autos5.setPadre(autos2);
         autos5.setNombre("Rent a Van");
         autos5.setImagen("/resources/imagenes/empresas/r3.jpg");
-        cargarHardcodeoCategoriasRest(autos5);
+        categoriaController.nueva(autos5);
 
         Categoria autos6 = new Categoria();
         autos6.setPadre(autos2);
         autos6.setNombre("Van Rental");
         autos6.setImagen("/resources/imagenes/empresas/r4.jpg");
-        cargarHardcodeoCategoriasRest(autos6);
-*/
+        categoriaController.nueva(autos6);
+
         Categoria hoteles = new Categoria();
         hoteles.setPadre(null);
         hoteles.setNombre("Hoteles");
-        cargarHardcodeoCategoriasRest(hoteles);
-/*
+        categoriaController.nueva(hoteles);
+
         Categoria hotel1 = new Categoria();
         hotel1.setPadre(hoteles);
         hotel1.setNombre("5 estrellas");
-        cargarHardcodeoCategoriasRest(hotel1);
+        categoriaController.nueva(hotel1);
 
         Categoria hotel2 = new Categoria();
         hotel2.setPadre(hoteles);
         hotel2.setNombre("4 estrellas");
-        cargarHardcodeoCategoriasRest(hotel2);
+        categoriaController.nueva(hotel2);
 
         Categoria hotel3 = new Categoria();
         hotel3.setPadre(hotel1);
         hotel3.setNombre("Conrad");
         hotel3.setImagen("/resources/imagenes/empresas/h4.jpg");
-        cargarHardcodeoCategoriasRest(hotel3);
+        categoriaController.nueva(hotel3);
 
         Categoria hotel4 = new Categoria();
         hotel4.setPadre(hotel1);
         hotel4.setNombre("Mantra");
         hotel4.setImagen("/resources/imagenes/empresas/h3.jpg");
-        cargarHardcodeoCategoriasRest(hotel4);
+        categoriaController.nueva(hotel4);
 
         Categoria hotel5 = new Categoria();
         hotel5.setPadre(hotel2);
         hotel5.setNombre("Hotel del Lago");
         hotel5.setImagen("/resources/imagenes/empresas/h1.jpg");
-        cargarHardcodeoCategoriasRest(hotel5);
+        categoriaController.nueva(hotel5);
 
         Categoria hotel6 = new Categoria();
         hotel6.setPadre(hotel2);
         hotel6.setNombre("Hotel del Rio");
         hotel6.setImagen("/resources/imagenes/empresas/h2.jpg");
-        cargarHardcodeoCategoriasRest(hotel6);
+        categoriaController.nueva(hotel6);
 
-*/
+        ProveedorController proveedorController = new ProveedorController();
+
 
         Proveedor proveedor1 = new Proveedor();
         proveedor1.setNombre("Rentadora Autos");
@@ -208,7 +216,7 @@ public class HardcodeoBean implements Serializable {
         proveedor1.setNombreEmpresa("Rentadora LTDA");
         proveedor1.setImagen("/resources/imagenes/empresas/n2.jpg");
         proveedor1.setCorreo("tuautoya@llevatelo.com.ya");
-        cargarHardcodeoProveedoresRest(proveedor1);
+        proveedorController.nuevo(proveedor1);
 
         Proveedor proveedor2 = new Proveedor();
         proveedor2.setNombre("Rentadora Utilitarios");
@@ -218,7 +226,7 @@ public class HardcodeoBean implements Serializable {
         proveedor2.setNombreEmpresa("Rentadora Utilitarios S.A.");
         proveedor2.setImagen("/resources/imagenes/empresas/n1.jpg");
         proveedor2.setCorreo("masbarato@empujame.com.uy");
-        cargarHardcodeoProveedoresRest(proveedor2);
+        proveedorController.nuevo(proveedor2);
 
         Proveedor proveedor3 = new Proveedor();
         proveedor3.setNombre("El mejor Hotel");
@@ -228,7 +236,7 @@ public class HardcodeoBean implements Serializable {
         proveedor3.setNombreEmpresa("El mejor Hotel LTDA");
         proveedor3.setImagen("/resources/imagenes/empresas/n3.jpg");
         proveedor3.setCorreo("pocilgalachola@ahinomas.com.isi");
-        cargarHardcodeoProveedoresRest(proveedor3);
+        proveedorController.nuevo(proveedor3);
 
         Proveedor proveedor4 = new Proveedor();
         proveedor4.setNombre("Tu Hotel");
@@ -238,28 +246,29 @@ public class HardcodeoBean implements Serializable {
         proveedor4.setNombreEmpresa("Tu Hotel S.A.");
         proveedor4.setImagen("/resources/imagenes/empresas/n4.jpg");
         proveedor4.setCorreo("estesiestuhotel@reserva.com.ya");
-        cargarHardcodeoProveedoresRest(proveedor4);
+        proveedorController.nuevo(proveedor4);
 
+        ProductoController productoController = new ProductoController();
         ProveedorService proveedorService = ServiceFactory.getProveedorService();
         CiudadService ciudadService = ServiceFactory.getCiudadService();
         CategoriaService categoriaService = ServiceFactory.getCategoriaService();
 
         Servicio servicio1 = new Servicio();
         servicio1.setNombre("Auto x Fin de Semana");
-        servicio1.setProveedor(obtenerProveedorRest(1));
-        servicio1.setOrigen(obtenerCiudadRest(3));
-        servicio1.setDestino(obtenerCiudadRest(4));
+        servicio1.setProveedor(proveedorService.obtener(1));
+        servicio1.setOrigen(ciudadService.obtener(3));
+        servicio1.setDestino(ciudadService.obtener(4));
         servicio1.setDescripcion("Fin de semana con auto");
         servicio1.setPrecio(300);
-        servicio1.getCategorias().add(obtenerCategoriaRest(1));
+        servicio1.getCategorias().add(categoriaController.obtener(1));
         servicio1.getImagenes().add("/resources/imagenes/car/a1.jpg");
         servicio1.getImagenes().add("/resources/imagenes/car/a2.jpg");
         servicio1.getImagenes().add("/resources/imagenes/car/a3.jpg");
-        cargarHardcodeoProductosRest(servicio1);
+        productoController.agregar(servicio1);
 
-/*        Servicio servicio2 = new Servicio();
+        Servicio servicio2 = new Servicio();
         servicio2.setNombre("Auto x 1 dia");
-        servicio2.setProveedor(proveedorService.obtener(1));
+        servicio2.setProveedor(proveedorController.obtener(1));
         servicio2.setOrigen(ciudadService.obtener(1));
         servicio2.setDestino(ciudadService.obtener(2));
         servicio2.setDescripcion("Un dia de auto");
@@ -268,7 +277,7 @@ public class HardcodeoBean implements Serializable {
         servicio2.getImagenes().add("/resources/imagenes/car/a4.jpg");
         servicio2.getImagenes().add("/resources/imagenes/car/a5.jpg");
         servicio2.getImagenes().add("/resources/imagenes/car/a6.jpg");
-        cargarHardcodeoProductosRest(servicio2);
+        productoController.agregar(servicio2);
 
         Servicio servicio3 = new Servicio();
         servicio3.setNombre("Camioneta 4x4");
@@ -281,7 +290,7 @@ public class HardcodeoBean implements Serializable {
         servicio3.getImagenes().add("/resources/imagenes/car/v1.jpg");
         servicio3.getImagenes().add("/resources/imagenes/car/v2.jpg");
         servicio3.getImagenes().add("/resources/imagenes/car/v3.jpg");
-        cargarHardcodeoProductosRest(servicio3);
+        productoController.agregar(servicio3);
 
         Servicio servicio4 = new Servicio();
         servicio4.setNombre("Camioneta x 1 dia");
@@ -294,7 +303,7 @@ public class HardcodeoBean implements Serializable {
         servicio4.getImagenes().add("/resources/imagenes/car/v4.jpg");
         servicio4.getImagenes().add("/resources/imagenes/car/v5.jpg");
         servicio4.getImagenes().add("/resources/imagenes/car/v6.jpg");
-        cargarHardcodeoProductosRest(servicio4);
+        productoController.agregar(servicio4);
 
         Servicio servicio5 = new Servicio();
         servicio5.setNombre("Habitacion Simple");
@@ -310,7 +319,7 @@ public class HardcodeoBean implements Serializable {
         servicio5.getImagenes().add("/resources/imagenes/habitaciones/s1.jpg");
         servicio5.getImagenes().add("/resources/imagenes/habitaciones/s2.jpg");
         servicio5.getImagenes().add("/resources/imagenes/habitaciones/s3.jpg");
-        cargarHardcodeoProductosRest(servicio5);
+        productoController.agregar(servicio5);
 
         Servicio servicio6 = new Servicio();
         servicio6.setNombre("Habitacion Doble");
@@ -324,7 +333,7 @@ public class HardcodeoBean implements Serializable {
         servicio6.getImagenes().add("/resources/imagenes/habitaciones/d1.jpg");
         servicio6.getImagenes().add("/resources/imagenes/habitaciones/d2.jpg");
         servicio6.getImagenes().add("/resources/imagenes/habitaciones/d3.jpg");
-        cargarHardcodeoProductosRest(servicio6);
+        productoController.agregar(servicio6);
 
         Servicio servicio7 = new Servicio();
         servicio7.setNombre("Habitacion Muy Simple");
@@ -338,7 +347,7 @@ public class HardcodeoBean implements Serializable {
         servicio7.getImagenes().add("/resources/imagenes/habitaciones/s1.jpg");
         servicio7.getImagenes().add("/resources/imagenes/habitaciones/s2.jpg");
         servicio7.getImagenes().add("/resources/imagenes/habitaciones/s3.jpg");
-        cargarHardcodeoProductosRest(servicio7);
+        productoController.agregar(servicio7);
 
         Servicio servicio8 = new Servicio();
         servicio8.setNombre("Suite Lujo");
@@ -351,7 +360,7 @@ public class HardcodeoBean implements Serializable {
         servicio8.getImagenes().add("/resources/imagenes/habitaciones/t1.jpg");
         servicio8.getImagenes().add("/resources/imagenes/habitaciones/t2.jpg");
         servicio8.getImagenes().add("/resources/imagenes/habitaciones/t3.jpg");
-        cargarHardcodeoProductosRest(servicio8);
+        productoController.agregar(servicio8);
 
         Servicio servicio9 = new Servicio();
         servicio9.setNombre("Suite Presidencial");
@@ -364,7 +373,7 @@ public class HardcodeoBean implements Serializable {
         servicio9.getImagenes().add("/resources/imagenes/habitaciones/p1.jpg");
         servicio9.getImagenes().add("/resources/imagenes/habitaciones/p2.jpg");
         servicio9.getImagenes().add("/resources/imagenes/habitaciones/p3.jpg");
-        cargarHardcodeoProductosRest(servicio9);
+        productoController.agregar(servicio9);
 
         Servicio serv1 = new Servicio();
         serv1.setNombre("Cachilas");
@@ -377,7 +386,7 @@ public class HardcodeoBean implements Serializable {
         serv1.getImagenes().add("/resources/imagenes/car/c1.jpg");
         serv1.getImagenes().add("/resources/imagenes/car/c2.jpg");
         serv1.getImagenes().add("/resources/imagenes/car/c3.jpg");
-        cargarHardcodeoProductosRest(serv1);
+        productoController.agregar(serv1);
 
         Servicio serv2 = new Servicio();
         serv2.setNombre("Ferrari");
@@ -390,14 +399,15 @@ public class HardcodeoBean implements Serializable {
         serv2.getImagenes().add("/resources/imagenes/car/f1.jpg");
         serv2.getImagenes().add("/resources/imagenes/car/f2.jpg");
         serv2.getImagenes().add("/resources/imagenes/car/f3.jpg");
-        cargarHardcodeoProductosRest(serv2);
-/*
+        productoController.agregar(serv2);
+
         ProductoController productoctrl = new ProductoController();
         ProveedorController proveedorctrl = new ProveedorController();
         ArrayList<Servicio> listaServicios = new ArrayList<>();
         ArrayList<Integer> listaIdServicios = new ArrayList<>();
         listaServicios.add((Servicio) productoctrl.obtener(1));
         listaIdServicios.add(1);
+
 
         Promocion promocion1 = new Promocion();
         promocion1.setDescuento(15);
@@ -407,7 +417,7 @@ public class HardcodeoBean implements Serializable {
         promocion1.setDescripcion("Descripcion 1");
         promocion1.calcularPrecioPromocion();
         promocion1.setProveedor(proveedorctrl.obtener(1));
-        cargarHardcodeoPromocionesRest(promocion1);
+        productoController.agregar(promocion1);
 
 
         ArrayList<Servicio> listaServicios2 = new ArrayList<Servicio>();
@@ -426,13 +436,10 @@ public class HardcodeoBean implements Serializable {
         promocion2.setDescripcion("Descripcion 2");
         promocion2.calcularPrecioPromocion();
         promocion2.setProveedor(proveedorctrl.obtener(2));
-        cargarHardcodeoPromocionesRest(promocion2);
-
-*/
-/*        ClienteController clienteController = new ClienteController();
-        ProductoController productoController = new ProductoController();
+        productoController.agregar(promocion2);
 
 
+        CarritoController carritoController = new CarritoController();
         Cliente cliente11 = clienteController.obtener(1);
         Carrito carrito1 = cliente11.getCarrito();
 
@@ -444,9 +451,9 @@ public class HardcodeoBean implements Serializable {
         Date fechaFin1 = new Date(116, 11, 21);
         itemReserva1.setFechaFin(fechaFin1);
         itemReserva1.setCantidad(2);
-        cargarHardcodeoCarritosRest(itemReserva1, carrito1);
+        carritoController.agregarItem(itemReserva1, carrito1);
 
-/*
+
         Cliente cliente22 = clienteController.obtener(2);
         Carrito carrito2 = cliente22.getCarrito();
 
@@ -460,7 +467,7 @@ public class HardcodeoBean implements Serializable {
         itemReserva2.setCantidad(3);
 
 
-        cargarHardcodeoCarritosRest(itemReserva2, carrito2);
+        carritoController.agregarItem(itemReserva2, carrito2);
 
 
         Cliente cliente33 = clienteController.obtener(3);
@@ -476,7 +483,7 @@ public class HardcodeoBean implements Serializable {
         itemReserva3.setCantidad(1);
 
 
-        cargarHardcodeoCarritosRest(itemReserva3, carrito3);
+        carritoController.agregarItem(itemReserva3, carrito3);
 
 
         Cliente cliente44 = clienteController.obtener(4);
@@ -492,7 +499,7 @@ public class HardcodeoBean implements Serializable {
         itemReserva4.setCantidad(4);
 
 
-        cargarHardcodeoCarritosRest(itemReserva4, carrito4);
+        carritoController.agregarItem(itemReserva4, carrito4);
 
 
         Cliente cliente55 = clienteController.obtener(5);
@@ -508,7 +515,7 @@ public class HardcodeoBean implements Serializable {
         itemReserva5.setCantidad(4);
 
 
-        cargarHardcodeoCarritosRest(itemReserva5, carrito5);
+        carritoController.agregarItem(itemReserva5, carrito5);
 
 
         Cliente cliente66 = clienteController.obtener(6);
@@ -523,89 +530,27 @@ public class HardcodeoBean implements Serializable {
         itemReserva6.setFechaFin(fechaFin6);
         itemReserva6.setCantidad(3);
 
-        cargarHardcodeoCarritosRest(itemReserva6, carrito6);
+        carritoController.agregarItem(itemReserva6, carrito6);
 
-        cargarHardcodeoReservasRest();
-*/
+        ReservaController reservactrl = new ReservaController();
+        ClienteController clientectrl = new ClienteController();
+
+        reservactrl.nueva(clientectrl.obtener(1));
+
+        reservactrl.nueva(clientectrl.obtener(2));
+        reservactrl.nueva(clientectrl.obtener(2));
+
+        reservactrl.nueva(clientectrl.obtener(3));
+
+        reservactrl.nueva(clientectrl.obtener(4));
+
+        reservactrl.nueva(clientectrl.obtener(5));
+        reservactrl.nueva(clientectrl.obtener(5));
+        reservactrl.nueva(clientectrl.obtener(5));
+
+        reservactrl.nueva(clientectrl.obtener(6));
+        reservactrl.nueva(clientectrl.obtener(6));
 
     }
-
-    public void cargarHardcodeoClientesRest(Cliente cliente) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/clientes";
-        RestController rest = new RestController();
-        Cliente clientes = rest.doPUT(url, cliente, Cliente.class);
-    }
-
-    public void cargarHardcodeoPaisRest(Pais pais) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/paises";
-        RestController rest = new RestController();
-        Pais paises = rest.doPUT(url, pais, Pais.class);
-    }
-
-
-    public void cargarHardcodeoCiudadRest(Ciudad ciudad) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/ciudades";
-        RestController rest = new RestController();
-        Ciudad ciudades = rest.doPUT(url, ciudad, Ciudad.class);
-    }
-
-    public void cargarHardcodeoCategoriasRest(Categoria categoria) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/categorias";
-        RestController rest = new RestController();
-        Categoria categorias = rest.doPUT(url, categoria, Categoria.class);
-    }
-
-    public void cargarHardcodeoProveedoresRest(Proveedor proveedor) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/proveedores";
-        RestController rest = new RestController();
-        Proveedor proveedores = rest.doPUT(url, proveedor, Proveedor.class);
-    }
-
-
-    public void cargarHardcodeoProductosRest(Producto producto) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/agregar";
-        RestController rest = new RestController();
-        Producto productos = rest.doPUT(url, producto, Producto.class);
-    }
-
-    public void cargarHardcodeoPromocionesRest(Promocion promocion) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/promociones";
-        RestController rest = new RestController();
-        Promocion promociones = rest.doPUT(url, promocion, Promocion.class);
-    }
-
-    public void cargarHardcodeoCarritosRest(ItemReserva itemReserva, Carrito carrito) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/carritos";
-        RestController rest = new RestController();
-        Carrito carritos = rest.doPUT(url, carrito, Carrito.class);
-        ItemReserva itemReservas = rest.doPUT(url, itemReserva, ItemReserva.class);
-    }
-
-    public void cargarHardcodeoReservasRest() {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/reservas";
-        RestController rest = new RestController();
-        Reserva reservas = rest.doGET(url, Reserva.class);
-    }
-
-    public Categoria obtenerCategoriaRest(Integer categoria) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/obtener/" + categoria;
-        RestController rest = new RestController();
-        Categoria u = rest.doGET(url, Categoria.class);
-        return u;
-    }
-
-    public Proveedor obtenerProveedorRest(Integer idproveedor) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/obtener/" + idproveedor;
-        RestController rest = new RestController();
-        Proveedor u = rest.doGET(url, Proveedor.class);
-        return u;
-    }
-    public Ciudad obtenerCiudadRest(Integer idciudad) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/ciudad/obtener/" + idciudad;
-        RestController rest = new RestController();
-        Ciudad u = rest.doGET(url, Ciudad.class);
-        return u;
-    }
-
 
 }

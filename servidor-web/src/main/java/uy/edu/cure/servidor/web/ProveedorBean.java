@@ -1,11 +1,7 @@
 package uy.edu.cure.servidor.web;
 
-import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Proveedor;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProveedorRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaProveedores;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaProveedores;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

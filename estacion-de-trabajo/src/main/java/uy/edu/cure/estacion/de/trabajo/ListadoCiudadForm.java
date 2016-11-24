@@ -3,9 +3,8 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Ciudad;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaClientes;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaServicios;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaClientes;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
@@ -53,7 +52,7 @@ public class ListadoCiudadForm {
                     String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/listarcompradoresServicio";
                     RestController rest = new RestController();
                     ListaClientes clientesLista = rest.doPUT(url, (Servicio)list.getSelectedValue() , ListaClientes.class);
-                    ArrayList<Cliente> clientes = clientesLista.getClientes();
+                    ArrayList<Cliente> clientes = clientesLista.getClienteArrayList();
                     for (Cliente cliente : clientes) {
                         mdllistaCliente.addElement(cliente);
                     }

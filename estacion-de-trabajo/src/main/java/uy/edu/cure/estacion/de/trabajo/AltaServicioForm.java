@@ -1,8 +1,7 @@
 package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaCategorias;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaCategorias;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;

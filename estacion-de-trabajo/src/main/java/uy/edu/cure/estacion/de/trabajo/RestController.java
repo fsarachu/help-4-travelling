@@ -1,4 +1,4 @@
-package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
+package uy.edu.cure.estacion.de.trabajo;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

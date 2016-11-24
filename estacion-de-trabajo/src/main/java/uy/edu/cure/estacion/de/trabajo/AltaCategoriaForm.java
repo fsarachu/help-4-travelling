@@ -2,9 +2,7 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.EstadoCategoria;
-import uy.edu.cure.servidor.central.webapp.rest.api.ControlErroresInterface.CategoriaValidatorRest;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.CategoriaRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaCategorias;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -51,11 +49,6 @@ public class AltaCategoriaForm {
                     String url = "http://localhost:8080/servidor-central-webapp/rest/api/errores/validatorCategoria/"+txtCategoria;
                     RestController rest = new RestController();
                     boolean log = rest.doPUT(url, padre , boolean.class);
-
-/*
-                    CategoriaValidatorRest categoriaValidator = new CategoriaValidatorRest();
-                    if (!categoriaValidator.validator(txtCategoria.getText(), padre)) {
-*/
                     if(!log) {
                         throw new IllegalArgumentException("La categoria ya existe");
                     }
@@ -88,8 +81,9 @@ public class AltaCategoriaForm {
                 int dialogButton = JOptionPane.YES_NO_OPTION;
                 if (JOptionPane.showConfirmDialog(null, "Existen servicios con esta categoria !!!!", "Atencion",
                         JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    CategoriaRestController categoriaController = new CategoriaRestController();
-                    categoriaController.ocultar(padre);
+                    String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/ocultar";
+                    RestController rest = new RestController();
+                    boolean log = rest.doPUT(url, padre , boolean.class);
                 }
             }
         });
@@ -97,9 +91,11 @@ public class AltaCategoriaForm {
 
 
     private void cargarHijos(Categoria cate) {
-        CategoriaRestController categoriaController = new CategoriaRestController();
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listarhijos";
+        RestController rest = new RestController();
+        ListaCategorias log = rest.doPUT(url, cate , ListaCategorias.class);
 
-        ArrayList<Categoria> categorias = categoriaController.listarHijos(cate);
+        ArrayList<Categoria> categorias = log.getCategoriaArrayList();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();
             hijo.setUserObject(categoria);

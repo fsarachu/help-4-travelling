@@ -1,15 +1,14 @@
 package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.*;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaProductos;
 import uy.edu.cure.servidor.central.lib.controllers.ProductoController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaProductos;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaPromociones;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaServicios;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaPromociones;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 
 /**
  * Created by victor on 09/11/16.

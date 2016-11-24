@@ -4,12 +4,11 @@ import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaReservas;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
 
 /**
  * Created by victor on 09/11/16.
@@ -67,7 +66,7 @@ public class ReservaRestController {
     @Path("estadoreserva/{id}/{estado}")
     public Response actualizarEstado(@PathParam("id") Integer idReserva, @PathParam("estado") EstadoReserva nuevoEstado) {
         reservaController.actualizarEstado(idReserva, nuevoEstado);
-        return null;
+        return Response.status(Response.Status.OK).entity(nuevoEstado).build();
     }
 
     @PUT

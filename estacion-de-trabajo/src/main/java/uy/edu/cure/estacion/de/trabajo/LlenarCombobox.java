@@ -2,15 +2,13 @@ package uy.edu.cure.estacion.de.trabajo;
 
 
 import uy.edu.cure.servidor.central.dto.*;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.*;
+import uy.edu.cure.servidor.central.dto.TiposListas.*;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeSelectionModel;
 import java.awt.*;
-import java.awt.List;
 import java.io.File;
 import java.util.*;
 

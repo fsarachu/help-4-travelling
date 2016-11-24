@@ -1,11 +1,11 @@
-package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas;
+package uy.edu.cure.servidor.central.dto.TiposListas;
 
 import uy.edu.cure.servidor.central.dto.Producto;
 
 import java.util.ArrayList;
 
 /**
- * Created by victor on 18/11/16.
+ * Created by victor on 24/11/16.
  */
 public class ListaProductos {
     private ArrayList<Producto> productoArrayList;
@@ -21,4 +21,3 @@ public class ListaProductos {
         this.productoArrayList = productoArrayList;
     }
 }
-

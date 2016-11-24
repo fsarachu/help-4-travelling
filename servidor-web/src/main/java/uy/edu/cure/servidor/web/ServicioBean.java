@@ -3,10 +3,8 @@ package uy.edu.cure.servidor.web;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Servicio;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.ProductoRestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.RestController;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaProductos;
-import uy.edu.cure.servidor.central.webapp.rest.api.RestControllers.TiposListas.ListaServicios;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaProductos;
+import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -78,7 +76,7 @@ public class ServicioBean implements Serializable {
         HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
         busqueda = request.getParameter("myForm:txtProperty");
         listarProducto.clear();
-        listarProductosServicio = listarTodosRest();
+        listarProductosServicio = listarTodosRest().getProductoArrayList();
         for (Producto producto : listarProductosServicio) {
             if (busqueda != null) {
                 if (producto.getNombre().contains(busqueda) || producto.getDescripcion().contains(busqueda)) {
@@ -93,11 +91,11 @@ public class ServicioBean implements Serializable {
         }
     }
 
-    private ArrayList<Producto> listarTodosRest(){
+    private ListaProductos listarTodosRest(){
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/listar";
         RestController rest = new RestController();
         ListaProductos u = rest.doGET(url, ListaProductos.class);
-        return u.getProductoArrayList();
+        return u;
     }
 
 
@@ -152,8 +150,7 @@ public class ServicioBean implements Serializable {
     }
 
     public void cargarServiciosPromos() {
-        ProductoRestController productoController = new ProductoRestController();
-        listarProducto = listarTodosRest();
+        listarProducto = listarTodosRest().getProductoArrayList();
     }
 
     public Servicio getServicio() {
