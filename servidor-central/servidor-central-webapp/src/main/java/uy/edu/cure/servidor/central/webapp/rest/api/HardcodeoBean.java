@@ -552,8 +552,50 @@ public class HardcodeoBean implements Serializable{
         reservactrl.nueva(clientectrl.obtener(6));
 
 
-        // Hardcodeo Carrito usuario victor
-        cliente44 = clienteController.obtener(4);
+        // Hardcodeo carrito de usuarios para que inicien con items
+
+
+        carrito1 = cliente11.getCarrito();
+
+        itemReserva1 = new ItemReserva();
+        itemReserva1.setProducto(productoController.obtener(1));
+        itemReserva1.setSubTotal(productoController.obtener(1).getPrecio());
+        fechaInicio1 = new Date(117, 11, 24);
+        itemReserva1.setFechaInicio(fechaInicio1);
+        fechaFin1 = new Date(117, 11, 26);
+        itemReserva1.setFechaFin(fechaFin1);
+        itemReserva1.setCantidad(1);
+
+        carritoController.agregarItem(itemReserva1, carrito1);
+
+
+        carrito2 = cliente22.getCarrito();
+
+        itemReserva2 = new ItemReserva();
+        itemReserva2.setProducto(productoController.obtener(2));
+        itemReserva2.setSubTotal(productoController.obtener(2).getPrecio());
+        fechaInicio2 = new Date(117, 11, 24);
+        itemReserva2.setFechaInicio(fechaInicio2);
+        fechaFin2 = new Date(117, 11, 26);
+        itemReserva2.setFechaFin(fechaFin2);
+        itemReserva2.setCantidad(2);
+
+        carritoController.agregarItem(itemReserva2, carrito2);
+
+        carrito3 = cliente33.getCarrito();
+
+        itemReserva3 = new ItemReserva();
+        itemReserva3.setProducto(productoController.obtener(2));
+        itemReserva3.setSubTotal(productoController.obtener(2).getPrecio());
+        fechaInicio3 = new Date(117, 11, 24);
+        itemReserva3.setFechaInicio(fechaInicio3);
+        fechaFin3 = new Date(117, 11, 26);
+        itemReserva3.setFechaFin(fechaFin3);
+        itemReserva3.setCantidad(3);
+
+        carritoController.agregarItem(itemReserva3, carrito3);
+
+
         carrito4 = cliente44.getCarrito();
 
         itemReserva4 = new ItemReserva();
@@ -577,6 +619,38 @@ public class HardcodeoBean implements Serializable{
         itemReserva4.setCantidad(2);
 
         carritoController.agregarItem(itemReserva4, carrito4);
+
+
+        carrito5 = cliente55.getCarrito();
+
+        itemReserva5 = new ItemReserva();
+        itemReserva5.setProducto(productoController.obtener(3));
+        itemReserva5.setSubTotal(productoController.obtener(3).getPrecio());
+        fechaInicio5 = new Date(116, 11, 24);
+        itemReserva5.setFechaInicio(fechaInicio5);
+        fechaFin5 = new Date(116, 11, 26);
+        itemReserva5.setFechaFin(fechaFin5);
+        itemReserva5.setCantidad(5);
+
+        carritoController.agregarItem(itemReserva5, carrito5);
+
+
+        carrito6 = cliente66.getCarrito();
+
+        itemReserva6 = new ItemReserva();
+        itemReserva6.setProducto(productoController.obtener(4));
+        itemReserva6.setSubTotal(productoController.obtener(4).getPrecio());
+        fechaInicio6 = new Date(116, 11, 24);
+        itemReserva6.setFechaInicio(fechaInicio6);
+        fechaFin6 = new Date(116, 11, 26);
+        itemReserva6.setFechaFin(fechaFin6);
+        itemReserva6.setCantidad(6);
+
+        carritoController.agregarItem(itemReserva6, carrito6);
+
+
+
+
 
     }
 
