@@ -551,6 +551,33 @@ public class HardcodeoBean implements Serializable{
         reservactrl.nueva(clientectrl.obtener(6));
         reservactrl.nueva(clientectrl.obtener(6));
 
+
+        // Hardcodeo Carrito usuario victor
+        cliente44 = clienteController.obtener(4);
+        carrito4 = cliente44.getCarrito();
+
+        itemReserva4 = new ItemReserva();
+        itemReserva4.setProducto(productoController.obtener(4));
+        itemReserva4.setSubTotal(productoController.obtener(4).getPrecio());
+        fechaInicio4 = new Date(116, 11, 24);
+        itemReserva4.setFechaInicio(fechaInicio4);
+        fechaFin4 = new Date(116, 11, 26);
+        itemReserva4.setFechaFin(fechaFin4);
+        itemReserva4.setCantidad(4);
+
+        carritoController.agregarItem(itemReserva4, carrito4);
+
+        itemReserva4 = new ItemReserva();
+        itemReserva4.setProducto(productoController.obtener(5));
+        itemReserva4.setSubTotal(productoController.obtener(5).getPrecio());
+        fechaInicio4 = new Date(116, 11, 25);
+        itemReserva4.setFechaInicio(fechaInicio4);
+        fechaFin4 = new Date(116, 11, 26);
+        itemReserva4.setFechaFin(fechaFin4);
+        itemReserva4.setCantidad(2);
+
+        carritoController.agregarItem(itemReserva4, carrito4);
+
     }
 
 }
