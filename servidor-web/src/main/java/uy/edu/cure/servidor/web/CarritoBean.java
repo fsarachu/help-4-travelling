@@ -3,7 +3,6 @@ package uy.edu.cure.servidor.web;
 import uy.edu.cure.servidor.central.dto.Carrito;
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
-import uy.edu.cure.servidor.central.dto.Reserva;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
@@ -63,9 +62,9 @@ public class CarritoBean implements Serializable{
     public void confirmarCarrito() {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/nueva/";
         RestController rest = new RestController();
-        Reserva u = rest.doPUT(url, loginBean.getCliente() , Reserva.class);
+        boolean u = rest.doPUT(url, loginBean.getCliente() , boolean.class);
         loginBean.setCantidadItems(loginBean.getCliente().getCarrito().getItems().size());
-        reservaBean.cargarReservas(loginBean.getCliente());
+        //reservaBean.cargarReservas(loginBean.getCliente());
         mensaje = "Reserva Realizada con exito";
     }
 
@@ -85,7 +84,7 @@ public class CarritoBean implements Serializable{
         if (carrito != null) {
             String url = "http://localhost:8080/servidor-central-webapp/rest/api/carrito/actualizarTotal";
             RestController rest = new RestController();
-            Carrito u = rest.doPUT(url, carrito , Carrito.class);
+            boolean u = rest.doPUT(url, carrito , boolean.class);
             carrito.setTotal(loginBean.getCliente().getCarrito().getTotal());
         }
         return mensaje = null;

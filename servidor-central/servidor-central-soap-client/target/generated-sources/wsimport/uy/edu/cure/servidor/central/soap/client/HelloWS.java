@@ -32,10 +32,10 @@ public interface HelloWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "sayGoodbye", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayGoodbye")
-    @ResponseWrapper(localName = "sayGoodbyeResponse", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayGoodbyeResponse")
-    @Action(input = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayGoodbyeRequest", output = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayGoodbyeResponse")
-    public String sayGoodbye(
+    @RequestWrapper(localName = "sayHello", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayHello")
+    @ResponseWrapper(localName = "sayHelloResponse", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayHelloResponse")
+    @Action(input = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayHelloRequest", output = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayHelloResponse")
+    public String sayHello(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 
@@ -47,10 +47,10 @@ public interface HelloWS {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "sayHello", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayHello")
-    @ResponseWrapper(localName = "sayHelloResponse", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayHelloResponse")
-    @Action(input = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayHelloRequest", output = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayHelloResponse")
-    public String sayHello(
+    @RequestWrapper(localName = "sayGoodbye", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayGoodbye")
+    @ResponseWrapper(localName = "sayGoodbyeResponse", targetNamespace = "http://server.soap.webapp.central.servidor.cure.edu.uy/", className = "uy.edu.cure.servidor.central.soap.client.SayGoodbyeResponse")
+    @Action(input = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayGoodbyeRequest", output = "http://server.soap.webapp.central.servidor.cure.edu.uy/HelloWS/sayGoodbyeResponse")
+    public String sayGoodbye(
         @WebParam(name = "arg0", targetNamespace = "")
         String arg0);
 

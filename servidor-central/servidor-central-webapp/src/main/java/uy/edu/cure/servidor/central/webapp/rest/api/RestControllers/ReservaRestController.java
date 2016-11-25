@@ -20,11 +20,12 @@ public class ReservaRestController {
 
 
     @PUT
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("nueva")
     public Response nueva(Cliente cliente) {
         reservaController.nueva(cliente);
-        return null;
+        return Response.status(Response.Status.OK).entity(true).build();
     }
 
     @GET

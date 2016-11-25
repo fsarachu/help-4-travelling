@@ -21,7 +21,7 @@ public class CarritoRestController {
     @Path("actualizarTotal")
     public Response actualizarTotal(Carrito carrito) {
         carritoController.actualizarTotal(carrito);
-        return null;
+        return Response.status(Response.Status.OK).entity(true).build();
     }
 
     @GET
