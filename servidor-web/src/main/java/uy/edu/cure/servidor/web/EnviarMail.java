@@ -1,6 +1,5 @@
 package uy.edu.cure.servidor.web;
 
-import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Factura;
 import uy.edu.cure.servidor.central.dto.Reserva;
 
@@ -23,7 +22,7 @@ public class EnviarMail {
     public void envio(Factura factura) {
         try {
 
-            String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/obtener/"+factura.getId();
+            String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/obtener/" + factura.getId();
             RestController rest = new RestController();
             Reserva u = rest.doGET(url, Reserva.class);
 
@@ -50,14 +49,16 @@ public class EnviarMail {
                     Message.RecipientType.TO,
                     new InternetAddress(u.getCliente().getCorreo()));
 */
-            message.setSubject("[help4Travelling] ["+fecha+"]");
-            message.setText(
-                    "Estimado "+u.getCliente().getNombre()+". Su compra ha sido facturada con exito: <br>"+
-            "<b>Detalles de la compra</b><b>Servicios: </b>"+
-            "Nombre" + u.getCarrito().getItems().get(0).getProducto().getNombre()+"  Cantidad: "+
-                            u.getCarrito().getItems().get(0).getCantidad()+ "Proveedor: " +
-            u.getCarrito().getItems().get(0).getProducto().getProveedor().getNombreEmpresa() +
-                    "Gracias por Preferirnos<br>Saludos </br> <br>help4Travelling</br>","ISO-8859-1","html");
+            message.setSubject("[help4Travelling] [" + fecha + "]");
+            String mensaje =  "Estimado " + u.getCliente().getNombre() + ". <br>Su compra ha sido facturada con exito: </br>" +
+                    "<b>Detalles de la compra</b><b>Servicios: </b>";
+            for (int i = 0; i < u.getCarrito().getItems().size(); i++) {
+                mensaje = mensaje + "<b>Nombre: " +u.getCarrito().getItems().get(i).getProducto().getNombre() +
+                        "Cantidad: " + u.getCarrito().getItems().get(i).getCantidad() + "Proveedor: " +
+                        u.getCarrito().getItems().get(i).getProducto().getProveedor().getNombreEmpresa() + "</b>";
+            }
+            mensaje = mensaje + "Gracias por Preferirnos<br>Saludos </br> <br>help4Travelling</br>";
+            message.setText(mensaje, "ISO-8859-1", "html");
 
             // Lo enviamos.
             Transport t = session.getTransport("smtp");
