@@ -1,15 +1,6 @@
 
-.caja1 {
 
-}
-
-.caja2 {
-}
-
-
-.caja1, .caja2
-{
-
+.caja1{
     min-height: 350px;
     padding: 20px 10px 20px 10px;
     -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
@@ -21,7 +12,6 @@
     border-color: #D3D3D3;
     background-color: whitesmoke;
     margin-right: 15px;
-
 }
 
 .campos {
@@ -30,8 +20,8 @@
 }
 
 .imgStyle {
-    width: 85px;
-    height: 85px;
+    width: 125px;
+    height: 125px;
     background-color: #000;
     border: solid 1px rgba(0, 0, 0, 0.7);
     border-radius: 20%;
@@ -40,8 +30,8 @@
 }
 
 .mainImage{
-    height: 230px;
-    width: 270px;
+    height: 320px;
+    width: 385px;
     border: solid 1px rgba(0, 0, 0, 0.7);
     border-radius: 25px;
 }
