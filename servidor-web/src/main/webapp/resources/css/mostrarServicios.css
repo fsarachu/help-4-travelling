@@ -1,0 +1,27 @@
+
+.caja1{
+    background-color : rgba(0247, 236, 255, 0.4);
+    text-align: center;
+    margin-right: 15px;
+    width : 280px;
+    min-height: 320px;
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 25px;
+    border: solid 1px rgba(0, 0, 0, 0.7);
+    float : left;
+}
+
+
+
+.imgStyle {
+    width: 180px;
+    height: 180px;
+    background-color: #000;
+    border: solid 1px rgba(0, 0, 0, 0.7);
+    border-radius: 20%;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+
+
