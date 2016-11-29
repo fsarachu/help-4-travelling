@@ -1,27 +1,26 @@
 package uy.edu.cure.servidor.central.dto;
 
 import java.util.Date;
-//import javax.persistence.*;
+import java.util.List;
 
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
-//import javax.persistence.Column;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-//import javax.persistence.FetchType;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-//import javax.persistence.OneToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//import org.hibernate.annotations.NamedQueries;
-//import org.hibernate.annotations.NamedQuery;
+import org.hibernate.annotations.NamedQueries;
+import org.hibernate.annotations.NamedQuery;
 
-//import com.sun.istack.NotNull;
+//  import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "facturas")
-@NamedQueries(value = { @NamedQuery(name = "getFacturaPorID", query = "select f from Factura f where id = :id") })
+@NamedQueries(value = { @NamedQuery(name = "getFacturaPorId", query = "select f from Factura f where idfactura = :idfactura") })
+
 public class Factura {
 
     @Id
@@ -29,9 +28,13 @@ public class Factura {
     private Integer id;
     private Date fecha;
 
+    //@NotNull
+    @Column(unique = true)
+    private String username;
+
     //@OneToOne(mappedBy = "factura", fetch = FetchType.EAGER)
     //private Reserva reserva;
-    private EstadoReserva estado;
+    //private EstadoReserva estado;
 
     public Factura(){
     }
@@ -60,13 +63,13 @@ public class Factura {
         this.reserva = reserva;
     }*/
 
-    public EstadoReserva getEstado() {
-        return estado;
-    }
+   // public EstadoReserva getEstado() {
+     //   return estado;
+    //}
 
-    public void setEstado(EstadoReserva estado) {
-        this.estado = estado;
-    }
+   // public void setEstado(EstadoReserva estado) {
+   //     this.estado = estado;
+    //}
 }
 
 
