@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE html> <!--HTML5-->
+<!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml"
+<html class="full"
+      xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
->
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <h:head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
@@ -15,83 +15,56 @@
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
             integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
             crossorigin="anonymous"></script>
-    <!--<meta http-equiv="refresh" content="5"/>-->
+
 
     <title>Help 4 Travelling</title>
-    <link href="../resources/css/agregarAlCarrito.css" rel="stylesheet"/>
+    <link href="../resources/css/mostrarServicios.css" rel="stylesheet"/>
+    <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../resources/css/full.css" rel="stylesheet"/>
 </h:head>
+
+
 <h:body>
+    <div class="login-title" align="center">MOSTRAR SERVICIOS</div>
+    <div id="container" class="col-lg-12 col-centered">
 
-    <h:form>
-        <div class="titulo"><h4></h4></div>
-        <div class="container">
+        <ui:insert name="navbar">
+            <ui:include src="../WEB-INF/navbar.xhtml"/>
+        </ui:insert>
 
-            <ui:insert name="navbar">
-                <ui:include src="../WEB-INF/navbar.xhtml"/>
-            </ui:insert>
+        <div class="col-lg-3"></div>
 
-            <div class="box1">
+        <h:form id="form1">
+            <div class="col-lg-2 center-block caja1">
                 <div>
-                    <h:outputLabel>#{servicioBean.servicio.nombre}</h:outputLabel>
-                </div>
-                <div>
-                    <h:outputLabel>#{servicioBean.servicio.descripcion}</h:outputLabel>
-                </div>
-                <div>
-                    <h:outputLabel>Precio: </h:outputLabel>
-                    <h:outputLabel style="font-size: large">#{servicioBean.servicio.precio}</h:outputLabel>
+                    <h:outputLabel>Nombre: #{servicioBean.servicio.nombre}</h:outputLabel><br />
+                    <h:outputLabel>Descripción: #{servicioBean.servicio.descripcion}</h:outputLabel><br />
+                    <h:outputLabel>Precio: </h:outputLabel><h:outputLabel style="font-size: large">#{servicioBean.servicio.precio}</h:outputLabel><br />
+                    <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel><br />
+                    <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel><br />
+                    <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel><br />
+                    <h:outputLabel>Categoria: #{servicioBean.servicio.categorias}</h:outputLabel>
                 </div>
             </div>
 
-            <div class="box2">
-
-                <div>
-                    <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel>
-                </div>
-                <div>
-                    <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel>
-
-                </div>
-                <div>
-                    <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel>
-                </div>
-                <div class="categoria">
-                    <h4>CATEGORIAS</h4>
-                    <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias">
-                        <h:column>
-                            <h:outputLabel>"#{categorias.nombre}"</h:outputLabel>
-                        </h:column>
-                    </h:dataTable>
-                </div>
-            </div>
-
-            <div class="box3">
-
-
-                <img id="mainImage" class="mainImage" src="#{servicioBean.servicio.imagenes[0]}"/>
-                <div id="divId" onclick="changeImageOnClick(event)">
+            <div class="col-lg-5 center-block">
                     <img class="imgStyle" src="#{servicioBean.servicio.imagenes[0]}"/>
                     <img class="imgStyle" src="#{servicioBean.servicio.imagenes[1]}"/>
                     <img class="imgStyle" src="#{servicioBean.servicio.imagenes[2]}"/>
-
                 </div>
 
-                <script type="text/javascript">
-                    var images = document.getElementById("divId").getElementsByTagName("img");
+        </h:form>
 
-                    function changeImageOnClick(event) {
-                        event = event || window.event;
-                        var targetElement = event.target || event.srcElement;
-                        if (targetElement.tagName == "IMG") {
-                            mainImage.src = targetElement.getAttribute("src");
-                        }
-                    }
-                </script>
+        <div class="col-lg-2"></div>
 
-            </div>
-        </div>
-    </h:form>
+    </div>
 
 
 </h:body>
 </html>
+
+
+
+
+
+

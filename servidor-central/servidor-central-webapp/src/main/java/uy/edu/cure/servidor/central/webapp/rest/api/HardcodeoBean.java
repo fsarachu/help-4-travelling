@@ -260,7 +260,7 @@ public class HardcodeoBean implements Serializable{
         servicio1.setDestino(ciudadService.obtener(4));
         servicio1.setDescripcion("Fin de semana con auto");
         servicio1.setPrecio(300);
-        servicio1.getCategorias().add(categoriaController.obtener(1));
+        servicio1.getCategorias().add(categoriaController.obtener(5));
         servicio1.getImagenes().add("/resources/imagenes/car/a1.jpg");
         servicio1.getImagenes().add("/resources/imagenes/car/a2.jpg");
         servicio1.getImagenes().add("/resources/imagenes/car/a3.jpg");

@@ -9,19 +9,7 @@
 >
 
 <h:head>
- <!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous"></script>
-    &lt;!&ndash;<meta http-equiv="refresh" content="5"/>&ndash;&gt;
-
-    <title>Help 4 Travelling</title>
-    <link href="../resources/css/agregarAlCarrito.css" rel="stylesheet"/>-->
-
-    <!-- head -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -31,7 +19,7 @@
     <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
     <link href="../resources/css/full.css" rel="stylesheet"/>
     <link href="../resources/css/agregarAlCarrito.css" rel="stylesheet"/>
-    <!-- /head -->
+
 
 </h:head>
 <h:body>
@@ -42,73 +30,62 @@
             <ui:include src="../WEB-INF/navbar.xhtml"/>
         </ui:insert>
 
-
+        <div class="col-lg-4"></div>
 
 
         <h:form id="form2">
-            <div class="col-lg-3"></div>
+
 
             <div class="caja1 col-lg-2">
-                <div>
-                    <h:outputLabel>#{servicioBean.servicio.nombre}</h:outputLabel>
-                </div>
-                <div>
-                    <h:outputLabel>#{servicioBean.servicio.descripcion}</h:outputLabel>
-                </div>
-                <div class="campos">
-                    <h:outputLabel>Fecha Inicio</h:outputLabel>
-                    <h:inputText
-                                 required="true" requiredMessage="La fecha inicio es requerida"
-                                 value="#{carritoBean.fechaInicio}"
-                                 converter="myDateTimeConverter"/>
 
+                    <h:outputLabel>Nombre: #{servicioBean.servicio.nombre}</h:outputLabel><br />
+                    <h:outputLabel>Descripción: #{servicioBean.servicio.descripcion}</h:outputLabel><br />
+                    <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel><br />
+                    <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel><br />
+                    <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel><br />
+                    <h:outputLabel>Categoria: #{servicioBean.servicio.categorias}</h:outputLabel><br />
+                    <h:outputLabel>Precio: </h:outputLabel>
+                    <h:outputLabel style="font-size: large">#{servicioBean.servicio.precio}</h:outputLabel><br />
 
-                    <h:outputLabel>Fecha Fin</h:outputLabel>
+                    <div class="row center-block">
+                        <h:outputLabel styleClass="col-lg-4">Fecha Inicio</h:outputLabel>
+                        <h:inputText
+                                     styleClass="col-lg-8"
+                                     required="true" requiredMessage="La fecha inicio es requerida"
+                                     value="#{carritoBean.fechaInicio}"
+                                     converter="myDateTimeConverter"/>
+                    </div><br />
+
+                    <div class="row center-block">
+                    <h:outputLabel styleClass="col-lg-4">Fecha Fin</h:outputLabel>
                     <h:inputText
+                                 styleClass="col-lg-8"
                                  required="true" requiredMessage="La fecha fin es requerida"
                                  value="#{carritoBean.fechaFin}"
-                                 converter="myDateTimeConverter"/>
-                </div>
+                                 converter="myDateTimeConverter"/><br />
+                    </div><br />
 
-                <div>
-                    <h:outputLabel>Precio: </h:outputLabel>
-                    <h:outputLabel style="font-size: large">#{servicioBean.servicio.precio}</h:outputLabel>
-                </div>
-                <div>
+                    <div class="row center-block">
+                    <h:outputLabel styleClass="col-lg-4">Cantidad: </h:outputLabel>
                     <h:inputText
+                            styleClass="col-lg-8"
                             value="#{carritoBean.cantidad}"
                             required="true" requiredMessage="La cantidad es requerida">
-                    </h:inputText>
+                    </h:inputText><br />
+                    </div><br />
+
+                    <div class="row center-block">
                     <h:commandButton
-                            id="agregar" value="Agregar"
+                            styleClass="btn btn-primary center-block col-lg-12"
+                            id="agregar" value="AGREGAR"
                             action="#{carritoBean.agregar}">
                     </h:commandButton>
                 </div>
+
+
             </div>
 
-            <div class="caja2 col-lg-2">
-
-                <div>
-                    <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel>
-                </div>
-                <div>
-                    <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel>
-
-                </div>
-                <div>
-                    <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel>
-                </div>
-                    <div class="categoria">
-                        <h4>CATEGORIAS</h4>
-                        <h:dataTable value="#{servicioBean.listaCategorias}" var="categorias">
-                            <h:column>
-                                <h:outputLabel>"#{categorias.nombre}"</h:outputLabel>
-                            </h:column>
-                        </h:dataTable>
-                    </div>
-            </div>
-
-            <div class="col-lg-2">
+        <div class="col-lg-3">
 
 
                 <img id="mainImage" class="mainImage" src="#{servicioBean.servicio.imagenes[0]}"/>
@@ -131,9 +108,12 @@
                     }
                 </script>
 
-            </div>
-            <div class="col-lg-3"></div>
-</h:form>
         </div>
+        </h:form>
+
+        <div class="col-lg-3"></div>
+
+    </div>
     </h:body>
 </html>
+

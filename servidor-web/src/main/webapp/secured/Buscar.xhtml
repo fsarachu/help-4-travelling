@@ -4,27 +4,9 @@
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://java.sun.com/jsf/core">
 
-<!--
-<h:head>
-    &lt;!&ndash; Optional theme &ndash;&gt;
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-    &lt;!&ndash; Latest compiled and minified JavaScript &ndash;&gt;
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-            crossorigin="anonymous">
-    </script>
-
-    <title>Help 4 Travelling</title>
-    <link href="../resources/css/mostrarCarrito.css" rel="stylesheet"/>
-</h:head>-->
-
-<!-- head -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
@@ -34,39 +16,42 @@
 <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
 <link href="../resources/css/full.css" rel="stylesheet"/>
 <link href="../resources/css/mostrarCarrito.css" rel="stylesheet"/>
-<!-- /head -->
+
 <h:body>
     <div class="login-title" align="center">BUSCAR</div>
 
 
-    <div id="container">
+    <div id="container" class="col-lg-12">
 
         <ui:insert name="navbar">
             <ui:include src="../WEB-INF/navbar.xhtml"/>
         </ui:insert>
 
+        <div class="col-lg-4"></div>
 
         <h:form id="formBuscar">
-            <div class="box1">
+            <div class="caja1 col-lg-4">
                 <img class="profile-img" src="../resources/imagenes/lupa.png"/>
 
-    <div>
-            <h:selectOneMenu value="#{servicioBean.buscar}" style="width:200px">
-                <f:selectItem itemLabel="Elija una opcion" itemValue="custom"/>
-                <f:selectItem id="alfabetico" itemLabel="Alfabeticamente (a-z)" itemValue="alfabetico"/>
-                <f:selectItem id="precio" itemLabel="Precio (ascendente)" itemValue="precio"/>
-                <f:ajax render="input"/>
-            </h:selectOneMenu>
-            <h:panelGroup id="input">
-                <h:inputText value="#{servicioBean.buscar}" rendered="#{servicioBean.buscar == 'custom'}"
-                             required="true"/>
-            </h:panelGroup>
-            <h:commandButton class="btn btn-primary" value="Actualizar"
-                             action="#{servicioBean.ordenarXNombre}">
-            </h:commandButton>
+                <div>
+                <h:selectOneMenu styleClass="col-lg-8" value="#{servicioBean.buscar}">
+                    <f:selectItem itemLabel="Elija una opcion" itemValue="custom"/>
+                    <f:selectItem id="alfabetico" itemLabel="Alfabeticamente (a-z)" itemValue="alfabetico"/>
+                    <f:selectItem id="precio" itemLabel="Precio (ascendente)" itemValue="precio"/>
+                    <f:ajax render="input"/>
+                </h:selectOneMenu>
+                <h:panelGroup id="input">
+                    <h:inputText value="#{servicioBean.buscar}" rendered="#{servicioBean.buscar == 'custom'}"
+                                 required="true"/>
+                </h:panelGroup>
+                <h:commandButton class="btn btn-primary col-lg-4" value="ACTUALIZAR"
+                                 action="#{servicioBean.ordenarXNombre}">
+                </h:commandButton>
 
-    </div>
-            <h:dataTable
+                </div>
+                <div><br/><br/><br/></div>
+                <h:dataTable
+                        styleClass="table table-striped" style="background-color: whitesmoke"
                     value="#{servicioBean.listarProducto}"
                     var="serviciopromo" border="0">
                 <h:column>
@@ -102,9 +87,12 @@
                     </h:outputLabel>
                 </h:column>
 
-            </h:dataTable>
+                </h:dataTable>
             </div>
         </h:form>
+
+        <div class="col-lg-4"></div>
+
     </div>
 
 </h:body>
