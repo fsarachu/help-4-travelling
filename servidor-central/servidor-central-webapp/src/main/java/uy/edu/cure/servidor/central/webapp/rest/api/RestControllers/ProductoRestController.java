@@ -108,4 +108,16 @@ public class ProductoRestController {
                 listarPromocionesPorCategoria(categoria)).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("obtenerserviciosXproveedor/{proveedor}")
+    public Response obtenerServiciosXProveedor(@PathParam("proveedor") Integer proveedor) {
+        ListaProductos listaProductos = new ListaProductos();
+        ArrayList<Producto> tm = productoController.listarServiciosXProveedor(proveedor);
+        listaProductos.setProductoArrayList(tm);
+        return Response.status(Response.Status.OK).entity(listaProductos).build();
+    }
+
+
 }

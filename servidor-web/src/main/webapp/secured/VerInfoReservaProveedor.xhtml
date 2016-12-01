@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html> <!--HTML5-->
+<html class="full"
+      xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"/>
+<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+<link href="../resources/css/full.css" rel="stylesheet"/>
+<link href="../resources/css/verInfoReserva.csss" rel="stylesheet"/>
+
+<body>
+<div class="login-title" align="center">VER INFORMACION RESERVA</div>
+<div id="container" class="col-lg-12">
+
+    <ui:insert name="navbar">
+        <ui:include src="../WEB-INF/navbarProveedores.xhtml"/>
+    </ui:insert>
+
+    <div class="col-lg-3"></div>
+    <h:form>
+        <div class="box1 col-lg-2">
+            <h3>Reservas</h3>
+            <h:dataTable value="#{reservaBean.reservaList}" var="reservas" border="1">
+                <h:column>
+                    <h:commandLink action="#{reservaBean.cargarReservas(clienteBean.cliente)}"
+                                   immediate="true"
+                                   value="#{reservas.id}  #{reservas.fechaCreacion}">
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </div>
+        <div class="box2 col-lg-2">
+            <h3>     </h3>
+            <h:dataTable rendered="#{!reservaBean.reserva.id.equals(0)}" value="#{carritoBean.itemReservas}" var="itemRes" border="1">
+                <h:column>
+                    <h:commandLink action="#{carritoBean.itemReservas}" immediate="true"
+                                   value="#{itemRes.id}  #{itemRes.producto.nombre} ">
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+        </div>
+
+
+
+        <div class="box3 col-lg-2">
+
+
+            <img id="mainImage" class="mainImage" src="#{servicioBean.servicio.imagenes[0]}"/>
+            <div id="divId" onclick="changeImageOnClick(event)">
+                <h:outputText>Descripcion #{itemRes.producto.descripcion}</h:outputText>
+                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[0]}"/>
+                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[1]}"/>
+                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[2]}"/>
+
+                <h:outputText>rendered="#{itemRes.fechaInicio.equals(not null)}">#{itemRes.fechaFin}</h:outputText>
+                <br/>
+                <label>Precio $#{servicioBean.servicio.precio}</label>
+
+            </div>
+
+            <script type="text/javascript">
+                var images = document.getElementById("divId").getElementsByTagName("img");
+
+                function changeImageOnClick(event) {
+                    event = event || window.event;
+                    var targetElement = event.target || event.srcElement;
+                    if (targetElement.tagName == "IMG") {
+                        mainImage.src = targetElement.getAttribute("src");
+                    }
+                }
+            </script>
+
+        </div>
+
+
+    </h:form>
+
+    <div class="col-lg-3"></div>
+</div>
+</body>
+</html>

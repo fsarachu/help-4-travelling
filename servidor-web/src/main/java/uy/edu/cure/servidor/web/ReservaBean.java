@@ -23,8 +23,6 @@ public class ReservaBean implements Serializable {
     private List<Reserva> reservaList = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
 
-    //@ManagedProperty("#{loginBean}")
-    //private LoginBean loginBean;
 
     public ReservaBean() {
     }
