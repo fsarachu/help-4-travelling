@@ -1,5 +1,6 @@
 package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
+import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.servicios.ProveedorService;
 
@@ -28,6 +29,18 @@ public class ProveedorServiceImpl extends GenericServiceImpl<Proveedor> implemen
         return maxId + 1;
     }
 
+    public Proveedor obtenerXNombre(String nickname) {
+        Proveedor proveedor;
+
+        for (Map.Entry<Integer, Proveedor> entry : coleccion.entrySet()) {
+            proveedor = entry.getValue();
+
+            if (proveedor.getNickname().equals(nickname)) {
+                return proveedor;
+            }
+        }
+        return null;
+    }
 
     @Override
     public boolean nicknameExiste(String nickname) {
@@ -58,4 +71,33 @@ public class ProveedorServiceImpl extends GenericServiceImpl<Proveedor> implemen
 
         return false;
     }
+
+    public boolean comprobarlogin(String nickname, String contrasena) {
+        Proveedor proveedor;
+
+        for (Map.Entry<Integer, Proveedor> entry : coleccion.entrySet()) {
+            proveedor = entry.getValue();
+
+            if (proveedor.getNickname().equals(nickname) && proveedor.getContrasena().equals(contrasena)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public boolean comprobarloginMail(String mail, String contrasena) {
+        Proveedor proveedor;
+
+        for (Map.Entry<Integer, Proveedor> entry : coleccion.entrySet()) {
+            proveedor = entry.getValue();
+
+            if (proveedor.getCorreo().equals(mail) && proveedor.getContrasena().equals(contrasena)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 }

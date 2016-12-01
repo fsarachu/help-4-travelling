@@ -210,7 +210,8 @@ public class HardcodeoBean implements Serializable{
 
         Proveedor proveedor1 = new Proveedor();
         proveedor1.setNombre("Rentadora Autos");
-        proveedor1.setNickname("Rentadora Autos");
+        proveedor1.setNickname("rentautos");
+        proveedor1.setContrasena("1234");
         nacimiento1 = new Date(11, 2, 15);
         proveedor1.setFechaNacimiento(nacimiento1);
         proveedor1.setNombreEmpresa("Rentadora LTDA");
@@ -220,7 +221,8 @@ public class HardcodeoBean implements Serializable{
 
         Proveedor proveedor2 = new Proveedor();
         proveedor2.setNombre("Rentadora Utilitarios");
-        proveedor2.setNickname("Rentadora Utilitarios");
+        proveedor2.setNickname("rentutil");
+        proveedor2.setContrasena("1234");
         nacimiento2 = new Date(16, 2, 12);
         proveedor2.setFechaNacimiento(nacimiento2);
         proveedor2.setNombreEmpresa("Rentadora Utilitarios S.A.");
@@ -230,7 +232,8 @@ public class HardcodeoBean implements Serializable{
 
         Proveedor proveedor3 = new Proveedor();
         proveedor3.setNombre("El mejor Hotel");
-        proveedor3.setNickname("El mejor Hotel");
+        proveedor3.setNickname("mejorhotel");
+        proveedor3.setContrasena("1234");
         nacimiento3 = new Date(16, 2, 12);
         proveedor3.setFechaNacimiento(nacimiento3);
         proveedor3.setNombreEmpresa("El mejor Hotel LTDA");
@@ -240,7 +243,8 @@ public class HardcodeoBean implements Serializable{
 
         Proveedor proveedor4 = new Proveedor();
         proveedor4.setNombre("Tu Hotel");
-        proveedor4.setNickname("Tu Hotel");
+        proveedor4.setNickname("tuhotel");
+        proveedor4.setContrasena("1234");
         nacimiento4 = new Date(16, 2, 12);
         proveedor4.setFechaNacimiento(nacimiento4);
         proveedor4.setNombreEmpresa("Tu Hotel S.A.");

@@ -28,6 +28,23 @@ public class ProveedorRestController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("login/{n}/{p}")
+    public Response updateUsuario(@PathParam("n") String nickname, @PathParam("p")String contrasena){
+        boolean log=  proveedorController.comprobarlogin(nickname, contrasena);
+        return Response.status(Response.Status.OK).entity(log).build();
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("comprobarloginmail/{e}/{p}")
+    public Response comprobarloginMail(@PathParam("e") String email, @PathParam("p") String contrasena) {
+        boolean log = proveedorController.comprobarloginMail(email, contrasena);
+        return Response.status(Response.Status.OK).entity(log).build();
+    }
+
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("eliminar/{idproveedor}")
     public Response eliminar(@PathParam("idproveedor") Integer idProveedor) {
         proveedorController.eliminar(idProveedor);
@@ -78,5 +95,15 @@ public class ProveedorRestController {
         boolean log = proveedorController.emailExiste(email);
         return Response.status(Response.Status.OK).entity(log).build();
     }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Path("obtenerXNombre/{nombre}")
+    public Response obtenerXNombre(@PathParam("nombre") String nombre) {
+        Proveedor cliente = proveedorController.obtenerXNombre(nombre);
+        //System.out.println(cliente);
+        return Response.status(Response.Status.OK).entity(cliente).build();
+    }
+
 
 }

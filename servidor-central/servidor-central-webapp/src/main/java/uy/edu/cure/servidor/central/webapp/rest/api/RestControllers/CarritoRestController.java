@@ -28,7 +28,7 @@ public class CarritoRestController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("obtenercarrito/{idcarrito}")
+    @Path("obtener/{idcarrito}")
     public Response obtenerCarrito(@PathParam("idcarrito") Integer idCarrito) {
         Carrito log = carritoController.obtenerCarrito(idCarrito);
         return Response.status(Response.Status.OK).entity(log).build();
