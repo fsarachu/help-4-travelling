@@ -1,5 +1,8 @@
 package uy.edu.cure.servidor.web;
 
+import eu.bitwalker.useragentutils.UserAgent;
+import org.hibernate.validator.internal.util.Version;
+import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import uy.edu.cure.servidor.central.dto.Cliente;
 
 import javax.faces.bean.ManagedBean;
@@ -8,12 +11,19 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.Random;
+import java.util.logging.Logger;
+
 
 
 @ManagedBean(name = "loginBean")
 @SessionScoped
 public class LoginBean implements Serializable {
+
+    final static Logger logueo = Logger.getLogger(LoginBean.class.getName());
+    private HttpServletRequest request;
 
     private boolean loggedIn;
     private boolean primerlogin;
@@ -88,10 +98,12 @@ public class LoginBean implements Serializable {
         this.reservaBean = reservaBean;
     }
 
-    public String controloPassword() {
+    public String controloPassword() throws UnknownHostException {
         if (primerlogin) {
             hardcodeoRest();
             primerlogin = false;
+
+
         }
         String a = "@";
         String correo = cliente.getNickname();
@@ -102,7 +114,29 @@ public class LoginBean implements Serializable {
                 loggedIn = true;
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
+
+
+                logueo.warning("USR : "+cliente.getNombre());
+                logueo.warning("IP  : "+ InetAddress.getLocalHost());
+                logueo.warning("URL : "+ "http://localhost:8080/secured/LoginBean");
+                logueo.warning("S.O : "+ System.getProperty("os.name"));
+
+
+
+            /*  String userAgent = request.getHeader("user-agent");
+                UserAgent ua = UserAgent.parseUserAgentString(userAgent);
+                eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
+
+                String browserName = ua.getBrowser().toString();
+                int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
+                logueo.warning("BROWSER"+ browserName);
+            */
+
+
+
+
                 return "secured/index?faces-redirect=true";
+
             } else {
                 mensaje = "Usuario no existe";
             }
@@ -115,6 +149,27 @@ public class LoginBean implements Serializable {
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
                 reservaBean.cargarReservas(cliente);
+
+                logueo.warning("USR : "+cliente.getNombre());
+                logueo.warning("IP  : "+ InetAddress.getLocalHost());
+                logueo.warning("URL : "+ "http://localhost:8080/secured/LoginBean");
+                logueo.warning("S.O : "+ System.getProperty("os.name"));
+
+
+
+
+                String userAgent = request.getHeader("user-agent");
+                UserAgent ua = UserAgent.parseUserAgentString(userAgent);
+                eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
+
+                String browserName = ua.getBrowser().toString();
+                int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
+                logueo.warning("BROWSER"+ browserName);
+
+
+
+
+
                 return "secured/index?faces-redirect=true";
             } else {
                 if (existeMailRest(cliente.getCorreo())) {
@@ -125,6 +180,7 @@ public class LoginBean implements Serializable {
                 return null;
             }
         }
+
     }
 
     public void hardcodeoRest() {
