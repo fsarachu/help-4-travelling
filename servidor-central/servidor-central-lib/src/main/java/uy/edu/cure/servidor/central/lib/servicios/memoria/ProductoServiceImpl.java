@@ -128,4 +128,19 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
         return servicios;
     }
 
+    @Override
+    public ArrayList<Producto> listarServiciosXProveedor(Integer idproveedor) {
+        ArrayList<Producto> productos = new ArrayList<>();
+        Producto producto;
+
+        for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
+            producto = entry.getValue();
+
+            if (producto.getProveedor().getId().equals(idproveedor)) {
+                productos.add(producto);
+            }
+        }
+        return productos;
+    }
+
 }

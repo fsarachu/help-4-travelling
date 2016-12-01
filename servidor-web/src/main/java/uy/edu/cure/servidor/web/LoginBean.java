@@ -17,7 +17,7 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 
-@ManagedBean(name = "loginBean")
+@ManagedBean
 @SessionScoped
 public class LoginBean implements Serializable {
 
@@ -199,16 +199,17 @@ public class LoginBean implements Serializable {
         String a = "@";
         String correo = proveedor.getNickname();
         int intIndex = correo.indexOf(a);
-        if (intIndex == -1) {
-            if (loginRestProveedor(proveedor.getNickname(), proveedor.getContrasena())) {
-                proveedor = obtenerXNombreRestProveedor(proveedor.getNickname());
-                loggedIn = true;
-                mensaje = null;
+        proveedor = obtenerXNombreRestProveedor(proveedor.getNickname());
+        if (proveedor != null) {
+            if (intIndex == -1) {
+                if (loginRestProveedor(proveedor.getNickname(), proveedor.getContrasena())) {
+                    loggedIn = true;
+                    mensaje = null;
 
-                logueo.warning("USR : " + proveedor.getNombre());
-                logueo.warning("IP  : " + InetAddress.getLocalHost());
-                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                logueo.warning("S.O : " + System.getProperty("os.name"));
+                    logueo.warning("USR : " + proveedor.getNombre());
+                    logueo.warning("IP  : " + InetAddress.getLocalHost());
+                    logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
+                    logueo.warning("S.O : " + System.getProperty("os.name"));
 
 
 
@@ -222,45 +223,46 @@ public class LoginBean implements Serializable {
             */
 
 
-                return "secured/indexProveedores?faces-redirect=true";
+                    return "secured/indexProveedores?faces-redirect=true";
 
-            } else {
-                mensaje = "Proveedor no existe";
-            }
-            return null;
-        } else {
-            proveedor.setCorreo(proveedor.getNickname());
-            if (comprobarloginMailRest(proveedor.getCorreo(), proveedor.getContrasena())) {
-                proveedor = obtenerXMailRestProveedor(proveedor.getCorreo());
-                loggedIn = true;
-                mensaje = null;
-
-                logueo.warning("USR : " + proveedor.getNombre());
-                logueo.warning("IP  : " + InetAddress.getLocalHost());
-                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                logueo.warning("S.O : " + System.getProperty("os.name"));
-
-
-                String userAgent = request.getHeader("user-agent");
-                UserAgent ua = UserAgent.parseUserAgentString(userAgent);
-                eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
-
-                String browserName = ua.getBrowser().toString();
-                int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
-                logueo.warning("BROWSER" + browserName);
-
-
-                return "secured/indexProveedores?faces-redirect=true";
-            } else {
-                if (existeMailRest(proveedor.getCorreo())) {
-                    mensaje = "Contraseña incorrecta";
                 } else {
                     mensaje = "Proveedor no existe";
                 }
                 return null;
+            } else {
+                proveedor.setCorreo(proveedor.getNickname());
+                if (comprobarloginMailRest(proveedor.getCorreo(), proveedor.getContrasena())) {
+                    proveedor = obtenerXMailRestProveedor(proveedor.getCorreo());
+                    loggedIn = true;
+                    mensaje = null;
+
+                    logueo.warning("USR : " + proveedor.getNombre());
+                    logueo.warning("IP  : " + InetAddress.getLocalHost());
+                    logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
+                    logueo.warning("S.O : " + System.getProperty("os.name"));
+
+
+                    String userAgent = request.getHeader("user-agent");
+                    UserAgent ua = UserAgent.parseUserAgentString(userAgent);
+                    eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
+
+                    String browserName = ua.getBrowser().toString();
+                    int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
+                    logueo.warning("BROWSER" + browserName);
+
+
+                    return "secured/indexProveedores?faces-redirect=true";
+                } else {
+                    if (existeMailRest(proveedor.getCorreo())) {
+                        mensaje = "Contraseña incorrecta";
+                    } else {
+                        mensaje = "Proveedor no existe";
+                    }
+                    return null;
+                }
             }
         }
-
+        return null;
     }
 
 

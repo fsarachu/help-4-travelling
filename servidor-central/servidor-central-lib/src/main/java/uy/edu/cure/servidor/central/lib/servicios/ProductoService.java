@@ -15,4 +15,6 @@ public interface ProductoService extends GenericService<Producto> {
     ArrayList<Promocion> listarPromocionesPorCategoria(Categoria categoria);
 
     ArrayList<Servicio> listarServiciosPorCiudad(Ciudad ciudad);
+
+    ArrayList<Producto> listarServiciosXProveedor(Integer proveedor);
 }

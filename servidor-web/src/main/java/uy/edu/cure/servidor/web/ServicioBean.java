@@ -8,6 +8,7 @@ import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
@@ -20,11 +21,15 @@ import java.util.List;
 @ManagedBean
 @SessionScoped
 public class ServicioBean implements Serializable {
+
     private Servicio servicio;
     private List<Producto> listarProductosServicio = new ArrayList<Producto>();
     private List<Producto> listarProducto = new ArrayList<Producto>();
     private List<Servicio> listaServicios = new ArrayList<Servicio>();
     private List<Categoria> listaCategorias = new ArrayList<Categoria>();
+    @ManagedProperty("#{loginBean}")
+    private LoginBean loginBean;
+
     private String buscar;
 
     public ServicioBean() {
@@ -59,6 +64,12 @@ public class ServicioBean implements Serializable {
         return u;
     }
 
+    public void cargarServicioXProveedor() {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/obtenerserviciosXproveedor/"+loginBean.getProveedor().getId();
+        RestController rest = new RestController();
+        ListaProductos u = rest.doGET(url, ListaProductos.class);
+        listarProductosServicio = u.getProductoArrayList();
+    }
 
     public String cargaServiciosCarrito(Integer id) {
         if (id != null) {
@@ -180,5 +191,13 @@ public class ServicioBean implements Serializable {
 
     public void setBuscar(String buscar) {
         this.buscar = buscar;
+    }
+
+    public LoginBean getLoginBean() {
+        return loginBean;
+    }
+
+    public void setLoginBean(LoginBean loginBean) {
+        this.loginBean = loginBean;
     }
 }

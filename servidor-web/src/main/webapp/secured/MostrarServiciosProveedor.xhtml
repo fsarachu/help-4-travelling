@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html class="full"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+
+
+    <title>Help 4 Travelling</title>
+    <link href="../resources/css/mostrarServicios.css" rel="stylesheet"/>
+    <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../resources/css/full.css" rel="stylesheet"/>
+</h:head>
+
+
+<h:body>
+    <div class="login-title" align="center">MOSTRAR SERVICIOS</div>
+    <div id="container" class="col-lg-12 col-centered">
+
+        <ui:insert name="navbar">
+            <ui:include src="../WEB-INF/navbarProveedores.xhtml"/>
+        </ui:insert>
+
+        <div class="row"><br></br><br></br><br></br><br></br><br></br></div>
+
+        <h:form>
+            <h:dataTable
+                    rendered="#{servicioBean.cargarServicioXProveedor()}" styleClass="table table-striped"
+                    value="#{servicioBean.listarProductosServicio}" var="serviciopromo" border="1">
+                <h:column>
+                    <h:commandLink action="#{servicioBean.buscarServicio(serviciopromo.id)}" immediate="true"
+                                   value="#{serviciopromo.id}  #{serviciopromo.nombre}">
+                    </h:commandLink>
+                </h:column>
+            </h:dataTable>
+            <!--
+
+                        <div class="col-lg-2 center-block caja1">
+                            <div>
+                                <h:outputLabel>Nombre: #{servicioBean.servicio.nombre}</h:outputLabel><br />
+                                <h:outputLabel>Descripción: #{servicioBean.servicio.descripcion}</h:outputLabel><br />
+                                <h:outputLabel>Precio: </h:outputLabel><h:outputLabel style="font-size: large">#{servicioBean.servicio.precio}</h:outputLabel><br />
+                                <h:outputLabel>Proveedor: #{servicioBean.servicio.proveedor.nombreEmpresa}</h:outputLabel><br />
+                                <h:outputLabel>Origen: #{servicioBean.servicio.origen.nombre}</h:outputLabel><br />
+                                <h:outputLabel>Destino: #{servicioBean.servicio.destino.nombre}</h:outputLabel><br />
+                                <h:outputLabel>Categoria: #{servicioBean.servicio.categorias}</h:outputLabel>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 center-block">
+                            <img class="imgStyle" src="#{servicioBean.servicio.imagenes[0]}"/>
+                            <img class="imgStyle" src="#{servicioBean.servicio.imagenes[1]}"/>
+                            <img class="imgStyle" src="#{servicioBean.servicio.imagenes[2]}"/>
+                        </div>
+
+            -->
+        </h:form>
+    </div>
+</h:body>
+</html>
+
+
+
+
+
