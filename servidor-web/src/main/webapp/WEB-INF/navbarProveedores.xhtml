@@ -49,7 +49,7 @@
 
                         <h:form rendered="#{loginBean.isLoggedIn()}">
                             <h:panelGroup rendered="#{loginBean.isLoggedIn()}"></h:panelGroup>
-                            <label>Bienvenid@ #{loginBean.getCliente().nombre}</label>
+                            <label>Bienvenid@ #{loginBean.getProveedor().nombre}</label>
                         </h:form>
 
                         <h:form rendered="#{loginBean.isLoggedIn()}">
@@ -67,7 +67,7 @@
                 <ul class="nav navbar-right">
                     <li>
                         <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <img src="#{loginBean.cliente.imagen}" style="width: 50px ; height:50px"/>
+                            <img src="#{loginBean.proveedor.imagen}" style="width: 50px ; height:50px"/>
                         </h:panelGroup>
 
                     </li>
