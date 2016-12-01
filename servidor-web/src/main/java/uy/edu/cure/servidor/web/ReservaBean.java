@@ -6,6 +6,7 @@ import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
 import uy.edu.cure.servidor.central.lib.controllers.FacturaController;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

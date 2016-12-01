@@ -2,6 +2,7 @@ package uy.edu.cure.servidor.central.webapp.rest.api.RestControllers;
 
 import uy.edu.cure.servidor.central.dto.Carrito;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
+import uy.edu.cure.servidor.central.dto.Item_Carrito;
 import uy.edu.cure.servidor.central.lib.controllers.CarritoController;
 
 import javax.ws.rs.*;
@@ -17,7 +18,8 @@ public class CarritoRestController {
     CarritoController carritoController = new CarritoController();
 
     @PUT
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("actualizarTotal")
     public Response actualizarTotal(Carrito carrito) {
         carritoController.actualizarTotal(carrito);
@@ -32,16 +34,14 @@ public class CarritoRestController {
         return Response.status(Response.Status.OK).entity(log).build();
     }
 
-
-    ////////como le paso dos parametros
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
-    @Path("agregaritem/{item}")
-    public Response agregarItem(ItemReserva itemReserva, Carrito carrito) {
+    @Path("agregaritem")
+    public Response agregarItem(Item_Carrito item_carrito) {
         CarritoController carritoController = new CarritoController();
-        carritoController.agregarItem(itemReserva, carrito);
-        return null;
+        carritoController.agregarItem(item_carrito.getItemReserva(), item_carrito.getCarrito());
+        return Response.status(Response.Status.OK).entity(item_carrito).build();
     }
 
 }

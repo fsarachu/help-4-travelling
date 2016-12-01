@@ -29,18 +29,23 @@ public class CategoriaServiceImpl extends GenericServiceImpl<Categoria> implemen
         return maxId + 1;
     }
 
+
     public ArrayList<Categoria> listarHijos(Categoria padre) {
         ArrayList<Categoria> hijos = new ArrayList<>();
         Categoria categoria;
 
-        for (Map.Entry<Integer, Categoria> entry : coleccion.entrySet()) {
-            categoria = entry.getValue();
+        for (Categoria cate : padre.getHijos()) {
 
-            if (padre == categoria.getPadre()) {
-                hijos.add(categoria);
+            for (Map.Entry<Integer, Categoria> entry : coleccion.entrySet()) {
+                categoria = entry.getValue();
+
+                if (cate.getId().equals(categoria.getId())) {
+                    hijos.add(categoria);
+                }
             }
         }
 
         return hijos;
     }
+
 }

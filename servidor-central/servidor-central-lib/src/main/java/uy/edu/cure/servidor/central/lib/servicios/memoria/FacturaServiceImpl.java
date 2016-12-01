@@ -1,8 +1,6 @@
 package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.Properties;
 
 import uy.edu.cure.servidor.central.dto.Factura;
@@ -46,16 +44,33 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura> implements F
 
 	@Override
 	public void agregar(Integer id, Factura factura) {
-		String url = "jdbc:postgresql://localhost/cure-pa";
+		//String url = "jdbc:postgresql://localhost/cure-pa";
+        String url = "jdbc:postgresql://127.0.0.1:5432/curepa";
+
 		Properties props = new Properties();
-		props.setProperty("user", "fred");
-		props.setProperty("password", "secret");
+		props.setProperty("user", "postgres");
+		props.setProperty("password", "1234");
+
+        Statement stmt = null;
+        String query = "INSERT INTO facturas VALUES (2, 'soy un string')";
+
 		try {
+            Class.forName("org.postgresql.Driver");
 			Connection con = DriverManager.getConnection(url, props);
+
+            stmt = con.createStatement();
+            //ResultSet rs = stmt.executeQuery(query);
+            Boolean rs = stmt.execute(query);
+
+
+
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}
-	}
+		} catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
 
 	@Override
 	public Integer nextId() {

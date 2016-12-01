@@ -4,6 +4,7 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaCategorias;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -13,15 +14,18 @@ import java.util.List;
 
 @ManagedBean
 @SessionScoped
-
-
 public class TreeManagedBean {
     private TreeNode onNodeSelect;
     private TreeNode root;
     private Integer contador = 1;
     private List<TreeNode> list = new ArrayList<TreeNode>();
 
-
+    /*
+    Catalina:
+        WARNING [http-nio-8080-exec-6] com.sun.faces.context.SessionMap.put
+            JSF1063: ADVERTENCIA Definiendo valor de atributo no serializable en HttpSession:
+                (clave: treeManagedBean, clase de valor: uy.edu.cure.servidor.web.TreeManagedBea
+    * */
 
     public TreeManagedBean() {
         root = new DefaultTreeNode("Root", null);

@@ -2,6 +2,7 @@ package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Factura;
 import uy.edu.cure.servidor.central.dto.Reserva;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.mail.Message;
 import javax.mail.Session;

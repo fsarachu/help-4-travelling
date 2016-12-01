@@ -38,11 +38,12 @@ public class ReservaRestController {
 
 
     @PUT
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("modificar")
     public Response modificar(Reserva reserva) {
         reservaController.modificar(reserva);
-        return null;
+        return Response.status(Response.Status.OK).entity(reserva).build();
     }
 
     @GET
@@ -50,11 +51,12 @@ public class ReservaRestController {
     @Path("eliminar/{idreserva}")
     public Response eliminar(@PathParam("idreserva") Integer idReserva) {
         reservaController.eliminar(idReserva);
-        return null;
+        return Response.status(Response.Status.OK).entity(true).build();
     }
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("listar")
     public Response listar() {
         ListaReservas log = new ListaReservas();
@@ -74,8 +76,9 @@ public class ReservaRestController {
     @Produces("text/plain")
     @Path("listarReservaXCliente/")
     public Response listarReservasCliente(Cliente cliente) {
-        return Response.status(Response.Status.OK).entity(reservaController.
-                listarReservasCliente(cliente)).build();
+        ListaReservas log = new ListaReservas();
+        log.setReservaArrayList(reservaController.listarReservasCliente(cliente));
+        return Response.status(Response.Status.OK).entity(log).build();
     }
 
 }

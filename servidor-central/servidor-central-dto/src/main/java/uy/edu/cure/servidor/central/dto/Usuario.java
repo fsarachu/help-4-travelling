@@ -1,10 +1,12 @@
 package uy.edu.cure.servidor.central.dto;
 
-import sun.security.util.Password;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
-import java.awt.image.BufferedImage;
 import java.util.Date;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public abstract class Usuario {
     private Integer id;
     private String nickname;
@@ -15,6 +17,7 @@ public abstract class Usuario {
     private String imagen;
     private String contrasena;
 
+    @JsonCreator
     public Usuario() {
     }
 

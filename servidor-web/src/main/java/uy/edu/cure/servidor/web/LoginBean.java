@@ -4,6 +4,7 @@ import eu.bitwalker.useragentutils.UserAgent;
 import org.hibernate.validator.internal.util.Version;
 import org.hibernate.validator.internal.util.logging.LoggerFactory;
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;

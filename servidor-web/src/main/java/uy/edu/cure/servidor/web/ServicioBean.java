@@ -5,6 +5,7 @@ import uy.edu.cure.servidor.central.dto.Producto;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaProductos;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

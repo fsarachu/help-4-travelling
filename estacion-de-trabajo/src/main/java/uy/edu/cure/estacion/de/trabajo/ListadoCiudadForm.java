@@ -5,6 +5,7 @@ import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaClientes;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.swing.*;
 import java.awt.event.ItemEvent;
