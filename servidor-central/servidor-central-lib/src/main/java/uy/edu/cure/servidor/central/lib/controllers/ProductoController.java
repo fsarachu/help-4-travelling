@@ -47,6 +47,10 @@ public class ProductoController {
         return this.productoService.listarServiciosPorCiudad(ciudad);
     }
 
+    public ArrayList<Producto> listarServiciosXProveedor(Integer proveedor) {
+        return this.productoService.listarServiciosXProveedor(proveedor);
+    }
+
     public ArrayList<Servicio> listarServiciosPorCategoria(Categoria categoria) {
         return this.productoService.listarServiciosPorCategoria(categoria);
     }
