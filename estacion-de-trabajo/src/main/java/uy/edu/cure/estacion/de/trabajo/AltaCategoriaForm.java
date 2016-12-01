@@ -3,6 +3,7 @@ package uy.edu.cure.estacion.de.trabajo;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.EstadoCategoria;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaCategorias;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;
@@ -28,18 +29,14 @@ public class AltaCategoriaForm {
     public AltaCategoriaForm() {
         final LlenarCombobox llenarCombobox = new LlenarCombobox();
         llenarCombobox.cargarTree(raiz, tree1);
-        tree1.addTreeSelectionListener(new TreeSelectionListener() {
-            @Override
-            public void valueChanged(TreeSelectionEvent treeSelectionEvent) {
-                node = ((DefaultMutableTreeNode) tree1.getLastSelectedPathComponent());
-
-                if (node.getUserObject() instanceof Categoria) {
-                    Categoria categoria = (Categoria) node.getUserObject();
-                    padre = categoria;
-                    cargarHijos(categoria);
-                }
-
+        tree1.addTreeSelectionListener(treeSelectionEvent -> {
+            node = ((DefaultMutableTreeNode) tree1.getLastSelectedPathComponent());
+            if (node.getUserObject() instanceof Categoria) {
+                Categoria categoria = (Categoria) node.getUserObject();
+                padre = categoria;
+                cargarHijos(categoria);
             }
+
         });
 
         btnAgregar.addActionListener(new ActionListener() {
@@ -94,7 +91,6 @@ public class AltaCategoriaForm {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/categoria/listarhijos";
         RestController rest = new RestController();
         ListaCategorias log = rest.doPUT(url, cate , ListaCategorias.class);
-
         ArrayList<Categoria> categorias = log.getCategoriaArrayList();
         for (Categoria categoria : categorias) {
             DefaultMutableTreeNode hijo = new DefaultMutableTreeNode();

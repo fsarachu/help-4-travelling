@@ -2,6 +2,7 @@ package uy.edu.cure.estacion.de.trabajo;
 
 import uy.edu.cure.servidor.central.dto.*;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaCategorias;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.swing.*;
 import javax.swing.event.TreeSelectionEvent;

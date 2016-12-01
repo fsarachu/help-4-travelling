@@ -1,6 +1,7 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;

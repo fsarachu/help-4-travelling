@@ -4,6 +4,7 @@ import uy.edu.cure.servidor.central.dto.Promocion;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.Servicio;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaServicios;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.swing.*;
 import java.awt.event.*;

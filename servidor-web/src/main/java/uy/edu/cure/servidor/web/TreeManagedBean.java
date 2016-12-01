@@ -4,6 +4,7 @@ import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import uy.edu.cure.servidor.central.dto.Categoria;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaCategorias;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

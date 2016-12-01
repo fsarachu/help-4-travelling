@@ -6,6 +6,7 @@ import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.CopioImagen;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.EmailValidator;
 import uy.edu.cure.servidor.central.lib.controlErroresInteface.FechaValidator;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

@@ -2,6 +2,7 @@ package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaProveedores;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;

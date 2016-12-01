@@ -5,6 +5,7 @@ import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaClientes;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
+import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;

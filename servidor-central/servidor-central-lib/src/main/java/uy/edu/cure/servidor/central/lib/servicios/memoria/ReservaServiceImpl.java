@@ -38,7 +38,7 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva> implements R
         for (Map.Entry<Integer, Reserva> entry : coleccion.entrySet()) {
             reserva = entry.getValue();
 
-            if (reserva.getCliente() == cliente) {
+            if (reserva.getCliente().getId().equals(cliente.getId())) {
                 reservas.add(reserva);
             }
         }

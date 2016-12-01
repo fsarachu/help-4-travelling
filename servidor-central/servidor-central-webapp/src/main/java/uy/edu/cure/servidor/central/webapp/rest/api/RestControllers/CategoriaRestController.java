@@ -52,14 +52,15 @@ public class CategoriaRestController {
         return Response.status(Response.Status.OK).entity(log).build();
     }
 
-    //// revisar esta
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("listarhijos")
-    public ArrayList<Categoria> listarHijos(Categoria padre) {
+    public Response listarHijos(Categoria padre) {
         CategoriaController categoriaController = new CategoriaController();
-        return categoriaController.listarHijos(padre);
+        ListaCategorias log = new ListaCategorias();
+        log.setCategoriaArrayList(categoriaController.listarHijos(padre));
+        return Response.status(Response.Status.OK).entity(log).build();
     }
 
     @PUT
