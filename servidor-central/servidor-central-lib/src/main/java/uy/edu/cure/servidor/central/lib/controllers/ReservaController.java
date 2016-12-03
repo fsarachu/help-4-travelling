@@ -62,4 +62,9 @@ public class ReservaController {
     public ArrayList<Reserva> listarReservasCliente(Cliente cliente) {
         return this.reservaService.listarReservasCliente(cliente);
     }
+
+    public ArrayList<Reserva> listarReservasProveedor(Integer idProveedor) {
+        return this.reservaService.listarReservasProveedor(idProveedor);
+    }
+
 }

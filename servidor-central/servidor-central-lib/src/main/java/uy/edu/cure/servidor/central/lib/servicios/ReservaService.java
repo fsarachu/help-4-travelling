@@ -7,4 +7,6 @@ import java.util.ArrayList;
 
 public interface ReservaService extends GenericService<Reserva> {
     ArrayList<Reserva> listarReservasCliente(Cliente cliente);
+    ArrayList<Reserva> listarReservasProveedor(Integer idProveedor);
+
 }

@@ -33,7 +33,7 @@
 
             <div class="box1 col-lg-2">
                 <h3>Reservas</h3>
-                <h:dataTable value="#{reservaBean.reservaList}" var="reservas" border="0">
+                <h:dataTable rendered="#{reservaBean.cargarReservasProveedor()}" value="#{reservaBean.reservaList}" var="reservas" border="0">
                     <h:column>
                         <h:commandLink action="#{reservaBean.cargarItemsReserva(reservas.id)}"
                                        immediate="true"

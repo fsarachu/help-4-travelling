@@ -9,6 +9,7 @@ import uy.edu.cure.servidor.central.lib.controllers.FacturaController;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ public class ReservaBean implements Serializable {
     private Integer cantidadReservas;
     private List<Reserva> reservaList = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
+    @ManagedProperty("#{loginProveedorBean}")
+    private LoginProveedorBean loginProveedorBean;
 
 
     public ReservaBean() {
@@ -56,6 +59,14 @@ public class ReservaBean implements Serializable {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXCliente";
         RestController rest = new RestController();
         reservaList = rest.doPUT(url, cliente , ListaReservas.class).getReservaArrayList();
+    }
+
+    public boolean cargarReservasProveedor() {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXProveedor/"+ loginProveedorBean.getProveedor().getId();
+        RestController rest = new RestController();
+        reservaList = rest.doGET(url, ListaReservas.class).getReservaArrayList();
+        System.out.print(reservaList.size());
+        return true;
     }
 
     public void cargarItemsReserva(Integer idReserva) {
@@ -117,5 +128,13 @@ public class ReservaBean implements Serializable {
 
     public void setReservaSeleccionada(Integer reservaSeleccionada) {
         this.reservaSeleccionada = reservaSeleccionada;
+    }
+
+    public LoginProveedorBean getLoginProveedorBean() {
+        return loginProveedorBean;
+    }
+
+    public void setLoginProveedorBean(LoginProveedorBean loginProveedorBean) {
+        this.loginProveedorBean = loginProveedorBean;
     }
 }

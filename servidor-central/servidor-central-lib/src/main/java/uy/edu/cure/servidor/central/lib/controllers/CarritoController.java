@@ -50,7 +50,7 @@ public class CarritoController {
 
     public void agregarItem(ItemReserva itemReserva, Carrito carrito) {
         itemReserva.setId(this.itemReservaService.nextId());
-        itemReserva.setCarrito(carrito);
+        //itemReserva.setCarrito(carrito);
         this.itemReservaService.agregar(itemReserva.getId(), itemReserva);
 
         carrito.addItem(itemReserva);

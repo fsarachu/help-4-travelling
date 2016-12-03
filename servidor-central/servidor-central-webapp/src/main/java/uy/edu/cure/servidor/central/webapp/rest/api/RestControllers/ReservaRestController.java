@@ -81,4 +81,14 @@ public class ReservaRestController {
         return Response.status(Response.Status.OK).entity(log).build();
     }
 
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("listarReservaXProveedor/{idProveedor}")
+    public Response listarReservasProveedor(@PathParam("idProveedor") Integer idProveedor) {
+        ListaReservas log = new ListaReservas();
+        log.setReservaArrayList(reservaController.listarReservasProveedor(idProveedor));
+        return Response.status(Response.Status.OK).entity(log).build();
+    }
+
 }

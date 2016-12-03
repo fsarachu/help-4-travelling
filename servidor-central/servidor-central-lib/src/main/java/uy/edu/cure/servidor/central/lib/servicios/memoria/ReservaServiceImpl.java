@@ -45,4 +45,20 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva> implements R
 
         return reservas;
     }
+
+    @Override
+    public ArrayList<Reserva> listarReservasProveedor(Integer idProveedor) {
+        ArrayList<Reserva> reservas = new ArrayList<>();
+        Reserva reserva;
+
+        for (Map.Entry<Integer, Reserva> entry : coleccion.entrySet()) {
+            reserva = entry.getValue();
+            for (int i = 0; i < reserva.getCarrito().getItems().size(); i++) {
+                if (reserva.getCarrito().getItems().get(i).getProducto().getProveedor().getId().equals(idProveedor)) {
+                    reservas.add(reserva);
+                }
+            }
+        }
+        return reservas;
+    }
 }

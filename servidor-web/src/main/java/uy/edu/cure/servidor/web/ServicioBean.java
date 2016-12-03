@@ -27,8 +27,8 @@ public class ServicioBean implements Serializable {
     private List<Producto> listarProducto = new ArrayList<Producto>();
     private List<Servicio> listaServicios = new ArrayList<Servicio>();
     private List<Categoria> listaCategorias = new ArrayList<Categoria>();
-    @ManagedProperty("#{loginClienteBean}")
-    private LoginClienteBean loginClienteBean;
+    @ManagedProperty("#{loginProveedorBean}")
+    private LoginProveedorBean loginProveedorBean;
 
     private String buscar;
 
@@ -44,12 +44,24 @@ public class ServicioBean implements Serializable {
     }
 
     public String buscarServicio(Integer id) {
-        if (id !=null) {
+        if (id != null) {
             servicio = obtenerRest(id);
             for (Categoria categoria : servicio.getCategorias()) {
                 listaCategorias.add(categoria);
             }
             return "MostrarServicios?faces-redirect=true";
+        } else {
+            return null;
+        }
+    }
+
+    public String buscarServicioProveedor(Integer id) {
+        if (id !=null) {
+            servicio = obtenerRest(id);
+            for (Categoria categoria : servicio.getCategorias()) {
+                listaCategorias.add(categoria);
+            }
+            return "DetalleServicioProveedor?faces-redirect=true";
         } else {
             return null;
         }
@@ -64,11 +76,12 @@ public class ServicioBean implements Serializable {
         return u;
     }
 
-    public void cargarServicioXProveedor(Integer idProveedor) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/obtenerserviciosXproveedor/"+ idProveedor;
+    public boolean cargarServicioXProveedor() {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/obtenerserviciosXproveedor/"+ loginProveedorBean.getProveedor().getId();
         RestController rest = new RestController();
         ListaProductos u = rest.doGET(url, ListaProductos.class);
         listarProductosServicio = u.getProductoArrayList();
+        return true;
     }
 
     public String cargaServiciosCarrito(Integer id) {
@@ -193,11 +206,11 @@ public class ServicioBean implements Serializable {
         this.buscar = buscar;
     }
 
-    public LoginClienteBean getLoginClienteBean() {
-        return loginClienteBean;
+    public LoginProveedorBean getLoginProveedorBean() {
+        return loginProveedorBean;
     }
 
-    public void setLoginClienteBean(LoginClienteBean loginClienteBean) {
-        this.loginClienteBean = loginClienteBean;
+    public void setLoginProveedorBean(LoginProveedorBean loginProveedorBean) {
+        this.loginProveedorBean = loginProveedorBean;
     }
 }

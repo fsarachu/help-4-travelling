@@ -20,25 +20,14 @@ public class AuthFilter implements Filter {
         if (loginBean == null && loginProveedorBean == null) {
             String contextPath = ((HttpServletRequest) request).getContextPath();
             ((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
+        } else if (!loginBean.isLoggedIn() && !loginProveedorBean.isLoggedIn()) {
+            String contextPath = ((HttpServletRequest) request).getContextPath();
+            ((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
+        } else {
+            chain.doFilter(request, response);
         }
-        else if (loginBean != null && loginProveedorBean == null) {
-            if (!loginBean.isLoggedIn()) {
-                String contextPath = ((HttpServletRequest) request).getContextPath();
-                ((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
-            } else {
-                chain.doFilter(request, response);
-            }
-        }
-        else {
-            if (!loginProveedorBean.isLoggedIn()) {
-                String contextPath = ((HttpServletRequest) request).getContextPath();
-                ((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
-            } else {
-                chain.doFilter(request, response);
-            }
-        }
-
     }
+
 
     @Override
     public void init(FilterConfig arg0) throws ServletException {

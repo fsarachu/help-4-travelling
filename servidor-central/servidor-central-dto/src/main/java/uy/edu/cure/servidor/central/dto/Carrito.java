@@ -51,6 +51,7 @@ public class Carrito {
         this.items = items;
     }
 
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -58,6 +59,7 @@ public class Carrito {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+
 
     public double getTotal() {
         return total;
