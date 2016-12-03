@@ -44,7 +44,6 @@ public class ProductoServiceImpl extends GenericServiceImpl<Producto> implements
                         servicios.add(servicio);
                     }
                 }
-
             }
         }
 

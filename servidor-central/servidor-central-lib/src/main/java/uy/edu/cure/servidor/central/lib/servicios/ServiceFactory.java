@@ -38,4 +38,6 @@ public class ServiceFactory {
     }
 
     public static FacturaService getFacturaService() { return FacturaServiceImpl.getInstance(); }
+
+    public  static LogService getLogService() { return LogServiceImpl.getInstance(); }
 }
