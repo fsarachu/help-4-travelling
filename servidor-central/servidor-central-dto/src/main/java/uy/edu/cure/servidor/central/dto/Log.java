@@ -2,10 +2,19 @@ package uy.edu.cure.servidor.central.dto;
 
 
 public class Log {
+    private Integer id;
     private String usr;
     private String ip;
     private String url;
     private String so;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getUsr() {return usr; }
 

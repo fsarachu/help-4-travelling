@@ -1,8 +1,7 @@
 package uy.edu.cure.servidor.web;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import eu.bitwalker.useragentutils.UserAgent;
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.dto.Log;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
@@ -14,15 +13,11 @@ import java.io.Serializable;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Random;
-import java.util.logging.Logger;
 
 
 @ManagedBean(name = "loginClienteBean")
 @SessionScoped
 public class LoginClienteBean implements Serializable {
-
-    final static Logger logueo = Logger.getLogger(LoginClienteBean.class.getName());
-    private HttpServletRequest request;
 
     private boolean loggedIn = false;
     private boolean primerlogin = true;
@@ -114,12 +109,12 @@ public class LoginClienteBean implements Serializable {
                 mensaje = null;
                 cantidadItems = cliente.getCarrito().getItems().size();
 
-
-                logueo.warning("USR : " + cliente.getNombre());
-                logueo.warning("IP  : " + InetAddress.getLocalHost());
-                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                logueo.warning("S.O : " + System.getProperty("os.name"));
-
+                Log log = new Log();
+                log.setUsr(cliente.getNombre());
+                log.setIp(""+InetAddress.getLocalHost());
+                log.setUrl("http://localhost:8080/secured/LoginBean");
+                log.setSo(System.getProperty("os.name"));
+                guardarLogRest(log);
 
                 return "secured/index.xhtml?faces-redirect=true";
 
@@ -136,20 +131,12 @@ public class LoginClienteBean implements Serializable {
                 cantidadItems = cliente.getCarrito().getItems().size();
                 reservaBean.cargarReservas(cliente);
 
-                logueo.warning("USR : " + cliente.getNombre());
-                logueo.warning("IP  : " + InetAddress.getLocalHost());
-                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                logueo.warning("S.O : " + System.getProperty("os.name"));
-
-
-                String userAgent = request.getHeader("user-agent");
-                UserAgent ua = UserAgent.parseUserAgentString(userAgent);
-                eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
-
-                String browserName = ua.getBrowser().toString();
-                int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
-                logueo.warning("BROWSER" + browserName);
-
+                Log log = new Log();
+                log.setUsr(cliente.getNombre());
+                log.setIp(""+InetAddress.getLocalHost());
+                log.setUrl("http://localhost:8080/secured/LoginBean");
+                log.setSo(System.getProperty("os.name"));
+                guardarLogRest(log);
 
                 return "secured/index?faces-redirect=true";
             } else {
@@ -164,11 +151,16 @@ public class LoginClienteBean implements Serializable {
     }
 
 
+    public void guardarLogRest(Log log){
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/log/guardar";
+        RestController rest = new RestController();
+        boolean u = rest.doGET(url, boolean.class);
+    }
+
     public void hardcodeoRest() {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/hardcodeo/cargar";
         RestController rest = new RestController();
         boolean u = rest.doGET(url, boolean.class);
-        System.out.print(u);
     }
 
     public boolean loginRest(String nickname, String password) {
@@ -307,15 +299,5 @@ public class LoginClienteBean implements Serializable {
         this.cantidadItems = cantidadItems;
     }
 
-    public static Logger getLogueo() {
-        return logueo;
-    }
-
-    public HttpServletRequest getRequest() {
-        return request;
-    }
-
-    public void setRequest(HttpServletRequest request) {
-        this.request = request;
-    }
+   
 }
