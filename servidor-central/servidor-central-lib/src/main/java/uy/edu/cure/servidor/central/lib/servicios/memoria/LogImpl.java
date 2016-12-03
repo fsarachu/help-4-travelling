@@ -8,14 +8,14 @@ import java.util.ArrayList;
 import java.util.Map;
 
 
-public class LogServiceImpl extends GenericServiceImpl<Log> implements LogService {
-    private static LogServiceImpl ourInstance = new LogServiceImpl();
+public class LogImpl extends GenericServiceImpl<Log> implements LogService {
+    private static LogImpl ourInstance = new LogImpl();
 
-    public static LogServiceImpl getInstance() {
+    public static LogImpl getInstance() {
         return ourInstance;
     }
 
-    private LogServiceImpl() {
+    private LogImpl() {
         super();
     }
 
@@ -31,9 +31,8 @@ public class LogServiceImpl extends GenericServiceImpl<Log> implements LogServic
 }
 
 
-    /*
 
-    public ArrayList<Log> listarServiciosPorCategoria(Categoria categoria) {
+   /* public ArrayList<Log> listarServiciosPorCategoria(Categoria categoria) {
         ArrayList<Log> servicios = new ArrayList<>();
 
         for (Map.Entry<Integer, Producto> entry : coleccion.entrySet()) {
@@ -53,7 +52,6 @@ public class LogServiceImpl extends GenericServiceImpl<Log> implements LogServic
 
         return servicios;
 
-          }
+          }*/
 
-        */
 
