@@ -49,7 +49,7 @@
                 </ul>
 
                 <!-- En caso de no estar logueado -->
-                <h:outputLink rendered="#{!loginBean.isLoggedIn()}" value="login.xhtml"> Log In </h:outputLink>
+                <h:outputLink rendered="#{!loginProveedorBean.isLoggedIn()}" value="login.xhtml"> Log In </h:outputLink>
                 <!-- En caso de estarlo -->
                 <!--<h:panelGroup rendered="#{loginBean.isLoggedIn()}"></h:panelGroup>
                 <a href="#">Bienvenid@ #{loginBean.getCliente().nombre}</a>-->
@@ -59,15 +59,15 @@
 
                     <li class="active">
 
-                        <h:form rendered="#{loginBean.isLoggedIn()}">
-                            <h:panelGroup rendered="#{loginBean.isLoggedIn()}"></h:panelGroup>
-                            <label>Bienvenid@ #{loginBean.getCliente().nombre}</label>
+                        <h:form rendered="#{loginProveedorBean.isLoggedIn()}">
+                            <h:panelGroup rendered="#{loginProveedorBean.isLoggedIn()}"></h:panelGroup>
+                            <label>Bienvenid@ #{loginProveedorBean.proveedor.nombre}</label>
                         </h:form>
 
-                        <h:form rendered="#{loginBean.isLoggedIn()}">
+                        <h:form rendered="#{loginProveedorBean.isLoggedIn()}">
                             <span class="glyphicon glyphicon-log-out"/>
-                            <h:commandLink rendered="#{loginBean.isLoggedIn()}"
-                                           action="#{loginBean.cerrarSesion() }" href="login.xhtml"
+                            <h:commandLink rendered="#{loginProveedorBean.isLoggedIn()}"
+                                           action="#{loginProveedorBean.cerrarSesion() }" href="login.xhtml"
                                            value="Log Out">
                             </h:commandLink>
                         </h:form>
@@ -76,8 +76,8 @@
                 </ul>
                 <ul class="nav navbar-right">
                     <li>
-                        <h:panelGroup rendered="#{loginBean.isLoggedIn()}">
-                            <img src="#{loginBean.cliente.imagen}" style="width: 50px ; height:50px"/>
+                        <h:panelGroup rendered="#{loginProveedorBean.isLoggedIn()}">
+                            <img src="#{loginProveedorBean.proveedor.imagen}" style="width: 50px ; height:50px"/>
                         </h:panelGroup>
 
                     </li>

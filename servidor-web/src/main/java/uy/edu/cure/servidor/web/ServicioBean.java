@@ -27,8 +27,8 @@ public class ServicioBean implements Serializable {
     private List<Producto> listarProducto = new ArrayList<Producto>();
     private List<Servicio> listaServicios = new ArrayList<Servicio>();
     private List<Categoria> listaCategorias = new ArrayList<Categoria>();
-    @ManagedProperty("#{loginBean}")
-    private LoginBean loginBean;
+    @ManagedProperty("#{loginClienteBean}")
+    private LoginClienteBean loginClienteBean;
 
     private String buscar;
 
@@ -64,8 +64,8 @@ public class ServicioBean implements Serializable {
         return u;
     }
 
-    public void cargarServicioXProveedor() {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/obtenerserviciosXproveedor/"+loginBean.getProveedor().getId();
+    public void cargarServicioXProveedor(Integer idProveedor) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/producto/obtenerserviciosXproveedor/"+ idProveedor;
         RestController rest = new RestController();
         ListaProductos u = rest.doGET(url, ListaProductos.class);
         listarProductosServicio = u.getProductoArrayList();
@@ -193,11 +193,11 @@ public class ServicioBean implements Serializable {
         this.buscar = buscar;
     }
 
-    public LoginBean getLoginBean() {
-        return loginBean;
+    public LoginClienteBean getLoginClienteBean() {
+        return loginClienteBean;
     }
 
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
+    public void setLoginClienteBean(LoginClienteBean loginClienteBean) {
+        this.loginClienteBean = loginClienteBean;
     }
 }

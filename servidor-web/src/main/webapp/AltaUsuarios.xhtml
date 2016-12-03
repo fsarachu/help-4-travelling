@@ -44,75 +44,75 @@
                     <div align="left">
                         <label>Nickname:</label>
                         <h:inputText type="text" name="name" id="inputID"
-                                     value="#{loginBean.cliente.nickname}" title="">
+                                     value="#{loginClienteBean.cliente.nickname}" title="">
                             <f:ajax event="keyup" render="mensaje-nombre"
-                                    listener="#{loginBean.altaUsuarioExiste(null)}"/>
+                                    listener="#{loginClienteBean.altaUsuarioExiste(null)}"/>
                         </h:inputText>
-                        <h:outputText id="mensaje-nombre" class="mensaje-error" value="#{loginBean.mensaje}"/>
+                        <h:outputText id="mensaje-nombre" class="mensaje-error" value="#{loginClienteBean.mensaje}"/>
                     </div>
                     <div align="left">
                         <label>Correo:</label>
                         <h:inputText type="text" name="name" id="inputCORREO"
-                                     value="#{loginBean.cliente.correo}" title="" required="true"
+                                     value="#{loginClienteBean.cliente.correo}" title="" required="true"
                                      validatorMessage="Email invalido" requiredMessage="El correo es requerido">
                             <f:validateRegex
                                     pattern="[\w\.-]*[a-zA-Z0-9_]@[\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]"/>
                             <f:ajax
                                     event="keyup" render="@this inputMessage">
                             </f:ajax>
-                            <f:ajax event="keyup" render="mensaje-mail" listener="#{loginBean.emailExiste(null)}"/>
+                            <f:ajax event="keyup" render="mensaje-mail" listener="#{loginClienteBean.emailExiste(null)}"/>
                         </h:inputText>
                         <h:message id="inputMessage" for="inputCORREO"/>
-                        <h:outputText id="mensaje-mail" class="mensaje-error" value="#{loginBean.mensaje}"/>
+                        <h:outputText id="mensaje-mail" class="mensaje-error" value="#{loginClienteBean.mensaje}"/>
                     </div>
                     <div align="left">
                     </div>
                     <div align="left">
                         <label>Contrasena:</label>
                         <h:inputSecret type="text" name="name" id="inputCONTRASENA" style="width: 100px"
-                                       value="#{loginBean.cliente.contrasena}" title="" required="true"
+                                       value="#{loginClienteBean.cliente.contrasena}" title="" required="true"
                                        requiredMessage="La contrasena es requerida">
                             <span id="comprobarusuario"></span>
                         </h:inputSecret>
                         <label>Repita Contrasena:</label>
                         <h:inputSecret type="text" name="name" id="inputCONTRASENABIS" style="width: 100px"
-                                       value="#{loginBean.contrasena}" title="" required="true"
+                                       value="#{loginClienteBean.contrasena}" title="" required="true"
                                        requiredMessage="La contrasena es requerida">
                         </h:inputSecret>
                     </div>
                     <div align="left">
                         <label>Nombre:</label>
                         <h:inputText type="text" name="name" id="inputNOMBRE"
-                                     value="#{loginBean.cliente.nombre}" title="" required="true"
+                                     value="#{loginClienteBean.cliente.nombre}" title="" required="true"
                                      requiredMessage="El nombre es requerido">
                         </h:inputText>
                     </div>
                     <div align="left">
                         <label>Apellido:</label>
                         <h:inputText type="text" name="name" id="inputAPELLIDO"
-                                     value="#{loginBean.cliente.apellido}" title="" required="true"
+                                     value="#{loginClienteBean.cliente.apellido}" title="" required="true"
                                      requiredMessage="El apellido es requerido">
                         </h:inputText>
                     </div>
                     <div align="left">
                         <label>Fecha Nacimiento:</label>
                         <p:calendar required="true" requiredMessage="La fecha de nacimiento es requerida"
-                                    value="#{loginBean.cliente.fechaNacimiento}" mask="99/99/9999">
+                                    value="#{loginClienteBean.cliente.fechaNacimiento}" mask="99/99/9999">
                             <f:convertDateTime pattern="dd/MM/yyyy"/>
                         </p:calendar>
                     </div>
                     <div align="left">
                         <label for="inputFile">Seleccione una imagen</label>
-                        <input type="file" name="inputFile" id="inputFile" value="#{loginBean.cliente.imagen}"/>
+                        <input type="file" name="inputFile" id="inputFile" value="#{loginClienteBean.cliente.imagen}"/>
                     </div>
                     <div align="center">
                         <h:commandButton
-                                value="Guardar" action="#{loginBean.nuevoUsuario}" type="submit">
+                                value="Guardar" action="#{loginClienteBean.nuevoUsuario}" type="submit">
                         </h:commandButton>
                     </div>
                     <div align="left">
                         <h:outputLabel
-                                rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
+                                rendered="#{!loginClienteBean.mensaje.equals(null)}">#{loginClienteBean.mensaje}</h:outputLabel>
                     </div>
                 </div>
             </h:form>

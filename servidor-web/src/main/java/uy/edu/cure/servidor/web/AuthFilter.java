@@ -7,23 +7,41 @@ import java.io.IOException;
 
 public class AuthFilter implements Filter {
 
-	@Override
-	public void destroy() {
-	}
+    @Override
+    public void destroy() {
+    }
 
-	@Override
-	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-			throws IOException, ServletException {
-		LoginBean loginBean = (LoginBean) ((HttpServletRequest) request).getSession().getAttribute("loginBean");
-		if (loginBean == null || !loginBean.isLoggedIn()) {
-			String contextPath = ((HttpServletRequest) request).getContextPath();
-			((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
-		}else
-			chain.doFilter(request, response);
-	}
+    @Override
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
+        LoginClienteBean loginBean = (LoginClienteBean) ((HttpServletRequest) request).getSession().getAttribute("loginClienteBean");
+        LoginProveedorBean loginProveedorBean = (LoginProveedorBean) ((HttpServletRequest) request).getSession().getAttribute("loginProveedorBean");
 
-	@Override
-	public void init(FilterConfig arg0) throws ServletException {
-	}
+        if (loginBean == null && loginProveedorBean == null) {
+            String contextPath = ((HttpServletRequest) request).getContextPath();
+            ((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
+        }
+        else if (loginBean != null && loginProveedorBean == null) {
+            if (!loginBean.isLoggedIn()) {
+                String contextPath = ((HttpServletRequest) request).getContextPath();
+                ((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
+            } else {
+                chain.doFilter(request, response);
+            }
+        }
+        else {
+            if (!loginProveedorBean.isLoggedIn()) {
+                String contextPath = ((HttpServletRequest) request).getContextPath();
+                ((HttpServletResponse) response).sendRedirect(contextPath + "/login.xhtml");
+            } else {
+                chain.doFilter(request, response);
+            }
+        }
+
+    }
+
+    @Override
+    public void init(FilterConfig arg0) throws ServletException {
+    }
 
 }

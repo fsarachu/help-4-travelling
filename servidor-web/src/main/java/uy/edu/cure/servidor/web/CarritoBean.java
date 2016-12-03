@@ -1,7 +1,6 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Carrito;
-import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Item_Carrito;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
@@ -29,8 +28,8 @@ public class CarritoBean implements Serializable{
     private List<ItemReserva> itemReservas = new ArrayList<ItemReserva>();
     @ManagedProperty("#{servicioBean}")
     private ServicioBean servicioBean;
-    @ManagedProperty("#{loginBean}")
-    private LoginBean loginBean;
+    @ManagedProperty("#{loginClienteBean}")
+    private LoginClienteBean loginClienteBean;
     @ManagedProperty("#{reservaBean}")
     private ReservaBean reservaBean;
 
@@ -39,7 +38,7 @@ public class CarritoBean implements Serializable{
 
     public void agregar() {
         ItemReserva item = new ItemReserva();
-        carrito = loginBean.getCliente().getCarrito();
+        carrito = loginClienteBean.getCliente().getCarrito();
         item.setCarrito(carrito);
         item.setCantidad(cantidad);
         item.setFechaInicio(fechaInicio);
@@ -51,7 +50,7 @@ public class CarritoBean implements Serializable{
         long dias = diferenciaEn_ms / (1000 * 60 * 60 * 24);
         item.setSubTotal(itemCantidad * itemPrecio * dias);
         agregarItemRest(item, item.getCarrito());
-        loginBean.setCantidadItems(getCarrito().getItems().size());
+        loginClienteBean.setCantidadItems(getCarrito().getItems().size());
     }
 
 
@@ -62,21 +61,21 @@ public class CarritoBean implements Serializable{
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/carrito/agregaritem";
         RestController rest = new RestController();
         Item_Carrito u = rest.doPUT(url, item_carrito  , Item_Carrito.class);
-        loginBean.getCliente().setCarrito(u.getCarrito());
+        loginClienteBean.getCliente().setCarrito(u.getCarrito());
         totalCarrito();
     }
 
     public void confirmarCarrito() {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/nueva/";
         RestController rest = new RestController();
-        boolean u = rest.doPUT(url, loginBean.getCliente() , boolean.class);
-        loginBean.setCantidadItems(loginBean.getCliente().getCarrito().getItems().size());
+        boolean u = rest.doPUT(url, loginClienteBean.getCliente() , boolean.class);
+        loginClienteBean.setCantidadItems(loginClienteBean.getCliente().getCarrito().getItems().size());
         mensaje = "Reserva Realizada con exito";
     }
 
 
     public void mostrarCarrito() {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/carrito/obtener/"+loginBean.getCliente().getCarrito().getId();
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/carrito/obtener/"+ loginClienteBean.getCliente().getCarrito().getId();
         RestController rest = new RestController();
         Carrito u = rest.doGET(url, Carrito.class);
         if (u != null) {
@@ -92,7 +91,7 @@ public class CarritoBean implements Serializable{
             String url = "http://localhost:8080/servidor-central-webapp/rest/api/carrito/actualizarTotal";
             RestController rest = new RestController();
             boolean u = rest.doPUT(url, carrito , boolean.class);
-            carrito.setTotal(loginBean.getCliente().getCarrito().getTotal());
+            carrito.setTotal(loginClienteBean.getCliente().getCarrito().getTotal());
         }
         return mensaje = null;
     }
@@ -169,12 +168,12 @@ public class CarritoBean implements Serializable{
         this.servicioBean = servicioBean;
     }
 
-    public LoginBean getLoginBean() {
-        return loginBean;
+    public LoginClienteBean getLoginClienteBean() {
+        return loginClienteBean;
     }
 
-    public void setLoginBean(LoginBean loginBean) {
-        this.loginBean = loginBean;
+    public void setLoginClienteBean(LoginClienteBean loginClienteBean) {
+        this.loginClienteBean = loginClienteBean;
     }
 
     public ReservaBean getReservaBean() {

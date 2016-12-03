@@ -1,8 +1,8 @@
 package uy.edu.cure.servidor.web;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import eu.bitwalker.useragentutils.UserAgent;
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
@@ -17,27 +17,27 @@ import java.util.Random;
 import java.util.logging.Logger;
 
 
-@ManagedBean
+@ManagedBean(name = "loginClienteBean")
 @SessionScoped
-public class LoginBean implements Serializable {
+public class LoginClienteBean implements Serializable {
 
-    final static Logger logueo = Logger.getLogger(LoginBean.class.getName());
+    final static Logger logueo = Logger.getLogger(LoginClienteBean.class.getName());
     private HttpServletRequest request;
 
-    private boolean loggedIn;
-    private boolean primerlogin;
+    private boolean loggedIn = false;
+    private boolean primerlogin = true;
     private String username = "not loggedin";
     private String mensaje;
     private Cliente cliente;
-    private Proveedor proveedor;
     private String contrasena;
     private Integer cantidadItems;
     @ManagedProperty("#{reservaBean}")
     private ReservaBean reservaBean;
 
-    public LoginBean() {
-        primerlogin = true;
+
+    public LoginClienteBean() {
     }
+
 
     public boolean isLoggedIn() {
         return loggedIn;
@@ -82,16 +82,6 @@ public class LoginBean implements Serializable {
         this.cliente = cliente;
     }
 
-    public Proveedor getProveedor() {
-        if (proveedor == null) {
-            proveedor = new Proveedor();
-        }
-        return proveedor;
-    }
-
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
 
     public boolean isPrimerlogin() {
         return primerlogin;
@@ -113,156 +103,64 @@ public class LoginBean implements Serializable {
         if (primerlogin) {
             hardcodeoRest();
             primerlogin = false;
-
-
         }
         String a = "@";
         String correo = cliente.getNickname();
         int intIndex = correo.indexOf(a);
         if (intIndex == -1) {
-            cliente = obtenerXNombreRest(cliente.getNickname());
-            if (cliente != null) {
-                if (loginRest(cliente.getNickname(), cliente.getContrasena())) {
-                    loggedIn = true;
-                    mensaje = null;
-                    cantidadItems = cliente.getCarrito().getItems().size();
+            if (loginRest(cliente.getNickname(), cliente.getContrasena())) {
+                cliente = obtenerXNombreRest(cliente.getNickname());
+                loggedIn = true;
+                mensaje = null;
+                cantidadItems = cliente.getCarrito().getItems().size();
 
 
-                    logueo.warning("USR : " + cliente.getNombre());
-                    logueo.warning("IP  : " + InetAddress.getLocalHost());
-                    logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                    logueo.warning("S.O : " + System.getProperty("os.name"));
+                logueo.warning("USR : " + cliente.getNombre());
+                logueo.warning("IP  : " + InetAddress.getLocalHost());
+                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
+                logueo.warning("S.O : " + System.getProperty("os.name"));
 
 
+                return "secured/index.xhtml?faces-redirect=true";
 
-            /*  String userAgent = request.getHeader("user-agent");
-                UserAgent ua = UserAgent.parseUserAgentString(userAgent);
-                eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
-
-                String browserName = ua.getBrowser().toString();
-                int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
-                logueo.warning("BROWSER"+ browserName);
-            */
-
-
-                    return "secured/index?faces-redirect=true";
-
-                } else {
-                    mensaje = "Usuario no existe";
-                }
+            } else {
+                mensaje = "Usuario no existe";
             }
             return null;
         } else {
             cliente.setCorreo(cliente.getNickname());
-            cliente = obtenerXMailRest(cliente.getCorreo());
-            if (cliente != null) {
-                if (comprobarloginMailRest(cliente.getCorreo(), cliente.getContrasena()) && proveedor == null) {
-                    loggedIn = true;
-                    mensaje = null;
-                    cantidadItems = cliente.getCarrito().getItems().size();
-                    reservaBean.cargarReservas(cliente);
+            if (comprobarloginMailRest(cliente.getCorreo(), cliente.getContrasena())) {
+                loggedIn = true;
+                mensaje = null;
+                cliente = obtenerXMailRest(cliente.getCorreo());
+                cantidadItems = cliente.getCarrito().getItems().size();
+                reservaBean.cargarReservas(cliente);
 
-                    logueo.warning("USR : " + cliente.getNombre());
-                    logueo.warning("IP  : " + InetAddress.getLocalHost());
-                    logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                    logueo.warning("S.O : " + System.getProperty("os.name"));
-
-
-                    String userAgent = request.getHeader("user-agent");
-                    UserAgent ua = UserAgent.parseUserAgentString(userAgent);
-                    eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
-
-                    String browserName = ua.getBrowser().toString();
-                    int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
-                    logueo.warning("BROWSER" + browserName);
+                logueo.warning("USR : " + cliente.getNombre());
+                logueo.warning("IP  : " + InetAddress.getLocalHost());
+                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
+                logueo.warning("S.O : " + System.getProperty("os.name"));
 
 
-                    return "secured/index?faces-redirect=true";
-                } else {
-                    if (existeMailRest(cliente.getCorreo())) {
-                        mensaje = "Contraseña incorrecta";
-                    } else {
-                        mensaje = "Usuario no existe";
-                    }
-                    return null;
-                }
-            }
-        }
-        return null;
-    }
-
-    public String controloProveedor() throws UnknownHostException {
-        if (primerlogin) {
-            hardcodeoRest();
-            primerlogin = false;
-        }
-        String a = "@";
-        String correo = proveedor.getNickname();
-        int intIndex = correo.indexOf(a);
-        proveedor = obtenerXNombreRestProveedor(proveedor.getNickname());
-        if (proveedor != null) {
-            if (intIndex == -1) {
-                if (loginRestProveedor(proveedor.getNickname(), proveedor.getContrasena())) {
-                    loggedIn = true;
-                    mensaje = null;
-
-                    logueo.warning("USR : " + proveedor.getNombre());
-                    logueo.warning("IP  : " + InetAddress.getLocalHost());
-                    logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                    logueo.warning("S.O : " + System.getProperty("os.name"));
-
-
-
-            /*  String userAgent = request.getHeader("user-agent");
+                String userAgent = request.getHeader("user-agent");
                 UserAgent ua = UserAgent.parseUserAgentString(userAgent);
                 eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
 
                 String browserName = ua.getBrowser().toString();
                 int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
-                logueo.warning("BROWSER"+ browserName);
-            */
+                logueo.warning("BROWSER" + browserName);
 
 
-                    return "secured/indexProveedores?faces-redirect=true";
-
+                return "secured/index?faces-redirect=true";
+            } else {
+                if (existeMailRest(cliente.getCorreo())) {
+                    mensaje = "Contraseña incorrecta";
                 } else {
-                    mensaje = "Proveedor no existe";
+                    mensaje = "Usuario no existe";
                 }
                 return null;
-            } else {
-                proveedor.setCorreo(proveedor.getNickname());
-                if (comprobarloginMailRest(proveedor.getCorreo(), proveedor.getContrasena())) {
-                    proveedor = obtenerXMailRestProveedor(proveedor.getCorreo());
-                    loggedIn = true;
-                    mensaje = null;
-
-                    logueo.warning("USR : " + proveedor.getNombre());
-                    logueo.warning("IP  : " + InetAddress.getLocalHost());
-                    logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                    logueo.warning("S.O : " + System.getProperty("os.name"));
-
-
-                    String userAgent = request.getHeader("user-agent");
-                    UserAgent ua = UserAgent.parseUserAgentString(userAgent);
-                    eu.bitwalker.useragentutils.Version browserVersion = ua.getBrowserVersion();
-
-                    String browserName = ua.getBrowser().toString();
-                    int majVersion = Integer.parseInt(browserVersion.getMajorVersion());
-                    logueo.warning("BROWSER" + browserName);
-
-
-                    return "secured/indexProveedores?faces-redirect=true";
-                } else {
-                    if (existeMailRest(proveedor.getCorreo())) {
-                        mensaje = "Contraseña incorrecta";
-                    } else {
-                        mensaje = "Proveedor no existe";
-                    }
-                    return null;
-                }
             }
         }
-        return null;
     }
 
 
@@ -278,14 +176,7 @@ public class LoginBean implements Serializable {
         RestController rest = new RestController();
         boolean u = rest.doGET(url, boolean.class);
         System.out.print(u);
-        return true;
-    }
-
-    public boolean loginRestProveedor(String nickname, String password) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/login/" + nickname + "/" + password;
-        RestController rest = new RestController();
-        boolean u = rest.doGET(url, boolean.class);
-        return true;
+        return u;
     }
 
 
@@ -306,18 +197,12 @@ public class LoginBean implements Serializable {
 
 
     public Cliente obtenerXNombreRest(String cliente) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXNombre/" + cliente;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtenerXNombre/"+cliente;
         RestController rest = new RestController();
-        Cliente u = rest.doGET(url, Cliente.class);
-        return u;
+        Cliente nuevo = rest.doGET(url, Cliente.class);
+        return nuevo;
     }
 
-    public Proveedor obtenerXNombreRestProveedor(String cliente) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/obtenerXNombre/" + cliente;
-        RestController rest = new RestController();
-        Proveedor u = rest.doGET(url, Proveedor.class);
-        return u;
-    }
 
     public boolean existeMailRest(String correo) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/emailExiste/" + correo;
@@ -333,13 +218,6 @@ public class LoginBean implements Serializable {
         return u;
     }
 
-
-    public Proveedor obtenerXMailRestProveedor(String mail) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/proveedor/obtenerXMail/" + mail;
-        RestController rest = new RestController();
-        Proveedor u = rest.doGET(url, Proveedor.class);
-        return u;
-    }
 
     public boolean nicknameExisteRest(String nickname) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nicknameExiste/" + nickname;
@@ -429,5 +307,15 @@ public class LoginBean implements Serializable {
         this.cantidadItems = cantidadItems;
     }
 
+    public static Logger getLogueo() {
+        return logueo;
+    }
 
+    public HttpServletRequest getRequest() {
+        return request;
+    }
+
+    public void setRequest(HttpServletRequest request) {
+        this.request = request;
+    }
 }

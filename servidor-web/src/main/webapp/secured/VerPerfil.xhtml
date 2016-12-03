@@ -32,11 +32,11 @@
 
     <div class="box1 col-lg-2">
 
-        <div><h:outputLabel>Nickname: #{loginBean.cliente.nickname}</h:outputLabel></div>
-        <div><h:outputLabel>Nombre: #{loginBean.cliente.nombre}</h:outputLabel></div>
-        <div><h:outputLabel>Apellido: #{loginBean.cliente.apellido}</h:outputLabel></div>
-        <div><h:outputLabel>Correo: #{loginBean.cliente.correo}</h:outputLabel></div>
-        <div><h:outputLabel>Fecha Nacimiento: #{loginBean.cliente.fechaNacimiento}</h:outputLabel></div>
+        <div><h:outputLabel>Nickname: #{loginClienteBean.cliente.nickname}</h:outputLabel></div>
+        <div><h:outputLabel>Nombre: #{loginClienteBean.cliente.nombre}</h:outputLabel></div>
+        <div><h:outputLabel>Apellido: #{loginClienteBean.cliente.apellido}</h:outputLabel></div>
+        <div><h:outputLabel>Correo: #{loginClienteBean.cliente.correo}</h:outputLabel></div>
+        <div><h:outputLabel>Fecha Nacimiento: #{loginClienteBean.cliente.fechaNacimiento}</h:outputLabel></div>
 
     </div>
 
@@ -59,7 +59,7 @@
     </div>
 
     <div class="box3 col-lg-2">
-        <img id="mainImage" class="mainImage" src="#{loginBean.cliente.imagen}" alt="FOTO"/>
+        <img id="mainImage" class="mainImage" src="#{loginClienteBean.cliente.imagen}" alt="FOTO"/>
     </div>
         <div class="col-lg-3"></div>
     </div>

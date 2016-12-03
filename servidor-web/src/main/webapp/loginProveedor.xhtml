@@ -37,7 +37,7 @@
                         <h:inputText
                                 styleClass="col-lg-12"
                                 required="true" requiredMessage="Debe ingresar un usuario"
-                                value="#{loginBean.proveedor.nickname}">
+                                value="#{loginProveedorBean.proveedor.nickname}">
                         </h:inputText>
                     </div>
 
@@ -46,7 +46,7 @@
                         <h:inputSecret
                                 styleClass="col-lg-12"
                                 required="true" requiredMessage="Debe ingresar la contrasena"
-                                value="#{loginBean.proveedor.contrasena}">
+                                value="#{loginProveedorBean.proveedor.contrasena}">
                         </h:inputSecret>
                     </div>
                 </div>
@@ -55,12 +55,12 @@
                 <div class="row center-block">
                     <h:commandButton
                             styleClass="btn btn-primary center-block col-lg-12"
-                            value="Proveedor" action="#{loginBean.controloProveedor}">
+                            value="Proveedor" action="#{loginProveedorBean.controloProveedor}">
                     </h:commandButton>
                 </div>
                 <div>
                     <h:outputLabel
-                            rendered="#{!loginBean.mensaje.equals(null)}">#{loginBean.mensaje}</h:outputLabel>
+                            rendered="#{!loginProveedorBean.mensaje.equals(null)}">#{loginProveedorBean.mensaje}</h:outputLabel>
                 </div>
             </h:form>
         </div>

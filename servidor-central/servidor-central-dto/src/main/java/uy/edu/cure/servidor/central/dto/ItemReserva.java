@@ -18,15 +18,6 @@ public class ItemReserva {
     public ItemReserva() {
     }
 
-    public ItemReserva(Integer id, Carrito carrito, Producto producto, double subTotal, Date fechaInicio, Date fechaFin, int cantidad) {
-        this.id = id;
-        this.carrito = carrito;
-        this.producto = producto;
-        this.subTotal = subTotal;
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.cantidad = cantidad;
-    }
 
     public Integer getId() {
         return id;
@@ -79,7 +70,7 @@ public class ItemReserva {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 
