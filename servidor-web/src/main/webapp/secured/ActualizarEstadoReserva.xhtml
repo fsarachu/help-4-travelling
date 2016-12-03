@@ -33,26 +33,31 @@
 
             <div class="box1 col-lg-2">
                 <h3>Reservas</h3>
-                <h:dataTable rendered="#{reservaBean.cargarReservasProveedor()}" value="#{reservaBean.reservaList}" var="reservas" border="0">
+                <h:dataTable rendered="#{reservaBean.cargarReservasProveedor()}"
+                             value="#{reservaBean.reservaListProv}" var="reservas" border="1">
                     <h:column>
-                        <h:commandLink action="#{reservaBean.cargarItemsReserva(reservas.id)}"
+                        <h:commandLink action="#{reservaBean.cargarItemsReservaProveedor(reservas.id)}"
                                        immediate="true"
-                                       value="#{reservas.id} #{reservas.estado}">
+                                       value="#{reservas.id}  #{reservas.fechaCreacion} #{reservas.estado}
+                                   #{reservas.cliente.nickname} #{reservas.carrito.total}">
                         </h:commandLink>
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                                Seleccione un estado<span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 1)}">Registrada</h:commandLink> </li>
+                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 2)}">Cancelada</h:commandLink> </li>
+                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 3)}">Pagada</h:commandLink> </li>
+                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 4)}">Facturada</h:commandLink> </li>
+                            </ul>
+                        </div>
                     </h:column>
                 </h:dataTable>
             </div>
 
             <div class="box2 col-lg-2">
-                <h3>Detalle</h3>
-                <h:dataTable value="#{reservaBean.itemReserva}" var="item" border="0">
-                    <h:column>
-                        <h:commandLink action="#{reservaBean.modificarEstado(reservaBean.reservaSeleccionada)}"
-                                       immediate="true"
-                                       value="#{item.id} #{item.producto.descripcion}">
-                        </h:commandLink>
-                    </h:column>
-                </h:dataTable>
+
             </div>
 
         </h:form>

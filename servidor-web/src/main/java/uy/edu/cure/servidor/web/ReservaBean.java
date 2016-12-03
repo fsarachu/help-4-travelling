@@ -39,7 +39,7 @@ public class ReservaBean implements Serializable {
         } else {
             estadoReserva = EstadoReserva.registrada;
         }
-        actualizarEstadoRest(id, estadoReserva);
+        //actualizarEstadoRest(id, estadoReserva);
         return "index?faces-redirect=true";
     }
 
@@ -49,13 +49,17 @@ public class ReservaBean implements Serializable {
         Reserva u = rest.doGET(url, Reserva.class);
         return u;
     }
-
-    public void actualizarEstadoRest(Integer reserva, EstadoReserva estadoReserva) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/actualizarestado/" + reserva + "/" + estadoReserva;
+    public void actualizarEstadoRest(Integer reserva, String estadoReserva) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/actualizarestado/" + reserva + "/" +estadoReserva;
         RestController rest = new RestController();
         Reserva u = rest.doGET(url, Reserva.class);
     }
 
+    public void modificarEstadoRest(Integer reserva, Integer estadoReserva) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/estadoreserva/" + reserva + "/" +estadoReserva;
+        RestController rest = new RestController();
+        Reserva u = rest.doGET(url, Reserva.class);
+    }
 
     public void cargarReservas(Cliente cliente) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXCliente";

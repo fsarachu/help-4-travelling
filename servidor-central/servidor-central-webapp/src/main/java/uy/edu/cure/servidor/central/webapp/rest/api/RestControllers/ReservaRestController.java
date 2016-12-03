@@ -66,10 +66,12 @@ public class ReservaRestController {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    @Path("estadoreserva/{id}/{estado}")
-    public Response actualizarEstado(@PathParam("id") Integer idReserva, @PathParam("estado") EstadoReserva nuevoEstado) {
-        reservaController.actualizarEstado(idReserva, nuevoEstado);
-        return Response.status(Response.Status.OK).entity(nuevoEstado).build();
+    @Path("estadoreserva/{id}/{nuevoestado}")
+    public Response actualizarEstado(@PathParam("id") Integer idReserva, @PathParam("nuevoestado") Integer nuevoEstado) {
+        EstadoReserva estado ;
+        estado = EstadoReserva.getEnum(nuevoEstado);
+        reservaController.actualizarEstado(idReserva, estado);
+        return Response.status(Response.Status.OK).entity(estado).build();
     }
 
     @PUT
