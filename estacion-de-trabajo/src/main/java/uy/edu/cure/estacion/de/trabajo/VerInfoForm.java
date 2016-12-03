@@ -68,6 +68,18 @@ public class VerInfoForm {
                                     +reserva.getEstado() + "\n");
                         }
                     }
+                    if (cmbInfo.getSelectedItem().equals("Logs")) {
+                        String url = "http://localhost:8080/servidor-central-webapp/rest/api/loger/listar";
+                        RestController rest = new RestController();
+                        ListaLog listaLog = rest.doGET(url, ListaLog.class);
+                        ArrayList<Log> logs = listaLog.getLogArrayList();
+                        for (Log log : logs) {
+                            txtInfo.append(log.getId() + "  "
+                                    +log.getIp() + " " + log.getUrl() + " " + log.getSo() + " " +
+                                    log.getUsr() + "\n");
+                        }
+                    }
+
                 }
             }
         });
@@ -79,6 +91,7 @@ public class VerInfoForm {
         cmbInfo.addItem("Servicios");
         cmbInfo.addItem("Promociones");
         cmbInfo.addItem("Reserva");
+        cmbInfo.addItem("Logs");
     }
 
 

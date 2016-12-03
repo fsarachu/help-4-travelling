@@ -1,12 +1,20 @@
 package uy.edu.cure.servidor.central.dto;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class, property="@id")
 public class Log {
     private Integer id;
     private String usr;
     private String ip;
     private String url;
     private String so;
+
+    @JsonCreator
+    public Log() { }
+
 
     public Integer getId() {
         return id;
@@ -32,7 +40,6 @@ public class Log {
 
     public void setSo(String so) { this.so = so; }
 
-    public Log() { }
 }
 
 

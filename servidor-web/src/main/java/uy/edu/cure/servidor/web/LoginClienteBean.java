@@ -152,9 +152,9 @@ public class LoginClienteBean implements Serializable {
 
 
     public void guardarLogRest(Log log){
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/log/guardar";
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/loger/guardar";
         RestController rest = new RestController();
-        boolean u = rest.doGET(url, boolean.class);
+        Log u = rest.doPUT(url, log, Log.class);
     }
 
     public void hardcodeoRest() {
@@ -299,5 +299,5 @@ public class LoginClienteBean implements Serializable {
         this.cantidadItems = cantidadItems;
     }
 
-   
+
 }
