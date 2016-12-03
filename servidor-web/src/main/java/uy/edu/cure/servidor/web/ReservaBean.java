@@ -22,7 +22,9 @@ public class ReservaBean implements Serializable {
     private Integer reservaSeleccionada;
     private Integer cantidadReservas;
     private List<Reserva> reservaList = new ArrayList<>();
+    private List<Reserva> reservaListProv = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
+    private List<ItemReserva> itemReservaProveedor = new ArrayList<>();
     @ManagedProperty("#{loginProveedorBean}")
     private LoginProveedorBean loginProveedorBean;
 
@@ -42,14 +44,14 @@ public class ReservaBean implements Serializable {
     }
 
     public Reserva obtenerRest(Integer reserva) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/obtener/"+reserva;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/obtener/" + reserva;
         RestController rest = new RestController();
         Reserva u = rest.doGET(url, Reserva.class);
         return u;
     }
 
     public void actualizarEstadoRest(Integer reserva, EstadoReserva estadoReserva) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/actualizarestado/"+reserva+"/"+estadoReserva;
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/actualizarestado/" + reserva + "/" + estadoReserva;
         RestController rest = new RestController();
         Reserva u = rest.doGET(url, Reserva.class);
     }
@@ -58,14 +60,16 @@ public class ReservaBean implements Serializable {
     public void cargarReservas(Cliente cliente) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXCliente";
         RestController rest = new RestController();
-        reservaList = rest.doPUT(url, cliente , ListaReservas.class).getReservaArrayList();
+        reservaList = rest.doPUT(url, cliente, ListaReservas.class).getReservaArrayList();
     }
 
     public boolean cargarReservasProveedor() {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXProveedor/"+ loginProveedorBean.getProveedor().getId();
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXProveedor/" + loginProveedorBean.getProveedor().getId();
         RestController rest = new RestController();
-        reservaList = rest.doGET(url, ListaReservas.class).getReservaArrayList();
-        System.out.print(reservaList.size());
+        if (rest.doGET(url, ListaReservas.class).getReservaArrayList().size() == 0) {
+            return false;
+        }
+        reservaListProv = rest.doGET(url, ListaReservas.class).getReservaArrayList();
         return true;
     }
 
@@ -80,7 +84,16 @@ public class ReservaBean implements Serializable {
         }
     }
 
-    public void comprarReserva(Integer idReserva){
+    public void cargarItemsReservaProveedor(Integer idReserva) {
+        reservaSeleccionada = idReserva;
+        for (int i = 0; i < reservaListProv.size(); i++) {
+            for (ItemReserva item : reservaListProv.get(i).getCarrito().getItems()) {
+                itemReservaProveedor.add(item);
+            }
+        }
+    }
+
+    public void comprarReserva(Integer idReserva) {
         FacturaController facturaController = new FacturaController();
         facturaController.nueva(this.reserva);
         //mensaje = "Reserva Facturada con exito (Y)";
@@ -136,5 +149,21 @@ public class ReservaBean implements Serializable {
 
     public void setLoginProveedorBean(LoginProveedorBean loginProveedorBean) {
         this.loginProveedorBean = loginProveedorBean;
+    }
+
+    public List<Reserva> getReservaListProv() {
+        return reservaListProv;
+    }
+
+    public void setReservaListProv(List<Reserva> reservaListProv) {
+        this.reservaListProv = reservaListProv;
+    }
+
+    public List<ItemReserva> getItemReservaProveedor() {
+        return itemReservaProveedor;
+    }
+
+    public void setItemReservaProveedor(List<ItemReserva> itemReservaProveedor) {
+        this.itemReservaProveedor = itemReservaProveedor;
     }
 }
