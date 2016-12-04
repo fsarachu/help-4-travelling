@@ -74,8 +74,8 @@ public class VerInfoForm {
                         ListaLog listaLog = rest.doGET(url, ListaLog.class);
                         ArrayList<Log> logs = listaLog.getLogArrayList();
                         for (Log log : logs) {
-                            txtInfo.append(log.getId() + "  "
-                                    +log.getIp() + " " + log.getUrl() + " " + log.getSo() + " " +
+                            txtInfo.append(log.getId() + " - "
+                                    +log.getIp() + " - " + log.getUrl() + " - " + log.getSo() + " - " +
                                     log.getUsr() + "\n");
                         }
                     }

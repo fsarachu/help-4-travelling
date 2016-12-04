@@ -2,7 +2,10 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
 
 import uy.edu.cure.servidor.central.dto.Log;
+import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.lib.servicios.LogService;
+
+import java.util.Map;
 
 
 public class LogServiceImpl extends GenericServiceImpl<Log> implements LogService {
@@ -16,8 +19,15 @@ public class LogServiceImpl extends GenericServiceImpl<Log> implements LogServic
         super();
     }
 
-    @Override
+    //@Override
     public Integer nextId() {
-        return null;
+        Integer maxId = 0;
+        for (Map.Entry<Integer, Log> entry : coleccion.entrySet()) {
+            if (entry.getValue().getId() > maxId) {
+                maxId = entry.getValue().getId();
+            }
+        }
+
+        return maxId + 1;
     }
 }
