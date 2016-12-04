@@ -16,7 +16,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
 <link href="../resources/css/full.css" rel="stylesheet"/>
-<link href="../resources/css/verInfoServicio.css" rel="stylesheet"/>
+<link href="../resources/css/box.css" rel="stylesheet"/>
 
 <body>
 <div class="login-title" align="center">VER INFORMACION SERVICIOS</div>
@@ -29,7 +29,7 @@
     <div class="col-lg-3"></div>
 
     <h:form>
-        <div class="caja1 col-lg-2">
+        <div class="box col-lg-2">
             <h:dataTable
                     styleClass="table table-striped"
                     rendered="#{servicioBean.cargarServicioXProveedor()}"
@@ -42,28 +42,7 @@
             </h:dataTable>
         </div>
         <div class="caja2 col-lg-2">
-<!--
-            <img id="mainImage" class="mainImage" src="#{servicioBean.servicio.imagenes[0]}"/>
-            <div id="divId" onclick="changeImageOnClick(event)">
-                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[0]}"/>
-                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[1]}"/>
-                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[2]}"/>
 
-            </div>
-
-            <script type="text/javascript">
-                var images = document.getElementById("divId").getElementsByTagName("img");
-
-                function changeImageOnClick(event) {
-                    event = event || window.event;
-                    var targetElement = event.target || event.srcElement;
-                    if (targetElement.tagName == "IMG") {
-                        mainImage.src = targetElement.getAttribute("src");
-                    }
-                }
-            </script>
-
--->
         </div>
 
     </h:form>

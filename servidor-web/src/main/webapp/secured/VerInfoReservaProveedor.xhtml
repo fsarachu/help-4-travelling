@@ -14,7 +14,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
 <link href="../resources/css/full.css" rel="stylesheet"/>
-<link href="../resources/css/verInfoReserva.csss" rel="stylesheet"/>
+<link href="../resources/css/box.css" rel="stylesheet"/>
 
 <body>
 <div class="login-title" align="center">VER INFORMACION RESERVA</div>
@@ -23,13 +23,14 @@
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbarProveedores.xhtml"/>
     </ui:insert>
-
+    <div class="login-title" align="center">RESERVAS</div>
     <div class="col-lg-3"></div>
     <h:form>
-        <div class="box1 col-lg-2">
-            <h3>Reservas</h3>
-            <h:dataTable rendered="#{reservaBean.cargarReservasProveedor()}"
-                         value="#{reservaBean.reservaListProv}" var="reservas" border="1">
+        <div class="box col-lg-3">
+            <h:dataTable
+                    styleClass="table table-striped col-lg-12" style="background-color: whitesmoke"
+                    rendered="#{reservaBean.cargarReservasProveedor()}"
+                         value="#{reservaBean.reservaListProv}" var="reservas" border="0">
                 <h:column>
                     <h:commandLink action="#{reservaBean.cargarItemsReservaProveedor(reservas.id)}"
                                    immediate="true"
@@ -39,8 +40,10 @@
                 </h:column>
             </h:dataTable>
         </div>
-        <div class="box2 col-lg-2">
-            <h:dataTable value="#{reservaBean.itemReservaProveedor}" var="itemRes" border="1">
+        <div class="box col-lg-3">
+            <h:dataTable
+                    styleClass="table table-striped col-lg-12" style="background-color: whitesmoke"
+                    value="#{reservaBean.itemReservaProveedor}" var="itemRes" border="0">
                 <h:column>
                     <h:commandLink action="#{servicioBean.buscarServicio(itemRes.producto.id)}" immediate="true"
                                    value="#{itemRes.id}  #{itemRes.producto.nombre} ">
@@ -51,37 +54,6 @@
 
 
 
-        <div class="box3 col-lg-2">
-
-
-
-            <img id="mainImage" class="mainImage" src="#{servicioBean.servicio.imagenes[0]}"/>
-            <div id="divId" onclick="changeImageOnClick(event)">
-                <h:outputText>Descripcion #{itemRes.producto.descripcion}</h:outputText>
-                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[0]}"/>
-                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[1]}"/>
-                <img class="imgStyle" src="#{servicioBean.servicio.imagenes[2]}"/>
-
-                <h:outputText>rendered="#{itemRes.fechaInicio.equals(not null)}">#{itemRes.fechaFin}</h:outputText>
-                <br/>
-                <label>Precio $#{servicioBean.servicio.precio}</label>
-
-            </div>
-
-            <script type="text/javascript">
-                var images = document.getElementById("divId").getElementsByTagName("img");
-
-                function changeImageOnClick(event) {
-                    event = event || window.event;
-                    var targetElement = event.target || event.srcElement;
-                    if (targetElement.tagName == "IMG") {
-                        mainImage.src = targetElement.getAttribute("src");
-                    }
-                }
-            </script>
-
-
-        </div>
 
 
     </h:form>

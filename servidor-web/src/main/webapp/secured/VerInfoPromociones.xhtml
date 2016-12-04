@@ -15,21 +15,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
 <link href="../resources/css/full.css" rel="stylesheet"/>
-<link href="../resources/css/verInfoPromociones.css" rel="stylesheet"/>
-<!-- /head -->
+<link href="../resources/css/box.css" rel="stylesheet"/>
+
 <body>
 <div class="login-title" align="center">VER INFORMACION PROMOCIONES</div>
-
 <div id="container" class="col-lg-12">
+
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
+    <div class="login-title" align="center">PROMOCIONES</div>
 
     <div class="col-lg-3"></div>
 
     <h:form>
-        <div class="caja1 col-lg-2">
-            <h3>Categorias</h3>
+        <div class="box col-lg-3">
             <h:dataTable
                     styleClass="table table-striped"
                     value="#{categoriaBean.listCategorias}" var="categorias" border="1">
@@ -41,12 +41,11 @@
                 </h:column>
             </h:dataTable>
         </div>
-        <div class="caja2 col-lg-2">
-            <h3>Promociones</h3>
+        <div class="box col-lg-3">
             <h:dataTable
                     styleClass="table table-striped"
                     rendered="#{!categoriaBean.categoria.id.equals(0)}" value="#{servicioBean.listaServicios}"
-                         var="serviciopromo" border="1">
+                    var="serviciopromo" border="1">
                 <h:column>
                     <h:commandLink action="#{servicioBean.buscarServicio(serviciopromo.id)}" immediate="true"
                                    value="#{serviciopromo.id}  #{serviciopromo.nombre}">
@@ -54,17 +53,8 @@
                 </h:column>
             </h:dataTable>
         </div>
-        <div class="caja3 col-lg-2">
-            <h3>Informacion de Promociones #{servicioBean.servicio.nombre}</h3>
-            <h:outputText>Descripcion #{servicioBean.servicio.descripcion}</h:outputText>
-            <img src="#{servicioBean.servicio.imagenes[0]}"/>
-            <img src="#{servicioBean.servicio.imagenes[1]}"/>
-            <img src="#{servicioBean.servicio.imagenes[2]}"/>
-            <h:outputText>rendered="#{serviciopromo.origen.equals(not null)}">#{serviciopromo.origen}</h:outputText>
-            <h:outputText> rendered="#{serviciopromo.destino.equals(not null)}">#{serviciopromo.origen}</h:outputText>
-            <label>Precio $#{servicioBean.servicio.precio}</label>
-        </div>
         <div class="col-lg-3"></div>
+
     </h:form>
 </div>
 </body>
