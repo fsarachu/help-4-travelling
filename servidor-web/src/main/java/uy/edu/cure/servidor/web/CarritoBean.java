@@ -1,8 +1,10 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Carrito;
+import uy.edu.cure.servidor.central.dto.Factura;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Item_Carrito;
+import uy.edu.cure.servidor.central.lib.controllers.FacturaController;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
@@ -199,6 +201,17 @@ public class CarritoBean implements Serializable{
 
     public void setDias(Long dias) {
         this.dias = dias;
+    }
+
+    public void comprarReserva() {
+        FacturaController facturaController = new FacturaController();
+        Factura factura = new Factura();
+        /*Reserva dummyReserva = new Reserva();
+            dummyReserva.setId( idReserva );*/
+            factura.setReserva( this.getReservaBean().getReserva() );
+        //factura.setReserva( this.getReserva() )
+        facturaController.nueva( factura );
+        //mensaje = "Reserva Facturada con exito (Y)";
     }
 }
 

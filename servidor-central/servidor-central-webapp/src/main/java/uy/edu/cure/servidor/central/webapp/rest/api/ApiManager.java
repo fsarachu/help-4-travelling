@@ -23,6 +23,7 @@ public class ApiManager extends Application {
         singleton.add(new ReservaRestController());
         singleton.add(new HardcodeoRestController());
         singleton.add(new LogRestController());
+        singleton.add(new FacturaRestController());
     }
 
     @Override

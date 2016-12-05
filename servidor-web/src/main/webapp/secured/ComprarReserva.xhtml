@@ -5,9 +5,9 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
 <head>
-    <!-- Optional theme -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-    <!-- Latest compiled and minified JavaScript -->
+
     <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -16,7 +16,7 @@
             crossorigin="anonymous"></script>
 
     <title>Help 4 Travelling</title>
-    <link href="../resources/css/verInfoReserva.css" rel="stylesheet"/>
+    <link href="../resources/css/box.css" rel="stylesheet"/>
 </head>
 <body>
 <div class="titulo"><h4>COMPRAR RESERVA</h4></div>
@@ -31,17 +31,16 @@
                 <h:column>
                     <h:commandLink action="#{reservaBean.cargarReservas(reservas.id)}"
                                    immediate="true"
-                                   value="#{reservas.id}  #{reservas.fechaCreacion}">
+                                   value="#{reservas.id}">
                     </h:commandLink>
                 </h:column>
             </h:dataTable>
         </div>
         <div class="box2">
-            <h3>     </h3>
-            <h:dataTable rendered="#{!reservaBean.reserva.id.equals(0)}" value="#{carritoBean.itemReservas}"  var="productos" border="1">
+            <h:dataTable rendered="#{!reservaBean.reserva.id.equals(0)}" value="#{carritoBean.itemReservas}" var="itemRes" border="1">
                 <h:column>
-                    <h:commandLink action="#{carritoBean.mostrarCarrito()}" immediate="true"
-                                   value="#{productos.producto.id}  #{productos.producto.descripcion} ">
+                    <h:commandLink action="#{carritoBean.itemReservas}" immediate="true"
+                                   value="#{itemRes.id}  #{itemRes.producto.nombre} ">
                     </h:commandLink>
                 </h:column>
             </h:dataTable>
@@ -49,9 +48,10 @@
         <h:commandButton id="confirmar" value="Reserva"
                          action="#{reservaBean.comprarReserva(reservaBean.reserva.id)}">
         </h:commandButton>
-        <object data="factura.pdf" type="application/pdf" width="100%" height="100%">
-            <p>Alternative text - include a link <a href="myfile.pdf">to the PDF!</a></p>
-        </object>
+        <h:commandLink id="facturar" value="Factura"
+                       action="#{crearPDFBean.nuevaFactura}">
+        </h:commandLink>
+        <embed src="factura.pdf" width="800px" height="2100px" />
         <div class="clear"></div>
         <a href="session.removeAttribute(reservas)"></a>
     </h:form>

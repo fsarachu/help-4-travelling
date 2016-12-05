@@ -1,26 +1,17 @@
-
-
-
-.box1, .box2
+.box
 {
-    background-color : rgba(0247, 236, 255, 0.4);
+    background-color: whitesmoke;
+    padding: 20px 10px 20px 10px;
+
+
     text-align: center;
     margin-right: 10px;
-    width : 290px;
     min-height: 250px;
-    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.3);
     border-radius: 25px;
     border: solid 1px rgba(0, 0, 0, 0.7);
-    float: left;
-    padding : 10px;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+
 }
-
-
-
 
 .mainImage{
     height: 250px;
@@ -28,5 +19,3 @@
     border: solid 1px rgba(0, 0, 0, 0.7);
     border-radius: 25px;
 }
-
-

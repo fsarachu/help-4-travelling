@@ -18,7 +18,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
 <link href="../resources/css/full.css" rel="stylesheet"/>
-<link href="../resources/css/infoProveedor.css" rel="stylesheet"/>
+<link href="../resources/css/box.css" rel="stylesheet"/>
 
 
 <h:body>
@@ -33,15 +33,12 @@
         <div class="col-lg-3"></div>
 
         <h:form id="form">
-            <div class="box1 col-lg-2">
-
+            <div class="box col-lg-2">
                 <h4>PROVEEDORES</h4>
-                <h:dataTable value="#{proveedorBean.listProveedores}" var="proveedor" border="0">
+                <h:dataTable
+                        styleClass="table table-striped"
+                        value="#{proveedorBean.listProveedores}" var="proveedor" border="0">
                     <h:column>
-                        <f:facet name="header">
-
-
-                        </f:facet>
                         <h:outputLabel>
                             <h:commandLink action="#{proveedorBean.seleccionarProveedor(proveedor.id)}"
                                            immediate="true"
@@ -54,12 +51,12 @@
 
             </div>
 
-            <div class="box2 col-lg-2">
+            <div class="box col-lg-2">
                 <h4>INFORMACION</h4>
-                <h:outputText>#{proveedorBean.proveedor.nombre}</h:outputText>
-                <h:outputText>#{proveedorBean.proveedor.nombreEmpresa}</h:outputText>
+                <label>#{proveedorBean.proveedor.nombre}</label>
+                <label>#{proveedorBean.proveedor.nombreEmpresa}</label>
                 <label>#{proveedorBean.proveedor.correo}</label>
-                <h:commandLink>#{proveedorBean.proveedor.linkEmpresa}</h:commandLink>
+                <label>#{proveedorBean.proveedor.linkEmpresa}</label>
             </div>
 
             <div class="col-lg-2">

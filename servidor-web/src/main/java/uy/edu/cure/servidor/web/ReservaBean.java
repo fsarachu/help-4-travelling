@@ -1,11 +1,13 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
+import uy.edu.cure.servidor.central.dto.Factura;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
 import uy.edu.cure.servidor.central.lib.controllers.FacturaController;
+import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
@@ -108,8 +110,17 @@ public class ReservaBean implements Serializable {
     }
 
     public void comprarReserva(Integer idReserva) {
+        ReservaController reservaControler = new ReservaController();
+        Reserva reserva = null;
+        reserva = reservaControler.obtener( idReserva );
+            reserva.getId();
         FacturaController facturaController = new FacturaController();
-        facturaController.nueva(this.reserva);
+        Factura factura = new Factura();
+            //Reserva dummyReserva = new Reserva();
+            //dummyReserva.setId( idReserva );
+            factura.setReserva( reserva );
+            //factura.setReserva( this.getReserva() )
+        facturaController.nueva( factura );
         //mensaje = "Reserva Facturada con exito (Y)";
     }
 

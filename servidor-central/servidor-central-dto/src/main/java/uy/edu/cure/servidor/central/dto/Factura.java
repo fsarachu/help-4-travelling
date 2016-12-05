@@ -1,42 +1,15 @@
 package uy.edu.cure.servidor.central.dto;
 
 import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-
-import org.hibernate.annotations.NamedQueries;
-import org.hibernate.annotations.NamedQuery;
-
-//  import com.sun.istack.NotNull;
-
-@Entity
-@Table(name = "facturas")
-@NamedQueries(value = { @NamedQuery(name = "getFacturaPorId", query = "select f from Factura f where idfactura = :idfactura") })
 
 public class Factura {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Integer id;
     private Date fecha;
+    private Reserva reserva;
+    private EstadoFactura estado;
 
-    //@NotNull
-    @Column(unique = true)
-    private String username;
-
-    //@OneToOne(mappedBy = "factura", fetch = FetchType.EAGER)
-    //private Reserva reserva;
-    //private EstadoReserva estado;
-
-    public Factura(){
+    public Factura() {
     }
 
     public Integer getId() {
@@ -55,21 +28,21 @@ public class Factura {
         this.fecha = fecha;
     }
 
-    /*public Reserva getReserva() {
+    public Reserva getReserva() {
         return reserva;
-    }*/
+    }
 
-    /*public void setReserva(Reserva reserva) {
+    public void setReserva(Reserva reserva) {
         this.reserva = reserva;
-    }*/
+    }
 
-   // public EstadoReserva getEstado() {
-     //   return estado;
-    //}
+    public EstadoFactura getEstado() {
+        return estado;
+    }
 
-   // public void setEstado(EstadoReserva estado) {
-   //     this.estado = estado;
-    //}
+    public void setEstado(EstadoFactura estado) {
+        this.estado = estado;
+    }
 }
 
 

@@ -1,6 +1,7 @@
 package uy.edu.cure.servidor.web;
 
 import eu.bitwalker.useragentutils.UserAgent;
+import uy.edu.cure.servidor.central.dto.Log;
 import uy.edu.cure.servidor.central.dto.Proveedor;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
@@ -42,11 +43,12 @@ public class LoginProveedorBean implements Serializable {
                 loggedIn = true;
                 mensaje = null;
 
-                logueo.warning("USR : " + proveedor.getNombre());
-                logueo.warning("IP  : " + InetAddress.getLocalHost());
-                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                logueo.warning("S.O : " + System.getProperty("os.name"));
-
+                Log log = new Log();
+                log.setUsr(proveedor.getNombre());
+                log.setIp(""+InetAddress.getLocalHost());
+                log.setUrl("http://localhost:8080/secured/LoginProveedorBean");
+                log.setSo(System.getProperty("os.name"));
+                guardarLogRest(log);
 
 
             /*  String userAgent = request.getHeader("user-agent");
@@ -72,11 +74,12 @@ public class LoginProveedorBean implements Serializable {
                 loggedIn = true;
                 mensaje = null;
 
-                logueo.warning("USR : " + proveedor.getNombre());
-                logueo.warning("IP  : " + InetAddress.getLocalHost());
-                logueo.warning("URL : " + "http://localhost:8080/secured/LoginBean");
-                logueo.warning("S.O : " + System.getProperty("os.name"));
-
+                Log log = new Log();
+                log.setUsr(proveedor.getNombre());
+                log.setIp(""+InetAddress.getLocalHost());
+                log.setUrl("http://localhost:8080/secured/LoginProveedorBean");
+                log.setSo(System.getProperty("os.name"));
+                guardarLogRest(log);
 
                 String userAgent = request.getHeader("user-agent");
                 UserAgent ua = UserAgent.parseUserAgentString(userAgent);
@@ -97,6 +100,12 @@ public class LoginProveedorBean implements Serializable {
                 return null;
             }
         }
+    }
+
+    public void guardarLogRest(Log log){
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/loger/guardar";
+        RestController rest = new RestController();
+        Log u = rest.doPUT(url, log, Log.class);
     }
 
     public void hardcodeoRest() {
