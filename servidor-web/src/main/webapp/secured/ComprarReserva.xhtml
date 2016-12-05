@@ -37,19 +37,14 @@
             </h:dataTable>
         </div>
         <div class="box2">
-            <h:dataTable rendered="#{!reservaBean.reserva.id.equals(0)}" value="#{carritoBean.itemReservas}" var="itemRes" border="1">
-                <h:column>
-                    <h:commandLink action="#{carritoBean.itemReservas}" immediate="true"
-                                   value="#{itemRes.id}  #{itemRes.producto.nombre} ">
-                    </h:commandLink>
-                </h:column>
-            </h:dataTable>
+
         </div>
+
         <h:commandButton id="confirmar" value="Reserva"
-                         action="#{reservaBean.comprarReserva(reservaBean.reserva.id)}">
+                         action="#{loginClienteBean.comprarReservasCliente()}">
         </h:commandButton>
         <h:commandLink id="facturar" value="Factura"
-                       action="#{crearPDFBean.nuevaFactura}">
+                       action="#{crearFacturaBean.nuevaFactura}">
         </h:commandLink>
         <embed src="factura.pdf" width="800px" height="2100px" />
         <div class="clear"></div>

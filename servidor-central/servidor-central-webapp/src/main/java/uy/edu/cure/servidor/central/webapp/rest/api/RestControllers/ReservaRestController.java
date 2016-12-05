@@ -9,6 +9,7 @@ import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import java.sql.SQLException;
 
 /**
  * Created by victor on 09/11/16.
@@ -75,7 +76,8 @@ public class ReservaRestController {
     }
 
     @PUT
-    @Produces("text/plain")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
     @Path("listarReservaXCliente/")
     public Response listarReservasCliente(Cliente cliente) {
         ListaReservas log = new ListaReservas();
@@ -92,5 +94,16 @@ public class ReservaRestController {
         log.setReservaArrayList(reservaController.listarReservasProveedor(idProveedor));
         return Response.status(Response.Status.OK).entity(log).build();
     }
+
+    @PUT
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Path("comprarReserva")
+    public Response comprarReserva(Cliente cliente) throws SQLException, ClassNotFoundException {
+        reservaController.comprarReserva(cliente);
+        return Response.status(Response.Status.OK).entity(true).build();
+    }
+
+
 
 }

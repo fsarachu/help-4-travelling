@@ -2,8 +2,10 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
 import uy.edu.cure.servidor.central.dto.Reserva;
+import uy.edu.cure.servidor.central.lib.servicios.Conexion;
 import uy.edu.cure.servidor.central.lib.servicios.ReservaService;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -28,6 +30,21 @@ public class ReservaServiceImpl extends GenericServiceImpl<Reserva> implements R
         }
 
         return maxId + 1;
+    }
+
+    public void comprarReserva(Cliente cliente) throws SQLException, ClassNotFoundException {
+        ArrayList<Reserva> reservas = listarReservasCliente(cliente);
+        for (int i=0 ; i < reservas.size() ; i++) {
+            if (!reservas.get(i).getCliente().getId().equals(cliente.getId())) {
+                reservas.remove(i);
+            }
+        }
+        guardarFactura(reservas);
+    }
+
+    private void guardarFactura(ArrayList<Reserva> reserva) throws SQLException, ClassNotFoundException {
+        Conexion conexion = new Conexion();
+        conexion.agregar(reserva);
     }
 
     @Override

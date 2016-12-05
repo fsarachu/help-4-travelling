@@ -8,6 +8,7 @@ import uy.edu.cure.servidor.central.lib.servicios.CarritoService;
 import uy.edu.cure.servidor.central.lib.servicios.ReservaService;
 import uy.edu.cure.servidor.central.lib.servicios.ServiceFactory;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,6 +37,10 @@ public class ReservaController {
         this.carritoService.agregar(nuevoCarrito.getId(), nuevoCarrito);
 
         cliente.setCarrito(nuevoCarrito);
+    }
+
+    public void comprarReserva(Cliente cliente) throws SQLException, ClassNotFoundException {
+        reservaService.comprarReserva(cliente);
     }
 
     public Reserva obtener(Integer idReserva) {

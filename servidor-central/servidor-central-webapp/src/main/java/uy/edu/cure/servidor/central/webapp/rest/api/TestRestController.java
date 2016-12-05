@@ -1,7 +1,7 @@
 package uy.edu.cure.servidor.central.webapp.rest.api;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.lib.servicios.conexion;
+import uy.edu.cure.servidor.central.lib.servicios.Conexion;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -33,7 +33,7 @@ public class TestRestController {
     @Produces(MediaType.APPLICATION_JSON)
     public Response getPorId(@PathParam("id") int id) {
         Cliente u = new Cliente();
-        conexion cn = new conexion();
+        Conexion cn = new Conexion();
         try {
             u = cn.buscarCliente(id);
             System.out.println(u.getNombre());

@@ -172,14 +172,6 @@ public class LoginClienteBean implements Serializable {
     }
 
 
-    public Cliente obtenerRest(Integer cliente) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/obtener/" + cliente;
-        RestController rest = new RestController();
-        Cliente u = rest.doGET(url, Cliente.class);
-        System.out.println("USER ID: " + u.getId());
-        return u;
-    }
-
     public boolean comprobarloginMailRest(String correo, String contrasena) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/comprobarloginMail/" + correo + "/" + contrasena;
         RestController rest = new RestController();
@@ -210,6 +202,13 @@ public class LoginClienteBean implements Serializable {
         return u;
     }
 
+    public boolean obtenerReservasCliente() {
+        return false;
+    }
+
+    public boolean comprarReservasCliente() {
+        return reservaBean.comprarReserva(cliente);
+    }
 
     public boolean nicknameExisteRest(String nickname) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/cliente/nicknameExiste/" + nickname;

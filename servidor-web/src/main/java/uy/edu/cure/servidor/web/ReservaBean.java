@@ -1,20 +1,16 @@
 package uy.edu.cure.servidor.web;
 
 import uy.edu.cure.servidor.central.dto.Cliente;
-import uy.edu.cure.servidor.central.dto.Factura;
 import uy.edu.cure.servidor.central.dto.EstadoReserva;
 import uy.edu.cure.servidor.central.dto.ItemReserva;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.dto.TiposListas.ListaReservas;
-import uy.edu.cure.servidor.central.lib.controllers.FacturaController;
-import uy.edu.cure.servidor.central.lib.controllers.ReservaController;
 import uy.edu.cure.servidor.central.lib.controllers.RestController;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +25,7 @@ public class ReservaBean implements Serializable {
     private List<Reserva> reservaListProv = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
     private List<ItemReserva> itemReservaProveedor = new ArrayList<>();
+    private List<Reserva> reservaCliente = new ArrayList<>();
     private String estadoReserva;
     @ManagedProperty("#{loginProveedorBean}")
     private LoginProveedorBean loginProveedorBean;
@@ -54,14 +51,25 @@ public class ReservaBean implements Serializable {
         Reserva u = rest.doGET(url, Reserva.class);
         return u;
     }
+
+    public boolean obtenerXClienteRest(Cliente cliente) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/listarReservaXCliente";
+
+        RestController rest = new RestController();
+        ListaReservas listaReservas = rest.doPUT(url, cliente, ListaReservas.class);
+        reservaCliente = listaReservas.getReservaArrayList();
+
+        if (reservaCliente.size() == 0) {
+            return false;
+        }
+        return true;
+    }
+
+
     public void actualizarEstadoRest(Integer reserva, String estadoReserva) {
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/actualizarestado/" + reserva + "/" +estadoReserva;
         RestController rest = new RestController();
         Reserva u = rest.doGET(url, Reserva.class);
-    }
-
-    public String action(){
-        return estadoReserva;
     }
 
     public void modificarEstadoRest(Integer reserva) {
@@ -100,6 +108,7 @@ public class ReservaBean implements Serializable {
         }
     }
 
+
     public void cargarItemsReservaProveedor(Integer idReserva) {
         reservaSeleccionada = idReserva;
         for (int i = 0; i < reservaListProv.size(); i++) {
@@ -109,19 +118,11 @@ public class ReservaBean implements Serializable {
         }
     }
 
-    public void comprarReserva(Integer idReserva) {
-        ReservaController reservaControler = new ReservaController();
-        Reserva reserva = null;
-        reserva = reservaControler.obtener( idReserva );
-            reserva.getId();
-        FacturaController facturaController = new FacturaController();
-        Factura factura = new Factura();
-            //Reserva dummyReserva = new Reserva();
-            //dummyReserva.setId( idReserva );
-            factura.setReserva( reserva );
-            //factura.setReserva( this.getReserva() )
-        facturaController.nueva( factura );
-        //mensaje = "Reserva Facturada con exito (Y)";
+    public boolean comprarReserva(Cliente cliente) {
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/comprarReserva";
+        RestController rest = new RestController();
+        boolean log = rest.doPUT(url, cliente, boolean.class);
+        return true;
     }
 
     public List<Reserva> getReservaList() {
@@ -199,4 +200,14 @@ public class ReservaBean implements Serializable {
     public void setEstadoReserva(String estadoReserva) {
         this.estadoReserva = estadoReserva;
     }
+
+
+    public List<Reserva> getReservaCliente() {
+        return reservaCliente;
+    }
+
+    public void setReservaCliente(List<Reserva> reservaCliente) {
+        this.reservaCliente = reservaCliente;
+    }
+
 }
