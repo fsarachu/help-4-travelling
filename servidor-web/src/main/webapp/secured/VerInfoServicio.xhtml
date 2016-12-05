@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<!DOCTYPE html> <!--HTML5-->
+<!DOCTYPE html>
+
 <html class="full"
       xmlns="http://www.w3.org/1999/xhtml"
-      xml:lang="en" lang="en"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -24,36 +26,51 @@
     <ui:insert name="navbar">
         <ui:include src="../WEB-INF/navbar.xhtml"/>
     </ui:insert>
-    <div class="login-title" align="center">SERVICIOS</div>
+    <div class="login-title" align="center">SERVICIOS | PROMOCIONES</div>
 
-    <div class="col-lg-3"></div>
+    <div class="col-lg-4"></div>
 
     <h:form>
-        <div class="box col-lg-3">
+
+
+        <div class="box col-lg-4">
             <h:dataTable
                     styleClass="table table-striped"
-                    value="#{categoriaBean.listCategorias}" var="categorias" border="1">
+                    value="#{servicioBean.listarProducto}" var="prod" border="1">
+
                 <h:column>
-                    <h:commandLink action="#{servicioBean.cargarServiciosXCategoria(categorias)}"
-                                   immediate="true"
-                                   value="#{categorias.id}  #{categorias.nombre}">
+                    <f:facet name="header">
+                        <h:outputText value="ID"/>
+                    </f:facet>
+                    <h:outputLabel>#{prod.id}</h:outputLabel>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="TIPO"/>
+                    </f:facet>
+                    <h:outputLabel>#{prod.tipo}</h:outputLabel>
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">
+                        <h:outputText value="NOMBRE"/>
+                    </f:facet>
+                    <h:commandLink action="#{servicioBean.buscarServicio(prod.id)}" immediate="true"
+                                   value="#{prod.nombre}">
                     </h:commandLink>
                 </h:column>
-            </h:dataTable>
-        </div>
-        <div class="box col-lg-3">
-            <h:dataTable
-                    styleClass="table table-striped"
-                    rendered="#{!categoriaBean.categoria.id.equals(0)}" value="#{servicioBean.listaServicios}"
-                    var="serviciopromo" border="1">
+
                 <h:column>
-                    <h:commandLink action="#{servicioBean.buscarServicio(serviciopromo.id)}" immediate="true"
-                                   value="#{serviciopromo.id}  #{serviciopromo.nombre}">
-                    </h:commandLink>
+                    <f:facet name="header">
+                        <h:outputText value="PRECIO"/>
+                    </f:facet>
+                    <h:outputLabel>#{prod.precio}</h:outputLabel>
                 </h:column>
+
             </h:dataTable>
         </div>
-        <div class="col-lg-3"></div>
+        <div class="col-lg-4"></div>
 
     </h:form>
 </div>
