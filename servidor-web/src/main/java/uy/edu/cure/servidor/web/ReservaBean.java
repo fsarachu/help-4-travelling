@@ -11,6 +11,8 @@ import uy.edu.cure.servidor.central.lib.controllers.RestController;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +27,7 @@ public class ReservaBean implements Serializable {
     private List<Reserva> reservaListProv = new ArrayList<>();
     private List<ItemReserva> itemReserva = new ArrayList<>();
     private List<ItemReserva> itemReservaProveedor = new ArrayList<>();
+    private String estadoReserva;
     @ManagedProperty("#{loginProveedorBean}")
     private LoginProveedorBean loginProveedorBean;
 
@@ -55,8 +58,15 @@ public class ReservaBean implements Serializable {
         Reserva u = rest.doGET(url, Reserva.class);
     }
 
-    public void modificarEstadoRest(Integer reserva, Integer estadoReserva) {
-        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/estadoreserva/" + reserva + "/" +estadoReserva;
+    public String action(){
+        return estadoReserva;
+    }
+
+    public void modificarEstadoRest(Integer reserva) {
+        estadoReserva = FacesContext.getCurrentInstance().
+                getExternalContext().getRequestParameterMap().get("hidden1");
+        Integer estado = Integer.parseInt(estadoReserva);
+        String url = "http://localhost:8080/servidor-central-webapp/rest/api/reserva/estadoreserva/" + reserva + "/" +estado;
         RestController rest = new RestController();
         Reserva u = rest.doGET(url, Reserva.class);
     }
@@ -169,5 +179,13 @@ public class ReservaBean implements Serializable {
 
     public void setItemReservaProveedor(List<ItemReserva> itemReservaProveedor) {
         this.itemReservaProveedor = itemReservaProveedor;
+    }
+
+    public String getEstadoReserva() {
+        return estadoReserva;
+    }
+
+    public void setEstadoReserva(String estadoReserva) {
+        this.estadoReserva = estadoReserva;
     }
 }

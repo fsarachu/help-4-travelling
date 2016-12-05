@@ -6,21 +6,22 @@
 <html class="full"
       xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:ui="http://java.sun.com/jsf/facelets"
 >
+<head>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+            integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+    <link href="../resources/css/full.css" rel="stylesheet"/>
+    <link href="../resources/css/estadoReserva.css" rel="stylesheet"/>
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link>
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-        crossorigin="anonymous"></script>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<link href="../resources/css/bootstrap.css" rel="stylesheet"/>
-<link href="../resources/css/full.css" rel="stylesheet"/>
-<link href="../resources/css/estadoReserva.css" rel="stylesheet"/>
-
+</head>
 <h:body>
     <div class="login-title" align="center">ACTUALIZAR ESTADO RESERVA</div>
     <div id="container" class="col-lg-12">
@@ -29,7 +30,9 @@
             <ui:include src="../WEB-INF/navbarProveedores.xhtml"/>
         </ui:insert>
         <div class="col-lg-4"></div>
-        <h:form>
+        <h:form name="actualizoReserva" id="form1">
+            <input type="hidden" name="hidden1" id="mostrar" class="mostrar" value="#{reservaBean.estadoReserva}">
+            </input>
 
             <div class="box1 col-lg-2">
                 <h3>Reservas</h3>
@@ -42,16 +45,39 @@
                                    #{reservas.cliente.nickname} #{reservas.carrito.total}">
                         </h:commandLink>
                         <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
-                                Seleccione un estado<span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu">
-                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 1)}">Registrada</h:commandLink> </li>
-                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 2)}">Cancelada</h:commandLink> </li>
-                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 3)}">Pagada</h:commandLink> </li>
-                                <li><h:commandLink onclick="true" value="#{reservaBean.modificarEstadoRest(reservas.id, 4)}">Facturada</h:commandLink> </li>
-                            </ul>
+
+                            <script type='text/javascript'
+                                    src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $("input[name]").change(function () {
+                                        $('#mostrar').val($(this).val());
+                                    });
+                                });
+                            </script>
+
+                            <div class="radio">
+                                <label><input type="radio" name="optradio" value="1">Registrada</input></label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio" value="2">Cancelada</input></label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio" value="3">Pagada</input></label>
+                            </div>
+                            <div class="radio">
+                                <label><input type="radio" name="optradio" value="4">Facturada</input></label>
+                            </div>
+                            <div class="row center-block">
+                                <h:commandButton
+                                        styleClass="btn btn-primary center-block col-lg-12"
+                                        value="Confirmar"
+                                        action="#{reservaBean.modificarEstadoRest(reservas.id)}">
+                                </h:commandButton>
+                            </div>
+
                         </div>
+
                     </h:column>
                 </h:dataTable>
             </div>
