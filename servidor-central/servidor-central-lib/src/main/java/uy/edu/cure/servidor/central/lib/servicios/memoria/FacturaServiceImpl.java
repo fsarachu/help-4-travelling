@@ -3,37 +3,17 @@ package uy.edu.cure.servidor.central.lib.servicios.memoria;
 import java.sql.*;
 import java.util.Properties;
 
-//import jdk.nashorn.internal.ir.JumpToInlinedFinally;
+import uy.edu.cure.servidor.central.dto.EstadoFactura;
 import uy.edu.cure.servidor.central.dto.Factura;
 import uy.edu.cure.servidor.central.dto.Reserva;
 import uy.edu.cure.servidor.central.lib.servicios.FacturaService;
-import uy.edu.cure.servidor.central.lib.servicios.ReservaService;
-import uy.edu.cure.servidor.central.lib.servicios.conexion;
 
 /**
  * 
  * @author fvillegas
- * @see https://jdbc.postgresql.org/documentation/80/connect.html
- * @see https://www.mkyong.com/jdbc/jdbc-statement-example-insert-a-record/
- * 
- * Statement stmt = null;
- *   String query = "select COF_NAME, SUP_ID, PRICE, " +
- *                  "SALES, TOTAL " +
- *                  "from " + dbName + ".COFFEES";
- * try {
- *   stmt = con.createStatement();
- *   ResultSet rs = stmt.executeQuery(query);
- *   while (rs.next()) {
- *       String coffeeName = rs.getString("COF_NAME");
- *       int supplierID = rs.getInt("SUP_ID");
- *       float price = rs.getFloat("PRICE");
- *       int sales = rs.getInt("SALES");
- *       int total = rs.getInt("TOTAL");
- *       System.out.println(coffeeName + "\t" + supplierID +
- *                          "\t" + price + "\t" + sales +
- *                          "\t" + total);
- *   }
- * }
+ * @see //https://jdbc.postgresql.org/documentation/80/connect.html
+ * @see //https://www.mkyong.com/jdbc/jdbc-statement-example-insert-a-record/
+ *
  */
 public class FacturaServiceImpl extends GenericServiceImpl<Factura> implements FacturaService {
 
@@ -111,34 +91,47 @@ public class FacturaServiceImpl extends GenericServiceImpl<Factura> implements F
             }
         }
     }
+
     public Factura getFacturaXidReserva(Reserva reserva){
         return getFacturaXidReserva( reserva.getId());
 
     }
+
     public Factura getFacturaXidReserva(Integer idReserva){
         Factura factura = null;
-
-
-
         Reserva reserva = null;
-        reserva = ReservaServiceImpl.getInstance().obtener( idReserva );
-        PreparedStatement preparedStatement = null;
         Connection connection = null;
+        PreparedStatement preparedStatement = null;
+
+        factura = new Factura();
+        reserva = ReservaServiceImpl.getInstance().obtener( idReserva );
+
         try {
+
             connection = getConnection();
-            /*String statement = "INSERT INTO facturas VALUES (null, ?, ?, ?)";
+            String statement = "SELECT * FROM facturas WHERE idReserva = ?";
             preparedStatement = connection.prepareStatement( statement );
-            preparedStatement.setDate(1, (Date)factura.getFecha() );
-            preparedStatement.setLong( 2, factura.getReserva().getId() );
-            preparedStatement.setString( 3, factura.getEstado().toString()  );
+            preparedStatement.setLong( 1, idReserva );
 
+            ResultSet rs = preparedStatement.executeQuery();
 
-            Boolean result = preparedStatement.execute();*/
+            factura.setId( rs.getInt( 1 ) ) ;
+            factura.setFecha( rs.getDate( 2 ) );
+            factura.setReserva( reserva );
+                EstadoFactura estadoFactura = EstadoFactura.getEstado( rs.getString(4) );
+            factura.setEstado( estadoFactura );
+
+            if( reserva == null && factura.getId() > 0  ){
+                throw  new SecurityException("Incongruencia al recuperar Factura") ;
+            }
+
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         } catch (SQLException e) {
             e.printStackTrace();
-        }finally{
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } finally{
             try {
                 connection.close();
             } catch (SQLException e) {
