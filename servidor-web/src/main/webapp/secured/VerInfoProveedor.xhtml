@@ -29,14 +29,15 @@
         <ui:insert name="navbar">
             <ui:include src="../WEB-INF/navbar.xhtml"/>
         </ui:insert>
-
+        <div class="login-title" align="center">PROVEEDORES</div>
         <div class="col-lg-3"></div>
 
         <h:form id="form">
             <div class="box1 col-lg-2">
 
-                <h4>PROVEEDORES</h4>
-                <h:dataTable value="#{proveedorBean.listProveedores}" var="proveedor" border="0">
+                <h:dataTable
+                        styleClass="table table-striped"
+                        value="#{proveedorBean.listProveedores}" var="proveedor" border="0">
                     <h:column>
                         <f:facet name="header">
 
