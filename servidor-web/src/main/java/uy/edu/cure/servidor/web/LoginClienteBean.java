@@ -151,6 +151,86 @@ public class LoginClienteBean implements Serializable {
     }
 
 
+    public String logueoPerfil() throws UnknownHostException {
+        Log log = new Log();
+        log.setUsr(cliente.getNombre());
+        log.setIp(""+InetAddress.getLocalHost());
+        log.setUrl("http://localhost:8080/secured/VerPerfil");
+        log.setSo(System.getProperty("os.name"));
+        guardarLogRest(log);
+
+        return null;
+    }
+
+    public String logueoInfoServicio() throws UnknownHostException {
+        Log log = new Log();
+        log.setUsr(cliente.getNombre());
+        log.setIp(""+InetAddress.getLocalHost());
+        log.setUrl("http://localhost:8080/secured/VerInfoServicio");
+        log.setSo(System.getProperty("os.name"));
+        guardarLogRest(log);
+
+        return null;
+    }
+
+
+    public String logueoInfoReserva() throws UnknownHostException {
+        Log log = new Log();
+        log.setUsr(cliente.getNombre());
+        log.setIp(""+InetAddress.getLocalHost());
+        log.setUrl("http://localhost:8080/secured/VerInfoReserva");
+        log.setSo(System.getProperty("os.name"));
+        guardarLogRest(log);
+
+        return null;
+    }
+
+    public String logueoFactura() throws UnknownHostException {
+        Log log = new Log();
+        log.setUsr(cliente.getNombre());
+        log.setIp(""+InetAddress.getLocalHost());
+        log.setUrl("http://localhost:8080/secured/PDFFactura");
+        log.setSo(System.getProperty("os.name"));
+        guardarLogRest(log);
+
+        return null;
+    }
+
+    public String logueoComprarReserva() throws UnknownHostException {
+        Log log = new Log();
+        log.setUsr(cliente.getNombre());
+        log.setIp(""+InetAddress.getLocalHost());
+        log.setUrl("http://localhost:8080/secured/ComprarReserva");
+        log.setSo(System.getProperty("os.name"));
+        guardarLogRest(log);
+
+        return null;
+    }
+
+    public String logueoMostrarCarrito() throws UnknownHostException {
+        Log log = new Log();
+        log.setUsr(cliente.getNombre());
+        log.setIp(""+InetAddress.getLocalHost());
+        log.setUrl("http://localhost:8080/secured/MostrarCarrito");
+        log.setSo(System.getProperty("os.name"));
+        guardarLogRest(log);
+
+        return null;
+    }
+
+    public String logueoAgregarAlCarrito() throws UnknownHostException {
+        Log log = new Log();
+        log.setUsr(cliente.getNombre());
+        log.setIp(""+InetAddress.getLocalHost());
+        log.setUrl("http://localhost:8080/secured/AgregarAlCarrito");
+        log.setSo(System.getProperty("os.name"));
+        guardarLogRest(log);
+
+        return null;
+    }
+
+
+
     public void guardarLogRest(Log log){
         String url = "http://localhost:8080/servidor-central-webapp/rest/api/loger/guardar";
         RestController rest = new RestController();
