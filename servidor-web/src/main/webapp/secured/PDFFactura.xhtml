@@ -29,11 +29,11 @@
                            action="#{crearPDFBean.nuevaFactura}">
             </h:commandLink>
         </div>
-        <!--NuevaFactura-->
-        <embed src="factura.pdf" width="800px" height="2100px" />
-        <object data="C:\\Users\\Viviana\\Desktop\\factura.pdf" type="application/pdf" width="100%" height="100%">
-            <p>Alternative text - include a link <a href="C:\\Users\\Viviana\\Desktop\\factura.pdf">to the PDF!</a></p>
-        </object>
+
+        <embed src="http://localhost:8080/servidor-central-webapp/rest/api/factura/pdf" width="50%" height="50%" />
+        <!--<object data="http://localhost:8080/servidor-central-webapp/rest/api/factura/pdf" width="50%" height="50%">
+            <p>Alternative text - include a link <a href="http://localhost:8080/servidor-central-webapp/rest/api/factura/pdf">to the PDF!</a></p>
+        </object>-->
 
         <div class="clear"></div>
     </h:form>
