@@ -28,9 +28,10 @@
             <ui:include src="../WEB-INF/navbar.xhtml"/>
         </ui:insert>
 
+<div class="col-lg-2"></div>
 
         <h:form id="form1">
-        <div class="col-lg-2 center-block">
+        <div class="col-lg-4 center-block">
 
 
                 <p:tree id="tree" value="#{treeManagedBean.root}" var="node" dynamic="true" cache="false">
@@ -44,7 +45,7 @@
                 </p:tree>
         </div>
 
-            <div class="col-lg-2 center-block">
+            <div class="col-lg-4 center-block">
 
 
                 <h:dataTable
@@ -63,6 +64,7 @@
 
   </h:form>
     </div>
+    <div class="col-lg-2"></div>
     </h:body>
 </html>
 
